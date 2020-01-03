@@ -21,8 +21,10 @@ mentioned earlier.</li>
 <li><a href="https://dev.mixer.com/">Mixer</a></li>
 
 
-<h3>SCREENS STRUCTURE</h3>
 
+<h3>PLATFORMS GRAPH</h3>
+<a href="https://ibb.co/cchLBc4"><img src="https://i.ibb.co/99HtD9Q/platforms.png" alt="platforms" border="0"></a>
+<h3>SCREENS STRUCTURE</h3>
 <a href="https://ibb.co/H7np17B"><img src="https://i.ibb.co/Q9rjz9p/navGraph.png" alt="navGraph" border="0"></a>
 
 <h3>UI design</h3>
