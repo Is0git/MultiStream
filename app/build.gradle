@@ -11,7 +11,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.android.multistream"
-        minSdkVersion 19
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -22,6 +22,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -115,4 +118,7 @@ dependencies {
 
     //progress bars
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+
+    //encrypted shared preferences
+    implementation "androidx.security:security-crypto:1.0.0-alpha02"
 }
