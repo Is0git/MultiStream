@@ -7,13 +7,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.android.multistream.R
 import com.android.multistream.databinding.ActivityMainBinding
-import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.util.TWITCH_TOKEN
 import com.android.multistream.util.ViewModelFactory
 import com.android.multistream.util.twitchAPI.twitchAuthPage
 import com.android.multistream.util.twitchAPI.uriQuery
 import dagger.android.support.DaggerAppCompatActivity
-import retrofit2.Retrofit
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {

@@ -1,5 +1,6 @@
 package com.android.multistream.di
 
+import com.android.multistream.di.MainActivity.FragmentBuilder
 import com.android.multistream.ui.MainActivity
 import com.android.multistream.di.MainActivity.MainActivityScope
 import com.android.multistream.di.MainActivity.MainActivityViewModelModule
@@ -10,7 +11,7 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class ActivityBuilder {
     @MainActivityScope
-    @ContributesAndroidInjector(modules = [ViewModelFactoryModule::class, MainActivityViewModelModule::class])
+    @ContributesAndroidInjector(modules = [ViewModelFactoryModule::class, MainActivityViewModelModule::class, FragmentBuilder::class])
     abstract fun mainActivity() : MainActivity
 
 }

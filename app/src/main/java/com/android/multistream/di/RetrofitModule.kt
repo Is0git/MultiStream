@@ -1,5 +1,6 @@
 package com.android.multistream.di
 
+import com.android.multistream.util.twitchAPI.TWITCH_URL
 import com.android.multistream.util.twitchAPI.URL
 import dagger.Module
 import dagger.Provides
@@ -8,6 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -38,5 +40,16 @@ object RetrofitModule {
         .addConverterFactory(MoshiConverterFactory.create())
         .client(client)
         .baseUrl(URL)
+        .build()
+
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    @TwitchRetrofitQualifier
+    fun getTwitchRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
+        .addConverterFactory(MoshiConverterFactory.create())
+        .client(client)
+        .baseUrl(TWITCH_URL)
         .build()
 }
