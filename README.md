@@ -33,3 +33,4 @@ mentioned earlier.</li>
 https://cdn.dribbble.com/users/83361/videos/36462/credit_card.mp4
 https://cdn.dribbble.com/users/1474676/screenshots/6870298/dribbble_shot_hd_2x.png
 https://cdn.dribbble.com/users/4362583/screenshots/8391287/media/8d1ad50a624dcfa8e3a2e6eb867eb8d7.png
+https://cdn.dribbble.com/users/1575908/screenshots/9193202/media/185bbd773371ec77c629451009148437.jpg
