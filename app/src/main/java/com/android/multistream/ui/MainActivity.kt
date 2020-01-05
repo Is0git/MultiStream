@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.android.multistream.R
 import com.android.multistream.databinding.ActivityMainBinding
 import com.android.multistream.util.TWITCH_TOKEN
@@ -21,18 +23,19 @@ class MainActivity : DaggerAppCompatActivity() {
 
     lateinit var mainActivityViewModel: MainActivityViewModel
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         mainActivityViewModel = ViewModelProviders.of(this, viewModelFactory).get(MainActivityViewModel::class.java)
 
-        binding.button.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, twitchAuthPage.toUri())
-            startActivity(intent)
-        }
-
-        binding.token.setOnClickListener { binding.textID.text = mainActivityViewModel.getToken(TWITCH_TOKEN) }
+//        binding.button.setOnClickListener {
+//            val intent = Intent(Intent.ACTION_VIEW, twitchAuthPage.toUri())
+//            startActivity(intent)
+//        }
+        binding.bottomNav.setupWithNavController(findNavController(R.id.main_fragment_container))
+//        binding.token.setOnClickListener { binding.textID.text = mainActivityViewModel.getToken(TWITCH_TOKEN) }
     }
 
     override fun onResume() {

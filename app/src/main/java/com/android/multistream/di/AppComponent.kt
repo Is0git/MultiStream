@@ -8,7 +8,7 @@ import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
-@Component(modules = [AndroidInjectionModule::class, ActivityBuilder::class, RetrofitModule::class, SharedPreferencesModule::class])
+@Component(modules = [AndroidInjectionModule::class, ActivityBuilder::class, RetrofitModule::class, SharedPreferencesModule::class, RoomModule::class])
 @Singleton
 interface AppComponent : AndroidInjector<App> {
     @Component.Builder
