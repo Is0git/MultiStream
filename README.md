@@ -29,3 +29,7 @@ mentioned earlier.</li>
 
 <h3>UI design</h3>
 <h4>Insipirations</h4>
+
+https://cdn.dribbble.com/users/83361/videos/36462/credit_card.mp4
+https://cdn.dribbble.com/users/1474676/screenshots/6870298/dribbble_shot_hd_2x.png
+https://cdn.dribbble.com/users/4362583/screenshots/8391287/media/8d1ad50a624dcfa8e3a2e6eb867eb8d7.png
