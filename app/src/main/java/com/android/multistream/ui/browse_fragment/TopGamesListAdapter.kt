@@ -4,15 +4,25 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.android.multistream.database.entities.TopGames
+
 import com.android.multistream.databinding.BrowseFragmentBinding
 import com.android.multistream.databinding.TopGamesListBinding
 import com.android.multistream.di.MainActivity.browse_fragment.BrowseFragmentScope
+import com.android.multistream.network.twitch.models.Data
+import com.android.multistream.network.twitch.models.TopGames
 import javax.inject.Inject
 
 @BrowseFragmentScope
-class TopGamesListAdapter @Inject constructor() : PagedListAdapter<TopGames, TopGamesListAdapter.MyViewHolder>(callback) {
+class TopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<TopGamesListAdapter.MyViewHolder>() {
+
+    var list: List<Data>? = null
+
+    set(value) {
+        field = value
+        notifyDataSetChanged()
+    }
     class MyViewHolder(val binding: TopGamesListBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
@@ -23,13 +33,15 @@ class TopGamesListAdapter @Inject constructor() : PagedListAdapter<TopGames, Top
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-      holder.binding.textName.text = getItem(position)?.name
+      holder.binding.textName.text = list?.get(position)?.name
     }
+
+    override fun getItemCount(): Int = list?.count() ?: 0
 }
 
-val callback = object : DiffUtil.ItemCallback<TopGames>() {
-    override fun areItemsTheSame(oldItem: TopGames, newItem: TopGames): Boolean = oldItem.id == newItem.id
+val callback = object : DiffUtil.ItemCallback<Data>() {
+    override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean = oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: TopGames, newItem: TopGames): Boolean = oldItem == newItem
+    override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean = oldItem == newItem
 
 }

@@ -13,4 +13,6 @@ class MainActivityViewModel @Inject constructor(val repo: MainActivityRepository
     }
 
     fun getToken(type: String) = repo.getToken(type)
+
+
 }

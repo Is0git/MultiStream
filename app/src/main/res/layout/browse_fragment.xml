@@ -12,10 +12,8 @@
             android:layout_height="400dp"
             android:orientation="vertical"
             tools:listitem="@layout/top_games_list"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintTop_toTopOf="parent"
-            app:spanCount="2" />
-
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

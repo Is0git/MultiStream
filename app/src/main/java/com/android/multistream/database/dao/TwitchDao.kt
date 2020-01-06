@@ -13,4 +13,7 @@ interface TwitchDao {
 
     @Query("SELECT * from top_games")
     fun getTopGames(): DataSource.Factory<Int, TopGames>
+
+    @Query("DELETE FROM top_games")
+    suspend fun deleteAllFromTopGames()
 }

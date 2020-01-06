@@ -9,12 +9,9 @@ import javax.inject.Inject
 @BrowseFragmentScope
 class BrowseFragmentViewModel @Inject constructor(val repo: BrowseFragmentRepository) : ViewModel() {
     val topGamesPagedListLiveData = repo.topGames
+    var paginationListener = repo.listener
 
-    init {
-        updateTopGames()
-    }
-
-    private fun updateTopGames() {
-       viewModelScope.launch {  repo.updateTopGames() }
-    }
+//    private fun updateTopGames() {
+//       viewModelScope.launch {  repo.updateTopGames() }
+//    }
 }

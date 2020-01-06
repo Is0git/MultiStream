@@ -9,8 +9,5 @@ import javax.inject.Inject
 class HomeFragmentRepository @Inject constructor(@TwitchRetrofitQualifier val retrofit: Retrofit) {
     val service = retrofit.create(TwitchService::class.java)
 
-    suspend fun getTopGames() {
-        val result = service.getTopGames()
-        result.body()
-    }
+
 }
