@@ -10,10 +10,7 @@ import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.util.pagination.Pagination
 import com.android.multistream.util.pagination.PaginationListener
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import java.io.IOException
 import javax.inject.Inject
@@ -41,7 +38,7 @@ class BrowseFragmentRepository @Inject constructor(
                        )
                    }
                } catch (e: IOException) {
-                   Toast.makeText(application, "Connect to internet", Toast.LENGTH_LONG).show()
+                 withContext(Dispatchers.Main) {Toast.makeText(application, "Connect to internet", Toast.LENGTH_LONG).show()}
                }
            }
        }
@@ -57,7 +54,7 @@ class BrowseFragmentRepository @Inject constructor(
                        )
                    }
                } catch (e: IOException) {
-                   Toast.makeText(application, "Connect to internet", Toast.LENGTH_LONG).show()
+                   withContext(Dispatchers.Main) {Toast.makeText(application, "Connect to internet", Toast.LENGTH_LONG).show()}
                }
            }
        }

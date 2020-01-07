@@ -5,18 +5,18 @@ import androidx.lifecycle.MutableLiveData
 abstract class Pagination<T>(val listener: PaginationListener<T>) {
 
 
-    class PagedKeyLoader<T>(val listener: PaginationListener<T>) {
+    class PagedKeyLoader<T>(val listener: PaginationListener<T>) : PaginationListener<T> by listener {
         val data: MutableList<T> = mutableListOf()
         val dataLiveData = MutableLiveData<List<T>>()
 
         var nextKey: String? = null
         var initLoad: Boolean = false
         fun loadHandler() {
-            if (!initLoad) listener.loadInitial(this) else listener.loadNext(this, nextKey)
+            if (!initLoad) loadInitial(this) else loadNext(this, nextKey)
         }
 
         init {
-            listener.loadInitial(this)
+            loadInitial(this)
         }
 
 

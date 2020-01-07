@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="GamesData"
+            type="com.android.multistream.network.twitch.models.Data" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -10,12 +15,23 @@
             style="@style/TextAppearance.MaterialComponents.Headline4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintHorizontal_bias="0"
-            android:singleLine="true"
-            android:text="RES"
+            android:text="@{GamesData.name}"
             android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/gameImage"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.03"
+            app:layout_constraintStart_toEndOf="@+id/gameImage"
+            app:layout_constraintTop_toTopOf="@+id/gameImage" />
+
+        <ImageView
+            android:id="@+id/gameImage"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:background="@color/colorSecondary"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImage="@{GamesData.box_art_url}"
+          />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

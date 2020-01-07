@@ -20,8 +20,9 @@ class TopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<TopGamesL
     var list: List<Data>? = null
 
     set(value) {
+        val res = if (field != null && field?.isNotEmpty()!!) field?.size!! - 1 else 0
         field = value
-        notifyDataSetChanged()
+        notifyItemRangeChanged(res, value?.size!! - 1)
     }
     class MyViewHolder(val binding: TopGamesListBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -33,7 +34,7 @@ class TopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<TopGamesL
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-      holder.binding.textName.text = list?.get(position)?.name
+      holder.binding.gamesData = list?.get(position)
     }
 
     override fun getItemCount(): Int = list?.count() ?: 0
