@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -121,4 +123,6 @@ dependencies {
 
     //encrypted shared preferences
     implementation "androidx.security:security-crypto:1.0.0-alpha02"
+
+
 }

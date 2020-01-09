@@ -1,7 +1,11 @@
 package com.android.multistream.di
 
+import com.android.multistream.di.MainActivity.MixerRetrofitQualifier
+import com.android.multistream.network.mixer.TopGamesMixerAdapter
+import com.android.multistream.util.mixerAPI.MIXER_URL
 import com.android.multistream.util.twitchAPI.TWITCH_URL
 import com.android.multistream.util.twitchAPI.URL
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -52,4 +56,15 @@ object RetrofitModule {
         .client(client)
         .baseUrl(TWITCH_URL)
         .build()
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    @MixerRetrofitQualifier
+    fun getMixerRetrofit(client: OkHttpClient) : Retrofit = Retrofit.Builder()
+        .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().add(TopGamesMixerAdapter()).build()))
+        .client(client)
+        .baseUrl(MIXER_URL)
+        .build()
+
 }

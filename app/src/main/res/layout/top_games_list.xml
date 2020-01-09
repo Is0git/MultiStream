@@ -23,6 +23,19 @@
             app:layout_constraintStart_toEndOf="@+id/gameImage"
             app:layout_constraintTop_toTopOf="@+id/gameImage" />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/platformType"
+            style="@style/TextAppearance.MaterialComponents.Headline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{GamesData.platformType}"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="@+id/gameImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.03"
+            app:layout_constraintStart_toEndOf="@+id/gameImage"
+            app:layout_constraintTop_toBottomOf="@+id/textName" />
+
         <ImageView
             android:id="@+id/gameImage"
             android:layout_width="150dp"
@@ -31,7 +44,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadImage="@{GamesData.box_art_url}"
-          />
+            app:loadImage="@{GamesData.box_art_url}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

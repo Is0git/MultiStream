@@ -4,7 +4,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 const val HEIGHT = "400"
-const val WIDTH = "250"
+const val WIDTH = "200"
 object ImageLoader {
 
     @JvmStatic
