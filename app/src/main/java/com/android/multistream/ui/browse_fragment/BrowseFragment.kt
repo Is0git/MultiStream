@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.databinding.BrowseFragmentBinding
 import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.util.ViewModelFactory
-import com.android.multistream.util.pagination.Pagination
+import com.android.multistream.util.pagination.PagedOffsetLoader
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
+
 
 class BrowseFragment : DaggerFragment() {
 
@@ -21,7 +22,7 @@ class BrowseFragment : DaggerFragment() {
     @Inject
     lateinit var topGamesAdapter: TopGamesListAdapter
     lateinit var browseViewModel: BrowseFragmentViewModel
-    lateinit var topGamesPagination: Pagination.PagedKeyLoader<Data>
+    lateinit var topGamesPagination: PagedOffsetLoader<Data>
     lateinit var binding: BrowseFragmentBinding
 
     override fun onCreateView(
@@ -36,8 +37,7 @@ class BrowseFragment : DaggerFragment() {
     }
 
     private fun setupTopGamesList() {
-
-        topGamesPagination = Pagination.PagedKeyLoader(browseViewModel.paginationListener)
+        topGamesPagination = PagedOffsetLoader<Data>(browseViewModel.paginationListener)
 
         binding.apply {
             topGamesList.adapter = topGamesAdapter

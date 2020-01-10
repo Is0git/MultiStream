@@ -10,8 +10,8 @@ import com.android.multistream.di.TwitchRetrofitQualifier
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.models.Data
-import com.android.multistream.util.pagination.Pagination
-import com.android.multistream.util.pagination.PaginationListener
+import com.android.multistream.util.pagination.PagedOffsetListener
+import com.android.multistream.util.pagination.PagedOffsetLoader
 import kotlinx.coroutines.*
 import retrofit2.Retrofit
 import java.io.IOException
@@ -29,20 +29,21 @@ class BrowseFragmentRepository @Inject constructor(
     val topGames = twitchDao.getTopGames().toLiveData(5)
     var job: Job? = null
 
+    val pageLimit = 20
 
+    var pageOffSet = 0
 
-    val listener = object : PaginationListener<Data> {
-        override fun loadInitial(pagination: Pagination.PagedKeyLoader<Data>) {
+    val listener = object : PagedOffsetListener<Data> {
+        override fun loadInitial(pagination: PagedOffsetLoader<Data>) {
             job = CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val result = getTwitchTopGamesAsync(null)
-                    val mixerResult = getMixerTopGamesAsync()
-                    if (mixerResult.await().body() != null)  result.await().body()?.data?.addAll(mixerResult.await().body()!!)
+                    val twitchResult = getTwitchTopGamesAsync(pageOffSet)
+                    val mixerResult = getMixerTopGamesAsync(pagination.pageCount)
+                    if (mixerResult.await().body() != null)  twitchResult.await().body()?.addAll(mixerResult.await().body()!!)
                     when {
-                        result.await().isSuccessful -> pagination.loadInit(
-                            result.await().body()?.pagination?.cursor,
-                            result.await().body()?.data
-                        )
+                        twitchResult.await().isSuccessful -> pagination.loadInit(
+                            twitchResult.await().body()
+                        ).also { pageOffSet+=20 }
                     }
                 } catch (e: IOException) {
                     withContext(Dispatchers.Main) {
@@ -56,15 +57,17 @@ class BrowseFragmentRepository @Inject constructor(
             }
         }
 
-        override fun loadNext(pagination: Pagination.PagedKeyLoader<Data>, nextKey: String?) {
+        override fun loadNext(pagination: PagedOffsetLoader<Data>) {
             job = CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val result = service.getTopGames(nextKey)
+                    val twitchResult = getTwitchTopGamesAsync(pageOffSet)
+                    val mixerResult = getMixerTopGamesAsync(pagination.pageCount)
+                    if (mixerResult.await().body() != null) twitchResult.await().body()?.addAll(mixerResult.await().body()!!)
                     when {
-                        result.isSuccessful -> pagination.loadNext(
-                            result.body()?.pagination?.cursor,
-                            result.body()?.data
-                        )
+                        twitchResult.await().isSuccessful -> pagination.loadNext(
+                            twitchResult.await().body()
+                        ).also {  pageOffSet+=20 }
+
                     }
                 } catch (e: IOException) {
                     withContext(Dispatchers.Main) {
@@ -79,18 +82,20 @@ class BrowseFragmentRepository @Inject constructor(
         }
     }
 
-    suspend fun getMixerTopGamesAsync() = coroutineScope {
+    suspend fun getMixerTopGamesAsync(page: Int) = coroutineScope {
         async {
             mixerService.getMixerTopGames(
                 "viewersCurrent:gt:0",
                 "viewersCurrent:DESC",
-                20
+                pageLimit,
+                page
             )
         }
+
     }
 
-    suspend fun getTwitchTopGamesAsync(after: String?) =  coroutineScope {
-        async { service.getTopGames(null) }
+    suspend fun getTwitchTopGamesAsync(page: Int) =  coroutineScope {
+        async { service.getTopGamesV5(page, pageLimit) }
     }
 //    val paginationListener = object : PaginationListener {
 //        override fun loadInitial() {

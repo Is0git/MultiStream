@@ -9,7 +9,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/topGamesList"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             tools:listitem="@layout/top_games_list"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

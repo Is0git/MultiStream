@@ -9,5 +9,5 @@ import retrofit2.http.Query
 
 interface MixerService {
     @GET(value = "types")
-    suspend fun getMixerTopGames(@Query("where")where: String?, @Query("order") order: String?, @Query(value = "limit") limit: Int?) : Response<List<Data>>
+    suspend fun getMixerTopGames(@Query("where")where: String?, @Query("order") order: String?, @Query(value = "limit") limit: Int?, @Query(value = "page") page: Int?) : Response<List<Data>>
 }

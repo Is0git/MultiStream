@@ -11,6 +11,6 @@ class TopGamesMixerAdapter {
     fun fromJson(
       topGames: MixerTopGames
     ): Data {
-        return Data(topGames.backgroundUrl, topGames.id.toString(), topGames.name, "mixer")
+        return Data(topGames.backgroundUrl, topGames.id.toString(), topGames.name, "mixer", topGames.viewersCurrent!!)
     }
 }
