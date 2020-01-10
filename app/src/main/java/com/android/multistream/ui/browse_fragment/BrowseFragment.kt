@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
+import com.android.multistream.R
 import com.android.multistream.databinding.BrowseFragmentBinding
 import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.util.ViewModelFactory
 import com.android.multistream.util.pagination.PagedOffsetLoader
+import com.google.android.material.tabs.TabLayout
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -33,6 +35,7 @@ class BrowseFragment : DaggerFragment() {
         browseViewModel = ViewModelProviders.of(this, factory).get(BrowseFragmentViewModel::class.java)
         binding = BrowseFragmentBinding.inflate(inflater, container, false)
         setupTopGamesList()
+        handleTabLayout()
         return binding.root
     }
 
@@ -52,5 +55,28 @@ class BrowseFragment : DaggerFragment() {
         topGamesPagination.dataLiveData.observe(
             viewLifecycleOwner,
             Observer { topGamesAdapter.list = it })
+    }
+
+    private fun handleTabLayout() {
+        binding.topGamesTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+               when(tab?.view?.tab?.view?.id) {
+                   R.id.topTab -> topGamesAdapter.sortList(TOP)
+                   R.id.twitchTab -> topGamesAdapter.sortList(TWITCH)
+                   R.id.mixerTab -> topGamesAdapter.sortList(MIXER)
+               }
+            }
+
+        })
+
+
     }
 }
