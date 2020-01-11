@@ -19,14 +19,13 @@ import javax.inject.Inject
 
 
 @BrowseFragmentScope
-class BrowseFragmentRepository @Inject constructor(
-    val twitchDao: TwitchDao, @TwitchRetrofitQualifier val twitchRetrofit: Retrofit,
+class BrowseFragmentRepository @Inject constructor(@TwitchRetrofitQualifier val twitchRetrofit: Retrofit,
     val application: Application,
     @MixerRetrofitQualifier val mixerRetrofit: Retrofit
 ) {
     val service = twitchRetrofit.create(TwitchService::class.java)
     val mixerService = mixerRetrofit.create(MixerService::class.java)
-    val topGames = twitchDao.getTopGames().toLiveData(5)
+
     var job: Job? = null
 
     val pageLimit = 20

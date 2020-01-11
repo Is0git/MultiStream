@@ -1,4 +1,4 @@
-package com.android.multistream.network.mixer.models
+package com.android.multistream.network.mixer.models.top_games
 
 import com.squareup.moshi.Json
 
