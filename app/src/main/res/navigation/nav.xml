@@ -10,5 +10,13 @@
     <fragment
         android:id="@+id/browseFragment"
         android:name="com.android.multistream.ui.browse_fragment.BrowseFragment"
-        android:label="BrowseFragment" />
+        android:label="BrowseFragment" >
+        <action
+            android:id="@+id/action_browseFragment_to_gameChannelsFragment"
+            app:destination="@id/gameChannelsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameChannelsFragment"
+        android:name="com.android.multistream.ui.game_channels_fragment.GameChannelsFragment"
+        android:label="GameChannelsFragment" />
 </navigation>

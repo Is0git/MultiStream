@@ -52,7 +52,7 @@ class TopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<TopGamesL
       holder.binding.gamesData = filteredList?.get(position)
     }
 
-    fun sortList(type: Int) {
+    private fun sortList(type: Int) {
         val result = when(type) {
             TOP -> list
             TWITCH -> list?.filter {it.platformType == "twitch"}
@@ -62,6 +62,12 @@ class TopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<TopGamesL
         filteredList = result
     }
 
+//    suspend fun filterANextToB() {
+//        val newList: MutableList<Data>? = null
+//       for(a in 0 until list?.size!! - 20) {
+//
+//       }
+//    }
     override fun getItemCount(): Int = filteredList?.count() ?: 0
 }
 

@@ -10,8 +10,7 @@ object ImageLoader {
     @JvmStatic
     @BindingAdapter("app:loadImage")
     fun loadImage(imageView: ImageView, url: String?) {
-        val urlWithDimensions = addHeightAndWidth(url)
-        Glide.with(imageView.context).load(urlWithDimensions).centerCrop().into(imageView)
+        Glide.with(imageView.context).load(url).centerCrop().into(imageView)
     }
 
     @JvmStatic
