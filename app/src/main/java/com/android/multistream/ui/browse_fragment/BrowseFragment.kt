@@ -41,7 +41,6 @@ class BrowseFragment : DaggerFragment() {
 
     private fun setupTopGamesList() {
         topGamesPagination = PagedOffsetLoader<Data>(browseViewModel.paginationListener)
-
         binding.apply {
             topGamesList.adapter = topGamesAdapter
             topGamesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -68,10 +67,10 @@ class BrowseFragment : DaggerFragment() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-               when(tab?.view?.tab?.view?.id) {
-                   R.id.topTab -> topGamesAdapter.sortList(TOP)
-                   R.id.twitchTab -> topGamesAdapter.sortList(TWITCH)
-                   R.id.mixerTab -> topGamesAdapter.sortList(MIXER)
+               when(tab?.position) {
+                   0 -> topGamesAdapter.type = TOP
+                   1 -> topGamesAdapter.type = TWITCH
+                   2 -> topGamesAdapter.type = MIXER
                }
             }
 

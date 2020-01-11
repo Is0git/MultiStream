@@ -21,19 +21,23 @@ const val MIXER = 2
 @BrowseFragmentScope
 class TopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<TopGamesListAdapter.MyViewHolder>() {
 
-
+    var type = 0
+    set(value) {
+        field = value
+        sortList(value)
+    }
     var list: List<Data>? = null
-
-//    set(value) {
-//        var data =
-//        field = value
-//        notifyDataSetChanged()
-//    }
+    set(value) {
+        field = value
+        sortList(type)
+        notifyDataSetChanged()
+    }
+    var filteredList: List<Data>? = null
 
     set(value) {
         val res = if (field != null && field?.isNotEmpty()!!) field?.size!! - 1 else 0
         field = value
-        notifyItemRangeChanged(res, value?.size!! - 1)
+        notifyDataSetChanged()
     }
     class MyViewHolder(val binding: TopGamesListBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -45,7 +49,7 @@ class TopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<TopGamesL
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-      holder.binding.gamesData = list?.get(position)
+      holder.binding.gamesData = filteredList?.get(position)
     }
 
     fun sortList(type: Int) {
@@ -55,11 +59,10 @@ class TopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<TopGamesL
             MIXER -> list?.filter {it.platformType == "mixer"}
             else -> return
         }
-        list = result
-        notifyDataSetChanged()
+        filteredList = result
     }
 
-    override fun getItemCount(): Int = list?.count() ?: 0
+    override fun getItemCount(): Int = filteredList?.count() ?: 0
 }
 
 val callback = object : DiffUtil.ItemCallback<Data>() {
