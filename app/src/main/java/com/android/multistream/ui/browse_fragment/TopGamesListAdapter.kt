@@ -21,6 +21,8 @@ const val MIXER = 2
 @BrowseFragmentScope
 class TopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<TopGamesListAdapter.MyViewHolder>() {
 
+    var clickListener: CategoryNavigationListener? = null
+
     var type = 0
     set(value) {
         field = value
@@ -39,12 +41,13 @@ class TopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<TopGamesL
         field = value
         notifyDataSetChanged()
     }
-    class MyViewHolder(val binding: TopGamesListBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(val binding: TopGamesListBinding) : RecyclerView.ViewHolder(binding.root)
 
-    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = TopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        binding.clickListener = this.clickListener
         return MyViewHolder(binding)
     }
 

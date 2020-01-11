@@ -6,6 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
+import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.R
 import com.android.multistream.databinding.BrowseFragmentBinding
@@ -17,15 +21,14 @@ import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 
-class BrowseFragment : DaggerFragment() {
+class BrowseFragment : DaggerFragment(), CategoryNavigationListener {
 
-    @Inject
-    lateinit var factory: ViewModelFactory
-    @Inject
-    lateinit var topGamesAdapter: TopGamesListAdapter
+    @Inject lateinit var factory: ViewModelFactory
+    @Inject lateinit var topGamesAdapter: TopGamesListAdapter
     lateinit var browseViewModel: BrowseFragmentViewModel
     lateinit var topGamesPagination: PagedOffsetLoader<Data>
     lateinit var binding: BrowseFragmentBinding
+    lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,10 +42,16 @@ class BrowseFragment : DaggerFragment() {
         return binding.root
     }
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+    }
+
     private fun setupTopGamesList() {
         topGamesPagination = PagedOffsetLoader<Data>(browseViewModel.paginationListener)
         binding.apply {
-            topGamesList.adapter = topGamesAdapter
+            topGamesList.adapter = topGamesAdapter.also { it.clickListener = this@BrowseFragment }
             topGamesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -77,5 +86,12 @@ class BrowseFragment : DaggerFragment() {
         })
 
 
+    }
+
+
+
+    override fun onGameClick(data: Data) {
+        val direction = BrowseFragmentDirections.actionBrowseFragmentToGameChannelsFragment(data)
+         navController.navigate(direction)
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav"
     app:startDestination="@id/homeFragment">
 
     <fragment
@@ -10,13 +11,25 @@
     <fragment
         android:id="@+id/browseFragment"
         android:name="com.android.multistream.ui.browse_fragment.BrowseFragment"
-        android:label="BrowseFragment" >
+        android:label="BrowseFragment">
         <action
             android:id="@+id/action_browseFragment_to_gameChannelsFragment"
-            app:destination="@id/gameChannelsFragment" />
+            app:destination="@id/gameChannelsFragment">
+            <argument
+                android:name="data"
+                android:defaultValue="@null"
+                app:argType="com.android.multistream.network.twitch.models.Data"
+                app:nullable="true" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/gameChannelsFragment"
         android:name="com.android.multistream.ui.game_channels_fragment.GameChannelsFragment"
-        android:label="GameChannelsFragment" />
+        android:label="GameChannelsFragment">
+        <argument
+            android:name="data"
+            android:defaultValue="@null"
+            app:argType="com.android.multistream.network.twitch.models.Data"
+            app:nullable="true" />
+    </fragment>
 </navigation>

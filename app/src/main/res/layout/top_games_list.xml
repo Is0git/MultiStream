@@ -5,10 +5,15 @@
         <variable
             name="GamesData"
             type="com.android.multistream.network.twitch.models.Data" />
+
+        <variable
+            name="clickListener"
+            type="com.android.multistream.ui.browse_fragment.CategoryNavigationListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:onClick="@{() -> clickListener.onGameClick(GamesData)}"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textview.MaterialTextView
