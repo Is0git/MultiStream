@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
@@ -17,16 +18,16 @@ import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.util.ViewModelFactory
 import com.android.multistream.util.pagination.PagedOffsetLoader
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.top_games_list.view.*
 import javax.inject.Inject
 
 
-class BrowseFragment : DaggerFragment(), CategoryNavigationListener {
+class BrowseFragment : DaggerFragment() {
 
     @Inject lateinit var factory: ViewModelFactory
-    @Inject lateinit var topGamesAdapter: TopGamesListAdapter
     lateinit var browseViewModel: BrowseFragmentViewModel
-    lateinit var topGamesPagination: PagedOffsetLoader<Data>
     lateinit var binding: BrowseFragmentBinding
     lateinit var navController: NavController
 
@@ -37,7 +38,7 @@ class BrowseFragment : DaggerFragment(), CategoryNavigationListener {
     ): View? {
         browseViewModel = ViewModelProviders.of(this, factory).get(BrowseFragmentViewModel::class.java)
         binding = BrowseFragmentBinding.inflate(inflater, container, false)
-        setupTopGamesList()
+        setupViewPager()
         handleTabLayout()
         return binding.root
     }
@@ -48,50 +49,21 @@ class BrowseFragment : DaggerFragment(), CategoryNavigationListener {
         navController = Navigation.findNavController(view)
     }
 
-    private fun setupTopGamesList() {
-        topGamesPagination = PagedOffsetLoader<Data>(browseViewModel.paginationListener)
-        binding.apply {
-            topGamesList.adapter = topGamesAdapter.also { it.clickListener = this@BrowseFragment }
-            topGamesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
-                    if (!recyclerView.canScrollVertically(1)) topGamesPagination.loadHandler()
-                }
-            })
-        }
-        topGamesPagination.dataLiveData.observe(
-            viewLifecycleOwner,
-            Observer { topGamesAdapter.list = it })
+    private fun setupViewPager() {
+        binding.topGamesViewPager.adapter = GamesFragmentsViewPagerAdapter(childFragmentManager, lifecycle)
     }
 
     private fun handleTabLayout() {
-        binding.topGamesTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-               when(tab?.position) {
-                   0 -> topGamesAdapter.type = TOP
-                   1 -> topGamesAdapter.type = TWITCH
-                   2 -> topGamesAdapter.type = MIXER
+        binding.apply {
+            TabLayoutMediator(topGamesTabLayout, topGamesViewPager) {tab, position ->
+               tab.text = when(position) {
+                   0 -> "Top"
+                   1 -> "Twitch"
+                   2 -> "Mixer"
+                   else -> "None"
                }
-            }
-
-        })
-
-
-    }
-
-
-
-    override fun onGameClick(data: Data) {
-        val direction = BrowseFragmentDirections.actionBrowseFragmentToGameChannelsFragment(data)
-         navController.navigate(direction)
+            }.attach()
+        }
     }
 }

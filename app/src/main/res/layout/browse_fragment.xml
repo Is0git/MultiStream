@@ -10,31 +10,23 @@
             android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_height="wrap_content"
-            android:id="@+id/topGamesTabLayout">
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/topTab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Top" />
+            android:id="@+id/topGamesTabLayout"/>
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/twitchTab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Twitch" />
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/topGamesList"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:orientation="vertical"-->
+<!--            tools:listitem="@layout/top_games_list"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/topGamesTabLayout" />-->
 
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/mixerTab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mixer" />
-        </com.google.android.material.tabs.TabLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/topGamesList"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/topGamesViewPager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
-            tools:listitem="@layout/top_games_list"
+            android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/topGamesTabLayout" />
