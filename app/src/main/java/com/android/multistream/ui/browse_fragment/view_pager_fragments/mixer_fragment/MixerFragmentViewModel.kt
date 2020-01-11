@@ -6,4 +6,6 @@ import javax.inject.Inject
 
 @MixerFragmentGamesScope
 class MixerFragmentViewModel @Inject constructor(val repo: MixerFragmentRepository) : ViewModel() {
+
+    val pagedOffSetListener = repo.topGamesPaginationListener
 }

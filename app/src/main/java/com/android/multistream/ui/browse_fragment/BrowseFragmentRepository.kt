@@ -94,48 +94,5 @@ class BrowseFragmentRepository @Inject constructor(
     suspend fun getTwitchTopGamesAsync(page: Int) = coroutineScope {
         async { service.getTopGamesV5(page, pageLimit) }
     }
-//    val paginationListener = object : PaginationListener {
-//        override fun loadInitial() {
 
-//        }
-//
-//        override fun loadNext() {
-//            CoroutineScope(Dispatchers.IO).launch {
-//                try {
-//                    val result = service.getTopGames()
-//                    when {
-//                        result.isSuccessful -> result.body()
-//                    }
-//                } catch (e: IOException) {
-//                    Toast.makeText(application, "Connect to internet", Toast.LENGTH_LONG).show()
-//                }
-//            }
-//        }
-//
-//    }
-
-//    suspend fun updateTopGames() {
-//        try {
-//            val result = service.getTopGames()
-//            when {
-//                result.isSuccessful -> result.body()?.apply {
-//                    val res = withContext(Dispatchers.IO) {
-//                        data.map {
-//                            TopGames(
-//                                it.boxArtUrl,
-//                                it.id!!,
-//                                it.name
-//                            )
-//                        }
-//                    }
-//                    twitchDao.deleteAllFromTopGames()
-//                    twitchDao.insertTopGames(res)
-//                }
-//            }
-//        } catch (e: IOException) {
-//            Toast.makeText(application, "Connect to internet", Toast.LENGTH_LONG).show()
-//        }
-//
-//
-//    }
 }
