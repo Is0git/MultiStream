@@ -1,8 +1,10 @@
 package com.android.multistream.di
 
 import com.android.multistream.di.MainActivity.MixerRetrofitQualifier
+import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.mixer.TopGamesMixerAdapter
 import com.android.multistream.network.twitch.TopGamesTwitchAdapter
+import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.util.mixerAPI.MIXER_URL
 import com.android.multistream.util.twitchAPI.TWITCH_URL
 import com.android.multistream.util.twitchAPI.URL
@@ -14,7 +16,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -24,7 +25,7 @@ object RetrofitModule {
     @Singleton
     @JvmStatic
     fun interceptor(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY}
+        HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY }
 
 
     @Provides
@@ -62,10 +63,28 @@ object RetrofitModule {
     @Singleton
     @JvmStatic
     @MixerRetrofitQualifier
-    fun getMixerRetrofit(client: OkHttpClient) : Retrofit = Retrofit.Builder()
+    fun getMixerRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().add(TopGamesMixerAdapter()).build()))
         .client(client)
         .baseUrl(MIXER_URL)
         .build()
+
+
+//    val service = twitchRetrofit.create(TwitchService::class.java)
+//    val mixerService = mixerRetrofit.create(MixerService::class.java)
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun getMixerService(@MixerRetrofitQualifier retrofit: Retrofit) = retrofit.create(
+        MixerService::class.java
+    )
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    fun getTwitchService(@TwitchRetrofitQualifier retrofit: Retrofit) = retrofit.create(
+        TwitchService::class.java
+    )
 
 }

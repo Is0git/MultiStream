@@ -2,29 +2,23 @@ package com.android.multistream.ui.browse_fragment
 
 import android.app.Application
 import android.widget.Toast
-import androidx.paging.toLiveData
-import com.android.multistream.database.dao.TwitchDao
-import com.android.multistream.di.MainActivity.MixerRetrofitQualifier
 import com.android.multistream.di.MainActivity.browse_fragment.BrowseFragmentScope
-import com.android.multistream.di.TwitchRetrofitQualifier
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.util.pagination.PagedOffsetListener
 import com.android.multistream.util.pagination.PagedOffsetLoader
 import kotlinx.coroutines.*
-import retrofit2.Retrofit
 import java.io.IOException
 import javax.inject.Inject
 
 
 @BrowseFragmentScope
-class BrowseFragmentRepository @Inject constructor(@TwitchRetrofitQualifier val twitchRetrofit: Retrofit,
+class BrowseFragmentRepository @Inject constructor(
+    val mixerService: MixerService,
     val application: Application,
-    @MixerRetrofitQualifier val mixerRetrofit: Retrofit
+    val service: TwitchService
 ) {
-    val service = twitchRetrofit.create(TwitchService::class.java)
-    val mixerService = mixerRetrofit.create(MixerService::class.java)
 
     var job: Job? = null
 
@@ -38,11 +32,13 @@ class BrowseFragmentRepository @Inject constructor(@TwitchRetrofitQualifier val 
                 try {
                     val twitchResult = getTwitchTopGamesAsync(pageOffSet)
                     val mixerResult = getMixerTopGamesAsync(pagination.pageCount)
-                    if (mixerResult.await().body() != null)  twitchResult.await().body()?.addAll(mixerResult.await().body()!!)
+                    if (mixerResult.await().body() != null) twitchResult.await().body()?.addAll(
+                        mixerResult.await().body()!!
+                    )
                     when {
                         twitchResult.await().isSuccessful -> pagination.loadInit(
                             twitchResult.await().body()
-                        ).also { pageOffSet+=20 }
+                        ).also { pageOffSet += 20 }
                     }
                 } catch (e: IOException) {
                     withContext(Dispatchers.Main) {
@@ -61,11 +57,13 @@ class BrowseFragmentRepository @Inject constructor(@TwitchRetrofitQualifier val 
                 try {
                     val twitchResult = getTwitchTopGamesAsync(pageOffSet)
                     val mixerResult = getMixerTopGamesAsync(pagination.pageCount)
-                    if (mixerResult.await().body() != null) twitchResult.await().body()?.addAll(mixerResult.await().body()!!)
+                    if (mixerResult.await().body() != null) twitchResult.await().body()?.addAll(
+                        mixerResult.await().body()!!
+                    )
                     when {
                         twitchResult.await().isSuccessful -> pagination.loadNext(
                             twitchResult.await().body()
-                        ).also {  pageOffSet+=20 }
+                        ).also { pageOffSet += 20 }
 
                     }
                 } catch (e: IOException) {
@@ -93,7 +91,7 @@ class BrowseFragmentRepository @Inject constructor(@TwitchRetrofitQualifier val 
 
     }
 
-    suspend fun getTwitchTopGamesAsync(page: Int) =  coroutineScope {
+    suspend fun getTwitchTopGamesAsync(page: Int) = coroutineScope {
         async { service.getTopGamesV5(page, pageLimit) }
     }
 //    val paginationListener = object : PaginationListener {

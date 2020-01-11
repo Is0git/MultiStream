@@ -1,9 +1,9 @@
 package com.android.multistream.network.twitch.models.channels
 
-import javax.annotation.Generated
+
 import com.squareup.moshi.Json
 
-@Generated("com.robohorse.robopojogenerator")
+
 data class DataItem(
 
 	@Json(name="user_id")

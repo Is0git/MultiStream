@@ -2,6 +2,7 @@ package com.android.multistream.di.MainActivity
 
 import com.android.multistream.di.MainActivity.browse_fragment.BrowseFragmentScope
 import com.android.multistream.di.MainActivity.browse_fragment.BrowseFragmentViewModelModule
+import com.android.multistream.di.MainActivity.browse_fragment.ViewPagerFragmentBuilder
 import com.android.multistream.di.MainActivity.game_channels_fragment.GameChannelsFragmentScope
 import com.android.multistream.di.MainActivity.game_channels_fragment.GameChannelsViewModelModule
 import com.android.multistream.di.MainActivity.home_fragment.HomeFragmentScope
@@ -21,7 +22,7 @@ abstract class FragmentBuilder {
     @HomeFragmentScope
     abstract fun homeFragment() : HomeFragment
 
-    @ContributesAndroidInjector(modules = [BrowseFragmentViewModelModule::class])
+    @ContributesAndroidInjector(modules = [BrowseFragmentViewModelModule::class, ViewPagerFragmentBuilder::class])
     @BrowseFragmentScope
     abstract fun browseFragment() : BrowseFragment
 
