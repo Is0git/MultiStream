@@ -3,17 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
-            name="GamesData"
-            type="com.android.multistream.network.twitch.models.Data" />
+            name="TopItem"
+            type="com.android.multistream.network.twitch.models.v5.TopItem" />
 
-        <variable
-            name="clickListener"
-            type="com.android.multistream.ui.browse_fragment.CategoryNavigationListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:onClick="@{() -> clickListener.onGameClick(GamesData)}"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textview.MaterialTextView
@@ -21,7 +18,7 @@
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{GamesData.name}"
+            android:text="@{TopItem.game.name}"
             android:textColor="#000000"
             app:layout_constraintBottom_toTopOf="@+id/platformType"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +31,7 @@
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{GamesData.platformType}"
+            android:text="@{TopItem.mixerTopItem.name}"
             android:textColor="@color/colorSecondary"
             app:layout_constraintBottom_toTopOf="@+id/viewersCount"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +44,7 @@
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(GamesData.viewersCount)}"
+            android:text="@{String.valueOf(TopItem.viewers + TopItem.mixerTopItem.viewersCurrent)}"
             android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="@+id/gameImage"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,6 +60,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadImage="@{GamesData.box_art_url}" />
+            app:loadImage="@{TopItem.game.box.large}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

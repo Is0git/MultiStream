@@ -16,7 +16,7 @@ class MixerFragmentRepository @Inject constructor(val mixerService: MixerService
     var loadJob: Job? = null
     val pageLimit = 20
 
-    var pageOffSet = 0
+
 
     val topGamesPaginationListener = object : PagedPositionListener<MixerTopGames> {
         override fun loadInitial(pagination: PagedPositionLoader<MixerTopGames>) {

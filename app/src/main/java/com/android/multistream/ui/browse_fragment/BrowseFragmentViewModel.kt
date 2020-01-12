@@ -9,6 +9,6 @@ import javax.inject.Inject
 @BrowseFragmentScope
 class BrowseFragmentViewModel @Inject constructor(val repo: BrowseFragmentRepository) : ViewModel() {
 
-    var paginationListener = repo.listener
+//    var paginationListener = repo.listener
 
 }

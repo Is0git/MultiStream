@@ -103,9 +103,7 @@ class PagedOffsetLoader<T>(val listener: PagedOffSetListener<T>, val pageLimit: 
         initLoad = true
         data?.also {
             this.data.addAll(data)
-
             dataLiveData.postValue(this.data)
-
         }
     }
 

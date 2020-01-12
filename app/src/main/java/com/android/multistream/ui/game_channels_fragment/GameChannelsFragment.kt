@@ -26,7 +26,7 @@ class GameChannelsFragment : DaggerFragment() {
     ): View? {
         gameChannelViewModel = ViewModelProviders.of(this, factory).get(GameChannelViewModel::class.java)
         binding = GameChannelsFragmentBinding.inflate(inflater, container, false)
-        binding.testText.text = args.data?.name
+
         return binding.root
     }
 }

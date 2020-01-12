@@ -6,4 +6,6 @@ import javax.inject.Inject
 
 @TopFragmentGamesScope
 class TopFragmentViewModel @Inject constructor(val repo: TopFragmentRepository) : ViewModel() {
+
+    val listener = repo.pageListener
 }
