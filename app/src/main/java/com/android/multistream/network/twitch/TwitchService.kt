@@ -18,6 +18,10 @@ interface TwitchService {
     @Headers("Client-ID: f0dmag7h9n8tj4710up57pjyooo46q")
     suspend fun getTopGamesV5(@Query(value = "offset") offset: Int, @Query(value = "limit") limit: Int, @Query("api_version") version: Int = 5) : Response<MutableList<Data>>
 
+    @GET("kraken/games/top")
+    @Headers("Client-ID: f0dmag7h9n8tj4710up57pjyooo46q")
+    suspend fun getTopGamesV5Full(@Query(value = "offset") offset: Int, @Query(value = "limit") limit: Int, @Query("api_version") version: Int = 5) : Response<TopGamesV5>
+
     @GET("helix/streams")
     @Headers("Client-ID: f0dmag7h9n8tj4710up57pjyooo46q")
     suspend fun getChannels(@Query(value = "offset") offset: Int, @Query(value = "limit") limit: Int, @Query("game_id") gameId: String) : Response<GameChannels>

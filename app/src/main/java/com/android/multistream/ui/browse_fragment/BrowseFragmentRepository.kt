@@ -6,8 +6,8 @@ import com.android.multistream.di.MainActivity.browse_fragment.BrowseFragmentSco
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.models.Data
-import com.android.multistream.util.pagination.PagedOffsetListener
-import com.android.multistream.util.pagination.PagedOffsetLoader
+import com.android.multistream.util.pagination.PagedPositionListener
+import com.android.multistream.util.pagination.PagedPositionLoader
 import kotlinx.coroutines.*
 import java.io.IOException
 import javax.inject.Inject
@@ -26,8 +26,8 @@ class BrowseFragmentRepository @Inject constructor(
 
     var pageOffSet = 0
 
-    val listener = object : PagedOffsetListener<Data> {
-        override fun loadInitial(pagination: PagedOffsetLoader<Data>) {
+    val listener = object : PagedPositionListener<Data> {
+        override fun loadInitial(pagination: PagedPositionLoader<Data>) {
             job = CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val twitchResult = getTwitchTopGamesAsync(pageOffSet)
@@ -52,7 +52,7 @@ class BrowseFragmentRepository @Inject constructor(
             }
         }
 
-        override fun loadNext(pagination: PagedOffsetLoader<Data>) {
+        override fun loadNext(pagination: PagedPositionLoader<Data>) {
             job = CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val twitchResult = getTwitchTopGamesAsync(pageOffSet)

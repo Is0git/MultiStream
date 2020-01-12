@@ -5,8 +5,8 @@ import android.widget.Toast
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.mixer_fragment.MixerFragmentGamesScope
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
-import com.android.multistream.util.pagination.PagedOffsetListener
-import com.android.multistream.util.pagination.PagedOffsetLoader
+import com.android.multistream.util.pagination.PagedPositionListener
+import com.android.multistream.util.pagination.PagedPositionLoader
 import kotlinx.coroutines.*
 import java.io.IOException
 import javax.inject.Inject
@@ -18,14 +18,14 @@ class MixerFragmentRepository @Inject constructor(val mixerService: MixerService
 
     var pageOffSet = 0
 
-    val topGamesPaginationListener = object : PagedOffsetListener<MixerTopGames> {
-        override fun loadInitial(pagination: PagedOffsetLoader<MixerTopGames>) {
+    val topGamesPaginationListener = object : PagedPositionListener<MixerTopGames> {
+        override fun loadInitial(pagination: PagedPositionLoader<MixerTopGames>) {
             loadJob = CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val mixerResult = getMixerTopGamesAsync(pageOffSet)
+                    val mixerResult = getMixerTopGamesAsync(pagination.pageCount)
 
                     when {
-                        mixerResult.await().isSuccessful -> pagination.loadInit(mixerResult.await().body()).also { pageOffSet += pageLimit }
+                        mixerResult.await().isSuccessful -> pagination.loadInit(mixerResult.await().body())
                     }
                 } catch (e: IOException) {
                     withContext(Dispatchers.Main) {
@@ -39,13 +39,13 @@ class MixerFragmentRepository @Inject constructor(val mixerService: MixerService
             }
         }
 
-        override fun loadNext(pagination: PagedOffsetLoader<MixerTopGames>) {
+        override fun loadNext(pagination: PagedPositionLoader<MixerTopGames>) {
             loadJob = CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val mixerResult = getMixerTopGamesAsync(pageOffSet)
+                    val mixerResult = getMixerTopGamesAsync(pagination.pageCount)
 
                     when {
-                        mixerResult.await().isSuccessful -> pagination.loadNext(mixerResult.await().body()).also { pageOffSet += pageLimit }
+                        mixerResult.await().isSuccessful -> pagination.loadNext(mixerResult.await().body())
                     }
                 } catch (e: IOException) {
                     withContext(Dispatchers.Main) {
@@ -64,7 +64,6 @@ class MixerFragmentRepository @Inject constructor(val mixerService: MixerService
     suspend fun getMixerTopGamesAsync(page: Int) = coroutineScope {
         async {
             mixerService.getMixerTopGamesFull(
-                "viewersCurrent:gt:0",
                 "viewersCurrent:DESC",
                 pageLimit,
                 page

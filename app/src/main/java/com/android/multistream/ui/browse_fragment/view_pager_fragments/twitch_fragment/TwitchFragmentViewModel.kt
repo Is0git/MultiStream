@@ -5,5 +5,7 @@ import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragme
 import javax.inject.Inject
 
 @TwitchFragmentGamesScope
-class TwitchFragmentViewModel @Inject constructor(repo: TwitchFragmentRepository) : ViewModel() {
+class TwitchFragmentViewModel @Inject constructor(val repo: TwitchFragmentRepository) : ViewModel() {
+
+    val listener = repo.pagedOffSetListener
 }

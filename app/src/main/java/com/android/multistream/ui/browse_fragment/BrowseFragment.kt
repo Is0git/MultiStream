@@ -4,23 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.get
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
-import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
-import com.android.multistream.R
 import com.android.multistream.databinding.BrowseFragmentBinding
-import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.util.ViewModelFactory
-import com.android.multistream.util.pagination.PagedOffsetLoader
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.top_games_list.view.*
 import javax.inject.Inject
 
 

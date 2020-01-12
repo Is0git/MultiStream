@@ -45,7 +45,7 @@ import androidx.lifecycle.MutableLiveData
         }
     }
     //With page id
-    class PagedOffsetLoader<T>(val listener: PagedOffsetListener<T>) : PagedOffsetListener<T> by listener {
+    class PagedPositionLoader<T>(val listener: PagedPositionListener<T>) : PagedPositionListener<T> by listener {
         val data: MutableList<T> = mutableListOf()
         val dataLiveData = MutableLiveData<List<T>>()
 
@@ -61,22 +61,64 @@ import androidx.lifecycle.MutableLiveData
 
 
         fun loadInit(data: List<T>?) {
+            pageCount++
             initLoad = true
             data?.also {
                 this.data.addAll(data)
+
                 dataLiveData.postValue(this.data)
-                pageCount++
+
             }
         }
 
         fun loadNext(data: List<T>?) {
+            pageCount++
             data?.also {
                 this.data.addAll(data)
                 dataLiveData.postValue(this.data)
-                pageCount++
             }
 
         }
 
 
     }
+
+class PagedOffsetLoader<T>(val listener: PagedOffSetListener<T>, val pageLimit: Int) : PagedOffSetListener<T> by listener {
+    val data: MutableList<T> = mutableListOf()
+    val dataLiveData = MutableLiveData<List<T>>()
+
+    var pageOffset: Int = 0
+    var initLoad: Boolean = false
+    fun loadHandler() {
+        if (!initLoad) loadInitial(this) else loadNext(this)
+    }
+
+    init {
+        loadInitial(this)
+    }
+
+
+    fun loadInit(data: List<T>?) {
+        pageOffset += 20
+        initLoad = true
+        data?.also {
+            this.data.addAll(data)
+
+            dataLiveData.postValue(this.data)
+
+        }
+    }
+
+    fun loadNext(data: List<T>?) {
+        pageOffset += 20
+        data?.also {
+            this.data.addAll(data)
+            dataLiveData.postValue(this.data)
+        }
+
+    }
+
+
+}
+
+

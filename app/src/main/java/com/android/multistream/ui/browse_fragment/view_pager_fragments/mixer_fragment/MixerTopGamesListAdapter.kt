@@ -13,8 +13,9 @@ class MixerTopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<Mixe
 
     var list: List<MixerTopGames>? = null
     set(value) {
+        val begin = if (field == null) 0 else field?.count()!! - 1
         field = value
-        notifyDataSetChanged()
+        notifyItemRangeChanged(begin, value?.size!! - 1)
     }
 
     class MyViewHolder(val binding: MixerTopGamesListBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -29,6 +30,6 @@ class MixerTopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<Mixe
     override fun getItemCount(): Int = list?.count() ?: 0
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-      holder.binding.mixerTopGames = list?.get(0)
+      holder.binding.mixerTopGames = list?.get(position)
     }
 }

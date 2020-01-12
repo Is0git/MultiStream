@@ -15,7 +15,7 @@ interface MixerService {
 
 
     @GET(value = "types")
-    suspend fun getMixerTopGamesFull(@Query("where")where: String?, @Query("order") order: String?, @Query(value = "limit") limit: Int?, @Query(value = "page") page: Int?) : Response<List<MixerTopGames>>
+    suspend fun getMixerTopGamesFull(@Query("order") order: String?, @Query(value = "limit") limit: Int?, @Query(value = "page") page: Int?) : Response<List<MixerTopGames>>
 
 
     @GET("api/v1/types/{id}/channels")

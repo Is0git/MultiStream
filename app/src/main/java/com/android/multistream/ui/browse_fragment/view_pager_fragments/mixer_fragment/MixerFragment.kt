@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.databinding.MixerGamesFragmentPagerBinding
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
 import com.android.multistream.util.ViewModelFactory
-import com.android.multistream.util.pagination.PagedOffsetLoader
+import com.android.multistream.util.pagination.PagedPositionLoader
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -22,15 +22,13 @@ class MixerFragment : DaggerFragment() {
     @Inject
     lateinit var mixerTopGamesAdapter: MixerTopGamesListAdapter
     lateinit var mixerFragmentViewModel: MixerFragmentViewModel
-    lateinit var mixerTopGamesPagination: PagedOffsetLoader<MixerTopGames>
+    lateinit var mixerTopGamesPagination: PagedPositionLoader<MixerTopGames>
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mixerFragmentViewModel =
-            ViewModelProviders.of(this, factory).get(MixerFragmentViewModel::class.java)
-        mixerTopGamesPagination = PagedOffsetLoader(mixerFragmentViewModel.pagedOffSetListener)
+        mixerFragmentViewModel = ViewModelProviders.of(this, factory).get(MixerFragmentViewModel::class.java)
         binding = MixerGamesFragmentPagerBinding.inflate(inflater, container, false)
         setupList()
         setupObservers()
@@ -38,13 +36,13 @@ class MixerFragment : DaggerFragment() {
     }
 
     private fun setupList() {
+        mixerTopGamesPagination = PagedPositionLoader(mixerFragmentViewModel.pagedOffSetListener)
         binding.apply {
             topMixerGamesList.adapter = mixerTopGamesAdapter
             topMixerGamesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    if (!recyclerView.canScrollVertically(1)) mixerTopGamesPagination.loadHandler()
+                    if (!recyclerView.canScrollVertically(1) && !recyclerView.hasPendingAdapterUpdates()) mixerTopGamesPagination.loadHandler()
                 }
             })
         }

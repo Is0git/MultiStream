@@ -9,10 +9,20 @@ interface PaginationListener<T> {
 
 }
 
-interface PagedOffsetListener<T> {
+interface PagedPositionListener<T> {
+
+    fun loadInitial(pagination: PagedPositionLoader<T>)
+
+    fun loadNext(pagination: PagedPositionLoader<T>)
+
+
+
+}
+
+
+interface PagedOffSetListener<T> {
 
     fun loadInitial(pagination: PagedOffsetLoader<T>)
 
     fun loadNext(pagination: PagedOffsetLoader<T>)
-
 }
