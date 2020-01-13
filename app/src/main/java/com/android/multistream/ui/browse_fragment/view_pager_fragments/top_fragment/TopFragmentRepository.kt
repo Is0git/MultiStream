@@ -26,13 +26,13 @@ class TopFragmentRepository @Inject constructor(
 
     var loadJob: Job? = null
 
-    val pageListener = object : PagedOffSetListener<TopItem> {
-        override fun loadInitial(pagination: PagedOffsetLoader<TopItem>) {
+    val pageListener = object : PagedOffSetListener<Data> {
+        override fun loadInitial(pagination: PagedOffsetLoader<Data>) {
             loadJob = CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val twitchResult = getTwitchTopGamesAsync(pagination.pageOffset, pagination.pageLimit)
-                    if(twitchResult.await().isSuccessful && twitchResult.await().body().isNullOrEmpty()) {
-                       val result = topTwitchAndMixerGames(twitchResult.await().body()).map {getMixerGame(it)}.collect()
+                    if(twitchResult.await().isSuccessful) {
+                       topTwitchAndMixerGames(twitchResult.await().body()).map {getMixerGame(it)}.collect()
                         pagination.loadInit(twitchResult.await().body())
                     }
 
@@ -50,11 +50,11 @@ class TopFragmentRepository @Inject constructor(
             }
         }
 
-        override fun loadNext(pagination: PagedOffsetLoader<TopItem>) {
+        override fun loadNext(pagination: PagedOffsetLoader<Data>) {
             loadJob = CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val twitchResult = getTwitchTopGamesAsync(pagination.pageOffset, pagination.pageLimit)
-                    if(twitchResult.await().isSuccessful && twitchResult.await().body().isNullOrEmpty()) {
+                    if(twitchResult.await().isSuccessful && !twitchResult.await().body().isNullOrEmpty()) {
                         val result = topTwitchAndMixerGames(twitchResult.await().body()).map {getMixerGame(it)}.collect()
                         pagination.loadInit(twitchResult.await().body())
                     }
@@ -77,12 +77,12 @@ class TopFragmentRepository @Inject constructor(
 
         }
 
-        suspend fun getMixerGame(topItem: TopItem) : TopItem{
-           val result = withContext(Dispatchers.IO) { mixerService.getMixerTopGame("name:eq:${topItem.game?.name}", 1)}
-            topItem.mixerTopItem = result.body()?.firstOrNull()
+        suspend fun getMixerGame(topItem: Data) : Data{
+           val result = withContext(Dispatchers.IO) { mixerService.getMixerTopGame("name:eq:${topItem.name}", 1)}
+            topItem.mixerTopGames = result.body()?.firstOrNull()
             return topItem
 
         }
-        suspend fun topTwitchAndMixerGames(list: List<TopItem>?) : Flow<TopItem> = flow {list?.forEach { emit(it) }}
+        suspend fun topTwitchAndMixerGames(list: List<Data>?) : Flow<Data> = flow {list?.forEach { emit(it) }}
     }
 }

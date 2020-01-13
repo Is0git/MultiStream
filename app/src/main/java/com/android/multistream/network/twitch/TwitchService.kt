@@ -17,7 +17,7 @@ interface TwitchService {
     //v5 api
     @GET("kraken/games/top")
     @Headers("Client-ID: f0dmag7h9n8tj4710up57pjyooo46q")
-    suspend fun getTopGamesV5(@Query(value = "offset") offset: Int, @Query(value = "limit") limit: Int, @Query("api_version") version: Int = 5) : Response<List<TopItem>>
+    suspend fun getTopGamesV5(@Query(value = "offset") offset: Int, @Query(value = "limit") limit: Int, @Query("api_version") version: Int = 5) : Response<List<Data>>
 
     @GET("kraken/games/top")
     @Headers("Client-ID: f0dmag7h9n8tj4710up57pjyooo46q")

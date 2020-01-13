@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.databinding.TopGamesListBinding
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.top_fragment.TopFragmentGamesScope
+import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.network.twitch.models.v5.TopItem
 import javax.inject.Inject
 
@@ -93,7 +94,7 @@ import javax.inject.Inject
 class TopGamesListAdapter @Inject constructor() :
     RecyclerView.Adapter<TopGamesListAdapter.MyViewHolder>() {
 
-    var list: List<TopItem>? = null
+    var list: List<Data>? = null
         set(value) {
             val begin = if (field == null) 0 else field?.count()!! - 1
             field = value
@@ -117,6 +118,6 @@ class TopGamesListAdapter @Inject constructor() :
     override fun getItemCount(): Int = list?.count() ?: 0
 
     override fun onBindViewHolder(holder: TopGamesListAdapter.MyViewHolder, position: Int) {
-        holder.binding.topItem = list?.get(position)
+        holder.binding.data = list?.get(position)
     }
 }

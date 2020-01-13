@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
-            name="TopItem"
-            type="com.android.multistream.network.twitch.models.v5.TopItem" />
+            name="Data"
+            type="com.android.multistream.network.twitch.models.Data" />
 
 
     </data>
@@ -18,7 +18,7 @@
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{TopItem.game.name}"
+            android:text="@{Data.name}"
             android:textColor="#000000"
             app:layout_constraintBottom_toTopOf="@+id/platformType"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +31,7 @@
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{TopItem.mixerTopItem.name}"
+            android:text="@{Data.mixerTopGames.name}"
             android:textColor="@color/colorSecondary"
             app:layout_constraintBottom_toTopOf="@+id/viewersCount"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(TopItem.viewers + TopItem.mixerTopItem.viewersCurrent)}"
+            android:text="@{String.valueOf(Data.viewersCount + Data.mixerTopGames.viewersCurrent)}"
             android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="@+id/gameImage"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,6 +60,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadImage="@{TopItem.game.box.large}" />
+            app:loadImage="@{Data.box_art_url}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
