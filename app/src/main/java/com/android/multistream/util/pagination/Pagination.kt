@@ -8,10 +8,11 @@ import androidx.lifecycle.MutableLiveData
     class PagedKeyLoader<T>(val listener: PaginationListener<T>) : PaginationListener<T> by listener {
         val data: MutableList<T> = mutableListOf()
         val dataLiveData = MutableLiveData<List<T>>()
-
+        val pageLoadingState = MutableLiveData<PageLoadingStates>()
         var nextKey: String? = null
         var initLoad: Boolean = false
         fun loadHandler() {
+            pageLoadingState.postValue(PageLoadingStates.LOADING)
             if (!initLoad) loadInitial(this) else loadNext(this, nextKey)
         }
 
@@ -30,6 +31,7 @@ import androidx.lifecycle.MutableLiveData
             if (nextKey == null) noNextKey() else {
                 this.nextKey = nextKey
             }
+            pageLoadingState.postValue(PageLoadingStates.SUCCESS)
         }
 
         fun loadNext(nextKey: String?, data: List<T>?) {
@@ -38,6 +40,7 @@ import androidx.lifecycle.MutableLiveData
                 dataLiveData.postValue(this.data)
             }
             if (nextKey == null) noNextKey() else this.nextKey = nextKey
+            pageLoadingState.postValue(PageLoadingStates.SUCCESS)
         }
 
         private fun noNextKey() {
@@ -48,10 +51,12 @@ import androidx.lifecycle.MutableLiveData
     class PagedPositionLoader<T>(val listener: PagedPositionListener<T>) : PagedPositionListener<T> by listener {
         val data: MutableList<T> = mutableListOf()
         val dataLiveData = MutableLiveData<List<T>>()
+        val pageLoadingState = MutableLiveData<PageLoadingStates>()
 
         var pageCount: Int = 0
         var initLoad: Boolean = false
         fun loadHandler() {
+            pageLoadingState.value = PageLoadingStates.LOADING
             if (!initLoad) loadInitial(this) else loadNext(this)
         }
 
@@ -69,6 +74,7 @@ import androidx.lifecycle.MutableLiveData
                 dataLiveData.postValue(this.data)
 
             }
+            pageLoadingState.postValue(PageLoadingStates.SUCCESS)
         }
 
         fun loadNext(data: List<T>?) {
@@ -77,6 +83,7 @@ import androidx.lifecycle.MutableLiveData
                 this.data.addAll(data)
                 dataLiveData.postValue(this.data)
             }
+            pageLoadingState.postValue(PageLoadingStates.SUCCESS)
 
         }
 
@@ -86,10 +93,11 @@ import androidx.lifecycle.MutableLiveData
 class PagedOffsetLoader<T>(val listener: PagedOffSetListener<T>, val pageLimit: Int) : PagedOffSetListener<T> by listener {
     val data: MutableList<T> = mutableListOf()
     val dataLiveData = MutableLiveData<List<T>>()
-
+    val pageLoadingState = MutableLiveData<PageLoadingStates>()
     var pageOffset: Int = 0
     var initLoad: Boolean = false
     fun loadHandler() {
+        pageLoadingState.value = PageLoadingStates.LOADING
         if (!initLoad) loadInitial(this) else loadNext(this)
     }
 
@@ -105,6 +113,7 @@ class PagedOffsetLoader<T>(val listener: PagedOffSetListener<T>, val pageLimit: 
             this.data.addAll(data)
             dataLiveData.postValue(this.data)
         }
+        pageLoadingState.postValue(PageLoadingStates.SUCCESS)
     }
 
     fun loadNext(data: List<T>?) {
@@ -113,6 +122,7 @@ class PagedOffsetLoader<T>(val listener: PagedOffSetListener<T>, val pageLimit: 
             this.data.addAll(data)
             dataLiveData.postValue(this.data)
         }
+        pageLoadingState.postValue(PageLoadingStates.SUCCESS)
 
     }
 

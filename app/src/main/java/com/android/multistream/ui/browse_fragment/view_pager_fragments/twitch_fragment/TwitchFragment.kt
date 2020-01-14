@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.databinding.TwitchGamesFragmentPageBinding
 import com.android.multistream.network.twitch.models.v5.TopItem
 import com.android.multistream.util.ViewModelFactory
+import com.android.multistream.util.pagination.PageLoadingStates
 import com.android.multistream.util.pagination.PagedOffsetLoader
 import com.android.multistream.util.pagination.PagedPositionLoader
 import dagger.android.support.DaggerFragment
@@ -42,7 +43,7 @@ class TwitchFragment : DaggerFragment() {
             topTwitchGamesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    if (!recyclerView.canScrollVertically(1) && !recyclerView.hasPendingAdapterUpdates()) pagedOffSetLoader.loadHandler()
+                    if (!recyclerView.canScrollVertically(1) && pagedOffSetLoader.pageLoadingState.value != PageLoadingStates.LOADING) pagedOffSetLoader.loadHandler()
                 }
             })
         }
