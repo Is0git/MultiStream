@@ -51,7 +51,7 @@ class BrowseFragment : DaggerFragment() {
         binding.apply {
             TabLayoutMediator(topGamesTabLayout, topGamesViewPager) {tab, position ->
                tab.text = when(position) {
-                   0 -> "Top"
+                   0 -> "All"
                    1 -> "Twitch"
                    2 -> "Mixer"
                    else -> "None"
