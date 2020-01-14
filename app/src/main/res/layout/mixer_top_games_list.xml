@@ -14,7 +14,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:onClick="@{() -> onGameCategoryListener.onGameClick(PlatformTypesKt.MIXER, MixerTopGames.viewersCurrent, `0`, MixerTopGames.name, MixerTopGames.backgroundUrl)}"
+        android:onClick="@{() -> onGameCategoryListener.onGameClick(PlatformTypesKt.MIXER, MixerTopGames.viewersCurrent, `0`, MixerTopGames.name, MixerTopGames.backgroundUrl, String.valueOf(MixerTopGames.id))}"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textview.MaterialTextView

@@ -71,9 +71,10 @@ class TwitchFragment : DaggerFragment(), OnGameCategoryListener {
         viewers: Int,
         channels: String?,
         name: String,
-        boxImage: String?
+        boxImage: String?,
+        gameId: String?
     ) {
-       val directions = BrowseFragmentDirections.actionBrowseFragmentToGameChannelsFragment(platformType, viewers, channels, name, boxImage)
+       val directions = BrowseFragmentDirections.actionBrowseFragmentToGameChannelsFragment(platformType, viewers, channels, name, boxImage, gameId)
         navController.navigate(directions)
     }
 

@@ -13,7 +13,7 @@
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-        android:onClick="@{() -> clickListener.onGameClick(PlatformTypesKt.TWITCH,topItem.viewers, String.valueOf(topItem.channels), topItem.game.name, topItem.game.box.large )}"
+        android:onClick="@{() -> clickListener.onGameClick(PlatformTypesKt.TWITCH,topItem.viewers, String.valueOf(topItem.channels), topItem.game.name, topItem.game.box.large, String.valueOf(topItem.game._id) )}"
         android:layout_height="wrap_content">
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textName"

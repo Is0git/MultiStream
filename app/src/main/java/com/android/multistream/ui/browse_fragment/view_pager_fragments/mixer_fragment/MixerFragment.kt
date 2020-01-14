@@ -70,14 +70,16 @@ class MixerFragment : DaggerFragment(), OnGameCategoryListener {
         viewers: Int,
         channels: String?,
         name: String,
-        boxImage: String?
+        boxImage: String?,
+        gameId: String?
     ) {
         val directions = BrowseFragmentDirections.actionBrowseFragmentToGameChannelsFragment(
             platformType,
             viewers,
             channels,
             name,
-            boxImage
+            boxImage,
+            gameId
         )
         navController.navigate(directions)
     }

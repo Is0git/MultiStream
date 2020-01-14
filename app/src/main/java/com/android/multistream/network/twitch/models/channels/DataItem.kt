@@ -10,7 +10,7 @@ data class DataItem(
 	val userId: String? = null,
 
 	@Json(name="user_name")
-	val userName: String? = null,
+	val user_name: String? = null,
 
 	@Json(name="started_at")
 	val startedAt: String? = null,
@@ -22,7 +22,7 @@ data class DataItem(
 	val id: String? = null,
 
 	@Json(name="viewer_count")
-	val viewerCount: Int? = null,
+	val viewer_count: Int? = null,
 
 	@Json(name="type")
 	val type: String? = null,
@@ -31,7 +31,7 @@ data class DataItem(
 	val title: String? = null,
 
 	@Json(name="thumbnail_url")
-	val thumbnailUrl: String? = null,
+	val thumbnail_url: String? = null,
 
 	@Json(name="game_id")
 	val gameId: String? = null

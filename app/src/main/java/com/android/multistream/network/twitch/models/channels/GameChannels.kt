@@ -10,5 +10,5 @@ data class GameChannels(
 	val pagination: Pagination? = null,
 
 	@Json(name="data")
-	val data: List<DataItem?>? = null
+	val data: List<DataItem>? = null
 )

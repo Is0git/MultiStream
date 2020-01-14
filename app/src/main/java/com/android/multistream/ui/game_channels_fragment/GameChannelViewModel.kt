@@ -5,4 +5,18 @@ import com.android.multistream.di.MainActivity.game_channels_fragment.GameChanne
 import javax.inject.Inject
 
 @GameChannelsFragmentScope
-class GameChannelViewModel @Inject constructor(repo: GameChannelsRepository) : ViewModel()
+class GameChannelViewModel @Inject constructor(val repo: GameChannelsRepository) : ViewModel() {
+    val pageLoadLiveData = repo.keyPager?.dataLiveData
+
+    fun getLoadState() = repo.keyPager?.pageLoadingState?.value
+
+    fun loadNextPage() = repo.keyPager?.loadHandler()
+
+    fun setGame(id: String?) {repo.gameId = id ?: "null"}
+
+
+    fun initPager() {
+        repo.initKeyPager()
+    }
+
+}
