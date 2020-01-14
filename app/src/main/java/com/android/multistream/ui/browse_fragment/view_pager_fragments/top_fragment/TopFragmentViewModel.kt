@@ -7,5 +7,11 @@ import javax.inject.Inject
 @TopFragmentGamesScope
 class TopFragmentViewModel @Inject constructor(val repo: TopFragmentRepository) : ViewModel() {
 
-    val listener = repo.pageListener
+    val pageLiveData = repo.pageLoader.dataLiveData
+
+    fun loadPage() {
+        repo.pageLoader.loadHandler()
+    }
+
+    fun getPaginationSate() = repo.pageLoader.pageLoadingState.value
 }

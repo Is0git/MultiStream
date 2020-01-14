@@ -9,8 +9,8 @@ import kotlinx.android.parcel.Parcelize
 
 data class TopGames(@Json(name = "data") val data: MutableList<Data>, val pagination: Pagination?)
 
-
-data class Data(val box_art_url: String?, val id: String?, val name: String?, val platformType: String?, val viewersCount: Int, var mixerTopGames: MixerTopGames? = null)
+@Parcelize
+data class Data(val box_art_url: String?, val id: String?, val name: String?, val platformType: String?, val viewersCount: Int, var mixerTopGames: MixerTopGames? = null) : Parcelable
 
 data class twitchData(val box_art_url: String?, val id: String?, val name: String?, val platformType: String?, val viewersCount: Int, val mixerCount: Int? = null)
 

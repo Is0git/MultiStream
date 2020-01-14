@@ -22,20 +22,21 @@ class TopFragmentRepository @Inject constructor(
     val application: Application,
     val twitchService: TwitchService,
     val mixerService: MixerService
-) {
+) : PagedOffSetListener<Data>{
 
     var loadJob: Job? = null
+    val pageLoader = PagedOffsetLoader(this, 20)
 
-    val pageListener = object : PagedOffSetListener<Data> {
         override fun loadInitial(pagination: PagedOffsetLoader<Data>) {
             loadJob = CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val twitchResult = getTwitchTopGamesAsync(pagination.pageOffset, pagination.pageLimit)
-                    if(twitchResult.await().isSuccessful) {
-                       topTwitchAndMixerGames(twitchResult.await().body()).map {getMixerGame(it)}.collect()
+                    val twitchResult =
+                        getTwitchTopGamesAsync(pagination.pageOffset, pagination.pageLimit)
+                    if (twitchResult.await().isSuccessful) {
+                        topTwitchAndMixerGames(twitchResult.await().body()).map { getMixerGame(it) }
+                            .collect()
                         pagination.loadInit(twitchResult.await().body())
                     }
-
 
 
                 } catch (e: IOException) {
@@ -84,5 +85,5 @@ class TopFragmentRepository @Inject constructor(
 
         }
         suspend fun topTwitchAndMixerGames(list: List<Data>?) : Flow<Data> = flow {list?.forEach { emit(it) }}
-    }
+
 }

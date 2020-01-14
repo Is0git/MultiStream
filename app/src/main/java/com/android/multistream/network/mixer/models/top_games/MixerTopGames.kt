@@ -1,7 +1,10 @@
 package com.android.multistream.network.mixer.models.top_games
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class MixerTopGames(
     @Json(name = "id")  val id: Int?,
     @Json(name = "name")
@@ -22,7 +25,7 @@ data class MixerTopGames(
      val online: Int?,
     @Json(name = "availableAt")
      val availableAt: String?
-) {
+) : Parcelable {
 
 
 }

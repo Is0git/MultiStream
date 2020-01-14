@@ -38,6 +38,17 @@
                 app:nullable="true" />
 
         </action>
+
+        <action
+            android:id="@+id/action_browseFragment_to_gameChannelsFragment2"
+            app:destination="@id/gameChannelsFragment">
+            <argument
+                android:name="data"
+                android:defaultValue="@null"
+                app:argType="com.android.multistream.network.twitch.models.Data"
+                app:nullable="true" />
+
+        </action>
     </fragment>
     <fragment
         android:id="@+id/gameChannelsFragment"

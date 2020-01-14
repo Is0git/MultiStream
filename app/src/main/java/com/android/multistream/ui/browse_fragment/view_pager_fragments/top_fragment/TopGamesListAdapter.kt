@@ -18,7 +18,7 @@ import javax.inject.Inject
 //import com.android.multistream.di.MainActivity.browse_fragment.BrowseFragmentScope
 //import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.top_fragment.TopFragmentGamesScope
 //import com.android.multistream.network.twitch.models.Data
-//import com.android.multistream.ui.browse_fragment.CategoryNavigationListener
+//import com.android.multistream.ui.browse_fragment.view_pager_fragments.top_fragment.CategoryNavigationListener
 //import javax.inject.Inject
 //
 //const val TOP = 0
@@ -93,7 +93,7 @@ import javax.inject.Inject
 @TopFragmentGamesScope
 class TopGamesListAdapter @Inject constructor() :
     RecyclerView.Adapter<TopGamesListAdapter.MyViewHolder>() {
-
+    lateinit var listener: CategoryNavigationListener<Data>
     var list: List<Data>? = null
         set(value) {
             val begin = if (field == null) 0 else field?.count()!! - 1
@@ -111,7 +111,7 @@ class TopGamesListAdapter @Inject constructor() :
         viewType: Int
     ): TopGamesListAdapter.MyViewHolder {
         val binding =
-            TopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            TopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false).also { it.listener = this.listener }
         return MyViewHolder(binding)
     }
 

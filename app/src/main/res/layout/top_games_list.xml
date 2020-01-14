@@ -6,11 +6,14 @@
             name="Data"
             type="com.android.multistream.network.twitch.models.Data" />
 
-
+        <variable
+            name="listener"
+            type="com.android.multistream.ui.browse_fragment.view_pager_fragments.top_fragment.CategoryNavigationListener&lt;com.android.multistream.network.twitch.models.Data&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:onClick="@{() -> listener.onGameClick(Data)}"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textview.MaterialTextView
