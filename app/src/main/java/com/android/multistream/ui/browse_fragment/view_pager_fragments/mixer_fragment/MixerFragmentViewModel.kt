@@ -6,6 +6,9 @@ import javax.inject.Inject
 
 @MixerFragmentGamesScope
 class MixerFragmentViewModel @Inject constructor(val repo: MixerFragmentRepository) : ViewModel() {
+    val pageLiveData = repo.mixerTopGamesPagination.dataLiveData
 
-    val pagedOffSetListener = repo.topGamesPaginationListener
+    fun loadPage() {repo.mixerTopGamesPagination.loadHandler()}
+
+    fun getState() = repo.mixerTopGamesPagination.pageLoadingState.value
 }

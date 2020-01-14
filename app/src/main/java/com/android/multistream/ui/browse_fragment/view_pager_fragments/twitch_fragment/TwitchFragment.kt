@@ -7,24 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.R
 import com.android.multistream.databinding.TwitchGamesFragmentPageBinding
-import com.android.multistream.network.twitch.models.v5.TopItem
 import com.android.multistream.ui.browse_fragment.BrowseFragmentDirections
 import com.android.multistream.util.ViewModelFactory
 import com.android.multistream.util.pagination.PageLoadingStates
-import com.android.multistream.util.pagination.PagedOffsetLoader
-import com.android.multistream.util.pagination.PagedPositionLoader
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class TwitchFragment : DaggerFragment(), TwitchOnGameCategoryListener {
+class TwitchFragment : DaggerFragment(), OnGameCategoryListener {
 
     lateinit var binding: TwitchGamesFragmentPageBinding
     @Inject lateinit var factory: ViewModelFactory

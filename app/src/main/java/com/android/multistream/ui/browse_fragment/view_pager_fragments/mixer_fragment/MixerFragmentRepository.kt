@@ -12,13 +12,13 @@ import java.io.IOException
 import javax.inject.Inject
 
 @MixerFragmentGamesScope
-class MixerFragmentRepository @Inject constructor(val mixerService: MixerService, val application: Application) {
+class MixerFragmentRepository @Inject constructor(val mixerService: MixerService, val application: Application) : PagedPositionListener<MixerTopGames> {
     var loadJob: Job? = null
     val pageLimit = 20
 
+    val mixerTopGamesPagination = PagedPositionLoader(this)
 
 
-    val topGamesPaginationListener = object : PagedPositionListener<MixerTopGames> {
         override fun loadInitial(pagination: PagedPositionLoader<MixerTopGames>) {
             loadJob = CoroutineScope(Dispatchers.IO).launch {
                 try {
@@ -59,7 +59,6 @@ class MixerFragmentRepository @Inject constructor(val mixerService: MixerService
             }
         }
 
-    }
 
     suspend fun getMixerTopGamesAsync(page: Int) = coroutineScope {
         async {

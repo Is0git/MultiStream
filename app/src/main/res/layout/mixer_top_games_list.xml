@@ -2,15 +2,19 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
+        <import type="com.android.multistream.util.PlatformTypesKt"/>
         <variable
             name="MixerTopGames"
             type="com.android.multistream.network.mixer.models.top_games.MixerTopGames" />
 
-
+        <variable
+            name="onGameCategoryListener"
+            type="com.android.multistream.ui.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:onClick="@{() -> onGameCategoryListener.onGameClick(PlatformTypesKt.MIXER, MixerTopGames.viewersCurrent, `0`, MixerTopGames.name, MixerTopGames.backgroundUrl)}"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textview.MaterialTextView

@@ -6,11 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.databinding.MixerTopGamesListBinding
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.mixer_fragment.MixerFragmentGamesScope
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
+import com.android.multistream.ui.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener
 import javax.inject.Inject
 
 @MixerFragmentGamesScope
 class MixerTopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<MixerTopGamesListAdapter.MyViewHolder>() {
 
+    lateinit var onGameCategoryListener: OnGameCategoryListener
     var list: List<MixerTopGames>? = null
     set(value) {
         val begin = if (field == null) 0 else field?.count()!! - 1
@@ -23,7 +25,7 @@ class MixerTopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<Mixe
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-       val binding = MixerTopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+       val binding = MixerTopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false).also { it.onGameCategoryListener = this.onGameCategoryListener }
         return MyViewHolder(binding)
     }
 

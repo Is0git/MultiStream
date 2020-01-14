@@ -8,7 +8,7 @@
 
             <variable
                 name="clickListener"
-                type="com.android.multistream.ui.browse_fragment.view_pager_fragments.twitch_fragment.TwitchOnGameCategoryListener" />
+                type="com.android.multistream.ui.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener" />
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout

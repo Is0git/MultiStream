@@ -3,18 +3,14 @@ package com.android.multistream.ui.browse_fragment.view_pager_fragments.twitch_f
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.android.multistream.databinding.MixerTopGamesListBinding
 import com.android.multistream.databinding.TwitchTopGamesListBinding
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.twitch_fragment.TwitchFragmentGamesScope
-import com.android.multistream.network.mixer.models.top_games.MixerTopGames
-import com.android.multistream.network.twitch.models.TopGames
 import com.android.multistream.network.twitch.models.v5.TopItem
-import com.android.multistream.ui.browse_fragment.view_pager_fragments.mixer_fragment.MixerTopGamesListAdapter
 import javax.inject.Inject
 
 @TwitchFragmentGamesScope
 class TwitchTopGamesAdapter @Inject constructor() : RecyclerView.Adapter<TwitchTopGamesAdapter.MyViewHolder>() {
-    lateinit var clickListener: TwitchOnGameCategoryListener
+    lateinit var clickListener: OnGameCategoryListener
     var list: List<TopItem>? = null
         set(value) {
             val begin = if (field == null) 0 else field?.count()!! - 1
