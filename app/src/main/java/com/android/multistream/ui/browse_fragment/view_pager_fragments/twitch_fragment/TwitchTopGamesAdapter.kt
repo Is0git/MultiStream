@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @TwitchFragmentGamesScope
 class TwitchTopGamesAdapter @Inject constructor() : RecyclerView.Adapter<TwitchTopGamesAdapter.MyViewHolder>() {
-
+    lateinit var clickListener: TwitchOnGameCategoryListener
     var list: List<TopItem>? = null
         set(value) {
             val begin = if (field == null) 0 else field?.count()!! - 1
@@ -22,12 +22,12 @@ class TwitchTopGamesAdapter @Inject constructor() : RecyclerView.Adapter<TwitchT
             notifyItemRangeChanged(begin, value?.size!! - 1)
         }
 
-    class MyViewHolder(val binding: TwitchTopGamesListBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(val binding: TwitchTopGamesListBinding) : RecyclerView.ViewHolder(binding.root)
 
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = TwitchTopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        val binding = TwitchTopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false).also { it.clickListener = this.clickListener }
         return MyViewHolder(binding)
     }
 

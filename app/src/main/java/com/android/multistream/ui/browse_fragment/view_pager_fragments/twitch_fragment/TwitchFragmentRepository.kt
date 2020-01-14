@@ -13,18 +13,19 @@ import java.io.IOException
 import javax.inject.Inject
 
 @TwitchFragmentGamesScope
-class TwitchFragmentRepository @Inject constructor(val twitchService: TwitchService, val application: Application) {
+class TwitchFragmentRepository @Inject constructor(val twitchService: TwitchService, val application: Application) : PagedOffSetListener<TopItem> {
 
 
     val pageLimit = 20
     var pageOffSet = 0
     var loadJob: Job? = null
+    val pagedOffSetLoader = PagedOffsetLoader<TopItem>(this, pageLimit)
 
-    val pagedOffSetListener = object : PagedOffSetListener<TopItem> {
         override fun loadInitial(pagination: PagedOffsetLoader<TopItem>) {
             loadJob = CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val mixerResult = getTwitchTopGamesV5(pagination.pageLimit, pagination.pageOffset)
+                    val mixerResult =
+                        getTwitchTopGamesV5(pagination.pageLimit, pagination.pageOffset)
 
                     when {
                         mixerResult.await().isSuccessful -> pagination.loadInit(mixerResult.await().body()?.top)
@@ -40,6 +41,7 @@ class TwitchFragmentRepository @Inject constructor(val twitchService: TwitchServ
                 }
             }
         }
+
 
         override fun loadNext(pagination: PagedOffsetLoader<TopItem>) {
             loadJob = CoroutineScope(Dispatchers.IO).launch {
@@ -61,7 +63,6 @@ class TwitchFragmentRepository @Inject constructor(val twitchService: TwitchServ
             }
         }
 
-    }
 
     suspend fun getTwitchTopGamesV5(limit: Int, offSet: Int) = coroutineScope {
         async { twitchService.getTopGamesV5Full(offSet, limit) }

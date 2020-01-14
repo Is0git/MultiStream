@@ -16,10 +16,27 @@
             android:id="@+id/action_browseFragment_to_gameChannelsFragment"
             app:destination="@id/gameChannelsFragment">
             <argument
-                android:name="data"
+                android:name="platformType"
+                app:argType="integer" />
+            <argument
+                android:name="viewers"
+                app:argType="integer" />
+            <argument
+                android:name="channels"
                 android:defaultValue="@null"
                 app:argType="string"
                 app:nullable="true" />
+            <argument
+                android:name="name"
+                android:defaultValue="@null"
+                app:argType="string"
+                app:nullable="true" />
+            <argument
+                android:name="boxImage"
+                android:defaultValue="@null"
+                app:argType="string"
+                app:nullable="true" />
+
         </action>
     </fragment>
     <fragment
@@ -27,9 +44,26 @@
         android:name="com.android.multistream.ui.game_channels_fragment.GameChannelsFragment"
         android:label="GameChannelsFragment">
         <argument
-            android:name="data"
+            android:name="platformType"
+            app:argType="integer" />
+        <argument
+            android:name="viewers"
+            app:argType="integer" />
+        <argument
+            android:name="channels"
             android:defaultValue="@null"
             app:argType="string"
             app:nullable="true" />
+        <argument
+            android:name="name"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="boxImage"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
     </fragment>
 </navigation>
