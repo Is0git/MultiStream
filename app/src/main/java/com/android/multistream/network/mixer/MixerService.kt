@@ -23,6 +23,6 @@ interface MixerService {
     suspend fun getMixerTopGame(@Query("where") where: String?, @Query(value = "limit") limit: Int?) : Response<List<MixerTopGames>>
 
 
-    @GET("api/v1/types/{id}/channels")
-    suspend fun getGameChannels(@Path(value = "id") gameId: String) : Response<GameChannels>
+    @GET("types/{id}/channels")
+    suspend fun getGameChannels(@Path(value = "id") gameId: String?,  @Query(value = "page") page: Int?, @Query(value = "limit") limit: Int, @Query("order") order: String? = "DESC") : Response<List<GameChannels>>
 }

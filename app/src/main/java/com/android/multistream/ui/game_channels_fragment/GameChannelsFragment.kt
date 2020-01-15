@@ -11,6 +11,9 @@ import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.databinding.GameChannelsFragmentBinding
+import com.android.multistream.util.MIXER
+import com.android.multistream.util.TWITCH
+import com.android.multistream.util.UNKNOWN
 import com.android.multistream.util.ViewModelFactory
 import com.android.multistream.util.pagination.PageLoadingStates
 import dagger.android.support.DaggerFragment
@@ -19,10 +22,20 @@ import javax.inject.Inject
 class GameChannelsFragment : DaggerFragment() {
 
     val args: GameChannelsFragmentArgs by navArgs()
+    var gameId: String? = null
+    var platformType: Int = UNKNOWN
     @Inject lateinit var factory: ViewModelFactory
-    @Inject lateinit var twitchChannelsAdapter: TwitchChannelsList
+    val twitchChannelsAdapter: TwitchChannelsList by lazy { TwitchChannelsList() }
     lateinit var gameChannelViewModel: GameChannelViewModel
     lateinit var binding: GameChannelsFragmentBinding
+    val mixerChannelsList by lazy { MixerChannelsList() }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        gameId = args.gameId
+        platformType = args.platformType
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,29 +43,54 @@ class GameChannelsFragment : DaggerFragment() {
     ): View? {
         gameChannelViewModel = ViewModelProviders.of(this, factory).get(GameChannelViewModel::class.java)
         gameChannelViewModel.apply {
-            setGame(args.gameId)
+            setGame(gameId)
+        }
+        binding = GameChannelsFragmentBinding.inflate(inflater, container, false)
+
+        if(platformType == TWITCH) {
+            setupTwitchObservers()
+            setupTwitchList()
+        }
+        else if (platformType == MIXER) {
+            setupMixerObservers()
+            setupMixerList()
         }
 
 
-        binding = GameChannelsFragmentBinding.inflate(inflater, container, false)
-        setupObservers()
-        setupList()
         return binding.root
     }
 
-    private fun setupList() {
+    private fun setupTwitchList() {
         binding.topChannelsList.apply {
             adapter = twitchChannelsAdapter
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                         super.onScrolled(recyclerView, dx, dy)
-                        if (!recyclerView.canScrollVertically(1) && gameChannelViewModel.getLoadState() != PageLoadingStates.LOADING) gameChannelViewModel.loadNextPage()
+                        if (!recyclerView.canScrollVertically(1) && gameChannelViewModel.getLoadState(
+                                TWITCH) != PageLoadingStates.LOADING) gameChannelViewModel.loadNextPage(platformType)
                     }
                 })
         }
     }
 
-    private fun setupObservers() {
+    private fun setupTwitchObservers() {
         gameChannelViewModel.getPagedLoadData()?.observe(viewLifecycleOwner, Observer { twitchChannelsAdapter.list = it })
+    }
+
+    private fun setupMixerObservers() {
+        gameChannelViewModel.getMixerPagedLoadData().observe(viewLifecycleOwner, Observer { mixerChannelsList.list = it })
+    }
+
+    private fun setupMixerList() {
+        binding.topChannelsList.apply {
+            adapter = mixerChannelsList
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+                    if (!recyclerView.canScrollVertically(1) && gameChannelViewModel.getLoadState(
+                            MIXER) != PageLoadingStates.LOADING) gameChannelViewModel.loadNextPage(platformType)
+                }
+            })
+        }
     }
 }
