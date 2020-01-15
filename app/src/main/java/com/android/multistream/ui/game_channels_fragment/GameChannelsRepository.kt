@@ -20,17 +20,14 @@ class GameChannelsRepository @Inject constructor(
 ) : PaginationListener<DataItem> {
     val pageLimit = 20
     var loadJob: Job? = null
-    var keyPager: PagedKeyLoader<DataItem>? = PagedKeyLoader<DataItem>(this, pageLimit)
+    val keyPager: PagedKeyLoader<DataItem>? by lazy { PagedKeyLoader(this, pageLimit) }
     var gameId: String? = null
 
-    fun initKeyPager() {
-        keyPager = PagedKeyLoader<DataItem>(this, pageLimit)
-    }
 
     override fun loadInitial(pagination: PagedKeyLoader<DataItem>) {
         loadJob = CoroutineScope(Dispatchers.Default).launch {
             try {
-                val twitchResult = getTwitchGameChannels(21779.toString(), pagination.nextKey, pageLimit)
+                val twitchResult = getTwitchGameChannels(gameId!!, pagination.nextKey, pageLimit)
 
                 when {
                     twitchResult.isSuccessful -> pagination.loadInit(
@@ -53,7 +50,7 @@ class GameChannelsRepository @Inject constructor(
     override fun loadNext(pagination: PagedKeyLoader<DataItem>, nextKey: String?) {
         loadJob = CoroutineScope(Dispatchers.Default).launch {
             try {
-                val twitchResult = getTwitchGameChannels(21779.toString(), pagination.nextKey, pageLimit)
+                val twitchResult = getTwitchGameChannels(gameId!!, pagination.nextKey, pageLimit)
 
                 when {
                     twitchResult.isSuccessful -> pagination.loadInit(

@@ -18,6 +18,7 @@ import androidx.lifecycle.MutableLiveData
         }
 
         init {
+            pageLoadingState.postValue(PageLoadingStates.LOADING)
             loadInitial(this)
         }
 

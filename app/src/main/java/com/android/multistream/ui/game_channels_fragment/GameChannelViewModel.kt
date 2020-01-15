@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 @GameChannelsFragmentScope
 class GameChannelViewModel @Inject constructor(val repo: GameChannelsRepository) : ViewModel() {
-    val pageLoadLiveData = repo.keyPager?.dataLiveData
+    fun getPagedLoadData() = repo.keyPager?.dataLiveData
 
     fun getLoadState() = repo.keyPager?.pageLoadingState?.value
 
@@ -15,8 +15,5 @@ class GameChannelViewModel @Inject constructor(val repo: GameChannelsRepository)
     fun setGame(id: String?) {repo.gameId = id ?: "null"}
 
 
-    fun initPager() {
-        repo.initKeyPager()
-    }
 
 }

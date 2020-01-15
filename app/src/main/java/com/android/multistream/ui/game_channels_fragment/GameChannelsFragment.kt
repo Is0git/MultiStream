@@ -29,6 +29,11 @@ class GameChannelsFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View? {
         gameChannelViewModel = ViewModelProviders.of(this, factory).get(GameChannelViewModel::class.java)
+        gameChannelViewModel.apply {
+            setGame(args.gameId)
+        }
+
+
         binding = GameChannelsFragmentBinding.inflate(inflater, container, false)
         setupObservers()
         setupList()
@@ -48,6 +53,6 @@ class GameChannelsFragment : DaggerFragment() {
     }
 
     private fun setupObservers() {
-        gameChannelViewModel.pageLoadLiveData?.observe(viewLifecycleOwner, Observer { twitchChannelsAdapter.list = it })
+        gameChannelViewModel.getPagedLoadData()?.observe(viewLifecycleOwner, Observer { twitchChannelsAdapter.list = it })
     }
 }

@@ -34,11 +34,12 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/viewersCount"
-            android:textStyle="bold"
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:text="@{String.valueOf(dataItem.viewer_count)}"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
