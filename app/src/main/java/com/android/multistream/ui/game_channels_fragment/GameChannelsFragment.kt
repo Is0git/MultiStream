@@ -8,8 +8,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavArgs
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
+import com.android.multistream.R
 import com.android.multistream.databinding.GameChannelsFragmentBinding
 import com.android.multistream.util.MIXER
 import com.android.multistream.util.TWITCH
@@ -28,6 +31,7 @@ class GameChannelsFragment : DaggerFragment() {
     val twitchChannelsAdapter: TwitchChannelsList by lazy { TwitchChannelsList() }
     lateinit var gameChannelViewModel: GameChannelViewModel
     lateinit var binding: GameChannelsFragmentBinding
+    lateinit var navController: NavController
     val mixerChannelsList by lazy { MixerChannelsList() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,10 +60,20 @@ class GameChannelsFragment : DaggerFragment() {
             setupMixerList()
         }
 
+        binding.topChannelsList.setOnClickListener { navController.navigate(R.id.action_gameChannelsFragment_to_videoPlayerFragment) }
 
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navController = Navigation.findNavController(view)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        navController.navigate(R.id.action_gameChannelsFragment_to_videoPlayerFragment)
+    }
     private fun setupTwitchList() {
         binding.topChannelsList.apply {
             adapter = twitchChannelsAdapter
