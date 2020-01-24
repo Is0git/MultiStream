@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.android.multistream.R
 import com.android.multistream.databinding.BrowseFragmentBinding
 import com.android.multistream.util.ViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
@@ -50,12 +51,24 @@ class BrowseFragment : DaggerFragment() {
     private fun handleTabLayout() {
         binding.apply {
             TabLayoutMediator(topGamesTabLayout, topGamesViewPager) {tab, position ->
-               tab.text = when(position) {
-                   0 -> "All"
-                   1 -> "Twitch"
-                   2 -> "Mixer"
-                   else -> "None"
-               }
+                tab.apply {    when(position) {
+                    0 -> {
+                        text = "all"
+                        icon = resources.getDrawable(R.drawable.youtube, activity?.theme)
+                    }
+                    1 -> {
+                        text = "Twitch"
+
+                        icon = resources.getDrawable(R.drawable.twitch, activity?.theme).also { it.setBounds(0,0, 60, 60) }
+
+                    }
+                    2 -> {
+                        text= "Mixer"
+                        icon = resources.getDrawable(R.drawable.mixer, activity?.theme)
+                    }
+                    else -> "None"
+                }}
+
             }.attach()
         }
     }

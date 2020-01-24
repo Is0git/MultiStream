@@ -9,7 +9,9 @@
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
+            android:elevation="20dp"
+            app:tabTextAppearance="@style/tabTextAppearance"
             android:id="@+id/topGamesTabLayout"/>
 
 

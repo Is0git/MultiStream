@@ -12,4 +12,9 @@
         <item name="colorSecondaryVariant">@color/colorOnSecondaryVariant</item>
     </style>
 
+
+    <style name="tabTextAppearance">
+        <item name="android:textSize">0sp</item>
+        <item name="android:visibility">invisible</item>
+    </style>
 </resources>

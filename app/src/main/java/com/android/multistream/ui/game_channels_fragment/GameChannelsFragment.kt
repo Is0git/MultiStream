@@ -60,7 +60,7 @@ class GameChannelsFragment : DaggerFragment() {
             setupMixerList()
         }
 
-        binding.topChannelsList.setOnClickListener { navController.navigate(R.id.action_gameChannelsFragment_to_videoPlayerFragment) }
+
 
         return binding.root
     }
@@ -72,7 +72,7 @@ class GameChannelsFragment : DaggerFragment() {
 
     override fun onStart() {
         super.onStart()
-        navController.navigate(R.id.action_gameChannelsFragment_to_videoPlayerFragment)
+
     }
     private fun setupTwitchList() {
         binding.topChannelsList.apply {

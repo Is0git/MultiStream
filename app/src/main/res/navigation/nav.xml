@@ -88,13 +88,6 @@
             android:defaultValue="@null"
             app:argType="string"
             app:nullable="true" />
-        <action
-            android:id="@+id/action_gameChannelsFragment_to_videoPlayerFragment"
-            app:destination="@id/videoPlayerFragment" />
 
     </fragment>
-    <fragment
-        android:id="@+id/videoPlayerFragment"
-        android:name="com.android.multistream.ui.video_player_fragment.VideoPlayerFragment"
-        android:label="VideoPlayerFragment" />
 </navigation>

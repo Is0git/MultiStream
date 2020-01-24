@@ -1,55 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
-        <import type="com.android.multistream.util.PlatformTypesKt"/>
+
+        <import type="com.android.multistream.util.PlatformTypesKt" />
+
         <variable
             name="topItem"
             type="com.android.multistream.network.twitch.models.v5.TopItem" />
 
-            <variable
-                name="clickListener"
-                type="com.android.multistream.ui.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener" />
+        <variable
+            name="clickListener"
+            type="com.android.multistream.ui.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener" />
 
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-        android:onClick="@{() -> clickListener.onGameClick(PlatformTypesKt.TWITCH,topItem.viewers, String.valueOf(topItem.channels), topItem.game.name, topItem.game.box.large, String.valueOf(topItem.game._id) )}"
-        android:layout_height="wrap_content">
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textName"
-            style="@style/TextAppearance.MaterialComponents.Body2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{topItem.game.name}"
-            android:textColor="#000000"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/gameImage"
-            app:layout_constraintTop_toTopOf="@+id/gameImage" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onGameClick(PlatformTypesKt.TWITCH,topItem.viewers, String.valueOf(topItem.channels), topItem.game.name, topItem.game.box.large, String.valueOf(topItem.game._id) )}">
+        <!--        <com.google.android.material.textview.MaterialTextView-->
+        <!--            android:id="@+id/textName"-->
+        <!--            style="@style/TextAppearance.MaterialComponents.Body2"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="@{topItem.game.name}"-->
+        <!--            android:textColor="#000000"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.5"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/gameImage"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/gameImage" />-->
 
 
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/viewersCount"
-            style="@style/TextAppearance.MaterialComponents.Body2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{String.valueOf(topItem.viewers)}"
-            android:textColor="#000000"
-            app:layout_constraintBottom_toBottomOf="@+id/gameImage"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/gameImage"
-            app:layout_constraintTop_toBottomOf="@+id/textName" />
-
-        <ImageView
-            android:id="@+id/gameImage"
+        <!--        <com.google.android.material.textview.MaterialTextView-->
+        <!--            android:id="@+id/viewersCount"-->
+        <!--            style="@style/TextAppearance.MaterialComponents.Body2"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="@{String.valueOf(topItem.viewers)}"-->
+        <!--            android:textColor="#000000"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/gameImage"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.5"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/gameImage"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/textName" />-->
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="138dp"
-            android:layout_height="48dp"
-            android:background="@color/colorSecondary"
+            android:layout_height="220dp"
+            android:paddingStart="2dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="2dp"
+            android:paddingBottom="2dp"
+            app:cardElevation="10dp"
+            app:cardUseCompatPadding="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:loadImage="@{topItem.game.box.large}" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/gameImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/twitch_placeholder"
+                android:elevation="10dp"
+                app:loadImage="@{topItem.game.box.large}" />
+        </com.google.android.material.card.MaterialCardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
