@@ -5,9 +5,12 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.view.Display
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebSettings
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.android.multistream.R
@@ -29,11 +32,22 @@ class VideoPlayerFragment : Fragment(){
             .appendPath(resources.getResourceTypeName(resourceId))
             .appendPath(resources.getResourceEntryName(resourceId))
             .build()
-        binding.videoPlayer.apply {
-            setVideoURI(uri)
-            start()
-        }
+            val metrics = resources.displayMetrics
+        binding.webViewPlayer.apply {
 
+            settings.javaScriptEnabled = true
+            settings.javaScriptCanOpenWindowsAutomatically = true
+            settings.pluginState = WebSettings.PluginState.ON_DEMAND
+            settings.mediaPlaybackRequiresUserGesture = false
+            loadData("<iframe\n" +
+                    "    src=\"https://player.twitch.tv/?channel=dakotaz\"\n" +
+                    "    height=\"${layoutParams.height}\"\n" +
+                    "    width=\"${layoutParams.width}\"\n" +
+                    "    frameborder=\"0\"\n" +
+                    "    scrolling=\"no\"\n" +
+                    "    allowfullscreen=\"true\">\n" +
+                    "</iframe>", "text/html", "utf-8")
+        }
         return binding.root
     }
 }
