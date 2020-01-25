@@ -18,7 +18,6 @@
 
         <View
             android:layout_width="0dp"
-            android:alpha="0.2"
             android:layout_height="0dp"
             android:background="@drawable/darken_gradient"
             app:layout_constraintTop_toTopOf="@id/bgImage"
@@ -28,24 +27,26 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/topCategories"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
+            style="@style/TextAppearance.MaterialComponents.Headline4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="30dp"
-            android:fontFamily="@font/quicksand"
-            android:text="TOP CATAGORIES"
+            android:fontFamily="@font/myriadprolt"
             android:shadowColor="#94000000"
-            android:shadowDy="5"
+            android:shadowDy="7"
             android:shadowRadius="4"
-            android:textStyle="bold"
+            android:text="TOP CATAGORIES"
             android:textColor="@color/colorSurface"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/bgImage"
             app:layout_constraintEnd_toEndOf="@id/searchIcon"
             app:layout_constraintEnd_toStartOf="@+id/searchIcon"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/topTwitchGamesList"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.9" />
 
         <ImageView
             android:id="@+id/searchIcon"
@@ -70,7 +71,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topCategories"
-            app:spanCount="7"
+            app:spanCount="4"
             tools:listitem="@layout/twitch_top_games_list" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
