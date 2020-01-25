@@ -16,7 +16,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="138dp"
+        android:layout_width="150dp"
         android:layout_height="220dp"
         android:onClick="@{() -> clickListener.onGameClick(PlatformTypesKt.TWITCH,topItem.viewers, String.valueOf(topItem.channels), topItem.game.name, topItem.game.box.large, String.valueOf(topItem.game._id) )}">
         <!--        <com.google.android.material.textview.MaterialTextView-->
@@ -51,6 +51,8 @@
             android:paddingStart="2dp"
             android:paddingTop="2dp"
             android:paddingEnd="2dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/colorSurface"
             android:paddingBottom="2dp"
             app:cardElevation="10dp"
             app:cardUseCompatPadding="true"
