@@ -67,7 +67,7 @@ class TwitchFragment : DaggerFragment(), OnGameCategoryListener {
                         val itemsCount = (binding.topTwitchGamesList.layoutManager as GridLayoutManager).itemCount
                         val lastVisibleItem = (binding.topTwitchGamesList.layoutManager as GridLayoutManager).findLastVisibleItemPosition()
 
-                        if (itemsCount - lastVisibleItem - 1 < 4 ) twitchFragmentViewModel.loadPage()
+                        if (itemsCount - lastVisibleItem - 1 < 10 ) twitchFragmentViewModel.loadPage()
 
                     }
                 }

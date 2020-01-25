@@ -16,7 +16,7 @@ import javax.inject.Inject
 class TwitchFragmentRepository @Inject constructor(val twitchService: TwitchService, val application: Application) : PagedOffSetListener<TopItem> {
 
 
-    val pageLimit = 20
+    val pageLimit = 30
     var pageOffSet = 0
     var loadJob: Job? = null
     val pagedOffSetLoader = PagedOffsetLoader<TopItem>(this, pageLimit)
