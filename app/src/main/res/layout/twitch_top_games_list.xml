@@ -47,6 +47,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:cardCornerRadius="15sp"
             android:paddingStart="2dp"
             android:paddingTop="2dp"
             android:paddingEnd="2dp"

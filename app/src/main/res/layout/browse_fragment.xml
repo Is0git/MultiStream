@@ -11,6 +11,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_height="40dp"
             android:elevation="20dp"
+            app:tabIndicatorHeight="3dp"
+            android:background="@drawable/tab_layout_gradient"
             app:tabTextAppearance="@style/tabTextAppearance"
             android:id="@+id/topGamesTabLayout"/>
 

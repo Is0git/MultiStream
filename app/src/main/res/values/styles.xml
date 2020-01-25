@@ -9,6 +9,7 @@
         <item name="colorPrimaryVariant">@color/colorOnPrimaryVariant</item>
         <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="android:windowFullscreen">true</item>
         <item name="colorSecondaryVariant">@color/colorOnSecondaryVariant</item>
     </style>
 
@@ -17,4 +18,6 @@
         <item name="android:textSize">0sp</item>
         <item name="android:visibility">invisible</item>
     </style>
+
+
 </resources>

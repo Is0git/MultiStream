@@ -3,8 +3,8 @@ package com.android.multistream.util.data_binding
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-const val HEIGHT = "200"
-const val WIDTH = "400"
+const val HEIGHT = "138"
+const val WIDTH = "150"
 object ImageLoader {
 
     @JvmStatic

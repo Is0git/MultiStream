@@ -59,8 +59,7 @@ class BrowseFragment : DaggerFragment() {
                     1 -> {
                         text = "Twitch"
 
-                        icon = resources.getDrawable(R.drawable.twitch, activity?.theme).also { it.setBounds(0,0, 60, 60) }
-
+                        icon = resources.getDrawable(R.drawable.twitch, activity?.theme)
                     }
                     2 -> {
                         text= "Mixer"
