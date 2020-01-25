@@ -10,7 +10,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="450dp"
             android:scaleType="centerCrop"
             android:src="@drawable/top_categories_bg"
             android:id="@+id/bgImage"
@@ -19,6 +19,7 @@
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="1dp"
             android:background="@drawable/darken_gradient"
             app:layout_constraintTop_toTopOf="@id/bgImage"
             app:layout_constraintBottom_toBottomOf="@id/bgImage"
@@ -27,11 +28,11 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/topCategories"
-            style="@style/TextAppearance.MaterialComponents.Headline4"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/myriadprolt"
             android:shadowColor="#94000000"
             android:shadowDy="7"
@@ -46,7 +47,7 @@
             app:layout_constraintStart_toEndOf="@+id/topTwitchGamesList"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.9" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/searchIcon"
@@ -64,7 +65,7 @@
             android:id="@+id/topTwitchGamesList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="40dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"

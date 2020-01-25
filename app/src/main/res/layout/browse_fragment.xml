@@ -9,11 +9,11 @@
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_height="20dp"
+            android:layout_height="50dp"
             android:elevation="20dp"
-            app:tabIndicatorHeight="2dp"
+            app:tabIndicatorHeight="1dp"
             app:tabIndicatorColor="@color/colorSurface"
-            android:background="@color/colorSurface"
+            android:background="@color/colorAccent"
             app:tabTextAppearance="@style/tabTextAppearance"
             android:id="@+id/topGamesTabLayout"/>
 

@@ -43,15 +43,15 @@ class TwitchTopGamesAdapter @Inject constructor() :
 
         private fun setupAnimators() {
 
-            scaleXAnimation = ObjectAnimator.ofFloat(binding.root, "scaleX", 1f, 1.30f)
-            scaleYAnimation = ObjectAnimator.ofFloat(binding.root, "scaleY", 1f, 1.30f)
+            scaleXAnimation = ObjectAnimator.ofFloat(binding.root, "scaleX", 1f, 1.20f)
+            scaleYAnimation = ObjectAnimator.ofFloat(binding.root, "scaleY", 1f, 1.20f)
             elevationAnim = ObjectAnimator.ofFloat(binding.root, "elevation", 1f, 10f)
             animatorSet = AnimatorSet().apply {
                 interpolator = FastOutSlowInInterpolator()
                 playTogether(
                     scaleYAnimation, scaleXAnimation, elevationAnim
                 )
-                duration = 400
+                duration = 250
             }
         }
 
