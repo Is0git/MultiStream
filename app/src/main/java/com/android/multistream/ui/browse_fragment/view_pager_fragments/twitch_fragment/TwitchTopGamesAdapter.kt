@@ -12,6 +12,7 @@ import com.android.multistream.R
 import com.android.multistream.databinding.TwitchTopGamesListBinding
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.twitch_fragment.TwitchFragmentGamesScope
 import com.android.multistream.network.twitch.models.v5.TopItem
+import com.android.multistream.ui.MainActivity
 import kotlinx.android.synthetic.main.twitch_top_games_list.view.*
 import javax.inject.Inject
 
@@ -43,8 +44,8 @@ class TwitchTopGamesAdapter @Inject constructor() :
 
         private fun setupAnimators() {
 
-            scaleXAnimation = ObjectAnimator.ofFloat(binding.root, "scaleX", 1f, 1.20f)
-            scaleYAnimation = ObjectAnimator.ofFloat(binding.root, "scaleY", 1f, 1.20f)
+            scaleXAnimation = ObjectAnimator.ofFloat(binding.root, "scaleX", 1f, 2.60f)
+            scaleYAnimation = ObjectAnimator.ofFloat(binding.root, "scaleY", 1f, 2.60f)
             elevationAnim = ObjectAnimator.ofFloat(binding.root, "elevation", 1f, 10f)
             animatorSet = AnimatorSet().apply {
                 interpolator = FastOutSlowInInterpolator()
@@ -62,6 +63,7 @@ class TwitchTopGamesAdapter @Inject constructor() :
         }
 
         override fun onSingleTapUp(e: MotionEvent?): Boolean {
+            binding.clickListener?.onGameClick(0, 0 , null, "sds", "sdsd", "29595")
             return true
         }
 
@@ -84,7 +86,6 @@ class TwitchTopGamesAdapter @Inject constructor() :
             distanceX: Float,
             distanceY: Float
         ): Boolean {
-            animatorSet.reverse()
             return true
         }
 
@@ -107,7 +108,7 @@ class TwitchTopGamesAdapter @Inject constructor() :
 
         val binding =
             TwitchTopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-//                .also { it.clickListener = this.clickListener }
+                .also { it.clickListener = this.clickListener }
         return MyViewHolder(binding)
     }
 

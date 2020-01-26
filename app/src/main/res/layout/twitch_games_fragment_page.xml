@@ -8,70 +8,30 @@
 
         android:layout_height="match_parent">
 
-        <ImageView
+
+
+        <View
             android:layout_width="match_parent"
             android:layout_height="450dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/top_categories_bg"
-            android:id="@+id/bgImage"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="1dp"
             android:background="@drawable/darken_gradient"
-            app:layout_constraintTop_toTopOf="@id/bgImage"
-            app:layout_constraintBottom_toBottomOf="@id/bgImage"
-            app:layout_constraintStart_toStartOf="@id/bgImage"
-            app:layout_constraintEnd_toEndOf="@id/bgImage"/>
+     />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/topCategories"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/myriadprolt"
-            android:shadowColor="#94000000"
-            android:shadowDy="7"
-            android:shadowRadius="4"
-            android:text="TOP CATAGORIES"
-            android:textColor="@color/colorSurface"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/bgImage"
-            app:layout_constraintEnd_toEndOf="@id/searchIcon"
-            app:layout_constraintEnd_toStartOf="@+id/searchIcon"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/topTwitchGamesList"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
-            android:id="@+id/searchIcon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="15sp"
-            android:background="@drawable/search_icon"
-            app:layout_constraintBottom_toBottomOf="@id/topCategories"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/topCategories"
-            app:layout_constraintTop_toTopOf="@id/topCategories" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/topTwitchGamesList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="5dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topCategories"
             app:spanCount="4"
             tools:listitem="@layout/twitch_top_games_list" />
     </androidx.constraintlayout.widget.ConstraintLayout>
