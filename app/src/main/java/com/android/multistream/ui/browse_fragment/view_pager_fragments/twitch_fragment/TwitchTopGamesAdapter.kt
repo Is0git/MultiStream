@@ -4,6 +4,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.TimeInterpolator
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.*
 import android.view.animation.BounceInterpolator
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
@@ -98,8 +99,9 @@ class TwitchTopGamesAdapter @Inject constructor() :
 
         @SuppressLint("ClickableViewAccessibility")
         override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+            Log.d("TOUCHTEST", event?.action.toString())
             gestureListener.onTouchEvent(event)
-            if (event?.action == 1) {
+            if (event?.action == 1 || event?.action == MotionEvent.ACTION_CANCEL) {
                 animatorSet.reverse()
             }
             return true
