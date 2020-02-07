@@ -1,15 +1,9 @@
 package com.android.multistream.ui.browse_fragment
 
 import android.app.Application
-import android.widget.Toast
 import com.android.multistream.di.MainActivity.browse_fragment.BrowseFragmentScope
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
-import com.android.multistream.network.twitch.models.Data
-import com.android.multistream.util.pagination.PagedPositionListener
-import com.android.multistream.util.pagination.PagedPositionLoader
-import kotlinx.coroutines.*
-import java.io.IOException
 import javax.inject.Inject
 
 

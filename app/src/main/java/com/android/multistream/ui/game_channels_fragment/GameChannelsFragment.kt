@@ -5,20 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavArgs
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
-import com.android.multistream.R
 import com.android.multistream.databinding.GameChannelsFragmentBinding
-import com.android.multistream.util.MIXER
-import com.android.multistream.util.TWITCH
-import com.android.multistream.util.UNKNOWN
-import com.android.multistream.util.ViewModelFactory
-import com.android.multistream.util.pagination.PageLoadingStates
+import com.android.multistream.utils.MIXER
+import com.android.multistream.utils.TWITCH
+import com.android.multistream.utils.UNKNOWN
+import com.android.multistream.utils.ViewModelFactory
+import com.android.multistream.utils.pagination.PageLoadingStates
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

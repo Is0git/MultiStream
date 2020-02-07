@@ -5,8 +5,8 @@ import android.widget.Toast
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.mixer_fragment.MixerFragmentGamesScope
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
-import com.android.multistream.util.pagination.PagedPositionListener
-import com.android.multistream.util.pagination.PagedPositionLoader
+import com.android.multistream.utils.pagination.PagedPositionListener
+import com.android.multistream.utils.pagination.PagedPositionLoader
 import kotlinx.coroutines.*
 import java.io.IOException
 import javax.inject.Inject

@@ -1,14 +1,11 @@
 package com.android.multistream.ui.browse_fragment.view_pager_fragments.twitch_fragment
 
-import android.animation.ObjectAnimator
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.marginTop
-import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
@@ -18,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.R
 import com.android.multistream.databinding.TwitchGamesFragmentPageBinding
 import com.android.multistream.ui.browse_fragment.BrowseFragmentDirections
-import com.android.multistream.util.ViewModelFactory
-import com.android.multistream.util.pagination.PageLoadingStates
+import com.android.multistream.utils.ViewModelFactory
+import com.android.multistream.utils.pagination.PageLoadingStates
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

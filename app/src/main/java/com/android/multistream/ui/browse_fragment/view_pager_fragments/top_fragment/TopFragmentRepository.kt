@@ -4,12 +4,10 @@ import android.app.Application
 import android.widget.Toast
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.top_fragment.TopFragmentGamesScope
 import com.android.multistream.network.mixer.MixerService
-import com.android.multistream.network.mixer.models.top_games.MixerTopGames
 import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.models.Data
-import com.android.multistream.network.twitch.models.v5.TopItem
-import com.android.multistream.util.pagination.PagedOffSetListener
-import com.android.multistream.util.pagination.PagedOffsetLoader
+import com.android.multistream.utils.pagination.PagedOffSetListener
+import com.android.multistream.utils.pagination.PagedOffsetLoader
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 

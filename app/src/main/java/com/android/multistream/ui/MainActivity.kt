@@ -1,18 +1,15 @@
 package com.android.multistream.ui
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.android.multistream.R
 import com.android.multistream.databinding.ActivityMainBinding
-import com.android.multistream.util.TWITCH_TOKEN
-import com.android.multistream.util.ViewModelFactory
-import com.android.multistream.util.twitchAPI.twitchAuthPage
-import com.android.multistream.util.twitchAPI.uriQuery
+import com.android.multistream.utils.TWITCH_TOKEN
+import com.android.multistream.utils.ViewModelFactory
+import com.android.multistream.utils.twitchAPI.uriQuery
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 

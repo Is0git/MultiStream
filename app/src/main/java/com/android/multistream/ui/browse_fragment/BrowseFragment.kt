@@ -13,8 +13,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.android.multistream.R
 import com.android.multistream.databinding.BrowseFragmentBinding
-import com.android.multistream.util.ViewModelFactory
-import com.google.android.material.tabs.TabLayoutMediator
+import com.android.multistream.utils.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

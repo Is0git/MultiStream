@@ -1,4 +1,4 @@
-package com.android.multistream.util.data_binding
+package com.android.multistream.utils.data_binding
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

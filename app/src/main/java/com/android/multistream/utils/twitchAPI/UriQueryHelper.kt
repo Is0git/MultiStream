@@ -1,4 +1,4 @@
-package com.android.multistream.util.twitchAPI
+package com.android.multistream.utils.twitchAPI
 
 fun uriQuery(uri: String) : String? {
     val regex = """\w{30}""".toRegex()

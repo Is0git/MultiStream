@@ -13,8 +13,8 @@ import com.android.multistream.R
 import com.android.multistream.databinding.MixerGamesFragmentPagerBinding
 import com.android.multistream.ui.browse_fragment.BrowseFragmentDirections
 import com.android.multistream.ui.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener
-import com.android.multistream.util.ViewModelFactory
-import com.android.multistream.util.pagination.PageLoadingStates
+import com.android.multistream.utils.ViewModelFactory
+import com.android.multistream.utils.pagination.PageLoadingStates
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

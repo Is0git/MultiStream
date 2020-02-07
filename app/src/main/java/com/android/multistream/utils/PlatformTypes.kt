@@ -1,4 +1,4 @@
-package com.android.multistream.util
+package com.android.multistream.utils
 
 const val TWITCH = 0
 const val MIXER = 1

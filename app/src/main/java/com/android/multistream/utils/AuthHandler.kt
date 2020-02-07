@@ -1,4 +1,4 @@
-package com.android.multistream.util
+package com.android.multistream.utils
 
 import android.content.SharedPreferences
 import retrofit2.Retrofit

@@ -3,7 +3,7 @@
 
     <data>
 
-        <import type="com.android.multistream.util.PlatformTypesKt" />
+        <import type="com.android.multistream.utils.PlatformTypesKt" />
 
         <variable
             name="topItem"

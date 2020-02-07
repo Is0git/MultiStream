@@ -1,4 +1,4 @@
-package com.android.multistream.util.pagination
+package com.android.multistream.utils.pagination
 
 import androidx.lifecycle.MutableLiveData
 

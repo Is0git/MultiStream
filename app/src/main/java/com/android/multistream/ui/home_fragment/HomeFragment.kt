@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import com.android.multistream.databinding.HomeFragmentBinding
-import com.android.multistream.util.ViewModelFactory
+import com.android.multistream.utils.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

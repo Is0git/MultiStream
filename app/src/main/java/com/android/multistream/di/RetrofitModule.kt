@@ -4,9 +4,9 @@ import com.android.multistream.di.MainActivity.MixerRetrofitQualifier
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TopGamesTwitchAdapter
 import com.android.multistream.network.twitch.TwitchService
-import com.android.multistream.util.mixerAPI.MIXER_URL
-import com.android.multistream.util.twitchAPI.TWITCH_URL
-import com.android.multistream.util.twitchAPI.URL
+import com.android.multistream.utils.mixerAPI.MIXER_URL
+import com.android.multistream.utils.twitchAPI.TWITCH_URL
+import com.android.multistream.utils.twitchAPI.URL
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides

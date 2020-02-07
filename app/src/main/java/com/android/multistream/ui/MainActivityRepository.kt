@@ -1,7 +1,7 @@
 package com.android.multistream.ui
 
 import com.android.multistream.di.MainActivity.MainActivityScope
-import com.android.multistream.util.AuthHandler
+import com.android.multistream.utils.AuthHandler
 import javax.inject.Inject
 
 @MainActivityScope

@@ -17,13 +17,13 @@ class StripeView : View {
     lateinit var stripePaint: Paint
     lateinit var textPaint: TextPaint
     var selected = 0
-    var selectedAlpha = 50
+    var selectedAlpha = 30
     set(value) {
         field = value
         invalidate()
     }
 
-    var defaultAlpha = 50
+    var defaultAlpha = 20
 
     val stripes = mutableListOf<Stripe>()
 
