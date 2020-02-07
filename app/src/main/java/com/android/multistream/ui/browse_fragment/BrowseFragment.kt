@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -49,26 +51,16 @@ class BrowseFragment : DaggerFragment() {
     }
 
     private fun handleTabLayout() {
-        binding.apply {
-            TabLayoutMediator(topGamesTabLayout, topGamesViewPager) {tab, position ->
-                tab.apply {    when(position) {
-                    0 -> {
-                        text = "all"
-                        icon = resources.getDrawable(R.drawable.youtube, activity?.theme)
-                    }
-                    1 -> {
-                        text = "Twitch"
+        binding.stripeTabLayout.setupWithViewPager(binding.topGamesViewPager) { tab, i ->
+            val id = when (i) {
+                0 -> R.drawable.youtube
+                1 -> R.drawable.twitch
+                2 -> R.drawable.mixer
+                else -> return@setupWithViewPager
+            }
 
-                        icon = resources.getDrawable(R.drawable.twitch, activity?.theme)
-                    }
-                    2 -> {
-                        text= "Mixer"
-                        icon = resources.getDrawable(R.drawable.mixer, activity?.theme)
-                    }
-                    else -> "None"
-                }}
-
-            }.attach()
+            tab.setCustomView(R.layout.default_tab)
+            tab.customView?.findViewById<ImageView>(R.id.icon)?.setImageDrawable(getDrawable(activity?.baseContext!!, id))
         }
     }
 

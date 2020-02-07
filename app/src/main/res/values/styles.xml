@@ -19,5 +19,12 @@
         <item name="android:visibility">invisible</item>
     </style>
 
+    <style name="tabCustomStyle" parent="Widget.Design.TabLayout">
+        <item name="tabGravity">fill</item>
+        <item name="tabMaxWidth">0dp</item>
+        <item name="tabIndicatorColor">#FFFEEFC4</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabSelectedTextColor">#FFFEEFC4</item>
+    </style>
 
 </resources>

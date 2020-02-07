@@ -2,61 +2,92 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.MainActivity">
 
+        <ImageView
+            android:id="@+id/menuDrawerIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:elevation="2dp"
+            android:layout_marginStart="32dp"
+            android:background="@drawable/menu_drawer_icon"
+            app:layout_constraintBottom_toTopOf="@+id/toolBarGuideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+
+
+
+        <ImageView
+            android:id="@+id/settingsIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="32dp"
+            android:elevation="2dp"
+            android:background="@drawable/settings_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/menuDrawerIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/menuDrawerIcon" />
         <fragment
             android:id="@+id/main_fragment_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@id/bottomNav"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/bottomNav"
-            app:defaultNavHost="true"
             app:navGraph="@navigation/nav" />
 
-<!--        <Button-->
-<!--            android:id="@+id/button"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="BUTTON"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/button"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="BUTTON"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--        <Button-->
-<!--            android:id="@+id/token"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="getTOken"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/button"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/button"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/button" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/token"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="getTOken"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/button"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/button"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/button" />-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/textID"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="104dp"-->
-<!--            android:text="test"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/token"-->
-<!--            app:layout_constraintHorizontal_bias="0.492"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/token"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/token" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/textID"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="104dp"-->
+        <!--            android:text="test"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/token"-->
+        <!--            app:layout_constraintHorizontal_bias="0.492"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/token"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/token" />-->
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bottomNav"
             app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/bottom_nav_menu"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/bottom_nav_menu" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/toolBarGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="75dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
