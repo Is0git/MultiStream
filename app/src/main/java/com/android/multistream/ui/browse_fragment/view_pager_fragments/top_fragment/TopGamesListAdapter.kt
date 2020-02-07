@@ -3,10 +3,14 @@ package com.android.multistream.ui.browse_fragment.view_pager_fragments.top_frag
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.android.multistream.databinding.SingleTopGamesListBinding
 import com.android.multistream.databinding.TopGamesListBinding
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.top_fragment.TopFragmentGamesScope
 import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.network.twitch.models.v5.TopItem
+import com.android.multistream.utils.MIXER
+import com.android.multistream.utils.TWITCH
+import com.android.multistream.utils.UNKNOWN
 import javax.inject.Inject
 
 //import android.view.LayoutInflater
@@ -102,7 +106,7 @@ class TopGamesListAdapter @Inject constructor() :
         }
 
 
-    class MyViewHolder(val binding: TopGamesListBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(val binding: SingleTopGamesListBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 
@@ -111,13 +115,19 @@ class TopGamesListAdapter @Inject constructor() :
         viewType: Int
     ): TopGamesListAdapter.MyViewHolder {
         val binding =
-            TopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false).also { it.listener = this.listener }
+            SingleTopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
     override fun getItemCount(): Int = list?.count() ?: 0
 
     override fun onBindViewHolder(holder: TopGamesListAdapter.MyViewHolder, position: Int) {
-        holder.binding.data = list?.get(position)
+        holder.binding.apply {
+            backgroundUrl = list?.get(position)?.box_art_url
+            id = list?.get(position)?.id.toString()
+            gameName = list?.get(position)?.name
+            platformType = UNKNOWN
+            viewersCurrent = list?.get(position)?.viewersCount
+        }
     }
 }
