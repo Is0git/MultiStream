@@ -58,7 +58,7 @@ class StripeTabLayout : ConstraintLayout, TabLayout.OnTabSelectedListener {
             this.isTabIndicatorFullWidth = true
             this.minimumWidth = 0
             this.tabRippleColor = ColorStateList.valueOf(Color.TRANSPARENT)
-            this.setSelectedTabIndicatorHeight(15)
+            this.setSelectedTabIndicatorHeight(10)
             this.setSelectedTabIndicatorColor(indicatorColor)
             this.addOnTabSelectedListener(this@StripeTabLayout)
         }

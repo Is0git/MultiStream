@@ -29,45 +29,81 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:onClick="@{() -> onGameCategoryListener.onGameClick(platformType, viewersCurrent, `0`, gameName, backgroundUrl, id)}"
-        android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> onGameCategoryListener.onGameClick(platformType, viewersCurrent, `0`, gameName, backgroundUrl, id)}">
 
-<!--        <com.google.android.material.textview.MaterialTextView-->
-<!--            android:id="@+id/textName"-->
-<!--            style="@style/TextAppearance.MaterialComponents.Body2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@{MixerTopGames.name}"-->
-<!--            android:textColor="#000000"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/gameImage"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/gameImage" />-->
-
-
-
-<!--        <com.google.android.material.textview.MaterialTextView-->
-<!--            android:id="@+id/viewersCount"-->
-<!--            style="@style/TextAppearance.MaterialComponents.Body2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@{String.valueOf(MixerTopGames.viewersCurrent)}"-->
-<!--            android:textColor="#000000"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/gameImage"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/gameImage"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/textName" />-->
 
         <ImageView
             android:id="@+id/gameImage"
             android:layout_width="138dp"
             android:layout_height="220dp"
-            android:background="@drawable/tab_layout_gradient"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:loadImage="@{backgroundUrl}" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="2dp"
+            android:alpha="0.9"
+            android:background="@drawable/top_games_list_item_gradient"
+            app:layout_constraintBottom_toBottomOf="@id/gameImage"
+            app:layout_constraintEnd_toEndOf="@id/gameImage"
+            app:layout_constraintStart_toStartOf="@id/gameImage"
+            app:layout_constraintTop_toTopOf="@id/gameImage" />
+
+        <com.google.android.material.textview.MaterialTextView
+
+            android:id="@+id/gameNameText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/header_font"
+            android:text="@{gameName, default = `GAME`}"
+            android:textColor="@color/colorSurface"
+            android:textSize="@dimen/topGamesItemHeaderTextSize"
+            app:layout_constraintBottom_toTopOf="@+id/viewersIcon"
+            app:layout_constraintEnd_toEndOf="@id/gameImage"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/gameImage"
+            app:layout_constraintTop_toBottomOf="@+id/guideline"
+            app:layout_constraintVertical_chainStyle="spread" />
+
+        <ImageView
+            android:id="@+id/viewersIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/user_icon"
+            app:layout_constraintBottom_toBottomOf="@id/gameImage"
+            app:layout_constraintStart_toStartOf="@+id/gameNameText"
+            app:layout_constraintTop_toBottomOf="@+id/gameNameText" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/viewersCount"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:lines="1"
+            android:text="@{String.valueOf(viewersCurrent), default = `0000`}"
+            android:textColor="@color/colorOnSurface"
+            app:layout_constraintBottom_toBottomOf="@+id/viewersIcon"
+            app:layout_constraintEnd_toEndOf="@+id/gameNameText"
+            app:layout_constraintStart_toEndOf="@+id/viewersIcon"
+            app:layout_constraintTop_toBottomOf="@+id/gameNameText" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.55" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

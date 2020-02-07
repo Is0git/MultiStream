@@ -23,7 +23,7 @@ class StripeView : View {
         invalidate()
     }
 
-    var defaultAlpha = 20
+    var defaultAlpha = 30
 
     val stripes = mutableListOf<Stripe>()
 
@@ -124,8 +124,8 @@ class StripeView : View {
             }
 
             underLine.apply {
-                top = this@StripeView.height - textMargin - 12
-                bottom = this@StripeView.height - textMargin - 2
+                top = this@StripeView.height - textMargin - 9
+                bottom = this@StripeView.height - textMargin
                 left = index * stripeWidth
                 right = index * stripeWidth + stripeWidth
             }

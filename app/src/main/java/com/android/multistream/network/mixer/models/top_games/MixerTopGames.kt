@@ -8,23 +8,23 @@ import kotlinx.android.parcel.Parcelize
 data class MixerTopGames(
     @Json(name = "id")  val id: Int?,
     @Json(name = "name")
-     val name: String?,
+     var name: String?,
     @Json(name = "parent")
-     val parent: String?,
+    var parent: String?,
     @Json(name = "description")
-     val description: String?,
+    var description: String?,
     @Json(name = "source")
-     val source: String?,
+    var source: String?,
     @Json(name = "viewersCurrent")
-     val viewersCurrent: Int?,
+    var viewersCurrent: Int?,
     @Json(name = "coverUrl")
-     val coverUrl: String?,
+    var coverUrl: String?,
     @Json(name = "backgroundUrl")
-     val backgroundUrl: String?,
+    var backgroundUrl: String?,
     @Json(name = "online")
-     val online: Int?,
+    var online: Int?,
     @Json(name = "availableAt")
-     val availableAt: String?
+    var availableAt: String?
 ) : Parcelable {
 
 
