@@ -9,10 +9,13 @@ import android.view.animation.BounceInterpolator
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.R
+import com.android.multistream.databinding.SingleTopGamesListBinding
 import com.android.multistream.databinding.TwitchTopGamesListBinding
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.twitch_fragment.TwitchFragmentGamesScope
 import com.android.multistream.network.twitch.models.v5.TopItem
 import com.android.multistream.ui.MainActivity
+import com.android.multistream.utils.MIXER
+import com.android.multistream.utils.TWITCH
 import kotlinx.android.synthetic.main.twitch_top_games_list.view.*
 import javax.inject.Inject
 
@@ -27,7 +30,7 @@ class TwitchTopGamesAdapter @Inject constructor() :
             notifyItemRangeChanged(begin, value?.size!! - 1)
         }
 
-    class MyViewHolder(val binding: TwitchTopGamesListBinding) :
+    class MyViewHolder(val binding: SingleTopGamesListBinding) :
         RecyclerView.ViewHolder(binding.root), GestureDetector.OnGestureListener,
         View.OnTouchListener {
         lateinit var scaleYAnimation: ObjectAnimator
@@ -63,7 +66,7 @@ class TwitchTopGamesAdapter @Inject constructor() :
         }
 
         override fun onSingleTapUp(e: MotionEvent?): Boolean {
-            binding.clickListener?.onGameClick(0, 0 , null, "sds", "sdsd", "29595")
+            binding.onGameCategoryListener?.onGameClick(0, 0 , null, "sds", "sdsd", "29595")
             return true
         }
 
@@ -107,14 +110,21 @@ class TwitchTopGamesAdapter @Inject constructor() :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
         val binding =
-            TwitchTopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                .also { it.clickListener = this.clickListener }
+            SingleTopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                .also { it.onGameCategoryListener = this.clickListener }
         return MyViewHolder(binding)
     }
 
     override fun getItemCount(): Int = list?.count() ?: 0
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.binding.topItem = list?.get(position)
+        holder.binding.apply {
+            backgroundUrl = list?.get(position)?.game?.box?.large
+            id = list?.get(position)?.game?._id.toString()
+            gameName = list?.get(position)?.game?.name
+            platformType = TWITCH
+            viewersCurrent = list?.get(position)?.viewers
+        }
+
     }
 }
