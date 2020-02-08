@@ -9,7 +9,7 @@
         <com.android.multistream.ui.browse_fragment.stripes_tab_layout.StripeTabLayout
             android:id="@+id/stripeTabLayout"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="400dp"
             app:headerText="HOT GAMES"
             app:indicatorColor="@color/colorOnSecondaryVariant"
             app:layout_constraintEnd_toEndOf="parent"

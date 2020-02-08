@@ -3,8 +3,7 @@ package com.android.multistream.ui.browse_fragment
 import android.content.Context
 import android.gesture.GestureOverlayView
 import android.os.Bundle
-import android.transition.Scene
-import android.transition.TransitionManager
+import android.transition.*
 import android.util.Log
 import android.view.*
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -107,14 +106,17 @@ class BrowseFragment : DaggerFragment(), View.OnTouchListener, GestureDetector.O
         ): Boolean {
             Log.d("FLINGTEST", "FLINGED")
             if (e1?.y!! > e2?.y!!) {
-                TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
+                val transition = TransitionInflater.from(context).inflateTransition(R.transition.games_list_expand_transition)
+                TransitionManager.beginDelayedTransition(binding.root as ViewGroup, transition)
                 binding.stripeTabLayout.layoutParams =
-                    ConstraintLayout.LayoutParams(MATCH_PARENT, 200)
+                    ConstraintLayout.LayoutParams(MATCH_PARENT, 350)
+
                 binding.viewPagerCard.radius = 0f
             } else {
                 TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
                 binding.stripeTabLayout.layoutParams =
-                    ConstraintLayout.LayoutParams(MATCH_PARENT, (500 * context?.resources?.displayMetrics?.density!!).toInt())
+                    ConstraintLayout.LayoutParams(MATCH_PARENT, (400 * context?.resources?.displayMetrics?.density!!).toInt())
+
                 binding.viewPagerCard.radius = 25f
             }
             return true

@@ -124,8 +124,8 @@ class StripeView : View {
             }
 
             underLine.apply {
-                top = this@StripeView.height - textMargin - 9
-                bottom = this@StripeView.height - textMargin
+                top = this@StripeView.height - 57
+                bottom = this@StripeView.height - 51
                 left = index * stripeWidth
                 right = index * stripeWidth + stripeWidth
             }
@@ -156,8 +156,9 @@ class StripeView : View {
 
     private fun drawHeaderText(canvas: Canvas?) {
         if (!headerText.isNullOrBlank()) {
-            val width = textPaint.measureText(headerText)
-            canvas?.drawText(headerText!!, marginStart, marginTop, textPaint)
+            if (headerTextSize * resources.displayMetrics.density + 450 > height) return
+
+            canvas?.drawText(headerText!!,marginStart, marginTop, textPaint)
 
         }
     }

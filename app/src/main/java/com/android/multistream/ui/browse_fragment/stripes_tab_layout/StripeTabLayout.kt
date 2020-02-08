@@ -58,7 +58,7 @@ class StripeTabLayout : ConstraintLayout, TabLayout.OnTabSelectedListener {
             this.isTabIndicatorFullWidth = true
             this.minimumWidth = 0
             this.tabRippleColor = ColorStateList.valueOf(Color.TRANSPARENT)
-            this.setSelectedTabIndicatorHeight(10)
+            this.setSelectedTabIndicatorHeight(8)
             this.setSelectedTabIndicatorColor(indicatorColor)
             this.addOnTabSelectedListener(this@StripeTabLayout)
         }
@@ -90,7 +90,7 @@ class StripeTabLayout : ConstraintLayout, TabLayout.OnTabSelectedListener {
 
         val constraintSet = ConstraintSet().apply {
             clone(this@StripeTabLayout)
-            connect(tabLayout.id, ConstraintSet.BOTTOM, id, ConstraintSet.BOTTOM, (650).toInt())
+            connect(tabLayout.id, ConstraintSet.BOTTOM, id, ConstraintSet.BOTTOM, (50).toInt())
         }
         setConstraintSet(constraintSet)
     }
