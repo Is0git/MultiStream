@@ -18,6 +18,7 @@ abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val span
     lateinit var animatorSet: AnimatorSet
     lateinit var elevationAnim: ObjectAnimator
     lateinit var translationAnimation: ObjectAnimator
+    lateinit var translationY: ObjectAnimator
 
 
     init {
@@ -32,11 +33,12 @@ abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val span
         scaleYAnimation = ObjectAnimator.ofFloat(binding.root, "scaleY", 1f, 1.20f)
         elevationAnim = ObjectAnimator.ofFloat(binding.root, "elevation", 1f, 10f)
         translationAnimation = ObjectAnimator.ofFloat(binding.root, "translationX", 0f, 0f)
+        translationY = ObjectAnimator.ofFloat(binding.root, "translationY", 0f, 80f)
 
         animatorSet = AnimatorSet().apply {
             interpolator = FastOutSlowInInterpolator()
             playTogether(
-                scaleYAnimation, scaleXAnimation, elevationAnim, translationAnimation
+                scaleYAnimation, scaleXAnimation, elevationAnim, translationAnimation, translationY
             )
             duration = 250
         }
@@ -89,6 +91,7 @@ abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val span
     }
 
     private fun focusGame(position: Int) {
+
         when(position  % spanCout) {
             1 -> translationAnimation.setFloatValues(0f, 50f)
             0 -> translationAnimation.setFloatValues(0f, -50f)

@@ -22,6 +22,7 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/tab_layout_gradient"
             app:layout_constraintStart_toStartOf="parent"
             app:spanCount="3"
             tools:listitem="@layout/twitch_top_games_list" />
