@@ -1,13 +1,21 @@
 package com.android.multistream.ui.browse_fragment
 
 import android.content.Context
+import android.gesture.GestureOverlayView
 import android.os.Bundle
+import android.transition.Scene
+import android.transition.TransitionManager
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.marginTop
+import androidx.core.view.updateLayoutParams
+import androidx.dynamicanimation.animation.DynamicAnimation
+import androidx.dynamicanimation.animation.FlingAnimation
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -18,12 +26,14 @@ import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 
-class BrowseFragment : DaggerFragment() {
+class BrowseFragment : DaggerFragment(), View.OnTouchListener, GestureDetector.OnGestureListener {
 
-    @Inject lateinit var factory: ViewModelFactory
+    @Inject
+    lateinit var factory: ViewModelFactory
     lateinit var browseViewModel: BrowseFragmentViewModel
     lateinit var binding: BrowseFragmentBinding
     lateinit var navController: NavController
+    lateinit var gestureDetector: GestureDetector
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,10 +41,17 @@ class BrowseFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.d("TWITCHFRAGMENT", "onCreateView2")
-        browseViewModel = ViewModelProviders.of(this, factory).get(BrowseFragmentViewModel::class.java)
+        browseViewModel =
+            ViewModelProviders.of(this, factory).get(BrowseFragmentViewModel::class.java)
         binding = BrowseFragmentBinding.inflate(inflater, container, false)
+        gestureDetector = GestureDetector(context, this)
+        binding.root.apply {
+
+            setOnTouchListener(this@BrowseFragment)
+        }
         setupViewPager()
         handleTabLayout()
+
         return binding.root
     }
 
@@ -46,7 +63,8 @@ class BrowseFragment : DaggerFragment() {
 
 
     private fun setupViewPager() {
-        binding.topGamesViewPager.adapter = GamesFragmentsViewPagerAdapter(childFragmentManager, lifecycle)
+        binding.topGamesViewPager.adapter =
+            GamesFragmentsViewPagerAdapter(childFragmentManager, lifecycle)
     }
 
     private fun handleTabLayout() {
@@ -59,32 +77,60 @@ class BrowseFragment : DaggerFragment() {
             }
 
             tab.setCustomView(R.layout.default_tab)
-            tab.customView?.findViewById<ImageView>(R.id.icon)?.setImageDrawable(getDrawable(activity?.baseContext!!, id))
+            tab.customView?.findViewById<ImageView>(R.id.icon)
+                ?.setImageDrawable(getDrawable(activity?.baseContext!!, id))
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("TWITCHFRAGMENT", "onDestroy2")
+
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        gestureDetector.onTouchEvent(event)
+        return true
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.d("TWITCHFRAGMENT", "onAttach2")
+    override fun onShowPress(e: MotionEvent?) {
+
     }
 
-    override fun onDetach() {
-        super.onDetach()
-        Log.d("TWITCHFRAGMENT", "onDeatch2")
+    override fun onSingleTapUp(e: MotionEvent?): Boolean {
+        return true
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d("TWITCHFRAGMENT", "onDestroyView2")
-    }
+    override fun onDown(e: MotionEvent?): Boolean { return true}
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("TWITCHFRAGMENT", "onCreate2")
-        super.onCreate(savedInstanceState)
-    }
+
+        override fun onFling(
+            e1: MotionEvent?,
+            e2: MotionEvent?,
+            velocityX: Float,
+            velocityY: Float
+        ): Boolean {
+            Log.d("FLINGTEST", "FLINGED")
+            if (e1?.y!! > e2?.y!!) {
+                TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
+                binding.stripeTabLayout.layoutParams =
+                    ConstraintLayout.LayoutParams(MATCH_PARENT, 200)
+                binding.viewPagerCard.radius = 0f
+            } else {
+                TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
+                binding.stripeTabLayout.layoutParams =
+                    ConstraintLayout.LayoutParams(MATCH_PARENT, (500 * context?.resources?.displayMetrics?.density!!).toInt())
+                binding.viewPagerCard.radius = 25f
+            }
+            return true
+        }
+
+        override fun onScroll(
+            e1: MotionEvent?,
+            e2: MotionEvent?,
+            distanceX: Float,
+            distanceY: Float
+        ): Boolean {
+            return true
+        }
+
+        override fun onLongPress(e: MotionEvent?) {
+
+        }
+
 }
