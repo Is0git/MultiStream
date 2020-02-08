@@ -1,21 +1,17 @@
 package com.android.multistream.ui.browse_fragment
 
 import android.animation.ObjectAnimator
-import android.content.Context
-import android.gesture.GestureOverlayView
 import android.os.Bundle
-import android.transition.*
+import android.transition.TransitionInflater
+import android.transition.TransitionManager
 import android.util.Log
 import android.view.*
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.marginTop
-import androidx.core.view.updateLayoutParams
-import androidx.dynamicanimation.animation.DynamicAnimation
-import androidx.dynamicanimation.animation.FlingAnimation
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.marginEnd
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -34,6 +30,19 @@ class BrowseFragment : DaggerFragment(), View.OnTouchListener, GestureDetector.O
     lateinit var binding: BrowseFragmentBinding
     lateinit var navController: NavController
     lateinit var gestureDetector: GestureDetector
+
+    val transition by lazy {
+        TransitionInflater.from(context)
+            .inflateTransition(R.transition.games_list_expand_transition)
+    }
+    val headerAlphaAnim by lazy {
+        ObjectAnimator.ofFloat(
+            binding.stripeTabLayout.headerTextView,
+            "alpha",
+            1f,
+            0f
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -96,49 +105,55 @@ class BrowseFragment : DaggerFragment(), View.OnTouchListener, GestureDetector.O
         return true
     }
 
-    override fun onDown(e: MotionEvent?): Boolean { return true}
+    override fun onDown(e: MotionEvent?): Boolean {
+        return true
+    }
 
 
-        override fun onFling(
-            e1: MotionEvent?,
-            e2: MotionEvent?,
-            velocityX: Float,
-            velocityY: Float
-        ): Boolean {
-            Log.d("FLINGTEST", "FLINGED")
-            if (e1?.y!! > e2?.y!!) {
-                val transition = TransitionInflater.from(context).inflateTransition(R.transition.games_list_expand_transition)
-                TransitionManager.beginDelayedTransition(binding.root as ViewGroup, transition)
-                binding.stripeTabLayout.layoutParams =
-                    ConstraintLayout.LayoutParams(MATCH_PARENT, 350)
+    override fun onFling(
+        e1: MotionEvent?,
+        e2: MotionEvent?,
+        velocityX: Float,
+        velocityY: Float
+    ): Boolean {
+        Log.d("FLINGTEST", "FLINGED")
+        if (e1?.y!! > e2?.y!!) {
+
+            TransitionManager.beginDelayedTransition(binding.root as ViewGroup, transition)
+            binding.stripeTabLayout.layoutParams =
+                ConstraintLayout.LayoutParams(MATCH_PARENT, 350)
 
 
-                binding.viewPagerCard.radius = 0f
-
-                ObjectAnimator.ofFloat(binding.stripeTabLayout.headerTextView, "alpha", 1f, 0f).start()
-
-            } else {
-                TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
-                binding.stripeTabLayout.layoutParams =
-                    ConstraintLayout.LayoutParams(MATCH_PARENT, (400 * context?.resources?.displayMetrics?.density!!).toInt())
-
-                binding.viewPagerCard.radius = 25f
-                ObjectAnimator.ofFloat(binding.stripeTabLayout.headerTextView, "alpha", 0f, 1f).start()
+            binding.viewPagerCard.apply {
+//                radius = 0f
             }
-            return true
-        }
+            headerAlphaAnim.setFloatValues(1f, 0f)
+            headerAlphaAnim.start()
 
-        override fun onScroll(
-            e1: MotionEvent?,
-            e2: MotionEvent?,
-            distanceX: Float,
-            distanceY: Float
-        ): Boolean {
-            return true
+        } else {
+            TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
+            binding.stripeTabLayout.layoutParams = ConstraintLayout.LayoutParams(
+                MATCH_PARENT,
+                (400 * context?.resources?.displayMetrics?.density!!).toInt()
+            )
+//            binding.viewPagerCard.radius = 25f
+            headerAlphaAnim.setFloatValues(0f, 1f)
+            headerAlphaAnim.start()
         }
+        return true
+    }
 
-        override fun onLongPress(e: MotionEvent?) {
+    override fun onScroll(
+        e1: MotionEvent?,
+        e2: MotionEvent?,
+        distanceX: Float,
+        distanceY: Float
+    ): Boolean {
+        return true
+    }
 
-        }
+    override fun onLongPress(e: MotionEvent?) {
+
+    }
 
 }
