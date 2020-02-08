@@ -2,7 +2,9 @@ package com.android.multistream.ui.browse_fragment.view_pager_fragments.top_frag
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.multistream.anim.list_item_hower_anim.ItemHowerViewHolder
 import com.android.multistream.databinding.SingleTopGamesListBinding
 import com.android.multistream.databinding.TopGamesListBinding
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.top_fragment.TopFragmentGamesScope
@@ -13,91 +15,11 @@ import com.android.multistream.utils.TWITCH
 import com.android.multistream.utils.UNKNOWN
 import javax.inject.Inject
 
-//import android.view.LayoutInflater
-//import android.view.ViewGroup
-//import androidx.recyclerview.widget.DiffUtil
-//import androidx.recyclerview.widget.RecyclerView
-//
-//import com.android.multistream.databinding.TopGamesListBinding
-//import com.android.multistream.di.MainActivity.browse_fragment.BrowseFragmentScope
-//import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.top_fragment.TopFragmentGamesScope
-//import com.android.multistream.network.twitch.models.Data
-//import com.android.multistream.ui.browse_fragment.view_pager_fragments.top_fragment.CategoryNavigationListener
-//import javax.inject.Inject
-//
-//const val TOP = 0
-//const val TWITCH = 1
-//const val MIXER = 2
-//
-//@TopFragmentGamesScope
-//class TopGamesListAdapter @Inject constructor() : RecyclerView.Adapter<TopGamesListAdapter.MyViewHolder>() {
-//
-//    var clickListener: CategoryNavigationListener? = null
-//
-//    var type = 0
-//    set(value) {
-//        field = value
-//        sortList(value)
-//    }
-//    var list: List<Data>? = null
-//    set(value) {
-//        field = value
-//        sortList(type)
-//        notifyDataSetChanged()
-//    }
-//    var filteredList: List<Data>? = null
-//
-//    set(value) {
-//        val res = if (field != null && field?.isNotEmpty()!!) field?.size!! - 1 else 0
-//        field = value
-//        notifyDataSetChanged()
-//    }
-//    class MyViewHolder(val binding: TopGamesListBinding) : RecyclerView.ViewHolder(binding.root)
-//
-//
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-//        val binding = TopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-//        binding.clickListener = this.clickListener
-//        return MyViewHolder(
-//            binding
-//        )
-//    }
-//
-//    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-//      holder.binding.gamesData = filteredList?.get(position)
-//    }
-//
-//    private fun sortList(type: Int) {
-//        val result = when(type) {
-//            TOP -> list
-//            TWITCH -> list?.filter {it.platformType == "twitch"}
-//            MIXER -> list?.filter {it.platformType == "mixer"}
-//            else -> return
-//        }
-//        filteredList = result
-//    }
-//
-////    suspend fun filterANextToB() {
-////        val newList: MutableList<Data>? = null
-////       for(a in 0 until list?.size!! - 20) {
-////
-////       }
-////    }
-//    override fun getItemCount(): Int = filteredList?.count() ?: 0
-//}
-//
-//val callback = object : DiffUtil.ItemCallback<Data>() {
-//    override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean = oldItem.id == newItem.id
-//
-//    override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean = oldItem == newItem
-//
-//}
-
 @TopFragmentGamesScope
 class TopGamesListAdapter @Inject constructor() :
     RecyclerView.Adapter<TopGamesListAdapter.MyViewHolder>() {
     lateinit var listener: CategoryNavigationListener<Data>
+    var spanCount = 0
     var list: List<Data>? = null
         set(value) {
             val begin = if (field == null) 0 else field?.count()!! - 1
@@ -105,8 +27,16 @@ class TopGamesListAdapter @Inject constructor() :
             notifyItemRangeChanged(begin, value?.size!! - 1)
         }
 
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        this.spanCount = (recyclerView.layoutManager as GridLayoutManager).spanCount
+    }
 
-    class MyViewHolder(val binding: SingleTopGamesListBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    class MyViewHolder(val listBinding: SingleTopGamesListBinding, spanCount: Int = 0) : ItemHowerViewHolder<SingleTopGamesListBinding>(listBinding, spanCount ) {
+        override fun navigate(binding: SingleTopGamesListBinding) {
+            listBinding.root.callOnClick()
+        }
 
     }
 
@@ -116,7 +46,7 @@ class TopGamesListAdapter @Inject constructor() :
     ): TopGamesListAdapter.MyViewHolder {
         val binding =
             SingleTopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
+        return MyViewHolder(binding, spanCount)
     }
 
     override fun getItemCount(): Int = list?.count() ?: 0
