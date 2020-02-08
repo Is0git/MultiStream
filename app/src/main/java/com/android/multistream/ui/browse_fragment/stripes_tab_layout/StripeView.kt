@@ -100,7 +100,7 @@ class StripeView : View {
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         drawStripes(canvas)
-        drawHeaderText(canvas)
+//        drawHeaderText(canvas)
     }
 
     fun addStripe(colorString: String) {

@@ -5,23 +5,34 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.TypedArray
 import android.graphics.Color
+import android.graphics.Typeface
 import android.util.AttributeSet
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.marginTop
 import androidx.viewpager2.widget.ViewPager2
 import com.android.multistream.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.material.textview.MaterialTextView
 
 class StripeTabLayout : ConstraintLayout, TabLayout.OnTabSelectedListener {
     lateinit var typedArray: TypedArray
+
     var showStripes: Boolean = true
+
     lateinit var tabLayout: TabLayout
+
     lateinit var stripe: StripeView
+
+    lateinit var headerTextView: MaterialTextView
+
     var headerText: String? = null
+
     var indicatorColor: Int = 0
 
     lateinit var stripesSelectionAnimator: ObjectAnimator
@@ -66,7 +77,16 @@ class StripeTabLayout : ConstraintLayout, TabLayout.OnTabSelectedListener {
 //        tabLayout.addTab(tabLayout.newTab().setCustomView(R.layout.default_tab))
 //        tabLayout.addTab(tabLayout.newTab().setCustomView(R.layout.default_tab))
 //        tabLayout.addTab(tabLayout.newTab().setCustomView(R.layout.default_tab))
-        addView(tabLayout)
+
+
+        headerTextView = MaterialTextView(context).apply {
+            this.id = R.id.headerText
+            this.setTypeface(ResourcesCompat.getFont(context, R.font.header_font))
+            this.textSize = 23 * resources.displayMetrics.density
+            this.layoutParams = LayoutParams(MATCH_PARENT, ConstraintSet.MATCH_CONSTRAINT)
+            this.setTextColor(Color.BLACK)
+            this.text = headerText
+        }
 
         stripe = StripeView(context).apply {
             this.id = R.id.stripeView
@@ -74,7 +94,10 @@ class StripeTabLayout : ConstraintLayout, TabLayout.OnTabSelectedListener {
             this.headerText = this@StripeTabLayout.headerText
         }
 
+
+        addView(tabLayout)
         addView(stripe)
+        addView(headerTextView)
 
         stripesSelectionAnimator = ObjectAnimator.ofInt(stripe, "selectedAlpha", 50, 100).apply {
             duration = 300
@@ -90,7 +113,13 @@ class StripeTabLayout : ConstraintLayout, TabLayout.OnTabSelectedListener {
 
         val constraintSet = ConstraintSet().apply {
             clone(this@StripeTabLayout)
+
             connect(tabLayout.id, ConstraintSet.BOTTOM, id, ConstraintSet.BOTTOM, (50).toInt())
+            connect(tabLayout.id, ConstraintSet.TOP, R.id.headerText, ConstraintSet.BOTTOM)
+            connect(R.id.headerText, ConstraintSet.TOP, id, ConstraintSet.TOP, (150* resources.displayMetrics.density).toInt())
+            connect(R.id.headerText, ConstraintSet.START, id, ConstraintSet.START, 50)
+            setVerticalBias(R.id.tabLayout, 1f)
+
         }
         setConstraintSet(constraintSet)
     }

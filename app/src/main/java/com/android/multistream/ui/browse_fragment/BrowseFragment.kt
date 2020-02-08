@@ -1,5 +1,6 @@
 package com.android.multistream.ui.browse_fragment
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.gesture.GestureOverlayView
 import android.os.Bundle
@@ -111,13 +112,18 @@ class BrowseFragment : DaggerFragment(), View.OnTouchListener, GestureDetector.O
                 binding.stripeTabLayout.layoutParams =
                     ConstraintLayout.LayoutParams(MATCH_PARENT, 350)
 
+
                 binding.viewPagerCard.radius = 0f
+
+                ObjectAnimator.ofFloat(binding.stripeTabLayout.headerTextView, "alpha", 1f, 0f).start()
+
             } else {
                 TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
                 binding.stripeTabLayout.layoutParams =
                     ConstraintLayout.LayoutParams(MATCH_PARENT, (400 * context?.resources?.displayMetrics?.density!!).toInt())
 
                 binding.viewPagerCard.radius = 25f
+                ObjectAnimator.ofFloat(binding.stripeTabLayout.headerTextView, "alpha", 0f, 1f).start()
             }
             return true
         }
