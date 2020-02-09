@@ -24,7 +24,7 @@
         <item name="tabMaxWidth">0dp</item>
         <item name="tabIndicatorColor">#FFFEEFC4</item>
         <item name="tabIndicatorHeight">2dp</item>
-        <item name="tabSelectedTextColor">#FFFEEFC4</item>
+        <item name="tabSelectedTextColor">@color/colorSecondary</item>
     </style>
 
 </resources>

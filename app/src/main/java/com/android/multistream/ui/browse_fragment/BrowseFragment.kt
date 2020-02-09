@@ -10,13 +10,12 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.view.marginEnd
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.android.multistream.R
 import com.android.multistream.databinding.BrowseFragmentBinding
+import com.android.multistream.utils.ScreenUnit
 import com.android.multistream.utils.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -86,6 +85,7 @@ class BrowseFragment : DaggerFragment(), View.OnTouchListener, GestureDetector.O
             }
 
             tab.setCustomView(R.layout.default_tab)
+
             tab.customView?.findViewById<ImageView>(R.id.icon)
                 ?.setImageDrawable(getDrawable(activity?.baseContext!!, id))
         }
@@ -116,38 +116,49 @@ class BrowseFragment : DaggerFragment(), View.OnTouchListener, GestureDetector.O
         velocityX: Float,
         velocityY: Float
     ): Boolean {
-        Log.d("FLINGTEST", "FLINGED")
-        if (e1?.y!! > e2?.y!!) {
-
-            TransitionManager.beginDelayedTransition(binding.root as ViewGroup, transition)
-            binding.stripeTabLayout.layoutParams =
-                ConstraintLayout.LayoutParams(MATCH_PARENT, 350)
-
-
-            binding.viewPagerCard.apply {
-//                radius = 0f
-            }
-            headerAlphaAnim.apply {
-                startDelay = 0L
-                setFloatValues(1f, 0f)
-                start()
-            }
-
-
-        } else {
-            TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
-            binding.stripeTabLayout.layoutParams = ConstraintLayout.LayoutParams(
-                MATCH_PARENT,
-                (400 * context?.resources?.displayMetrics?.density!!).toInt()
-            )
-//            binding.viewPagerCard.radius = 25f
-            headerAlphaAnim.setFloatValues(0f, 1f)
-            headerAlphaAnim.apply {
-                startDelay = 500L
-                start()
-            }
-        }
+//        Log.d("FLINGTEST", "FLINGED")
+////        if (e1?.y!! > e2?.y!!) {
+////
+////            extendViewPager()
+////
+////        } else {
+////            deExtendViewPager()
+////        }
         return true
+    }
+
+
+    fun extendViewPager() {
+        TransitionManager.beginDelayedTransition(binding.root as ViewGroup, transition)
+        binding.stripeTabLayout.layoutParams =
+            ConstraintLayout.LayoutParams(MATCH_PARENT, ScreenUnit.convertDpToPixel(130f))
+
+
+        binding.viewPagerCard.apply {
+//            layoutParams = ConstraintLayout.LayoutParams(layoutParams.width, layoutParams.height)
+//                .also { it.setMargins(0, 0, 0, 0) }
+            radius = 0f
+        }
+        headerAlphaAnim.apply {
+            startDelay = 0L
+            setFloatValues(1f, 0f)
+            start()
+        }
+
+    }
+
+    fun deExtendViewPager() {
+        TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
+        binding.stripeTabLayout.layoutParams = ConstraintLayout.LayoutParams(
+            MATCH_PARENT,
+            (400 * context?.resources?.displayMetrics?.density!!).toInt()
+        )
+        binding.viewPagerCard.radius = 90f
+        headerAlphaAnim.setFloatValues(0f, 1f)
+        headerAlphaAnim.apply {
+            startDelay = 500L
+            start()
+        }
     }
 
     override fun onScroll(

@@ -38,6 +38,10 @@ class TopGamesListAdapter @Inject constructor() :
             listBinding.root.callOnClick()
         }
 
+        override fun backgroundAnimation() {
+
+        }
+
     }
 
     override fun onCreateViewHolder(

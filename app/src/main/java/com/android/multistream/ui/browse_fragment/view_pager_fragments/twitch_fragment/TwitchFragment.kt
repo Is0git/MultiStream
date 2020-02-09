@@ -1,5 +1,6 @@
 package com.android.multistream.ui.browse_fragment.view_pager_fragments.twitch_fragment
 
+import android.R.attr
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -14,11 +15,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.R
 import com.android.multistream.databinding.TwitchGamesFragmentPageBinding
+import com.android.multistream.ui.browse_fragment.BrowseFragment
 import com.android.multistream.ui.browse_fragment.BrowseFragmentDirections
 import com.android.multistream.utils.ViewModelFactory
 import com.android.multistream.utils.pagination.PageLoadingStates
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
+
 
 class TwitchFragment : DaggerFragment(), OnGameCategoryListener {
 
@@ -59,21 +62,44 @@ class TwitchFragment : DaggerFragment(), OnGameCategoryListener {
         binding.apply {
             topTwitchGamesList.adapter =
                 topGamesAdapter.also { it.clickListener = this@TwitchFragment }
-            topTwitchGamesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-
-                    super.onScrolled(recyclerView, dx, dy)
-
-                    if (dy > 0 && twitchFragmentViewModel.getPaginationState() != PageLoadingStates.LOADING) {
-                        val itemsCount = (binding.topTwitchGamesList.layoutManager as GridLayoutManager).itemCount
-                        val lastVisibleItem = (binding.topTwitchGamesList.layoutManager as GridLayoutManager).findLastVisibleItemPosition()
-
-                        if (itemsCount - lastVisibleItem - 1 < 10 ) twitchFragmentViewModel.loadPage()
-
-                    }
-                }
-            })
+//            topTwitchGamesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//
+//                var scrolls = 0
+//
+//                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//
+//                    super.onScrollStateChanged(recyclerView, newState)
+//
+//
+//                }
+//
+//                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//
+//
+//                    super.onScrolled(recyclerView, dx, dy)
+//                    Log.d("SCROLL", "dx: $dy, scrolls: $scrolls")
+////                    if (dy > lastDy) (parentFragment as BrowseFragment).deExtendViewPager()
+////                    else if (dy < lastDy) (parentFragment as BrowseFragment).extendViewPager()
+//
+//                    if (dy > 0) {
+//                        (parentFragment as BrowseFragment).extendViewPager()
+//                        if (twitchFragmentViewModel.getPaginationState() != PageLoadingStates.LOADING) {
+//                            val itemsCount =
+//                                (binding.topTwitchGamesList.layoutManager as GridLayoutManager).itemCount
+//                            val lastVisibleItem =
+//                                (binding.topTwitchGamesList.layoutManager as GridLayoutManager).findLastVisibleItemPosition()
+//
+//                            if (itemsCount - lastVisibleItem - 1 < 10) twitchFragmentViewModel.loadPage()
+//                        }
+//
+//                    }
+//
+//                    else if (dy < 0 )    (parentFragment as BrowseFragment).deExtendViewPager()
+//
+//                }
+//            })
         }
+
     }
 
     private fun setupObservers() {

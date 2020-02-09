@@ -4,11 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.multistream.R
 import com.android.multistream.anim.list_item_hower_anim.ItemHowerViewHolder
 import com.android.multistream.databinding.SingleTopGamesListBinding
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.twitch_fragment.TwitchFragmentGamesScope
 import com.android.multistream.network.twitch.models.v5.TopItem
+import com.android.multistream.ui.MainActivity
+import com.android.multistream.ui.browse_fragment.BrowseFragment
 import com.android.multistream.utils.TWITCH
+import com.android.multistream.utils.data_binding.ImageLoader
 import javax.inject.Inject
 
 @TwitchFragmentGamesScope
@@ -36,7 +40,7 @@ class TwitchTopGamesAdapter @Inject constructor() :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.listBinding.apply {
-            backgroundUrl = list?.get(position)?.game?.box?.large
+            backgroundUrl = list?.get(position)?.game?.box?.template
             id = list?.get(position)?.game?._id.toString()
             gameName = list?.get(position)?.game?.name
             platformType = TWITCH
@@ -55,6 +59,13 @@ class TwitchTopGamesAdapter @Inject constructor() :
 
         override fun navigate(binding: SingleTopGamesListBinding) {
             binding.onGameCategoryListener?.onGameClick(0, 0, null, "sds", "sdsd", "29595")
+        }
+
+        override fun backgroundAnimation() {
+         val bgView =   ( (binding.root.context as MainActivity).supportFragmentManager.findFragmentById(R.id.main_fragment_container)?.childFragmentManager?.fragments?.get(0)
+                    as BrowseFragment).binding.root
+
+            ImageLoader.getImageDrawableFromUrl(bgView.context, binding.backgroundUrl, bgView)
         }
     }
 

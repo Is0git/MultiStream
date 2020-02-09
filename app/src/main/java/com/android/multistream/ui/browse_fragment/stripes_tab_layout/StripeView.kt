@@ -65,7 +65,7 @@ class StripeView : View {
         rect = Rect()
         stripePaint = Paint().apply {
             isAntiAlias = true
-            this.style = Paint.Style.FILL
+
 
         }
 
@@ -124,8 +124,8 @@ class StripeView : View {
             }
 
             underLine.apply {
-                top = this@StripeView.height - 57
-                bottom = this@StripeView.height - 51
+                top = this@StripeView.height - 50
+                bottom = this@StripeView.height - 45
                 left = index * stripeWidth
                 right = index * stripeWidth + stripeWidth
             }

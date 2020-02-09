@@ -30,6 +30,10 @@ class MixerTopGamesListAdapter @Inject constructor() :
           listBinding.root.callOnClick()
         }
 
+        override fun backgroundAnimation() {
+
+        }
+
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {

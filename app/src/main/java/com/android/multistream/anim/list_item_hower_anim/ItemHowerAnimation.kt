@@ -99,8 +99,8 @@ abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val span
     }
 
     private fun focusGame(position: Int) {
-        ( (binding.root.context as MainActivity).supportFragmentManager.findFragmentById(R.id.main_fragment_container)?.childFragmentManager?.fragments?.get(0)
-                as BrowseFragment).binding.root.background = binding.root.context.resources.getDrawable(R.drawable.cs_go).also { it.alpha = 30 }
+
+    backgroundAnimation()
 
         when (position % spanCout) {
             1 -> translationAnimation.setFloatValues(0f, 50f)
@@ -109,6 +109,10 @@ abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val span
         }
         animatorSet.start()
     }
+
+
+
+    abstract fun backgroundAnimation()
 
     abstract fun navigate(binding: T)
 }

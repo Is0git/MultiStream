@@ -68,8 +68,9 @@ class StripeTabLayout : ConstraintLayout, TabLayout.OnTabSelectedListener {
             this.elevation = 2f
             this.isTabIndicatorFullWidth = true
             this.minimumWidth = 0
+            this.setBackgroundColor(Color.WHITE)
             this.tabRippleColor = ColorStateList.valueOf(Color.TRANSPARENT)
-            this.setSelectedTabIndicatorHeight(8)
+            this.setSelectedTabIndicatorHeight(5)
             this.setSelectedTabIndicatorColor(indicatorColor)
             this.addOnTabSelectedListener(this@StripeTabLayout)
         }
@@ -82,7 +83,7 @@ class StripeTabLayout : ConstraintLayout, TabLayout.OnTabSelectedListener {
         headerTextView = MaterialTextView(context).apply {
             this.id = R.id.headerText
             this.setTypeface(ResourcesCompat.getFont(context, R.font.header_font))
-            this.textSize = 23 * resources.displayMetrics.density
+            this.textSize = 17 * resources.displayMetrics.density
             this.layoutParams = LayoutParams(MATCH_PARENT, ConstraintSet.MATCH_CONSTRAINT)
             this.setTextColor(Color.BLACK)
             this.text = headerText
@@ -99,7 +100,7 @@ class StripeTabLayout : ConstraintLayout, TabLayout.OnTabSelectedListener {
         addView(stripe)
         addView(headerTextView)
 
-        stripesSelectionAnimator = ObjectAnimator.ofInt(stripe, "selectedAlpha", 50, 100).apply {
+        stripesSelectionAnimator = ObjectAnimator.ofInt(stripe, "selectedAlpha", 50, 130).apply {
             duration = 300
         }
 
@@ -118,7 +119,7 @@ class StripeTabLayout : ConstraintLayout, TabLayout.OnTabSelectedListener {
             connect(tabLayout.id, ConstraintSet.TOP, R.id.headerText, ConstraintSet.BOTTOM)
             connect(R.id.headerText, ConstraintSet.TOP, id, ConstraintSet.TOP, (120* resources.displayMetrics.density).toInt())
             connect(R.id.headerText, ConstraintSet.START, id, ConstraintSet.START, 50)
-            connect(R.id.headerText, ConstraintSet.END, id, ConstraintSet.END, 280)
+            connect(R.id.headerText, ConstraintSet.END, id, ConstraintSet.END, 50)
             setVerticalBias(R.id.tabLayout, 1f)
 
         }
