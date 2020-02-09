@@ -127,8 +127,12 @@ class BrowseFragment : DaggerFragment(), View.OnTouchListener, GestureDetector.O
             binding.viewPagerCard.apply {
 //                radius = 0f
             }
-            headerAlphaAnim.setFloatValues(1f, 0f)
-            headerAlphaAnim.start()
+            headerAlphaAnim.apply {
+                startDelay = 0L
+                setFloatValues(1f, 0f)
+                start()
+            }
+
 
         } else {
             TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
@@ -138,7 +142,10 @@ class BrowseFragment : DaggerFragment(), View.OnTouchListener, GestureDetector.O
             )
 //            binding.viewPagerCard.radius = 25f
             headerAlphaAnim.setFloatValues(0f, 1f)
-            headerAlphaAnim.start()
+            headerAlphaAnim.apply {
+                startDelay = 500L
+                start()
+            }
         }
         return true
     }

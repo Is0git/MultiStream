@@ -116,8 +116,9 @@ class StripeTabLayout : ConstraintLayout, TabLayout.OnTabSelectedListener {
 
             connect(tabLayout.id, ConstraintSet.BOTTOM, id, ConstraintSet.BOTTOM, (50).toInt())
             connect(tabLayout.id, ConstraintSet.TOP, R.id.headerText, ConstraintSet.BOTTOM)
-            connect(R.id.headerText, ConstraintSet.TOP, id, ConstraintSet.TOP, (150* resources.displayMetrics.density).toInt())
+            connect(R.id.headerText, ConstraintSet.TOP, id, ConstraintSet.TOP, (120* resources.displayMetrics.density).toInt())
             connect(R.id.headerText, ConstraintSet.START, id, ConstraintSet.START, 50)
+            connect(R.id.headerText, ConstraintSet.END, id, ConstraintSet.END, 280)
             setVerticalBias(R.id.tabLayout, 1f)
 
         }
