@@ -9,7 +9,7 @@ import com.android.multistream.anim.anim_decorations.alphaAnimate
 import com.android.multistream.anim.list_item_hower_anim.ItemHowerViewHolder
 import com.android.multistream.databinding.ChannelsViewPagerItemBinding
 
-class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var cancelAnimator: (K) -> Unit) :
+class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onShowAnimation: Boolean = false, var cancelAnimator: (K) -> Unit) :
     RecyclerView.Adapter<PlaceHolderAdapter.MyViewHolder<K>>() {
 
     var data: MutableList<T>? = null
@@ -21,7 +21,7 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var canc
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder<K> {
       val binding = DataBindingUtil.inflate<K>(LayoutInflater.from(parent.context), itemLayoutId, parent, false)
-        return MyViewHolder(binding)
+        return  MyViewHolder(binding, onShowAnimation)
     }
 
     override fun getItemCount(): Int = data?.count() ?: 3
@@ -33,8 +33,8 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var canc
     }
 
 
-    class MyViewHolder<K : ViewDataBinding>(val dataBinding: K) :
-        ItemHowerViewHolder<K>(dataBinding) {
+    class MyViewHolder<K : ViewDataBinding>(val dataBinding: K, onShowPressAnimation: Boolean) :
+        ItemHowerViewHolder<K>(dataBinding, onShowPress = onShowPressAnimation) {
         override fun backgroundAnimation() {
 
         }
@@ -44,6 +44,5 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var canc
         }
 
     }
-
 
 }

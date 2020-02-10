@@ -9,13 +9,14 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CancellationException
 
-abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val spanCout: Int = 0) :
+abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val spanCout: Int = 0, val onShowPress: Boolean = true) :
     GestureDetector.OnGestureListener,
     View.OnTouchListener, RecyclerView.ViewHolder(binding.root) {
     lateinit var scaleYAnimation: ObjectAnimator
     lateinit var scaleXAnimation: ObjectAnimator
-    var gestureListener: GestureDetector
+    var gestureListener: GestureDetector? = null
     lateinit var animatorSet: AnimatorSet
     lateinit var elevationAnim: ObjectAnimator
     lateinit var translationAnimation: ObjectAnimator
@@ -23,9 +24,12 @@ abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val span
 
 
     init {
-        setupAnimators()
-        gestureListener = GestureDetector(binding.root.context, this)
-        binding.root.setOnTouchListener(this)
+        if (onShowPress)  {
+            setupAnimators()
+            gestureListener = GestureDetector(binding.root.context, this)
+            binding.root.setOnTouchListener(this)
+        }
+
     }
 
     private fun setupAnimators() {
@@ -84,7 +88,7 @@ abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val span
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-        gestureListener.onTouchEvent(event)
+        gestureListener?.onTouchEvent(event)
         if (event?.action == 1 || event?.action == MotionEvent.ACTION_CANCEL) {
             animatorSet.reverse()
         }
