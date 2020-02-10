@@ -2,7 +2,7 @@ package com.android.multistream.di.MainActivity.combined_channels_fragment
 
 import androidx.lifecycle.ViewModel
 import com.android.multistream.di.MainActivity.ViewModelKey
-import com.android.multistream.ui.combined_games_channels_fragment.CombinedChannelsViewModel
+import com.android.multistream.ui.fragments.combined_games_channels_fragment.CombinedChannelsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

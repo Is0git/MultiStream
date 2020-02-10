@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.android.multistream.ui.browse_fragment.stripes_tab_layout.StripeTabLayout
+        <com.android.multistream.ui.fragments.browse_fragment.stripes_tab_layout.StripeTabLayout
             android:id="@+id/stripeTabLayout"
             android:layout_width="match_parent"
             android:layout_height="400dp"
@@ -24,7 +24,7 @@
             app:cardElevation="10dp"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/stripeTabLayout">
 

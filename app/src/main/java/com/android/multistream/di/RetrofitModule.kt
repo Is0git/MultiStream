@@ -24,7 +24,8 @@ object RetrofitModule {
     @Singleton
     @JvmStatic
     fun interceptor(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY }
+        HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY
+        }
 
 
     @Provides

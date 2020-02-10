@@ -25,7 +25,7 @@
 
         <variable
             name="onGameCategoryListener"
-            type="com.android.multistream.ui.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener" />
+            type="com.android.multistream.ui.fragments.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

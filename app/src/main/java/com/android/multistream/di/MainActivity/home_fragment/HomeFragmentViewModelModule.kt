@@ -2,7 +2,7 @@ package com.android.multistream.di.MainActivity.home_fragment
 
 import androidx.lifecycle.ViewModel
 import com.android.multistream.di.MainActivity.ViewModelKey
-import com.android.multistream.ui.home_fragment.HomeFragmentViewModel
+import com.android.multistream.ui.fragments.home_fragment.view_model.HomeFragmentViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

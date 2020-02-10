@@ -3,19 +3,12 @@ package com.android.multistream.anim.list_item_hower_anim
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
-import android.content.res.Resources
-import android.graphics.Color
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.recyclerview.widget.RecyclerView
-import com.android.multistream.R
-import com.android.multistream.ui.MainActivity
-import com.android.multistream.ui.browse_fragment.BrowseFragment
-import kotlinx.android.synthetic.main.browse_fragment.view.*
-import java.util.jar.Manifest
 
 abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val spanCout: Int = 0) :
     GestureDetector.OnGestureListener,
@@ -102,6 +95,7 @@ abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val span
 
     backgroundAnimation()
 
+        if (spanCout != 0)
         when (position % spanCout) {
             1 -> translationAnimation.setFloatValues(0f, 50f)
             0 -> translationAnimation.setFloatValues(0f, -50f)

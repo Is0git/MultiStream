@@ -6,9 +6,9 @@ import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragme
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.top_fragment.TopFragmentViewModelModule
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.twitch_fragment.TwitchFragmentGamesScope
 import com.android.multistream.di.MainActivity.browse_fragment.view_pager_fragments.twitch_fragment.TwitchFragmentViewModelModule
-import com.android.multistream.ui.browse_fragment.view_pager_fragments.mixer_fragment.MixerFragment
-import com.android.multistream.ui.browse_fragment.view_pager_fragments.top_fragment.TopGamesFragment
-import com.android.multistream.ui.browse_fragment.view_pager_fragments.twitch_fragment.TwitchFragment
+import com.android.multistream.ui.fragments.browse_fragment.view_pager_fragments.mixer_fragment.MixerFragment
+import com.android.multistream.ui.fragments.browse_fragment.view_pager_fragments.top_fragment.TopGamesFragment
+import com.android.multistream.ui.fragments.browse_fragment.view_pager_fragments.twitch_fragment.TwitchFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

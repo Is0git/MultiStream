@@ -9,12 +9,10 @@ import com.android.multistream.di.MainActivity.game_channels_fragment.GameChanne
 import com.android.multistream.di.MainActivity.game_channels_fragment.GameChannelsViewModelModule
 import com.android.multistream.di.MainActivity.home_fragment.HomeFragmentScope
 import com.android.multistream.di.MainActivity.home_fragment.HomeFragmentViewModelModule
-import com.android.multistream.ui.browse_fragment.BrowseFragment
-import com.android.multistream.ui.combined_games_channels_fragment.CombinedChannelsFragment
-import com.android.multistream.ui.game_channels_fragment.GameChannelsFragment
-import com.android.multistream.ui.home_fragment.HomeFragment
-import com.android.multistream.ui.home_fragment.HomeFragmentViewModel
-import dagger.Binds
+import com.android.multistream.ui.fragments.browse_fragment.BrowseFragment
+import com.android.multistream.ui.fragments.combined_games_channels_fragment.CombinedChannelsFragment
+import com.android.multistream.ui.fragments.game_channels_fragment.GameChannelsFragment
+import com.android.multistream.ui.fragments.home_fragment.HomeFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
