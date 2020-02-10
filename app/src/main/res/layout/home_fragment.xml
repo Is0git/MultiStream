@@ -9,7 +9,7 @@
             android:paddingBottom="25dp"
             android:id="@+id/channelsViewPager"
             android:layout_width="match_parent"
-            android:background="#000000"
+
             android:layout_marginTop="@dimen/actionBarMargin"
             android:layout_height="300dp"
             app:layout_constraintTop_toTopOf="parent" />

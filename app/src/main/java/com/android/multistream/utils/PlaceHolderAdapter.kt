@@ -9,7 +9,7 @@ import com.android.multistream.anim.anim_decorations.alphaAnimate
 import com.android.multistream.anim.list_item_hower_anim.ItemHowerViewHolder
 import com.android.multistream.databinding.ChannelsViewPagerItemBinding
 
-class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onShowAnimation: Boolean = false, var cancelAnimator: (K) -> Unit) :
+class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onShowAnimation: Boolean = false, var cancelAnimator: (K, T) -> Unit) :
     RecyclerView.Adapter<PlaceHolderAdapter.MyViewHolder<K>>() {
 
     var data: MutableList<T>? = null
@@ -28,7 +28,7 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onSh
 
     override fun onBindViewHolder(holder: MyViewHolder<K>, position: Int) {
         if (data != null) {
-            cancelAnimator(holder.binding)
+            cancelAnimator(holder.binding, data?.get(position)!!)
         }
     }
 

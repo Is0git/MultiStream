@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <data>
+        <variable
+            name="data"
+            type="com.android.multistream.network.twitch.models.channels.DataItem" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -10,13 +14,18 @@
             android:id="@+id/viewPagerCard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:cardUseCompatPadding="true">
+          >
 
-            <com.google.android.material.textview.MaterialTextView
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:textAlignment="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                app:loadImage="@{data.thumbnail_url}"
                 android:text="SDSDSD"
                 android:textColor="#000000" />
         </com.android.multistream.ui.widgets.PlaceHolderMaterialCardView>
