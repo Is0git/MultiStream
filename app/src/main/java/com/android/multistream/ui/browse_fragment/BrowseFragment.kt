@@ -117,13 +117,13 @@ class BrowseFragment : DaggerFragment(), View.OnTouchListener, GestureDetector.O
         velocityY: Float
     ): Boolean {
 //        Log.d("FLINGTEST", "FLINGED")
-////        if (e1?.y!! > e2?.y!!) {
-////
-////            extendViewPager()
-////
-////        } else {
-////            deExtendViewPager()
-////        }
+        if (e1?.y!! > e2?.y!!) {
+
+            extendViewPager()
+
+        } else {
+            deExtendViewPager()
+        }
         return true
     }
 

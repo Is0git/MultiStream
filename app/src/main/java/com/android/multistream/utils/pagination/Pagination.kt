@@ -104,6 +104,7 @@ class PagedOffsetLoader<T>(val listener: PagedOffSetListener<T>, val pageLimit: 
     }
 
     init {
+        pageLoadingState.value = PageLoadingStates.LOADING
         loadInitial(this)
     }
 
