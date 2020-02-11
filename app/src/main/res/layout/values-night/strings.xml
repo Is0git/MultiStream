@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MultiStream</string>
+    <string name="home">Home</string>
+    <string name="browse">Browse</string>
+</resources>

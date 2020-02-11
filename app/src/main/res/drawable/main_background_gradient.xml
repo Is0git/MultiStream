@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<layer-list  xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--    <item>-->
+<!--        <shape android:dither="true" >-->
+<!--            <gradient android:startColor="@color/colorBackground"-->
+<!--                android:angle="90"-->
+
+<!--                android:centerY="0.8"-->
+<!--                android:centerColor="@color/colorOnSurface"-->
+<!--                android:endColor="@color/colorBackground"/>-->
+<!--        </shape>-->
+<!--    </item>-->
+
+<!--    <item>-->
+<!--        <shape android:dither="true">-->
+<!--            <gradient android:startColor="@color/colorOnSurface"-->
+<!--                android:centerColor="@color/colorBackground"-->
+<!--                android:centerY="0.3"-->
+<!--                android:endColor="@android:color/transparent"/>-->
+<!--        </shape>-->
+<!--    </item>-->
+<!--</layer-list>-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"
+    android:dither="true">
+    <gradient
+        android:type="linear"
+        android:startColor="?attr/colorSurface"
+        android:endColor="?attr/colorOnSurface"
+
+        android:gradientRadius="600"
+        android:angle="135"
+        android:centerX="0.5"
+        android:centerY="0.5"/>
+
+</shape>

@@ -32,7 +32,14 @@ class PlaceHolderMaterialCardView : MaterialCardView {
 
         }
 
-        addView(placeHolderView)
+        val gradientView = View(context).apply {
+            this.layoutParams = LayoutParams(MATCH_PARENT, MATCH_PARENT)
+            this.background = resources.getDrawable(R.drawable.main_background_gradient)
+        }
+
+        addView(gradientView)
+
+//        addView(placeHolderView)
        placeHolderAnimator = ObjectAnimator.ofFloat(placeHolderView, "translationX", -placeHolderWidth.toFloat(), 1500f).apply {
             duration = 2000
             repeatCount = INFINITE

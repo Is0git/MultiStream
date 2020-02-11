@@ -5,12 +5,10 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorOnSurface">@color/colorOnSurface</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorPrimaryVariant">@color/colorOnPrimaryVariant</item>
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="android:windowFullscreen">true</item>
-        <item name="android:colorBackground">@color/colorBackground</item>
         <item name="colorSecondaryVariant">@color/colorOnSecondaryVariant</item>
     </style>
 
@@ -34,8 +32,8 @@
 
     <style name="halfCurveShape" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopLeft">10dp</item>
-        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
         <item name="cornerSize">@dimen/defaultCardCornerRadius</item>
     </style>
 

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="tabLayout" type="id"/>
+    <item name="stripeView" type="id"/>
+    <item name="headerText" type="id"/>
+</resources>

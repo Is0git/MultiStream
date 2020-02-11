@@ -1,5 +1,6 @@
 package com.android.multistream.ui.fragments.home_fragment
 
+import android.graphics.PixelFormat
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +30,6 @@ class HomeFragment : DaggerFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = HomeFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this, factory).get(HomeFragmentViewModel::class.java)
         setupViewPager()

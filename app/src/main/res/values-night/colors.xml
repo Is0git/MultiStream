@@ -2,11 +2,11 @@
 <resources>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorSurface">#ffffff</color>
-    <color name="colorOnSurface">#E9E9E9</color>
+    <color name="colorOnSurface">#242424</color>
     <color name="colorPrimary">#5e4eba</color>
     <color name="colorSecondary">#fe0000</color>
     <color name="colorAccent">#172450</color>
-    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorBackground">#0E0E0E</color>
     <color name="colorOnPrimaryVariant">#4523F7</color>
     <color name="colorOnSecondaryVariant">#B43BFF</color>
 </resources>
