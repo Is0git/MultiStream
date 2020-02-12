@@ -4,6 +4,6 @@
     <dimen name="viewpager_next_item_visible">26dp</dimen>
     <dimen name="viewpager_current_item_horizontal_margin">42dp</dimen>
     <dimen name="actionBarMargin">70dp</dimen>
-    <dimen name="defaultCardCornerRadius">25dp</dimen>
+    <dimen name="defaultCardCornerRadius">5dp</dimen>
 
 </resources>

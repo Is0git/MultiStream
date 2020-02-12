@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.android.multistream.R
 import com.android.multistream.databinding.ChannelsViewPagerItemBinding
 import com.android.multistream.databinding.HomeFragmentBinding
+import com.android.multistream.databinding.ListItemOneBinding
 import com.android.multistream.network.twitch.models.channels.DataItem
 import com.android.multistream.ui.fragments.home_fragment.decorations.HorizontalMarginItemDecoration
 import com.android.multistream.ui.fragments.home_fragment.view_model.HomeFragmentViewModel
@@ -24,6 +25,7 @@ class HomeFragment : DaggerFragment() {
     @Inject
     lateinit var factory: ViewModelFactory
     lateinit var channelsViewPagerAdapter: PlaceHolderAdapter<DataItem, ChannelsViewPagerItemBinding>
+    lateinit var twitchChannelsAdapter: PlaceHolderAdapter<DataItem, ListItemOneBinding>
     lateinit var viewModel: HomeFragmentViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +36,7 @@ class HomeFragment : DaggerFragment() {
         viewModel = ViewModelProviders.of(this, factory).get(HomeFragmentViewModel::class.java)
         setupViewPager()
         observe()
+        setupLists()
         return binding.root
     }
 
@@ -68,6 +71,12 @@ class HomeFragment : DaggerFragment() {
         )
 
         binding.channelsViewPager.addItemDecoration(itemDecoration)
+    }
+
+
+    fun setupLists() {
+        twitchChannelsAdapter = PlaceHolderAdapter(R.layout.list_item_one, false) {k, t ->  }
+        binding.listWithTitle.cardList.adapter = twitchChannelsAdapter
     }
 
     fun observe() {

@@ -24,7 +24,7 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onSh
         return  MyViewHolder(binding, onShowAnimation)
     }
 
-    override fun getItemCount(): Int = data?.count() ?: 3
+    override fun getItemCount(): Int = data?.count() ?: 10
 
     override fun onBindViewHolder(holder: MyViewHolder<K>, position: Int) {
         if (data != null) {

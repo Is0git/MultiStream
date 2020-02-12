@@ -34,7 +34,7 @@ class PlaceHolderMaterialCardView : MaterialCardView {
 
         val gradientView = View(context).apply {
             this.layoutParams = LayoutParams(MATCH_PARENT, MATCH_PARENT)
-            this.background = resources.getDrawable(R.drawable.main_background_gradient)
+            this.setBackgroundResource(R.drawable.main_background_gradient)
         }
 
         addView(gradientView)

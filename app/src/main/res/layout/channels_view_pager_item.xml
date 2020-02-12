@@ -14,6 +14,7 @@
         <com.android.multistream.ui.widgets.PlaceHolderMaterialCardView
             android:id="@+id/viewPagerCard"
             style="@style/defaultMaterialCard"
+            app:cardCornerRadius="5dp"
             android:layout_width="match_parent"
 
             android:layout_height="match_parent">
@@ -121,6 +122,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.70" />
+            app:layout_constraintGuide_percent="0.64" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
