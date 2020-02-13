@@ -12,6 +12,7 @@ import com.android.multistream.R
 import com.android.multistream.databinding.ChannelsViewPagerItemBinding
 import com.android.multistream.databinding.HomeFragmentBinding
 import com.android.multistream.databinding.ListItemOneBinding
+import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.network.twitch.models.channels.DataItem
 import com.android.multistream.ui.fragments.home_fragment.decorations.HorizontalMarginItemDecoration
 import com.android.multistream.ui.fragments.home_fragment.view_model.HomeFragmentViewModel
@@ -42,6 +43,14 @@ class HomeFragment : DaggerFragment() {
         binding.hideScrollView.addHiddenView(binding.listWithTitle.titleMaterialText)
         binding.hideScrollView.addHiddenView(binding.mixerList.titleMaterialText)
         binding.hideScrollView.addHiddenView(binding.randomList.titleMaterialText)
+        binding.hideScrollView.addHiddenView(binding.randomList2.titleMaterialText)
+        binding.hideScrollView.addHiddenView(binding.randomList3.titleMaterialText)
+        binding.hideScrollView.addHiddenView(binding.channelsViewPager)
+        binding.hideScrollView.addHiddenView(binding.randomList.cardList)
+        binding.hideScrollView.addHiddenView(binding.randomList2.cardList)
+        binding.hideScrollView.addHiddenView(binding.randomList3.cardList)
+        binding.hideScrollView.addHiddenView(binding.mixerList.cardList)
+        binding.hideScrollView.addHiddenView(binding.listWithTitle.cardList)
         return binding.root
     }
 
@@ -82,6 +91,11 @@ class HomeFragment : DaggerFragment() {
     fun setupLists() {
         twitchChannelsAdapter = PlaceHolderAdapter(R.layout.list_item_one, false) {k, t ->  }
         binding.listWithTitle.cardList.adapter = twitchChannelsAdapter
+        binding.mixerList.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
+        binding.randomList.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
+        binding.randomList2.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
+        binding.randomList3.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
+
     }
 
     fun observe() {
