@@ -37,6 +37,11 @@ class HomeFragment : DaggerFragment() {
         setupViewPager()
         observe()
         setupLists()
+
+        binding.hideScrollView.addHiddenView(binding.homeText)
+        binding.hideScrollView.addHiddenView(binding.listWithTitle.titleMaterialText)
+        binding.hideScrollView.addHiddenView(binding.mixerList.titleMaterialText)
+        binding.hideScrollView.addHiddenView(binding.randomList.titleMaterialText)
         return binding.root
     }
 
