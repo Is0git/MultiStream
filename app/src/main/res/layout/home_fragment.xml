@@ -2,9 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.android.multistream.ui.widgets.HideScrollView
+    <com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView
         android:id="@+id/hideScrollView"
         android:layout_marginTop="75dp"
+        app:topHideHeight="70dp"
+        app:bottomHideHeight="70dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,7 +24,7 @@
                 android:background="@drawable/main_background_gradient"
                 android:fontFamily="@font/header_font"
                 android:lines="2"
-                android:text="DISCOVER CHANNELS"
+                android:text="DISCOVER                CHANNELS"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -80,6 +82,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.android.multistream.ui.widgets.HideScrollView>
+    </com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView>
 
 </layout>

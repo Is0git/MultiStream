@@ -1,9 +1,8 @@
-package com.android.multistream.ui.widgets
+package com.android.multistream.ui.widgets.place_holder_material_card
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator.INFINITE
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT

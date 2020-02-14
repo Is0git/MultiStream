@@ -5,4 +5,9 @@
         <attr name="indicatorColor" format="color"/>
         <attr name="headerText" format="string"/>
     </declare-styleable>
+
+   <declare-styleable name="HideScrollView">
+       <attr name="topHideHeight" format="dimension"/>
+       <attr name="bottomHideHeight" format="dimension"/>
+   </declare-styleable>
 </resources>

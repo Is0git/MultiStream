@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.android.multistream.ui.widgets.PlaceHolderMaterialCardView
+        <com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
             android:id="@+id/viewPagerCard"
             style="@style/defaultMaterialCard"
             app:cardCornerRadius="5dp"
@@ -38,7 +38,7 @@
                 app:loadImage="@{data.thumbnail_url}" />
 
 
-        </com.android.multistream.ui.widgets.PlaceHolderMaterialCardView>
+        </com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView>
 
 
         <com.google.android.material.textview.MaterialTextView
