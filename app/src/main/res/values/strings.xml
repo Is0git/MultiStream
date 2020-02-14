@@ -3,4 +3,6 @@
     <string name="home">Home</string>
     <string name="browse">Browse</string>
     <string name="Title">Title</string>
+    <string name="recommended_channels"><b>RECOMMENDED</b> CHANNELS</string>
+    <string name="top_channels"><b>TOP</b> CHANNELS</string>
 </resources>

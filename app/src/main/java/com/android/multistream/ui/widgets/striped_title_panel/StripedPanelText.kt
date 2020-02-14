@@ -25,9 +25,10 @@ class StripedPanelText : MaterialTextView {
     var materialTextAlignment = 0
     var sideMargin = 0f
     var viewsMargin = 0f
-    var titleText: String? = "TITLE"
+    var titleText: CharSequence? = "TITLE"
     var titleTextSize = 0f
     var titleTextColor = 0
+
     lateinit var titleTextView: MaterialTextView
 
     constructor(context: Context?) : super(context!!) {
@@ -62,7 +63,7 @@ class StripedPanelText : MaterialTextView {
         if (typedArray != null) {
             materialTextAlignment = typedArray.getInteger(R.styleable.StripedPanelText_alignment, ALIGNMENT_NONE)
             sideMargin = typedArray.getDimension(R.styleable.StripedPanelText_sideMargin, 0f)
-            titleText = typedArray.getString(R.styleable.StripedPanelText_titleText)
+            titleText = typedArray.getText(R.styleable.StripedPanelText_titleText)
             viewsMargin = typedArray.getDimension(R.styleable.StripedPanelText_viewsMargin, 0f)
             titleTextSize = typedArray.getDimension(R.styleable.StripedPanelText_titleTextSize, 0f)
             titleTextColor = typedArray.getColor(R.styleable.StripedPanelText_titleTextColor, Color.BLACK)
@@ -76,10 +77,10 @@ class StripedPanelText : MaterialTextView {
                 ALIGNMENT_RIGHT -> View.TEXT_ALIGNMENT_VIEW_START
                 else -> View.TEXT_ALIGNMENT_CENTER
             }
-            typeface = ResourcesCompat.getFont(context!!, R.font.header_font)
+
             textSize = titleTextSize
             val drawableId = if (materialTextAlignment == ALIGNMENT_LEFT) R.drawable.left_stripe_gradient else R.drawable.right_stripe_gradient
-            background = context.getDrawable(drawableId)
+            background = context?.getDrawable(drawableId)
             text = titleText
             setTextColor(titleTextColor)
         }
