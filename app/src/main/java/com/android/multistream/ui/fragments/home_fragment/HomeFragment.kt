@@ -42,17 +42,17 @@ class HomeFragment : DaggerFragment() {
         setupLists()
 
         binding.hideScrollView.addHiddenView(binding.homeText, RIGHT)
-        binding.hideScrollView.addHiddenView(binding.listWithTitle.titleMaterialText, RIGHT)
+        binding.hideScrollView.addHiddenView(binding.listWithTitle.titleMaterialText, LEFT)
         binding.hideScrollView.addHiddenView(binding.mixerList.titleMaterialText, LEFT)
         binding.hideScrollView.addHiddenView(binding.randomList.titleMaterialText, RIGHT)
         binding.hideScrollView.addHiddenView(binding.randomList2.titleMaterialText, LEFT)
         binding.hideScrollView.addHiddenView(binding.randomList3.titleMaterialText, RIGHT)
-        binding.hideScrollView.addHiddenView(binding.channelsViewPager)
-        binding.hideScrollView.addHiddenView(binding.randomList.cardList)
-        binding.hideScrollView.addHiddenView(binding.randomList2.cardList)
-        binding.hideScrollView.addHiddenView(binding.randomList3.cardList)
-        binding.hideScrollView.addHiddenView(binding.mixerList.cardList)
-        binding.hideScrollView.addHiddenView(binding.listWithTitle.cardList)
+//        binding.hideScrollView.addHiddenView(binding.channelsViewPager, LEFT)
+        binding.hideScrollView.addHiddenView(binding.randomList.cardList, LEFT)
+        binding.hideScrollView.addHiddenView(binding.randomList2.cardList, RIGHT)
+        binding.hideScrollView.addHiddenView(binding.randomList3.cardList, LEFT)
+        binding.hideScrollView.addHiddenView(binding.mixerList.cardList, RIGHT)
+        binding.hideScrollView.addHiddenView(binding.listWithTitle.cardList, RIGHT)
         return binding.root
     }
 
@@ -93,8 +93,8 @@ class HomeFragment : DaggerFragment() {
     fun setupLists() {
         twitchChannelsAdapter = PlaceHolderAdapter(R.layout.list_item_one, false) {k, t ->  }
         binding.listWithTitle.cardList.adapter = twitchChannelsAdapter
-        binding.mixerList.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
-        binding.randomList.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
+        binding.mixerList.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, true) {k, t ->  }
+        binding.randomList.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, true) {k, t ->  }
         binding.randomList2.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
         binding.randomList3.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
 

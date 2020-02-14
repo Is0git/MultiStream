@@ -3,6 +3,7 @@ package com.android.multistream.ui.widgets.place_holder_material_card
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator.INFINITE
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
@@ -22,12 +23,11 @@ class PlaceHolderMaterialCardView : MaterialCardView {
     )
 
     init {
+        setCardBackgroundColor(resources.getColor(R.color.colorOnSurface))
        placeHolderView = View(context).apply {
             this.layoutParams = LayoutParams(placeHolderWidth, MATCH_PARENT)
             this.background = resources.getDrawable(R.drawable.placeholder_gradient)
-
             this.alpha = 0.15f
-
 
         }
 

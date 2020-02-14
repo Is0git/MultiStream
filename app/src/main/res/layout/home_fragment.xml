@@ -50,7 +50,7 @@
                 layout="@layout/title_material_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="64dp"
                 app:layout_constraintTop_toBottomOf="@id/listWithTitle" />
 
             <include
@@ -58,7 +58,7 @@
                 layout="@layout/title_material_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="64dp"
                 app:layout_constraintTop_toBottomOf="@id/mixerList" />
 
             <include
@@ -66,7 +66,7 @@
                 layout="@layout/title_material_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="64dp"
                 app:layout_constraintTop_toBottomOf="@id/randomList" />
 
             <include
@@ -74,7 +74,7 @@
                 layout="@layout/title_material_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="64dp"
                 app:layout_constraintTop_toBottomOf="@id/randomList2" />
 
 

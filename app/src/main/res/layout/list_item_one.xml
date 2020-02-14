@@ -5,21 +5,24 @@
     <com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        app:cardCornerRadius="0dp"
         android:layout_marginTop="4dp"
-       >
+        app:cardCornerRadius="0dp"
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="150dp"
-                android:layout_height="100dp"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/cs_go"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -28,6 +31,7 @@
                 android:id="@+id/titleText"
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="0dp"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="8dp"
@@ -41,8 +45,7 @@
                 style="@style/TextAppearance.MaterialComponents.Body2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:textColor="@color/colorOnSurface"
-                android:text="DWQdwqdwqd wqdwqdwqdwqdwqdqw"
+                android:text="Streaming is not for everyone but games are! Enjoy watching games and streamers you like!"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView"
                 app:layout_constraintEnd_toEndOf="@+id/titleText"
                 app:layout_constraintStart_toStartOf="@+id/titleText"

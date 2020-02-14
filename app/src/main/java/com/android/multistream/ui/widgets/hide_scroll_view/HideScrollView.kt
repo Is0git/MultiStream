@@ -82,6 +82,9 @@ class HideScrollView : ScrollView {
         }
     }
 
+    fun addHiddenView(views: Collection<HiddenView>) {
+            hiddenViews.addAll(views)
+    }
 
     override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
         hiddenViews.forEach {
@@ -93,7 +96,7 @@ class HideScrollView : ScrollView {
                     else {
 
                         it.view.translationX =
-                            if (it.direction == RIGHT) topHideLength.toFloat() * 3 - array[1] * 3 else -(topHideLength.toFloat() * 3 - array[1] * 3)
+                            if (it.direction == RIGHT) topHideLength.toFloat() * 4 - array[1] * 4 else -(topHideLength.toFloat() * 4 - array[1] * 4)
                     }
                 }
                 array[1] < height - bottomHideLength && array[1] > topHideLength -> {
@@ -103,9 +106,9 @@ class HideScrollView : ScrollView {
                     if ((t - oldt).absoluteValue > 100) it.view.translationX = 1800f
                     else {
                         val translationX =
-                            if (it.direction == RIGHT) -(height * 3 - array[1].toFloat() * 3) else height * 3 - array[1].toFloat() * 3
+                            if (it.direction == RIGHT) -(height * 4 - array[1].toFloat() * 4) else height * 4 - array[1].toFloat() * 4
                         it.view.translationX =
-                            if (-(height * 3 - array[1].toFloat() * 3) < 0) 0f else translationX
+                            if (-(height * 4 - array[1].toFloat() * 4) < 0) 0f else translationX
 
 
                     }

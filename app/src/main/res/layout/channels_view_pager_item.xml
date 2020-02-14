@@ -14,9 +14,8 @@
         <com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
             android:id="@+id/viewPagerCard"
             style="@style/defaultMaterialCard"
-            app:cardCornerRadius="5dp"
+            app:cardCornerRadius="0dp"
             android:layout_width="match_parent"
-
             android:layout_height="match_parent">
 
             <View
