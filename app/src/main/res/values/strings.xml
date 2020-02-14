@@ -2,4 +2,5 @@
     <string name="app_name">MultiStream</string>
     <string name="home">Home</string>
     <string name="browse">Browse</string>
+    <string name="Title">Title</string>
 </resources>

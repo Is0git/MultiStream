@@ -10,4 +10,15 @@
        <attr name="topHideHeight" format="dimension"/>
        <attr name="bottomHideHeight" format="dimension"/>
    </declare-styleable>
+
+    <declare-styleable name="StripedPanelLayout">
+        <attr name="alignment">
+            <flag name="none" value="0"/>
+            <flag name="left" value="1"/>
+            <flag name="right" value="2"/>
+        </attr>
+        <attr name="sideMargin" format="dimension"/>
+        <attr name="titleText" format="string"/>
+        <attr name="viewsMargin" format="dimension"/>
+    </declare-styleable>
 </resources>

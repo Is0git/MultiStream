@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.marginEnd
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.viewpager2.widget.ViewPager2
@@ -20,7 +22,9 @@ import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Compan
 import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.RIGHT
 import com.android.multistream.utils.PlaceHolderAdapter
 import com.android.multistream.utils.ViewModelFactory
+import com.google.android.material.textview.MaterialTextView
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.title_material_card.view.*
 import javax.inject.Inject
 
 class HomeFragment : DaggerFragment() {
@@ -42,15 +46,17 @@ class HomeFragment : DaggerFragment() {
         setupLists()
 
         binding.hideScrollView.addHiddenView(binding.homeText, RIGHT)
-        binding.hideScrollView.addHiddenView(binding.listWithTitle.titleMaterialText, LEFT)
+        binding.hideScrollView.addHiddenView(binding.listWithTitle.titleMaterialText.apply {
+            textAlignment = MaterialTextView.TEXT_ALIGNMENT_TEXT_START
+
+        }, LEFT)
         binding.hideScrollView.addHiddenView(binding.mixerList.titleMaterialText, LEFT)
         binding.hideScrollView.addHiddenView(binding.randomList.titleMaterialText, RIGHT)
         binding.hideScrollView.addHiddenView(binding.randomList2.titleMaterialText, LEFT)
-        binding.hideScrollView.addHiddenView(binding.randomList3.titleMaterialText, RIGHT)
 //        binding.hideScrollView.addHiddenView(binding.channelsViewPager, LEFT)
         binding.hideScrollView.addHiddenView(binding.randomList.cardList, LEFT)
         binding.hideScrollView.addHiddenView(binding.randomList2.cardList, RIGHT)
-        binding.hideScrollView.addHiddenView(binding.randomList3.cardList, LEFT)
+        binding.hideScrollView.addHiddenView(binding.randomList3.titleTextView, LEFT)
         binding.hideScrollView.addHiddenView(binding.mixerList.cardList, RIGHT)
         binding.hideScrollView.addHiddenView(binding.listWithTitle.cardList, RIGHT)
         return binding.root
@@ -96,7 +102,7 @@ class HomeFragment : DaggerFragment() {
         binding.mixerList.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, true) {k, t ->  }
         binding.randomList.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, true) {k, t ->  }
         binding.randomList2.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
-        binding.randomList3.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
+
 
     }
 

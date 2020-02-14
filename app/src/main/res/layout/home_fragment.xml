@@ -69,17 +69,16 @@
                 android:layout_marginTop="64dp"
                 app:layout_constraintTop_toBottomOf="@id/randomList" />
 
-            <include
+            <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelLayout
                 android:id="@+id/randomList3"
-                layout="@layout/title_material_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:alignment="right"
+                app:titleText="MIX TOP"
+                app:sideMargin="32dp"
+                app:viewsMargin="4dp"
                 android:layout_marginTop="64dp"
                 app:layout_constraintTop_toBottomOf="@id/randomList2" />
-
-
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView>

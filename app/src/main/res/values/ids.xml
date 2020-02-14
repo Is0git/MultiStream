@@ -3,4 +3,5 @@
     <item name="tabLayout" type="id"/>
     <item name="stripeView" type="id"/>
     <item name="headerText" type="id"/>
+    <item name="stripeLineText" type="id"/>
 </resources>
