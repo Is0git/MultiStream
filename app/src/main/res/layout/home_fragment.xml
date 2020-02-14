@@ -25,6 +25,9 @@
                 android:background="@drawable/main_background_gradient"
                 android:fontFamily="@font/header_font"
                 android:textStyle="bold"
+                android:elevation="10dp"
+                android:paddingStart="8dp"
+                android:textColor="@color/colorSurface"
                 android:lines="2"
                 android:text="DISCOVER                CHANNELS"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -34,8 +37,10 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/channelsViewPager"
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
+                android:layout_height="220dp"
                 android:layout_marginTop="50dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
                 android:background="?attr/colorSurface"
                 app:layout_constraintTop_toBottomOf="@+id/homeText" />
 
