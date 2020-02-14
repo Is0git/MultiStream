@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView
         android:id="@+id/hideScrollView"
@@ -23,6 +24,7 @@
                 android:layout_marginTop="70dp"
                 android:background="@drawable/main_background_gradient"
                 android:fontFamily="@font/header_font"
+                android:textStyle="bold"
                 android:lines="2"
                 android:text="DISCOVER                CHANNELS"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -32,54 +34,144 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/channelsViewPager"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginTop="8dp"
-                android:paddingTop="35dp"
-                android:paddingBottom="35dp"
+                android:layout_height="190dp"
+                android:layout_marginTop="50dp"
+                android:background="?attr/colorSurface"
                 app:layout_constraintTop_toBottomOf="@+id/homeText" />
 
-            <include
-                android:id="@+id/listWithTitle"
-                layout="@layout/title_material_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/channelsViewPager" />
-
-            <include
-                android:id="@+id/mixerList"
-                layout="@layout/title_material_card"
+            <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelText
+                android:id="@+id/twitchText"
+                style="@style/TextAppearance.MaterialComponents.Headline4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="64dp"
-                app:layout_constraintTop_toBottomOf="@id/listWithTitle" />
-
-            <include
-                android:id="@+id/randomList"
-                layout="@layout/title_material_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="64dp"
-                app:layout_constraintTop_toBottomOf="@id/mixerList" />
-
-            <include
-                android:id="@+id/randomList2"
-                layout="@layout/title_material_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="64dp"
-                app:layout_constraintTop_toBottomOf="@id/randomList" />
-
-            <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelLayout
-                android:id="@+id/randomList3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 app:alignment="right"
-                app:titleText="MIX TOP"
-                app:sideMargin="32dp"
-                app:viewsMargin="4dp"
-                android:layout_marginTop="64dp"
-                app:layout_constraintTop_toBottomOf="@id/randomList2" />
+                android:singleLine="true"
+                app:layout_constraintTop_toBottomOf="@id/channelsViewPager"
+                android:layout_marginStart="@dimen/stripeLineMargin"
+                app:titleText="TWITCH"
+                app:titleTextColor="@color/colorPrimary"
+                app:titleTextSize="@dimen/mediumStripeTitleSize"
+                app:viewsMargin="4dp" />
 
+            <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelText
+                android:id="@+id/twitchRecommendedChannels"
+                style="@style/TextAppearance.MaterialComponents.Headline4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/itemMargin"
+                app:alignment="left"
+                app:layout_constraintTop_toBottomOf="@id/twitchText"
+                android:layout_marginEnd="@dimen/stripeLineMargin"
+                app:titleText="RECOMMENDED CHANNELS"
+                android:elevation="20dp"
+                app:titleTextColor="#ffffff"
+                app:titleTextSize="@dimen/captionStripeTitleSize" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/twitchRecommendedChannelsList"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="@dimen/itemMargin"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/twitchRecommendedChannels"
+                tools:listitem="@layout/list_item_one" />
+
+            <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelText
+                android:id="@+id/twitchTopChannelsText"
+                style="@style/TextAppearance.MaterialComponents.Headline4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/componentMargin"
+                app:alignment="left"
+                app:layout_constraintTop_toBottomOf="@id/twitchRecommendedChannelsList"
+                android:layout_marginEnd="@dimen/stripeLineMargin"
+                app:titleText="TOPCHANNELS"
+                android:elevation="20dp"
+                app:titleTextColor="#ffffff"
+                app:titleTextSize="@dimen/captionStripeTitleSize" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/twitchTopChannelsList"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="@dimen/itemMargin"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/twitchTopChannelsText"
+                tools:listitem="@layout/list_item_one" />
+
+            <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelText
+                android:id="@+id/mixerText"
+                style="@style/TextAppearance.MaterialComponents.Headline4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                app:alignment="left"
+                android:singleLine="true"
+                app:layout_constraintTop_toBottomOf="@id/twitchTopChannelsList"
+                android:layout_marginEnd="@dimen/stripeLineMargin"
+                app:titleText="MIXER"
+                app:titleTextColor="@color/colorOnSecondaryVariant"
+                app:titleTextSize="@dimen/mediumStripeTitleSize"
+                app:viewsMargin="4dp" />
+
+            <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelText
+                android:id="@+id/mixerRecommendedChannels"
+                style="@style/TextAppearance.MaterialComponents.Headline4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/itemMargin"
+                app:alignment="left"
+                app:layout_constraintTop_toBottomOf="@id/mixerText"
+                android:layout_marginEnd="@dimen/stripeLineMargin"
+                app:titleText="RECOMMENDED CHANNELS"
+                android:elevation="20dp"
+                app:titleTextColor="#ffffff"
+                app:titleTextSize="@dimen/captionStripeTitleSize" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mixerRecommendedChannelsList"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="@dimen/itemMargin"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mixerRecommendedChannels"
+                tools:listitem="@layout/list_item_one" />
+
+            <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelText
+                android:id="@+id/mixerTopChannelsText"
+                style="@style/TextAppearance.MaterialComponents.Headline4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/componentMargin"
+                app:alignment="left"
+                app:layout_constraintTop_toBottomOf="@id/mixerRecommendedChannelsList"
+                android:layout_marginEnd="@dimen/stripeLineMargin"
+                app:titleText="TOPCHANNELS"
+                android:elevation="20dp"
+                app:titleTextColor="#ffffff"
+                app:titleTextSize="@dimen/captionStripeTitleSize" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mixerTopChannelsList"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="@dimen/itemMargin"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mixerTopChannelsText"
+                tools:listitem="@layout/list_item_one" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView>
 

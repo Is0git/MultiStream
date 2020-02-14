@@ -45,24 +45,23 @@ class HomeFragment : DaggerFragment() {
         observe()
         setupLists()
 
-        binding.hideScrollView.addHiddenView(binding.homeText, RIGHT)
-        binding.hideScrollView.addHiddenView(binding.listWithTitle.titleMaterialText.apply {
-            textAlignment = MaterialTextView.TEXT_ALIGNMENT_TEXT_START
-
-        }, LEFT)
-        binding.hideScrollView.addHiddenView(binding.mixerList.titleMaterialText, LEFT)
-        binding.hideScrollView.addHiddenView(binding.randomList.titleMaterialText, RIGHT)
-        binding.hideScrollView.addHiddenView(binding.randomList2.titleMaterialText, LEFT)
-//        binding.hideScrollView.addHiddenView(binding.channelsViewPager, LEFT)
-        binding.hideScrollView.addHiddenView(binding.randomList.cardList, LEFT)
-        binding.hideScrollView.addHiddenView(binding.randomList2.cardList, RIGHT)
-        binding.hideScrollView.addHiddenView(binding.randomList3.titleTextView, LEFT)
-        binding.hideScrollView.addHiddenView(binding.mixerList.cardList, RIGHT)
-        binding.hideScrollView.addHiddenView(binding.listWithTitle.cardList, RIGHT)
+        binding.hideScrollView.apply {
+            addHiddenView(binding.homeText, RIGHT)
+            addHiddenView(binding.twitchText, RIGHT)
+            addHiddenView(binding.twitchRecommendedChannels, LEFT)
+            addHiddenView(binding.twitchRecommendedChannelsList, RIGHT)
+            addHiddenView(binding.twitchTopChannelsText, LEFT)
+            addHiddenView(binding.twitchTopChannelsList, RIGHT)
+            addHiddenView(binding.mixerText, LEFT)
+            addHiddenView(binding.mixerRecommendedChannels, RIGHT)
+            addHiddenView(binding.mixerRecommendedChannelsList, LEFT)
+            addHiddenView(binding.mixerTopChannelsText, RIGHT)
+            addHiddenView(binding.mixerTopChannelsList, LEFT)
+        }
         return binding.root
     }
 
-    fun setupViewPager() {
+    private fun setupViewPager() {
         channelsViewPagerAdapter =
             PlaceHolderAdapter(R.layout.channels_view_pager_item) { binding, item ->
                 binding.viewPagerCard.cancelAnimation()
@@ -96,17 +95,17 @@ class HomeFragment : DaggerFragment() {
     }
 
 
-    fun setupLists() {
+    private fun setupLists() {
         twitchChannelsAdapter = PlaceHolderAdapter(R.layout.list_item_one, false) {k, t ->  }
-        binding.listWithTitle.cardList.adapter = twitchChannelsAdapter
-        binding.mixerList.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, true) {k, t ->  }
-        binding.randomList.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, true) {k, t ->  }
-        binding.randomList2.cardList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
+        binding.twitchRecommendedChannelsList.adapter = twitchChannelsAdapter
+        binding.twitchTopChannelsList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, true) {k, t ->  }
+        binding.mixerRecommendedChannelsList.adapter  = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, true) {k, t ->  }
+        binding.mixerTopChannelsList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
 
 
     }
 
-    fun observe() {
+    private fun observe() {
         viewModel.topChannelsLiveData.observe(viewLifecycleOwner, Observer {
             channelsViewPagerAdapter.data = it
         })
