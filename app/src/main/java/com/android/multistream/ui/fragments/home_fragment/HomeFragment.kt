@@ -16,6 +16,8 @@ import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.network.twitch.models.channels.DataItem
 import com.android.multistream.ui.fragments.home_fragment.decorations.HorizontalMarginItemDecoration
 import com.android.multistream.ui.fragments.home_fragment.view_model.HomeFragmentViewModel
+import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.LEFT
+import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.RIGHT
 import com.android.multistream.utils.PlaceHolderAdapter
 import com.android.multistream.utils.ViewModelFactory
 import dagger.android.support.DaggerFragment
@@ -39,12 +41,12 @@ class HomeFragment : DaggerFragment() {
         observe()
         setupLists()
 
-        binding.hideScrollView.addHiddenView(binding.homeText)
-        binding.hideScrollView.addHiddenView(binding.listWithTitle.titleMaterialText)
-        binding.hideScrollView.addHiddenView(binding.mixerList.titleMaterialText)
-        binding.hideScrollView.addHiddenView(binding.randomList.titleMaterialText)
-        binding.hideScrollView.addHiddenView(binding.randomList2.titleMaterialText)
-        binding.hideScrollView.addHiddenView(binding.randomList3.titleMaterialText)
+        binding.hideScrollView.addHiddenView(binding.homeText, RIGHT)
+        binding.hideScrollView.addHiddenView(binding.listWithTitle.titleMaterialText, RIGHT)
+        binding.hideScrollView.addHiddenView(binding.mixerList.titleMaterialText, LEFT)
+        binding.hideScrollView.addHiddenView(binding.randomList.titleMaterialText, RIGHT)
+        binding.hideScrollView.addHiddenView(binding.randomList2.titleMaterialText, LEFT)
+        binding.hideScrollView.addHiddenView(binding.randomList3.titleMaterialText, RIGHT)
         binding.hideScrollView.addHiddenView(binding.channelsViewPager)
         binding.hideScrollView.addHiddenView(binding.randomList.cardList)
         binding.hideScrollView.addHiddenView(binding.randomList2.cardList)

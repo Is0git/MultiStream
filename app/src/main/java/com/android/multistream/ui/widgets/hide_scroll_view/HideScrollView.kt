@@ -2,13 +2,11 @@ package com.android.multistream.ui.widgets.hide_scroll_view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.ScrollView
 import androidx.core.view.marginBottom
 import androidx.core.view.marginTop
 import com.android.multistream.R
-import java.lang.IllegalStateException
 import kotlin.math.absoluteValue
 
 
@@ -27,20 +25,29 @@ class HideScrollView : ScrollView {
     var initialBottomHeight = 0f
     var initialTopHeight = 0f
 
-    constructor(context: Context?) : super(context) {init(context)}
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {init(context, attrs)}
+    constructor(context: Context?) : super(context) {
+        init(context)
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        init(context, attrs)
+    }
+
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr
-    ) {init(context, attrs)}
+    ) {
+        init(context, attrs)
+    }
 
 
     private fun init(context: Context?, attrs: AttributeSet? = null) {
-        val typeArray = context?.obtainStyledAttributes(attrs,R.styleable.HideScrollView)
+        val typeArray = context?.obtainStyledAttributes(attrs, R.styleable.HideScrollView)
         if (typeArray != null) {
             initialTopHeight = typeArray.getDimension(R.styleable.HideScrollView_topHideHeight, 0f)
-            initialBottomHeight = typeArray.getDimension(R.styleable.HideScrollView_bottomHideHeight, 0f)
+            initialBottomHeight =
+                typeArray.getDimension(R.styleable.HideScrollView_bottomHideHeight, 0f)
         }
         if (initialTopHeight <= 0f || initialBottomHeight <= 0f) throw IllegalStateException("hide height can't be negative or equal to zero")
         typeArray?.recycle()
@@ -60,7 +67,9 @@ class HideScrollView : ScrollView {
         attrs: AttributeSet?,
         defStyleAttr: Int,
         defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes)
+    ) : super(context, attrs, defStyleAttr, defStyleRes) {
+        init(context, attrs)
+    }
 
     fun addHiddenView(view: View?, direction: Int = LEFT) {
         view?.let {
@@ -75,7 +84,6 @@ class HideScrollView : ScrollView {
 
 
     override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
-        Log.d("SCROLLV", "y: $t oldy: $oldt")
         hiddenViews.forEach {
             if (!it.view.isShown) return@forEach
             it.view.getLocationInWindow(array)
@@ -83,7 +91,9 @@ class HideScrollView : ScrollView {
                 array[1] < topHideLength -> {
                     if ((t - oldt).absoluteValue > 100) it.view.translationX = 0f
                     else {
-                        it.view.translationX = topHideLength.toFloat() * 3 - array[1] * 3
+
+                        it.view.translationX =
+                            if (it.direction == RIGHT) topHideLength.toFloat() * 3 - array[1] * 3 else -(topHideLength.toFloat() * 3 - array[1] * 3)
                     }
                 }
                 array[1] < height - bottomHideLength && array[1] > topHideLength -> {
@@ -92,9 +102,12 @@ class HideScrollView : ScrollView {
                 array[1] > height - bottomHideLength -> {
                     if ((t - oldt).absoluteValue > 100) it.view.translationX = 1800f
                     else {
-                        Log.d("SCROLLV", "${bottomHideLength.toFloat() - array[1]}")
+                        val translationX =
+                            if (it.direction == RIGHT) -(height * 3 - array[1].toFloat() * 3) else height * 3 - array[1].toFloat() * 3
                         it.view.translationX =
-                            if (-(height * 3 - array[1].toFloat() * 3) < 0) 0f else -(height * 3 - array[1].toFloat() * 3)
+                            if (-(height * 3 - array[1].toFloat() * 3) < 0) 0f else translationX
+
+
                     }
                 }
             }
