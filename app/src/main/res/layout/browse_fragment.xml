@@ -19,6 +19,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/viewPagerCard"
             android:layout_width="match_parent"
+            app:cardBackgroundColor="?colorSurface"
             android:layout_height="0dp"
             app:cardCornerRadius="0dp"
             app:cardElevation="1dp"
