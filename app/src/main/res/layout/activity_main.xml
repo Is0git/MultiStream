@@ -52,35 +52,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/nav" />
 
-        <!--        <Button-->
-        <!--            android:id="@+id/button"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="BUTTON"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-        <!--        <Button-->
-        <!--            android:id="@+id/token"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="getTOken"-->
-        <!--            app:layout_constraintEnd_toEndOf="@+id/button"-->
-        <!--            app:layout_constraintStart_toStartOf="@+id/button"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/button" />-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/textID"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginTop="104dp"-->
-        <!--            android:text="test"-->
-        <!--            app:layout_constraintEnd_toEndOf="@+id/token"-->
-        <!--            app:layout_constraintHorizontal_bias="0.492"-->
-        <!--            app:layout_constraintStart_toStartOf="@+id/token"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/token" />-->
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNav"
@@ -97,5 +69,11 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="75dp" />
 
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
