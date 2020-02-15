@@ -14,8 +14,10 @@ import com.android.multistream.R
 import com.android.multistream.databinding.ChannelsViewPagerItemBinding
 import com.android.multistream.databinding.HomeFragmentBinding
 import com.android.multistream.databinding.ListItemOneBinding
+import com.android.multistream.databinding.ListItemTwoBinding
 import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.network.twitch.models.channels.DataItem
+import com.android.multistream.ui.decorations.ListTwoDecoration
 import com.android.multistream.ui.fragments.home_fragment.decorations.HorizontalMarginItemDecoration
 import com.android.multistream.ui.fragments.home_fragment.view_model.HomeFragmentViewModel
 import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.LEFT
@@ -98,8 +100,9 @@ class HomeFragment : DaggerFragment() {
     private fun setupLists() {
         twitchChannelsAdapter = PlaceHolderAdapter(R.layout.list_item_one, false) {k, t ->  }
         binding.twitchRecommendedChannelsList.adapter = twitchChannelsAdapter
-        binding.twitchTopChannelsList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, true) {k, t ->  }
-        binding.mixerRecommendedChannelsList.adapter  = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, true) {k, t ->  }
+        binding.twitchTopChannelsList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_two, false) {k, t ->  }
+
+        binding.mixerRecommendedChannelsList.adapter  = PlaceHolderAdapter<Data, ListItemTwoBinding>(R.layout.list_item_two, false) {k, t ->  }
         binding.mixerTopChannelsList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
 
 

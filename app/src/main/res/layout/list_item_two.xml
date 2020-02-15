@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_width="330dp"
+        android:layout_height="260dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="10dp"
         app:cardCornerRadius="0dp"
         app:cardElevation="0dp"
         app:cardUseCompatPadding="true">
@@ -18,30 +18,32 @@
             <ImageView
                 android:id="@+id/streamImage"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="165dp"
                 android:src="@drawable/cs_go"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/streamerBanner"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:src="@drawable/cs_go"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/streamImage" />
 
             <com.google.android.material.textview.MaterialTextView
-                style="@style/TextAppearance.MaterialComponents.Body2"
+                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:id="@+id/streamerName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="User"
+                android:text="Shroud"
+                android:textStyle="bold"
                 android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/streamerBanner"
@@ -59,18 +61,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/streamerBanner"
               app:layout_constraintTop_toBottomOf="@id/streamerName"/>
+
             <com.google.android.material.textview.MaterialTextView
-                style="@style/TextAppearance.MaterialComponents.Body2"
                 android:id="@+id/streamGame"
+                style="@style/TextAppearance.MaterialComponents.Caption"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="WolcenL Lords of Mayhem"
+                android:layout_marginBottom="16dp"
                 android:singleLine="true"
+                android:text="WolcenL Lords of Mayhem"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/streamerBanner"
-                app:layout_constraintTop_toBottomOf="@id/streamTitle"/>
+                app:layout_constraintTop_toBottomOf="@id/streamTitle" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
