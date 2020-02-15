@@ -43,6 +43,7 @@ class HideScrollView : ScrollView {
 
 
     private fun init(context: Context?, attrs: AttributeSet? = null) {
+        isSmoothScrollingEnabled  = true
         val typeArray = context?.obtainStyledAttributes(attrs, R.styleable.HideScrollView)
         if (typeArray != null) {
             initialTopHeight = typeArray.getDimension(R.styleable.HideScrollView_topHideHeight, 0f)

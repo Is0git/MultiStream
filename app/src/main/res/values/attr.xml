@@ -23,4 +23,8 @@
         <attr name="titleTextSize" format="dimension"/>
         <attr name="titleTextColor" format="color"/>
          </declare-styleable>
+
+    <declare-styleable name="PlaceHolderMaterialCardView">
+        <attr name="addGradient" format="boolean"/>
+    </declare-styleable>
 </resources>
