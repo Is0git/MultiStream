@@ -4,7 +4,7 @@
 
     <com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
         android:layout_width="300dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="2dp"
         android:layout_height="120dp"
         android:layout_marginTop="4dp"
         app:addGradient="false"
