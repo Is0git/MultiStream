@@ -46,12 +46,12 @@ class HomeFragment : DaggerFragment() {
         setupLists()
 
         binding.hideScrollView.apply {
-            addHiddenView(binding.homeText, RIGHT)
+            addHiddenView(binding.homeText, LEFT)
             addHiddenView(binding.twitchText, RIGHT)
             addHiddenView(binding.twitchRecommendedChannels, LEFT)
             addHiddenView(binding.twitchRecommendedChannelsList, RIGHT)
-            addHiddenView(binding.twitchTopChannelsText, LEFT)
-            addHiddenView(binding.twitchTopChannelsList, RIGHT)
+            addHiddenView(binding.twitchTopChannelsText, RIGHT)
+            addHiddenView(binding.twitchTopChannelsList, LEFT)
             addHiddenView(binding.mixerText, LEFT)
             addHiddenView(binding.mixerRecommendedChannels, RIGHT)
             addHiddenView(binding.mixerRecommendedChannelsList, LEFT)

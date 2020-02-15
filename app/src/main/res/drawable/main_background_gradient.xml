@@ -9,7 +9,7 @@
         android:endColor="?attr/colorOnSurface"
 
         android:gradientRadius="600"
-        android:angle="135"
-        android:centerX="0.5"
-        android:centerY="0.5"/>
+        android:angle="315"
+        android:centerX="0.8"
+        android:centerY="0.8"/>
 </shape>

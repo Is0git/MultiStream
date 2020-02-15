@@ -42,9 +42,9 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onSh
     class MyViewHolder<K : ViewDataBinding>(val dataBinding: K, onShowPressAnimation: Boolean) :
         ItemHowerViewHolder<K>(dataBinding, onShowPress = onShowPressAnimation) {
         init {
-            (dataBinding.root as ViewGroup).children.forEach {
-                it.visibility = View.INVISIBLE
-            }
+//            (dataBinding.root as ViewGroup).children.forEach {
+//                it.visibility = View.INVISIBLE
+//            }
         }
         override fun backgroundAnimation() {
 
