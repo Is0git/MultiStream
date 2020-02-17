@@ -39,3 +39,7 @@ https://cdn.dribbble.com/users/1505007/screenshots/5339041/dribbblej_2x.jpg
 <h4>navigation drawer insipiration</h4>
 
 <a href="https://ibb.co/h7gQMJ0"><img src="https://i.ibb.co/tmHjhTR/navigation-Drawer.png" alt="navigation-Drawer" border="0"></a>
+
+<h4>Video Player</h4>
+<li>can rewind video</li>
+<li>go to vod on click</li>
