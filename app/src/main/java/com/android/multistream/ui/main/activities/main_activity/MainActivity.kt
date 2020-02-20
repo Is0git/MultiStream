@@ -12,7 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.android.multistream.R
 import com.android.multistream.databinding.ActivityMainBinding
-import com.android.multistream.utils.TWITCH_TOKEN
+import com.android.multistream.auth.TWITCH_TOKEN
 import com.android.multistream.utils.ViewModelFactory
 import com.android.multistream.utils.twitchAPI.uriQuery
 import dagger.android.support.DaggerAppCompatActivity
