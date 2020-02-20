@@ -1,27 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_height="match_parent">
 
         <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelText
-            android:id="@+id/twitchText"
+            android:id="@+id/startText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/actionBarMargin"
+            android:layout_marginEnd="@dimen/stripeLineMargin"
+            android:elevation="5dp"
             android:fontFamily="@font/header_font"
+            android:paddingEnd="10dp"
+            android:rotationY="2"
             android:textStyle="bold"
-            app:alignment="right"
+            app:alignment="left"
+            app:layout_constraintBottom_toTopOf="@+id/twitchRecommendedChannels"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread"
             app:titleText="START"
-            android:layout_marginEnd="@dimen/stripeLineMargin"
             app:titleTextColor="@color/colorPrimary"
             app:titleTextSize="@dimen/mediumStripeTitleSize"
             app:viewsMargin="4dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/twitchRecommendedChannels"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/stripeLineMargin"
+            android:layout_marginEnd="@dimen/stripeLineMargin"
+            android:background="@color/colorSurface"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:rotationY="-2"
+            android:text="PRESS CONTINUE IN ORDER TO IMPROVE YOUR EXPERIENCE BY LINKING YOUR ACCOUT WITH PLATFORMS"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:alignment="right"
+            app:layout_constraintBottom_toTopOf="@+id/continueButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/startText" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/continueButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONTINUE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/twitchRecommendedChannels"
+            app:layout_constraintTop_toBottomOf="@+id/twitchRecommendedChannels" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/skipButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/stripeLineMargin"
+            android:text="SKIP"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/continueButton"
+            app:layout_constraintEnd_toStartOf="@+id/continueButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/continueButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

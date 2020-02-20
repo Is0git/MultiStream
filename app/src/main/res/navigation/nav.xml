@@ -92,6 +92,6 @@
     </fragment>
     <fragment
         android:id="@+id/introPage"
-        android:name="com.android.multistream.ui.intro.IntroPage"
+        android:name="com.android.multistream.ui.intro.fragments.IntroPage"
         android:label="IntroPage" />
 </navigation>

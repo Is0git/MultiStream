@@ -3,6 +3,7 @@ package com.android.multistream.ui.main.activities.main_activity
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.transition.TransitionManager
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
@@ -32,7 +33,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mainActivityViewModel = ViewModelProviders.of(this, viewModelFactory).get(
             MainActivityViewModel::class.java
@@ -52,6 +53,15 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onResume() {
         super.onResume()
         authorizeTwitch()
+    }
+
+    fun hideActionBar() {
+        binding.apply {
+            bgImage.visibility = View.INVISIBLE
+            menuDrawerIcon.visibility = View.GONE
+            settingsIcon.visibility = View.GONE
+            bottomNav.visibility = View.GONE
+        }
     }
 
     private fun authorizeTwitch() {

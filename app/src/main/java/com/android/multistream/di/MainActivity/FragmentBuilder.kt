@@ -10,7 +10,7 @@ import com.android.multistream.di.MainActivity.main_fragments.game_channels_frag
 import com.android.multistream.di.MainActivity.main_fragments.game_channels_fragment.GameChannelsViewModelModule
 import com.android.multistream.di.MainActivity.main_fragments.home_fragment.HomeFragmentScope
 import com.android.multistream.di.MainActivity.main_fragments.home_fragment.HomeFragmentViewModelModule
-import com.android.multistream.ui.intro.IntroPage
+import com.android.multistream.ui.intro.fragments.IntroPage
 import com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragment
 import com.android.multistream.ui.main.fragments.combined_games_channels_fragment.CombinedChannelsFragment
 import com.android.multistream.ui.main.fragments.game_channels_fragment.GameChannelsFragment
