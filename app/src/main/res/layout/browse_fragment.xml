@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.android.multistream.ui.fragments.browse_fragment.stripes_tab_layout.StripeTabLayout
+        <com.android.multistream.ui.main.fragments.browse_fragment.stripes_tab_layout.StripeTabLayout
             android:id="@+id/stripeTabLayout"
             android:layout_width="match_parent"
             android:layout_height="400dp"

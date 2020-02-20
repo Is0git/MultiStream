@@ -2,15 +2,15 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/introPage">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.android.multistream.ui.fragments.home_fragment.HomeFragment"
+        android:name="com.android.multistream.ui.main.fragments.home_fragment.HomeFragment"
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/browseFragment"
-        android:name="com.android.multistream.ui.fragments.browse_fragment.BrowseFragment"
+        android:name="com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragment"
         android:label="BrowseFragment">
         <action
             android:id="@+id/action_browseFragment_to_gameChannelsFragment"
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameChannelsFragment"
-        android:name="com.android.multistream.ui.fragments.game_channels_fragment.GameChannelsFragment"
+        android:name="com.android.multistream.ui.main.fragments.game_channels_fragment.GameChannelsFragment"
         android:label="GameChannelsFragment">
         <argument
             android:name="platformType"
@@ -90,4 +90,8 @@
             app:nullable="true" />
 
     </fragment>
+    <fragment
+        android:id="@+id/introPage"
+        android:name="com.android.multistream.ui.intro.IntroPage"
+        android:label="IntroPage" />
 </navigation>

@@ -8,7 +8,7 @@
 
         <variable
             name="listener"
-            type="com.android.multistream.ui.fragments.browse_fragment.view_pager_fragments.top_fragment.CategoryNavigationListener&lt;com.android.multistream.network.twitch.models.Data&gt;" />
+            type="com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.top_fragment.CategoryNavigationListener&lt;com.android.multistream.network.twitch.models.Data&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

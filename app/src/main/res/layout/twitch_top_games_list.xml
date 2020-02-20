@@ -11,7 +11,7 @@
 
         <variable
             name="clickListener"
-            type="com.android.multistream.ui.fragments.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener" />
+            type="com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener" />
 
     </data>
 

@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
 
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="@dimen/actionBarMargin"
                 android:fontFamily="@font/header_font"
                 android:textStyle="bold"
                 android:layout_marginStart="32dp"
