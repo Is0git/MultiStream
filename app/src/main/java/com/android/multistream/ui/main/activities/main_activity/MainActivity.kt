@@ -11,8 +11,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.android.multistream.R
+import com.android.multistream.auth.PlatformManager
+import com.android.multistream.auth.Platforms.TwitchPlatform
 import com.android.multistream.databinding.ActivityMainBinding
 import com.android.multistream.auth.TWITCH_TOKEN
+import com.android.multistream.di.qualifiers.CustomPlatformManager
+import com.android.multistream.network.twitch.models.Token
 import com.android.multistream.utils.ViewModelFactory
 import com.android.multistream.utils.twitchAPI.uriQuery
 import dagger.android.support.DaggerAppCompatActivity
@@ -22,9 +26,10 @@ class MainActivity : DaggerAppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
+    @Inject
+    lateinit var platformManager: PlatformManager
     lateinit var mainActivityViewModel: MainActivityViewModel
-
+    var counter = 0
     val transition by lazy {
         TransitionInflater.from(this)
             .inflateTransition(R.transition.games_list_expand_transition)
@@ -42,17 +47,14 @@ class MainActivity : DaggerAppCompatActivity() {
             TransitionManager.beginDelayedTransition(binding.root as ViewGroup, transition)
 
         }
-//        binding.button.setOnClickListener {
-//            val intent = Intent(Intent.ACTION_VIEW, twitchAuthPage.toUri())
-//            startActivity(intent)
-//        }
         binding.bottomNav.setupWithNavController(findNavController(R.id.main_fragment_container))
 //        binding.token.setOnClickListener { binding.textID.text = mainActivityViewModel.getToken(TWITCH_TOKEN) }
     }
 
     override fun onResume() {
         super.onResume()
-        authorizeTwitch()
+        if (intent.data != null) authorizeTwitch()
+
     }
 
     fun hideActionBar() {
@@ -65,8 +67,11 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun authorizeTwitch() {
+        if (counter > 1) return
+        counter++
         val token: String? = intent.data?.let { uriQuery(it.toString()) }
-        token?.let { mainActivityViewModel.authorize(TWITCH_TOKEN, token) }
+        token?.let { platformManager.getPlatform(TwitchPlatform::class.java)
+          .saveAccessTokenBearer(uriQuery(it), Token::class.java) }
     }
 
 

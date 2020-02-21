@@ -8,11 +8,11 @@ import javax.inject.Inject
 @MainActivityScope
 class MainActivityViewModel @Inject constructor(val repo: MainActivityRepository) : ViewModel() {
 
-    fun authorize(type: String, token: String) {
-        viewModelScope.launch { repo.authorize(type, token) }
-    }
-
-    fun getToken(type: String) = repo.getToken(type)
-
+//    fun authorize(type: String, token: String) {
+//        viewModelScope.launch { repo.authorize(type, token) }
+//    }
+//
+//    fun getToken(type: String) = repo.getToken(type)
+//
 
 }

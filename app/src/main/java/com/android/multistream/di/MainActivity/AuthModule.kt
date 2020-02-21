@@ -1,7 +1,7 @@
 package com.android.multistream.di.MainActivity
 
+import android.content.SharedPreferences
 import com.android.multistream.auth.PlatformManager
-import com.android.multistream.auth.Platforms.TwitchPlatform
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -12,8 +12,7 @@ object AuthModule {
     @JvmStatic
     @Provides
     @Singleton
-    fun platformManager(platformManager: PlatformManager, twitchPlatform: TwitchPlatform) : PlatformManager {
-        platformManager.addPlatform(twitchPlatform)
-        return platformManager
+    fun platformManager(sharedPreferences: SharedPreferences, sharedPreferencesEditor: SharedPreferences.Editor) : PlatformManager {
+        return PlatformManager(sharedPreferences, sharedPreferencesEditor)
     }
 }
