@@ -21,7 +21,7 @@ interface TwitchAuthService {
         @Url url: String = "https://id.twitch.tv/oauth2/token"
     ): Response<Token>
 
-    @POST("oauth2/validate")
-    suspend fun checkValidation(@Header("Authorization") access_token: String): Response<Validation>
+    @POST
+    suspend fun checkValidation(@Header("Authorization") access_token: String, @Url url: String = "https://id.twitch.tv/oauth2/validate"): Response<Validation>
 
 }

@@ -70,9 +70,6 @@ object RetrofitModule {
         .build()
 
 
-//    val service = twitchRetrofit.create(TwitchService::class.java)
-//    val mixerService = mixerRetrofit.create(MixerService::class.java)
-
     @Provides
     @Singleton
     @JvmStatic

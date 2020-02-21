@@ -29,7 +29,6 @@ class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var platformManager: PlatformManager
     lateinit var mainActivityViewModel: MainActivityViewModel
-    var counter = 0
     val transition by lazy {
         TransitionInflater.from(this)
             .inflateTransition(R.transition.games_list_expand_transition)
@@ -53,7 +52,8 @@ class MainActivity : DaggerAppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (intent.data != null) authorizeTwitch()
+        authorizeTwitch()
+        platformManager.getPlatform(TwitchPlatform::class.java).validateAccessToken()
 
     }
 
@@ -67,8 +67,6 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun authorizeTwitch() {
-        if (counter > 1) return
-        counter++
         val token: String? = intent.data?.let { uriQuery(it.toString()) }
         token?.let { platformManager.getPlatform(TwitchPlatform::class.java)
           .saveAccessTokenBearer(uriQuery(it), Token::class.java) }

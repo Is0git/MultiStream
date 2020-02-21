@@ -2,12 +2,12 @@ package com.android.multistream.auth.Platforms
 
 import android.app.Application
 import android.widget.Toast
-import com.android.multistream.App
 import com.android.multistream.auth.Platform
 import com.android.multistream.auth.PlatformManager
 import com.android.multistream.di.TwitchRetrofitQualifier
 import com.android.multistream.network.twitch.TwitchAuthService
 import com.android.multistream.network.twitch.models.Token
+import com.android.multistream.network.twitch.models.Validation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
@@ -17,8 +17,13 @@ import javax.inject.Singleton
 
 @Singleton
 class TwitchPlatform @Inject constructor(
-    @TwitchRetrofitQualifier val retrofit: Retrofit, platformManager: PlatformManager, val app: Application
-) : Platform<TwitchAuthService, Token>(retrofit, TwitchAuthService::class.java, platformManager) {
+    @TwitchRetrofitQualifier val retrofit: Retrofit, platformManager: PlatformManager,
+    val app: Application
+) : Platform<TwitchAuthService, Token, Validation>(
+    retrofit,
+    TwitchAuthService::class.java,
+    platformManager
+) {
     override suspend fun getAccessTokenBearer(
         service: TwitchAuthService,
         code: String
@@ -30,7 +35,7 @@ class TwitchPlatform @Inject constructor(
     override suspend fun saveAccessToken(
         response: Response<Token>,
         platformManager: PlatformManager,
-        platform: Platform<*, *>
+        platform: Platform<*, *, *>
     ) {
         response.body().also { token ->
             platformManager.sharedPreferencesEditor.also {
@@ -38,8 +43,19 @@ class TwitchPlatform @Inject constructor(
                 it.putString("ACCESS_TOKEN_$className", token?.accessToken)
                 it.putString("REFRESH_TOKEN_$className", token?.refreshToken)
                 it.apply()
-              withContext(Dispatchers.Main)  {Toast.makeText(app, "SUCCESS", Toast.LENGTH_LONG).show()}
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(app, "SUCCESS", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
+
+    override suspend fun getTokenValidationResponse(
+        service: TwitchAuthService,
+        accessToken: String
+    ): Response<Validation> {
+        return service.checkValidation(accessToken)
+    }
+
+
 }
