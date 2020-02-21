@@ -14,7 +14,6 @@ import com.android.multistream.R
 import com.android.multistream.auth.PlatformManager
 import com.android.multistream.auth.Platforms.TwitchPlatform
 import com.android.multistream.databinding.ActivityMainBinding
-import com.android.multistream.auth.TWITCH_TOKEN
 import com.android.multistream.di.qualifiers.CustomPlatformManager
 import com.android.multistream.network.twitch.models.Token
 import com.android.multistream.utils.ViewModelFactory

@@ -5,6 +5,7 @@ import com.android.multistream.network.twitch.models.Validation
 import com.android.multistream.utils.twitchAPI.CLIENT_ID
 import com.android.multistream.utils.twitchAPI.CLIENT_SECRET
 import com.android.multistream.utils.twitchAPI.REDIRECT_URI
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -23,5 +24,15 @@ interface TwitchAuthService {
 
     @POST
     suspend fun checkValidation(@Header("Authorization") access_token: String, @Url url: String = "https://id.twitch.tv/oauth2/validate"): Response<Validation>
+
+    @POST
+    @FormUrlEncoded
+    fun refreshToken(
+        @Field("grant_type") grantType: String = "refresh_token",
+        @Field("client_id") clientId: String = CLIENT_ID,
+        @Field("client_secret") clientSecret: String = CLIENT_SECRET,
+        @Field("refresh_token") refreshToken: String,
+        @Url url: String = "https://id.twitch.tv/oauth2/token"
+    ) : Call<Token>
 
 }

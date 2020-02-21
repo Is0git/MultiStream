@@ -1,6 +1,6 @@
 package com.android.multistream.ui.main.activities.main_activity
 
-import com.android.multistream.di.MainActivity.MainActivityScope
+import com.android.multistream.di.main_activity.scopes.MainActivityScope
 import com.android.multistream.auth.PlatformManager
 import javax.inject.Inject
 

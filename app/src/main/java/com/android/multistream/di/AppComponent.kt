@@ -2,7 +2,10 @@ package com.android.multistream.di
 
 import android.app.Application
 import com.android.multistream.App
-import com.android.multistream.di.MainActivity.AuthModule
+import com.android.multistream.di.modules.RetrofitModule
+import com.android.multistream.di.modules.RoomModule
+import com.android.multistream.di.modules.SharedPreferencesModule
+import com.android.multistream.di.modules.AuthModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

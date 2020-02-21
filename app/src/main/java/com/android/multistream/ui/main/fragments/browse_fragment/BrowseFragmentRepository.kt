@@ -1,7 +1,7 @@
 package com.android.multistream.ui.main.fragments.browse_fragment
 
 import android.app.Application
-import com.android.multistream.di.MainActivity.main_fragments.browse_fragment.BrowseFragmentScope
+import com.android.multistream.di.main_activity.main_fragments.browse_fragment.BrowseFragmentScope
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
 import javax.inject.Inject

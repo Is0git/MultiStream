@@ -2,7 +2,7 @@ package com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fra
 
 import android.app.Application
 import android.widget.Toast
-import com.android.multistream.di.MainActivity.main_fragments.browse_fragment.view_pager_fragments.top_fragment.TopFragmentGamesScope
+import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.top_fragment.TopFragmentGamesScope
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.models.Data

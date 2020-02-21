@@ -43,8 +43,24 @@ abstract class Platform<T : Any, S : Any, U : Any>(
             if (!responseResult.body()?.javaClass?.isAssignableFrom(responseClass)!!) throw CancellationException(
                 "function's token response does not match with service response"
             )
+            val pair = provideAuthTokenPair(responseResult)
+            saveAccessTokenInPreference(pair, platformManager, this@Platform)
+        }
+    }
 
-            saveAccessTokenInPreference(responseResult, platformManager, this@Platform)
+    private fun saveAccessTokenInPreference(
+        authPair: Pair<String?, String?>,
+        platformManager: PlatformManager,
+        platform: Platform<*, *, *>
+    ) {
+
+        if (authPair.first != null && authPair.second != null) {
+            platformManager.sharedPreferencesEditor.also {
+                val className = platform.javaClass.simpleName
+                it.putString("ACCESS_TOKEN_$className", authPair.first)
+                it.putString("REFRESH_TOKEN_$className", authPair.second)
+                it.apply()
+            }
         }
     }
 
@@ -67,27 +83,27 @@ abstract class Platform<T : Any, S : Any, U : Any>(
         }
     }
 
-    abstract suspend fun getAccessTokenBearer(service: T, code: String): Response<S>
+    fun refreshToken(): String? {
+        val refreshToken = platformManager.getRefreshToken(this::class.java) ?: return "null"
 
-    private fun saveAccessTokenInPreference(
-        response: Response<S>,
-        platformManager: PlatformManager,
-        platform: Platform<*, *, *>
-    ) {
-        val pair = provideAuthTokenPair(response)
-        response.body().also { token ->
-            platformManager.sharedPreferencesEditor.also {
-                val className = platform.javaClass.simpleName
-                it.putString("ACCESS_TOKEN_$className", pair.first)
-                it.putString("REFRESH_TOKEN_$className", pair.second)
-                it.apply()
-            }
+        val token = getNewToken(service, refreshToken)?.let {
+            val pair = provideAuthTokenPair(it)
+            saveAccessTokenInPreference(provideAuthTokenPair(it), platformManager, this)
+            return pair.second
         }
+        return null
     }
+
+    /**
+     * run on current thread
+     */
+    abstract fun getNewToken(service: T, refreshToken: String): Response<S>?
 
     abstract fun provideAuthTokenPair(response: Response<S>): Pair<String?, String?>
 
     abstract suspend fun getTokenValidationResponse(service: T, accessToken: String): Response<U>
+
+    abstract suspend fun getAccessTokenBearer(service: T, code: String): Response<S>
 
 
 }

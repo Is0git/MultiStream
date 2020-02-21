@@ -5,10 +5,6 @@ import android.util.Log
 import javax.inject.Inject
 import javax.inject.Singleton
 
-const val TWITCH_TOKEN = "TWITCH_TOKEN"
-const val YOUTUBE_TOKEN = "YOUTUBE_TOKEN"
-const val MIXER_TOKEN = "MIXER_TOKEN"
-
 
 class PlatformManager @Inject constructor(
     val sharedPreferences: SharedPreferences,

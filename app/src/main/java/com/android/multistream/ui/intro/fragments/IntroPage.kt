@@ -26,6 +26,7 @@ class IntroPage : DaggerFragment(){
         (activity as MainActivity).hideActionBar()
         binding.bgVideo.apply {
             setVideoURI(Uri.parse("android.resource://com.android.multistream/raw/bgvid"))
+            setOnCompletionListener { it.start() }
             start()
         }
 

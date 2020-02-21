@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.databinding.MixerChannelsListBinding
-import com.android.multistream.di.MainActivity.main_fragments.game_channels_fragment.GameChannelsFragmentScope
+import com.android.multistream.di.main_activity.main_fragments.game_channels_fragment.GameChannelsFragmentScope
 import com.android.multistream.network.mixer.models.channel.GameChannels
 import javax.inject.Inject
 

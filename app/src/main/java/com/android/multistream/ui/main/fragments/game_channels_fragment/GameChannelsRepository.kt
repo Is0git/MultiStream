@@ -2,7 +2,7 @@ package com.android.multistream.ui.main.fragments.game_channels_fragment
 
 import android.app.Application
 import android.widget.Toast
-import com.android.multistream.di.MainActivity.main_fragments.game_channels_fragment.GameChannelsFragmentScope
+import com.android.multistream.di.main_activity.main_fragments.game_channels_fragment.GameChannelsFragmentScope
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.mixer.models.channel.GameChannels
 import com.android.multistream.network.twitch.TwitchService

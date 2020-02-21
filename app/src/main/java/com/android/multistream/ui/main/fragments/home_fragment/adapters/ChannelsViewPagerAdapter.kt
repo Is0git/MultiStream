@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.databinding.ChannelsViewPagerItemBinding
-import com.android.multistream.di.MainActivity.main_fragments.home_fragment.HomeFragmentScope
+import com.android.multistream.di.main_activity.main_fragments.home_fragment.HomeFragmentScope
 import javax.inject.Inject
 
 @HomeFragmentScope

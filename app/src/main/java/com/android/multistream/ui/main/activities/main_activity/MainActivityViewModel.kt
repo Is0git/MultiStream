@@ -1,9 +1,7 @@
 package com.android.multistream.ui.main.activities.main_activity
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.android.multistream.di.MainActivity.MainActivityScope
-import kotlinx.coroutines.launch
+import com.android.multistream.di.main_activity.scopes.MainActivityScope
 import javax.inject.Inject
 @MainActivityScope
 class MainActivityViewModel @Inject constructor(val repo: MainActivityRepository) : ViewModel() {

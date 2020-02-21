@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.anim.list_item_hower_anim.ItemHowerViewHolder
 import com.android.multistream.databinding.SingleTopGamesListBinding
-import com.android.multistream.di.MainActivity.main_fragments.browse_fragment.view_pager_fragments.mixer_fragment.MixerFragmentGamesScope
+import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.mixer_fragment.MixerFragmentGamesScope
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
 import com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener
 import com.android.multistream.utils.MIXER

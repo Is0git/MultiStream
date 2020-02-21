@@ -1,7 +1,7 @@
 package com.android.multistream.ui.main.fragments.game_channels_fragment
 
 import androidx.lifecycle.ViewModel
-import com.android.multistream.di.MainActivity.main_fragments.game_channels_fragment.GameChannelsFragmentScope
+import com.android.multistream.di.main_activity.main_fragments.game_channels_fragment.GameChannelsFragmentScope
 import com.android.multistream.utils.TWITCH
 import javax.inject.Inject
 

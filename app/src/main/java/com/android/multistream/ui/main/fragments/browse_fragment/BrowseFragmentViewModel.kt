@@ -1,7 +1,7 @@
 package com.android.multistream.ui.main.fragments.browse_fragment
 
 import androidx.lifecycle.ViewModel
-import com.android.multistream.di.MainActivity.main_fragments.browse_fragment.BrowseFragmentScope
+import com.android.multistream.di.main_activity.main_fragments.browse_fragment.BrowseFragmentScope
 import javax.inject.Inject
 
 @BrowseFragmentScope
