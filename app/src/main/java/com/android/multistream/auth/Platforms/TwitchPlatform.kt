@@ -2,6 +2,7 @@ package com.android.multistream.auth.Platforms
 
 import android.app.Application
 import android.widget.Toast
+import androidx.core.util.toAndroidPair
 import com.android.multistream.auth.Platform
 import com.android.multistream.auth.PlatformManager
 import com.android.multistream.di.TwitchRetrofitQualifier
@@ -32,29 +33,17 @@ class TwitchPlatform @Inject constructor(
 
     }
 
-    override suspend fun saveAccessToken(
-        response: Response<Token>,
-        platformManager: PlatformManager,
-        platform: Platform<*, *, *>
-    ) {
-        response.body().also { token ->
-            platformManager.sharedPreferencesEditor.also {
-                val className = platform.javaClass.simpleName
-                it.putString("ACCESS_TOKEN_$className", token?.accessToken)
-                it.putString("REFRESH_TOKEN_$className", token?.refreshToken)
-                it.apply()
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(app, "SUCCESS", Toast.LENGTH_LONG).show()
-                }
-            }
-        }
-    }
-
     override suspend fun getTokenValidationResponse(
         service: TwitchAuthService,
         accessToken: String
     ): Response<Validation> {
         return service.checkValidation(accessToken)
+    }
+
+    override fun provideAuthTokenPair(response: Response<Token>): Pair<String?, String?> {
+        response.body().also { token ->
+            return  Pair(token?.access_token, token?.refresh_token)
+        }
     }
 
 

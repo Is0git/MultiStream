@@ -44,17 +44,17 @@ abstract class Platform<T : Any, S : Any, U : Any>(
                 "function's token response does not match with service response"
             )
 
-            saveAccessToken(responseResult, platformManager, this@Platform)
+            saveAccessTokenInPreference(responseResult, platformManager, this@Platform)
         }
     }
 
     /**
      * Validates access token
      */
-   fun validateAccessToken() {
-       validationJob = CoroutineScope(Dispatchers.IO).launch {
+    fun validateAccessToken() {
+        validationJob = CoroutineScope(Dispatchers.IO).launch {
             val accessToken = platformManager.getAccessToken(this@Platform::class.java)
-                if (accessToken == null) throw CancellationException("You need to get access token before validation")
+                ?: throw CancellationException("You need to get access token before validation")
             val validationResponse = getTokenValidationResponse(service, accessToken)
 
             validationResponse.apply {
@@ -69,11 +69,23 @@ abstract class Platform<T : Any, S : Any, U : Any>(
 
     abstract suspend fun getAccessTokenBearer(service: T, code: String): Response<S>
 
-    abstract suspend fun saveAccessToken(
+    private fun saveAccessTokenInPreference(
         response: Response<S>,
         platformManager: PlatformManager,
         platform: Platform<*, *, *>
-    )
+    ) {
+        val pair = provideAuthTokenPair(response)
+        response.body().also { token ->
+            platformManager.sharedPreferencesEditor.also {
+                val className = platform.javaClass.simpleName
+                it.putString("ACCESS_TOKEN_$className", pair.first)
+                it.putString("REFRESH_TOKEN_$className", pair.second)
+                it.apply()
+            }
+        }
+    }
+
+    abstract fun provideAuthTokenPair(response: Response<S>): Pair<String?, String?>
 
     abstract suspend fun getTokenValidationResponse(service: T, accessToken: String): Response<U>
 

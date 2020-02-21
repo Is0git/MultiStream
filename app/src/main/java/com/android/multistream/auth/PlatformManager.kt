@@ -1,6 +1,7 @@
 package com.android.multistream.auth
 
 import android.content.SharedPreferences
+import android.util.Log
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,7 +20,10 @@ class PlatformManager @Inject constructor(
 
 
     fun getAccessToken(platformClass: Class<out Platform<*, *, *>>): String? {
-        return sharedPreferences.getString("ACCESS_TOKEN_${platformClass.simpleName}", null)
+        val res = sharedPreferences.getString("ACCESS_TOKEN_${platformClass.simpleName}", null)
+
+        Log.d("TESTPREF", "$res size: ${sharedPreferences.all}" )
+        return res
     }
 
     fun getAccessTokenByPlatform(platform: Platform<*, *, *>) : String? {

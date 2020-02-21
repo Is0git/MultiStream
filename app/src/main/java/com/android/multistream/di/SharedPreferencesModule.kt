@@ -31,5 +31,5 @@ object SharedPreferencesModule {
     @Provides
     @Singleton
     @JvmStatic
-    fun authEncryptedSharedPreferencesEditor(sharedPreferences: SharedPreferences) = sharedPreferences.edit()
+    fun authEncryptedSharedPreferencesEditor(sharedPreferences: SharedPreferences): SharedPreferences.Editor = sharedPreferences.edit()
 }
