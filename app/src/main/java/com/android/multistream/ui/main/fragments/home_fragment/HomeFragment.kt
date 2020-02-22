@@ -14,6 +14,7 @@ import com.android.multistream.databinding.ListItemOneBinding
 import com.android.multistream.databinding.ListItemTwoBinding
 import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.network.twitch.models.channels.DataItem
+import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.main.fragments.home_fragment.decorations.HorizontalMarginItemDecoration
 import com.android.multistream.ui.main.fragments.home_fragment.view_model.HomeFragmentViewModel
 import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.LEFT
@@ -54,6 +55,8 @@ class HomeFragment : DaggerFragment() {
             addHiddenView(binding.mixerTopChannelsText, RIGHT)
             addHiddenView(binding.mixerTopChannelsList, LEFT)
         }
+
+        (activity as MainActivity).showActionBar()
         return binding.root
     }
 

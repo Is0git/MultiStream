@@ -27,14 +27,22 @@ abstract class Platform<T : Any, S : Any, U : Any>(
 
     var isValidated: Boolean = false
 
+    // listener for auth states during authentication
+    var authListener: AuthListener? = null
+
     /**
      * @param code code for bearer auth
      * @param S type of service Response object
      */
+
+    init {
+        accessTokenJob?.invokeOnCompletion { it?.also { authListener?.cancel(it) } }
+    }
+
     fun saveAccessTokenBearer(code: String?, responseClass: Class<S>) {
         accessTokenJob = CoroutineScope(Dispatchers.IO).launch {
             if (code == null) {
-                throw CancellationException("code can't be null")
+                throw CancellationException("code can't be null") as Throwable
             }
             val responseResult = getAccessTokenBearer(service, code)
 
@@ -45,6 +53,8 @@ abstract class Platform<T : Any, S : Any, U : Any>(
             )
             val pair = provideAuthTokenPair(responseResult)
             saveAccessTokenInPreference(pair, platformManager, this@Platform)
+
+            authListener?.onSuccess()
         }
     }
 
@@ -95,7 +105,7 @@ abstract class Platform<T : Any, S : Any, U : Any>(
     }
 
     /**
-     * run on current thread
+     * run on current thread(because used in okHttpClient authenticator)
      */
     abstract fun getNewToken(service: T, refreshToken: String): Response<S>?
 

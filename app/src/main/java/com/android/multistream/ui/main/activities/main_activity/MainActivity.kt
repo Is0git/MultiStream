@@ -65,6 +65,15 @@ class MainActivity : DaggerAppCompatActivity() {
         }
     }
 
+    fun showActionBar() {
+            binding.apply {
+                bgImage.visibility = View.VISIBLE
+                menuDrawerIcon.visibility = View.VISIBLE
+                settingsIcon.visibility = View.VISIBLE
+                bottomNav.visibility = View.VISIBLE
+            }
+    }
+
     private fun authorizeTwitch() {
         val token: String? = intent.data?.let { uriQuery(it.toString()) }
         token?.let { platformManager.getPlatform(TwitchPlatform::class.java)

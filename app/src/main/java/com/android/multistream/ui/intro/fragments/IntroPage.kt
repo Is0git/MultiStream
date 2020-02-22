@@ -34,7 +34,6 @@ class IntroPage : DaggerFragment(){
             continueButton.setOnClickListener { nav.navigate(R.id.action_introPage_to_introPageTwo) }
             skipButton.setOnClickListener { nav.navigate(R.id.action_global_main) }
         }
-
         return binding.root
     }
 
