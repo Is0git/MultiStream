@@ -1,5 +1,9 @@
 package com.android.multistream.auth
 
+import android.net.Uri
+import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import com.android.multistream.utils.uriQuery
 import kotlinx.coroutines.*
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -19,6 +23,12 @@ abstract class Platform<T : Any, S : Any, U : Any>(
     var platformManager: PlatformManager
 ) {
 
+    sealed class AuthState{
+        object Completed : AuthState()
+
+        data class Failed(val throwable: Throwable) : AuthState()
+    }
+
     var service: T = platformRetrofit.create(serviceClass)
 
     var accessTokenJob: Job? = null
@@ -30,20 +40,24 @@ abstract class Platform<T : Any, S : Any, U : Any>(
     // listener for auth states during authentication
     var authListener: AuthListener? = null
 
+    val statesLiveData by lazy { MutableLiveData<AuthState>() }
+
     /**
      * @param code code for bearer auth
      * @param S type of service Response object
      */
 
     init {
-        accessTokenJob?.invokeOnCompletion { it?.also { authListener?.cancel(it) } }
+        accessTokenJob?.invokeOnCompletion { it?.also { statesLiveData.value = AuthState.Failed(it) } }
     }
 
-    fun saveAccessTokenBearer(code: String?, responseClass: Class<S>) {
+    fun saveAccessTokenBearer(uriData: Uri?, responseClass: Class<S>) {
         accessTokenJob = CoroutineScope(Dispatchers.IO).launch {
-            if (code == null) {
-                throw CancellationException("code can't be null") as Throwable
-            }
+            val code = (if (uriData == null) {
+                throw CancellationException("response uri can't be null") as Throwable
+            } else getBearerCode(uriData.toString()))
+                ?: throw CancellationException("Code was not found")
+
             val responseResult = getAccessTokenBearer(service, code)
 
             if (responseResult.body() == null) throw CancellationException("access token result is null")
@@ -54,7 +68,7 @@ abstract class Platform<T : Any, S : Any, U : Any>(
             val pair = provideAuthTokenPair(responseResult)
             saveAccessTokenInPreference(pair, platformManager, this@Platform)
 
-            authListener?.onSuccess()
+            withContext(Dispatchers.Main) {statesLiveData.value = AuthState.Completed}
         }
     }
 
@@ -99,10 +113,15 @@ abstract class Platform<T : Any, S : Any, U : Any>(
         val token = getNewToken(service, refreshToken)?.let {
             val pair = provideAuthTokenPair(it)
             saveAccessTokenInPreference(provideAuthTokenPair(it), platformManager, this)
+            Log.d("TESTPREF", "FIRST: ${pair.first} SECOND: ${pair.second}")
             return pair.second
         }
         return null
     }
+
+    private fun getBearerCode(uriData: String) : String? =
+        uriQuery(uriData)
+
 
     /**
      * run on current thread(because used in okHttpClient authenticator)

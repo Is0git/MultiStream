@@ -8,8 +8,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class HomeFragmentViewModelModule
-{
+abstract class HomeFragmentViewModelModule {
     @Binds
     @IntoMap
     @HomeFragmentScope

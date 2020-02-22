@@ -14,7 +14,7 @@ import com.android.multistream.databinding.GamesTopFragmentPageBinding
 import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragmentDirections
 import com.android.multistream.utils.ViewModelFactory
-import com.android.multistream.utils.pagination.PageLoadingStates
+import com.android.multistream.pagination.PageLoadingStates
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

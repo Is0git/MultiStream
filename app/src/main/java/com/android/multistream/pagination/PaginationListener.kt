@@ -1,4 +1,4 @@
-package com.android.multistream.utils.pagination
+package com.android.multistream.pagination
 
 interface PaginationListener<T> {
 

@@ -4,7 +4,7 @@ import com.android.multistream.network.twitch.models.Data
 import com.android.multistream.network.twitch.models.TopGames
 import com.android.multistream.network.twitch.models.channels.GameChannels
 import com.android.multistream.network.twitch.models.v5.TopGamesV5
-import com.android.multistream.utils.twitchAPI.CLIENT_ID
+import com.android.multistream.network.twitch.constants.CLIENT_ID
 import retrofit2.Response
 import retrofit2.http.*
 

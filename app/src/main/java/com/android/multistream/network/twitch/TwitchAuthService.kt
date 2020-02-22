@@ -2,9 +2,9 @@ package com.android.multistream.network.twitch
 
 import com.android.multistream.network.twitch.models.Token
 import com.android.multistream.network.twitch.models.Validation
-import com.android.multistream.utils.twitchAPI.CLIENT_ID
-import com.android.multistream.utils.twitchAPI.CLIENT_SECRET
-import com.android.multistream.utils.twitchAPI.REDIRECT_URI
+import com.android.multistream.network.twitch.constants.CLIENT_ID
+import com.android.multistream.network.twitch.constants.CLIENT_SECRET
+import com.android.multistream.network.twitch.constants.REDIRECT_URI
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*

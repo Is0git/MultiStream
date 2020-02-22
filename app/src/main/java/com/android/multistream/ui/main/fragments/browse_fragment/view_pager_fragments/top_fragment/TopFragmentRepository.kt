@@ -6,8 +6,8 @@ import com.android.multistream.di.main_activity.main_fragments.browse_fragment.v
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.models.Data
-import com.android.multistream.utils.pagination.PagedOffSetListener
-import com.android.multistream.utils.pagination.PagedOffsetLoader
+import com.android.multistream.pagination.PagedOffSetListener
+import com.android.multistream.pagination.PagedOffsetLoader
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 

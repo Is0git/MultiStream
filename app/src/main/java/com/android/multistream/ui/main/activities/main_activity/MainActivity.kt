@@ -8,16 +8,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.android.multistream.R
-import com.android.multistream.auth.PlatformManager
-import com.android.multistream.auth.Platforms.TwitchPlatform
 import com.android.multistream.databinding.ActivityMainBinding
-import com.android.multistream.di.qualifiers.CustomPlatformManager
-import com.android.multistream.network.twitch.models.Token
 import com.android.multistream.utils.ViewModelFactory
-import com.android.multistream.utils.twitchAPI.uriQuery
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -25,8 +21,9 @@ class MainActivity : DaggerAppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-    @Inject
-    lateinit var platformManager: PlatformManager
+
+    lateinit var navController: NavController
+
     lateinit var mainActivityViewModel: MainActivityViewModel
     val transition by lazy {
         TransitionInflater.from(this)
@@ -45,14 +42,18 @@ class MainActivity : DaggerAppCompatActivity() {
             TransitionManager.beginDelayedTransition(binding.root as ViewGroup, transition)
 
         }
-        binding.bottomNav.setupWithNavController(findNavController(R.id.main_fragment_container))
+        navController = findNavController(R.id.main_fragment_container)
+        binding.bottomNav.setupWithNavController(navController)
 //        binding.token.setOnClickListener { binding.textID.text = mainActivityViewModel.getToken(TWITCH_TOKEN) }
     }
 
     override fun onResume() {
         super.onResume()
-        authorizeTwitch()
-        platformManager.getPlatform(TwitchPlatform::class.java).validateAccessToken()
+        intent?.data?.let {
+            navController.navigate(R.id.action_introPage_to_introPageTwo)
+        }
+//        authorizeTwitch()
+//        platformManager.getPlatform(TwitchPlatform::class.java).validateAccessToken()
 
     }
 
@@ -73,12 +74,5 @@ class MainActivity : DaggerAppCompatActivity() {
                 bottomNav.visibility = View.VISIBLE
             }
     }
-
-    private fun authorizeTwitch() {
-        val token: String? = intent.data?.let { uriQuery(it.toString()) }
-        token?.let { platformManager.getPlatform(TwitchPlatform::class.java)
-          .saveAccessTokenBearer(uriQuery(it), Token::class.java) }
-    }
-
 
 }

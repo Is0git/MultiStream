@@ -7,10 +7,10 @@ import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.mixer.models.channel.GameChannels
 import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.models.channels.DataItem
-import com.android.multistream.utils.pagination.PagedKeyLoader
-import com.android.multistream.utils.pagination.PagedPositionListener
-import com.android.multistream.utils.pagination.PagedPositionLoader
-import com.android.multistream.utils.pagination.PaginationListener
+import com.android.multistream.pagination.PagedKeyLoader
+import com.android.multistream.pagination.PagedPositionListener
+import com.android.multistream.pagination.PagedPositionLoader
+import com.android.multistream.pagination.PaginationListener
 import kotlinx.coroutines.*
 import java.io.IOException
 import javax.inject.Inject

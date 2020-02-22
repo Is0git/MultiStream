@@ -7,9 +7,9 @@ import com.android.multistream.di.qualifiers.TwitchQualifier
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TopGamesTwitchAdapter
 import com.android.multistream.network.twitch.TwitchService
-import com.android.multistream.utils.mixerAPI.MIXER_URL
-import com.android.multistream.utils.twitchAPI.TWITCH_URL
-import com.android.multistream.utils.twitchAPI.URL
+import com.android.multistream.network.mixer.constants.MIXER_URL
+import com.android.multistream.network.twitch.constants.TWITCH_URL
+import com.android.multistream.network.twitch.constants.URL
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides

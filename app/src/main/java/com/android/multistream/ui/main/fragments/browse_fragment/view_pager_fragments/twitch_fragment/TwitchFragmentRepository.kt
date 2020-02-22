@@ -5,8 +5,8 @@ import android.widget.Toast
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.twitch_fragment.TwitchFragmentGamesScope
 import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.models.v5.TopItem
-import com.android.multistream.utils.pagination.PagedOffSetListener
-import com.android.multistream.utils.pagination.PagedOffsetLoader
+import com.android.multistream.pagination.PagedOffSetListener
+import com.android.multistream.pagination.PagedOffsetLoader
 import kotlinx.coroutines.*
 import java.io.IOException
 import javax.inject.Inject
