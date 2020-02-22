@@ -1,6 +1,7 @@
 package com.android.multistream.di.main_activity
 
-import com.android.multistream.di.main_activity.intro_fragments.IntroFragmentScope.scopes.IntroFragmentScope
+import com.android.multistream.di.main_activity.intro_fragments.modules.IntroFragmentViewModelModule
+import com.android.multistream.di.main_activity.intro_fragments.scopes.IntroFragmentScope
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.BrowseFragmentScope
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.BrowseFragmentViewModelModule
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.ViewPagerFragmentBuilder
@@ -38,7 +39,7 @@ abstract class FragmentBuilder {
     @CombinedChannelsScope
     abstract fun combinedChannelsFragment() : CombinedChannelsFragment
 
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [IntroFragmentViewModelModule::class])
     @IntroFragmentScope
     abstract fun introFragment() : IntroPage
 
