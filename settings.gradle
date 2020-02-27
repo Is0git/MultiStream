@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':stripesliderview', ':eminogoview'
 rootProject.name='MultiStream'

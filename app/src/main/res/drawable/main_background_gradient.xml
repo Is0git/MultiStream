@@ -7,9 +7,7 @@
         android:type="linear"
         android:startColor="?attr/colorSurface"
         android:endColor="?attr/colorOnSurface"
-
-        android:gradientRadius="600"
-        android:angle="315"
+        android:angle="135"
         android:centerX="0.8"
         android:centerY="0.8"/>
 </shape>
