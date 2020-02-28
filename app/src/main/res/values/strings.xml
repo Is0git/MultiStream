@@ -5,5 +5,5 @@
     <string name="Title">Title</string>
     <string name="recommended_channels"><b>RECOMMENDED</b> CHANNELS</string>
     <string name="top_channels"><b>TOP</b> CHANNELS</string>
-    <string name="hello">HELLO <font color="R.id.colorSurface">THERE</font></string>
+    <string name="hello">HELLO <font color="#5e4eba">THERE</font></string>
 </resources>

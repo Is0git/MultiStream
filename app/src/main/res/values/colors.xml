@@ -9,4 +9,5 @@
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorOnPrimaryVariant">#4523F7</color>
     <color name="colorOnSecondaryVariant">#B43BFF</color>
+    <color name="headlineShadowColor">#868585</color>
 </resources>
