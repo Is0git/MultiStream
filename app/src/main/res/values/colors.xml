@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorSurface">#ffffff</color>
-    <color name="colorOnSurface">#E9E9E9</color>
+    <color name="colorOnSurface">#CECECE</color>
     <color name="colorPrimary">#5e4eba</color>
     <color name="colorSecondary">#fe0000</color>
     <color name="colorAccent">#172450</color>

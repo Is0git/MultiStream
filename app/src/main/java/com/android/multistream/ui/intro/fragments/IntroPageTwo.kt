@@ -38,8 +38,8 @@ class IntroPageTwo : DaggerFragment(){
 
         val listPage = listOf(
             PageData(
-                "DO SOMETHING",
-                "HELLO",
+                "SIGN",
+                "HELLO THERE",
                 R.drawable.ic_twitch_logo,
                 R.drawable.ic_circle,
                 R.drawable.ic_lines,
@@ -48,14 +48,14 @@ class IntroPageTwo : DaggerFragment(){
                 0.50f
             ),
             PageData(
-                "DO SOMETHING",
+                "SIGN IN",
                 "HELLO",
                 R.drawable.mixer_logo,
                 R.drawable.ic_circle,
                 R.drawable.ic_lines,
-                0.80f,
+                1f,
                 0.30f,
-                0.90f
+                0.85f
             )
         )
 
