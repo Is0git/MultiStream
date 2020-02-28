@@ -17,8 +17,10 @@ import com.android.multistream.network.twitch.models.channels.DataItem
 import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.main.fragments.home_fragment.decorations.HorizontalMarginItemDecoration
 import com.android.multistream.ui.main.fragments.home_fragment.view_model.HomeFragmentViewModel
+import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.ALPHA_ATTRIBUTE
 import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.LEFT
 import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.RIGHT
+import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.TRANSITIONX_ATTRIBUTE
 import com.android.multistream.utils.PlaceHolderAdapter
 import com.android.multistream.utils.ViewModelFactory
 import dagger.android.support.DaggerFragment
@@ -41,15 +43,15 @@ class HomeFragment : DaggerFragment() {
         setupViewPager()
         observe()
         setupLists()
-
+        binding.hideScrollView.translationX
         binding.hideScrollView.apply {
-            addHiddenView(binding.homeText, LEFT)
-            addHiddenView(binding.twitchText, RIGHT)
-            addHiddenView(binding.twitchRecommendedChannels, LEFT)
-            addHiddenView(binding.twitchTopChannelsText, RIGHT)
-            addHiddenView(binding.mixerText, LEFT)
-            addHiddenView(binding.mixerRecommendedChannels, LEFT)
-            addHiddenView(binding.mixerTopChannelsText, RIGHT)
+            addHiddenView(binding.homeText, RIGHT, "alpha")
+            addHiddenView(binding.twitchText, RIGHT, "translationX")
+            addHiddenView(binding.twitchRecommendedChannels, LEFT, "alpha")
+            addHiddenView(binding.twitchTopChannelsText, RIGHT, "translationX")
+            addHiddenView(binding.mixerText, LEFT, "translationX")
+            addHiddenView(binding.mixerRecommendedChannels, LEFT, "translationX")
+            addHiddenView(binding.mixerTopChannelsText, RIGHT, "translationX")
         }
 
         (activity as MainActivity).showActionBar()
