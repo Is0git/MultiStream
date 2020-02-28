@@ -6,10 +6,9 @@
     <com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView
         android:id="@+id/hideScrollView"
         android:layout_marginTop="75dp"
-        app:topHideHeight="70dp"
-        app:bottomHideHeight="70dp"
+        app:topHideHeight="32dp"
+        app:bottomHideHeight="35dp"
         android:fadeScrollbars="true"
-
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

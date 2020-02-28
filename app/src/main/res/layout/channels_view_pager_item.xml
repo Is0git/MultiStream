@@ -21,7 +21,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            app:cardElevation="20dp">
+            app:cardElevation="12dp">
 
             <View
                 android:id="@+id/view"
@@ -55,6 +55,7 @@
             android:layout_marginEnd="10dp"
             android:elevation="21dp"
             android:fontFamily="@font/header_font"
+            android:textColor="?colorSurface"
             android:lines="2"
             android:text="@{data.title, default = `GAME`}"
             android:textSize="@dimen/topGamesItemHeaderTextSize"
@@ -87,6 +88,7 @@
             android:layout_marginStart="8dp"
             android:elevation="21dp"
             android:lines="1"
+            android:textColor="?colorSurface"
             android:text="@{String.valueOf(data.viewer_count), default = `0000`}"
             app:layout_constraintBottom_toBottomOf="@+id/viewersIcon"
             app:layout_constraintStart_toEndOf="@+id/viewersIcon"
@@ -112,6 +114,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:elevation="21dp"
+            android:textColor="?colorSurface"
             android:text="@{data.user_name, default = `USERNAME`}"
             app:layout_constraintBottom_toTopOf="@+id/viewersIcon"
             app:layout_constraintEnd_toEndOf="@+id/streamTitle"

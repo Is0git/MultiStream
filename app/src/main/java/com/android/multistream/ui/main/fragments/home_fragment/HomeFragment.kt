@@ -48,7 +48,7 @@ class HomeFragment : DaggerFragment() {
             addHiddenView(binding.twitchRecommendedChannels, LEFT)
             addHiddenView(binding.twitchTopChannelsText, RIGHT)
             addHiddenView(binding.mixerText, LEFT)
-            addHiddenView(binding.mixerRecommendedChannels, RIGHT)
+            addHiddenView(binding.mixerRecommendedChannels, LEFT)
             addHiddenView(binding.mixerTopChannelsText, RIGHT)
         }
 

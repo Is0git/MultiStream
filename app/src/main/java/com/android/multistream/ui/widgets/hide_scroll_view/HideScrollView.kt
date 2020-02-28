@@ -2,11 +2,12 @@ package com.android.multistream.ui.widgets.hide_scroll_view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.widget.ScrollView
-import androidx.core.view.marginBottom
 import androidx.core.view.marginTop
 import com.android.multistream.R
+import com.android.multistream.utils.ScreenUnit
 import kotlin.math.absoluteValue
 
 
@@ -22,8 +23,8 @@ class HideScrollView : ScrollView {
     var bottomHideLength = 0f
     val array = IntArray(2)
     var yPerX = 0f
-    var initialBottomHeight = 0f
-    var initialTopHeight = 0f
+    var bottomHeight = 0f
+    var topHeightMargin = 0f
 
     constructor(context: Context?) : super(context) {
         init(context)
@@ -43,24 +44,28 @@ class HideScrollView : ScrollView {
 
 
     private fun init(context: Context?, attrs: AttributeSet? = null) {
-        isSmoothScrollingEnabled  = true
+        isSmoothScrollingEnabled = true
         val typeArray = context?.obtainStyledAttributes(attrs, R.styleable.HideScrollView)
         if (typeArray != null) {
-            initialTopHeight = typeArray.getDimension(R.styleable.HideScrollView_topHideHeight, 0f)
-            initialBottomHeight =
+            topHeightMargin = typeArray.getDimension(R.styleable.HideScrollView_topHideHeight, 0f)
+            bottomHeight =
                 typeArray.getDimension(R.styleable.HideScrollView_bottomHideHeight, 0f)
         }
-        if (initialTopHeight <= 0f || initialBottomHeight <= 0f) throw IllegalStateException("hide height can't be negative or equal to zero")
+        if (topHeightMargin <= 0f || bottomHeight <= 0f) throw IllegalStateException("hide height can't be negative or equal to zero")
         typeArray?.recycle()
 
 
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        topHideLength = initialTopHeight + marginTop
-        bottomHideLength = initialBottomHeight + marginBottom
-        yPerX = resources.displayMetrics.widthPixels / topHideLength
+
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        topHideLength = topHeightMargin + marginTop
+        bottomHideLength = bottomHeight
+        yPerX = resources.displayMetrics.widthPixels / topHideLength
     }
 
     constructor(
@@ -84,34 +89,47 @@ class HideScrollView : ScrollView {
     }
 
     fun addHiddenView(views: Collection<HiddenView>) {
-            hiddenViews.addAll(views)
+        hiddenViews.addAll(views)
     }
 
     override fun onScrollChanged(l: Int, t: Int, oldl: Int, oldt: Int) {
-        hiddenViews.forEach {
-            if (!it.view.isShown) return@forEach
+        hiddenViews.forEachIndexed {index, it ->
+            if (!it.view.isShown) return@forEachIndexed
             it.view.getLocationInWindow(array)
             when {
-                array[1] < topHideLength -> {
-                    if ((t - oldt).absoluteValue > 100) it.view.translationX = 0f
-                    else {
+                array[1] < topHideLength && array[1] > marginTop -> {
 
-                        it.view.translationX =
-                            if (it.direction == RIGHT) topHideLength.toFloat() * 4 - array[1] * 4 else -(topHideLength.toFloat() * 4 - array[1] * 4)
+                    when(index) {
+
+                        0 -> {
+                            if ((t - oldt).absoluteValue > 100) it.view.translationX = 0f
+                            else {
+                                it.view.alpha = 1 * ((array[1] - marginTop.toFloat()) / topHeightMargin)
+                            }
+                        }
+
+
+                        else ->   {
+                            if ((t - oldt).absoluteValue > 100) it . view . translationX =
+                                0f
+                            else {
+                                it.view.translationX =
+                                    if (it.direction == RIGHT) width * (1 - (array[1] - marginTop.toFloat()) / topHeightMargin) else -width * (1 - (array[1] - marginTop.toFloat()) / topHeightMargin)
+                            }
+                        }
+
                     }
                 }
-                array[1] < height - bottomHideLength && array[1] > topHideLength -> {
+                array[1] < height -(bottomHideLength + ScreenUnit.convertDpToPixel(56f))&& array[1] > topHideLength -> {
                     it.view.translationX = 0f
                 }
-                array[1] > height - bottomHideLength -> {
-                    if ((t - oldt).absoluteValue > 100) it.view.translationX = 1800f
+
+                array[1] > height - (bottomHideLength  + ScreenUnit.convertDpToPixel(56f))&& array[1] < height - ScreenUnit.convertDpToPixel(56f) -> {
+                    if ((t - oldt).absoluteValue > 100) it.view.translationX = width.toFloat()
                     else {
                         val translationX =
-                            if (it.direction == RIGHT) -(height * 4 - array[1].toFloat() * 4) else height * 4 - array[1].toFloat() * 4
-                        it.view.translationX =
-                            if (-(height * 4 - array[1].toFloat() * 4) < 0) 0f else translationX
-
-
+                            if (it.direction == RIGHT) width * ((array[1] - (height - bottomHideLength - ScreenUnit.convertDpToPixel(56f)) ) / bottomHideLength ) else -width * ((array[1] - (height - bottomHideLength-ScreenUnit.convertDpToPixel(56f) )) / bottomHideLength )
+                        it.view.translationX = translationX
                     }
                 }
             }
