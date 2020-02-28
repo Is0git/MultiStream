@@ -44,3 +44,24 @@ https://cdn.dribbble.com/users/1505007/screenshots/5339041/dribbblej_2x.jpg
 <li>can rewind video</li>
 <li>go to vod on click</li>
 <li>set how long you want to watch stream</li>
+
+<h4>SOME EXTERNAL UI LIBRARIES</h4>
+
+https://www.uplabs.com/posts/android-ui-animation-components-libraries-java-kotlin
+
+https://github.com/wasabeef/awesome-android-ui
+
+FOR INTRO : https://github.com/Ramotion/paper-onboarding-android
+
+
+FOR GAME LIST: https://github.com/Ramotion/cardslider-android
+
+FOR CONTEXT ON GAME: https://github.com/Ramotion/circle-menu-android
+
+TAP BUTTON CONTEXT: https://github.com/KeepSafe/TapTargetView
+
+CIRCULAR BUTTON FOr INTRO :https://github.com/dmytrodanylyk/circular-progress-button
+
+
+<h2>INTRO DESIGN BY ME<h2>
+  <a href="https://ibb.co/30GSNxG"><img src="https://i.ibb.co/30GSNxG/intro-Screen.png" alt="intro-Screen" border="0" /></a>
