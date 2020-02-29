@@ -17,10 +17,10 @@ import com.android.multistream.network.twitch.models.channels.DataItem
 import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.main.fragments.home_fragment.decorations.HorizontalMarginItemDecoration
 import com.android.multistream.ui.main.fragments.home_fragment.view_model.HomeFragmentViewModel
-import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.ALPHA_ATTRIBUTE
 import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.LEFT
 import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.RIGHT
-import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.TRANSITIONX_ATTRIBUTE
+import com.android.multistream.ui.widgets.hide_scroll_view.animations.AlphaAnimation
+import com.android.multistream.ui.widgets.hide_scroll_view.animations.TranslationXAnimation
 import com.android.multistream.utils.PlaceHolderAdapter
 import com.android.multistream.utils.ViewModelFactory
 import dagger.android.support.DaggerFragment
@@ -44,14 +44,23 @@ class HomeFragment : DaggerFragment() {
         observe()
         setupLists()
         binding.hideScrollView.translationX
+
+
         binding.hideScrollView.apply {
-            addHiddenView(binding.homeText, RIGHT, "alpha")
-            addHiddenView(binding.twitchText, RIGHT, "translationX")
-            addHiddenView(binding.twitchRecommendedChannels, LEFT, "alpha")
-            addHiddenView(binding.twitchTopChannelsText, RIGHT, "translationX")
-            addHiddenView(binding.mixerText, LEFT, "translationX")
-            addHiddenView(binding.mixerRecommendedChannels, LEFT, "translationX")
-            addHiddenView(binding.mixerTopChannelsText, RIGHT, "translationX")
+            val translationXAnimation =
+                TranslationXAnimation(
+                    this,
+                    animationHandler.topDivider, animationHandler.bottomDivider
+                )
+            val alphaAnimation = AlphaAnimation(this, animationHandler.topDivider, animationHandler.bottomDivider)
+
+            addHiddenView(binding.homeText, RIGHT, alphaAnimation)
+            addHiddenView(binding.twitchText, RIGHT, translationXAnimation)
+            addHiddenView(binding.twitchRecommendedChannels, LEFT, translationXAnimation)
+            addHiddenView(binding.twitchTopChannelsText, RIGHT, translationXAnimation)
+            addHiddenView(binding.mixerText, LEFT, translationXAnimation)
+            addHiddenView(binding.mixerRecommendedChannels, LEFT, translationXAnimation)
+            addHiddenView(binding.mixerTopChannelsText, RIGHT, translationXAnimation)
         }
 
         (activity as MainActivity).showActionBar()
