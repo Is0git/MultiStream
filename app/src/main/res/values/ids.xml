@@ -4,4 +4,5 @@
     <item name="stripeView" type="id"/>
     <item name="headerText" type="id"/>
     <item name="stripeLineText" type="id"/>
+    <item name="placeholder" type="id"/>
 </resources>

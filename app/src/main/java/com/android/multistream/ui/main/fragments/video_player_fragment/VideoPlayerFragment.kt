@@ -19,29 +19,29 @@ class VideoPlayerFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         binding = StreamPlayerFragmentBinding.inflate(inflater, container, false)
-        val resourceId = R.raw.test
-        val uri = Uri.Builder()
-            .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
-            .authority(resources.getResourcePackageName(resourceId))
-            .appendPath(resources.getResourceTypeName(resourceId))
-            .appendPath(resources.getResourceEntryName(resourceId))
-            .build()
-            val metrics = resources.displayMetrics
-        binding.webViewPlayer.apply {
-
-            settings.javaScriptEnabled = true
-            settings.javaScriptCanOpenWindowsAutomatically = true
-            settings.pluginState = WebSettings.PluginState.ON_DEMAND
-            settings.mediaPlaybackRequiresUserGesture = false
-            loadData("<iframe\n" +
-                    "    src=\"https://player.twitch.tv/?channel=dakotaz\"\n" +
-                    "    height=\"${layoutParams.height}\"\n" +
-                    "    width=\"${layoutParams.width}\"\n" +
-                    "    frameborder=\"0\"\n" +
-                    "    scrolling=\"no\"\n" +
-                    "    allowfullscreen=\"true\">\n" +
-                    "</iframe>", "text/html", "utf-8")
-        }
+//        val resourceId = R.raw.test
+//        val uri = Uri.Builder()
+//            .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+//            .authority(resources.getResourcePackageName(resourceId))
+//            .appendPath(resources.getResourceTypeName(resourceId))
+//            .appendPath(resources.getResourceEntryName(resourceId))
+//            .build()
+//            val metrics = resources.displayMetrics
+//        binding.webViewPlayer.apply {
+//
+//            settings.javaScriptEnabled = true
+//            settings.javaScriptCanOpenWindowsAutomatically = true
+//            settings.pluginState = WebSettings.PluginState.ON_DEMAND
+//            settings.mediaPlaybackRequiresUserGesture = false
+//            loadData("<iframe\n" +
+//                    "    src=\"https://player.twitch.tv/?channel=dakotaz\"\n" +
+//                    "    height=\"${layoutParams.height}\"\n" +
+//                    "    width=\"${layoutParams.width}\"\n" +
+//                    "    frameborder=\"0\"\n" +
+//                    "    scrolling=\"no\"\n" +
+//                    "    allowfullscreen=\"true\">\n" +
+//                    "</iframe>", "text/html", "utf-8")
+//        }
         return binding.root
     }
 }

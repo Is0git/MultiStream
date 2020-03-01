@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="data"
             type="com.android.multistream.network.twitch.models.new_twitch_api.channels.DataItem" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
+        android:id="@+id/viewPagerCard"
+        style="@style/defaultMaterialCard"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="25dp"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="12dp">
 
-        <com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
-            android:id="@+id/viewPagerCard"
-            style="@style/defaultMaterialCard"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardCornerRadius="20dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="25dp"
-            app:cardElevation="12dp">
-
+            android:layout_height="match_parent">
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
@@ -42,92 +45,92 @@
                 android:textColor="#000000"
                 app:loadImage="@{data.thumbnail_url}" />
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/streamTitle"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:elevation="22dp"
+                android:fontFamily="@font/header_font"
+                android:lines="2"
+                android:text="@{data.title, default = `GAME`}"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/topGamesItemHeaderTextSize"
+                app:layout_constraintBottom_toTopOf="@+id/userNameText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline"
+                app:layout_constraintVertical_bias="0.48000002"
+                app:layout_constraintVertical_chainStyle="spread" />
 
-        </com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView>
-
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/streamTitle"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:elevation="21dp"
-            android:fontFamily="@font/header_font"
-            android:textColor="?colorSurface"
-            android:lines="2"
-            android:text="@{data.title, default = `GAME`}"
-            android:textSize="@dimen/topGamesItemHeaderTextSize"
-            app:layout_constraintBottom_toTopOf="@+id/userNameText"
-            app:layout_constraintEnd_toEndOf="@id/viewPagerCard"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/viewPagerCard"
-            app:layout_constraintTop_toTopOf="@+id/guideline"
-            app:layout_constraintVertical_bias="0.48000002"
-            app:layout_constraintVertical_chainStyle="spread" />
-
-        <ImageView
-            android:id="@+id/viewersIcon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginBottom="16dp"
-            android:elevation="21dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/user_icon"
-            app:layout_constraintBottom_toBottomOf="@+id/viewPagerCard"
-            app:layout_constraintStart_toStartOf="@+id/userNameText"
-            app:layout_constraintTop_toBottomOf="@+id/userNameText" />
+            <ImageView
+                android:id="@+id/viewersIcon"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginBottom="16dp"
+                android:elevation="21dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/user_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/userNameText"
+                app:layout_constraintTop_toBottomOf="@+id/userNameText" />
 
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/viewersCount"
-            style="@style/TextAppearance.MaterialComponents.Body2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:elevation="21dp"
-            android:lines="1"
-            android:textColor="?colorSurface"
-            android:text="@{String.valueOf(data.viewer_count), default = `0000`}"
-            app:layout_constraintBottom_toBottomOf="@+id/viewersIcon"
-            app:layout_constraintStart_toEndOf="@+id/viewersIcon"
-            app:layout_constraintEnd_toStartOf="@+id/platformLogo"
-            app:layout_constraintTop_toTopOf="@+id/viewersIcon" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/viewersCount"
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:elevation="22dp"
+                android:lines="1"
+                android:text="@{String.valueOf(data.viewer_count), default = `0000`}"
+                android:textColor="#ffffff"
+                app:layout_constraintBottom_toBottomOf="@+id/viewersIcon"
+                app:layout_constraintEnd_toStartOf="@+id/platformLogo"
+                app:layout_constraintStart_toEndOf="@+id/viewersIcon"
+                app:layout_constraintTop_toTopOf="@+id/viewersIcon" />
 
-        <ImageView
-            android:id="@+id/platformLogo"
-            android:layout_width="50dp"
-            android:layout_height="25dp"
-            android:elevation="21dp"
-            android:src="@drawable/twitch"
-            app:layout_constraintBottom_toBottomOf="@+id/viewersCount"
-            app:layout_constraintEnd_toEndOf="@id/userNameText"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/viewersCount"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/viewersCount" />
+            <ImageView
+                android:id="@+id/platformLogo"
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:elevation="21dp"
+                android:src="@drawable/twitch"
+                app:layout_constraintBottom_toBottomOf="@+id/viewersCount"
+                app:layout_constraintEnd_toEndOf="@id/userNameText"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/viewersCount"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/viewersCount" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/userNameText"
-            style="@style/TextAppearance.MaterialComponents.Body2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:elevation="21dp"
-            android:textColor="?colorSurface"
-            android:text="@{data.user_name, default = `USERNAME`}"
-            app:layout_constraintBottom_toTopOf="@+id/viewersIcon"
-            app:layout_constraintEnd_toEndOf="@+id/streamTitle"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/streamTitle"
-            app:layout_constraintTop_toBottomOf="@+id/streamTitle" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/userNameText"
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:elevation="22dp"
+                android:text="@{data.user_name, default = `USERNAME`}"
+                android:textColor="#ffffff"
+                app:layout_constraintBottom_toTopOf="@+id/viewersIcon"
+                app:layout_constraintEnd_toEndOf="@+id/streamTitle"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/streamTitle"
+                app:layout_constraintTop_toBottomOf="@+id/streamTitle" />
 
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.44" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.44" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView>
+
 </layout>

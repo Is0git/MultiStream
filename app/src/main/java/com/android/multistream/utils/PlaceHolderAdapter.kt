@@ -7,9 +7,11 @@ import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.android.multistream.R
 import com.android.multistream.anim.anim_decorations.alphaAnimate
 import com.android.multistream.anim.list_item_hower_anim.ItemHowerViewHolder
 import com.android.multistream.databinding.ChannelsViewPagerItemBinding
+import com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
 
 class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onShowAnimation: Boolean = false, var cancelAnimator: (K, T) -> Unit) :
     RecyclerView.Adapter<PlaceHolderAdapter.MyViewHolder<K>>() {
@@ -30,8 +32,12 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onSh
 
     override fun onBindViewHolder(holder: MyViewHolder<K>, position: Int) {
         if (data != null) {
+            (holder.dataBinding.root as PlaceHolderMaterialCardView).apply {
+                cancelAnimation()
+                removeView(placeHolderView)
+            }
             cancelAnimator(holder.binding, data?.get(position)!!)
-            holder.dataBinding.root.translationY = 10f
+
             (holder.dataBinding.root as ViewGroup).children.forEach {
                 it.visibility = View.VISIBLE
             }

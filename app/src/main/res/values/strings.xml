@@ -4,6 +4,9 @@
     <string name="browse">Browse</string>
     <string name="Title">Title</string>
     <string name="recommended_channels"><b>RECOMMENDED</b> CHANNELS</string>
+    <string name="top_games"><b>TOP</b> GAMES</string>
     <string name="top_channels"><b>TOP</b> CHANNELS</string>
+    <string name="live_following_streams"><b>LIVE FOLLOWING</b> STREAMS</string>
+    <string name="following_channels"><b>FOLLOWING</b> STREAMS</string>
     <string name="hello">HELLO <font color="#5e4eba">THERE</font></string>
 </resources>

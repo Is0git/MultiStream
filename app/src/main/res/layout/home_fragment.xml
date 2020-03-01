@@ -35,10 +35,10 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/channelsViewPager"
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:layout_marginTop="50dp"
+                android:layout_height="240dp"
+                android:layout_marginTop="20dp"
                 android:elevation="1dp"
-                android:paddingBottom="40dp"
+                android:paddingBottom="20dp"
                 android:background="?attr/colorSurface"
                 app:layout_constraintTop_toBottomOf="@+id/homeText" />
 
@@ -60,7 +60,7 @@
                 tools:layout_editor_absoluteX="32dp" />
 
             <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelText
-                android:id="@+id/twitchRecommendedChannels"
+                android:id="@+id/topGamesText"
                 style="@style/TextAppearance.MaterialComponents.Headline4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,29 +74,29 @@
                 app:layout_constraintTop_toBottomOf="@id/twitchText"
                 android:layout_marginEnd="@dimen/stripeLineMargin"
                 android:paddingEnd="10dp"
-                app:titleText="@string/recommended_channels"
+                app:titleText="@string/top_games"
                 android:elevation="20dp"
                 app:titleTextColor="#ffffff"
                 app:titleTextSize="@dimen/captionStripeTitleSize" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/twitchRecommendedChannelsList"
+                android:id="@+id/twitchTopGamesList"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="230dp"
+                android:background="@color/colorSurface"
                 android:layout_marginTop="@dimen/itemMargin"
-                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/twitchRecommendedChannels"
+                app:layout_constraintTop_toBottomOf="@id/topGamesText"
                 tools:listitem="@layout/list_item_one" />
 
             <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelText
-                android:id="@+id/twitchTopChannelsText"
+                android:id="@+id/twitchFollowingLiveStreamsText"
                 style="@style/TextAppearance.MaterialComponents.Headline4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 android:elevation="20dp"
                 android:paddingStart="10dp"
                 android:shadowColor="@color/headlineShadowColor"
@@ -104,16 +104,16 @@
                 android:shadowDx="2"
                 android:shadowRadius="1"
                 android:layout_marginStart="@dimen/stripeLineMargin"
-                android:rotationY="-5"
+                android:rotationY="-2"
                 app:alignment="right"
-                app:layout_constraintTop_toBottomOf="@id/twitchRecommendedChannelsList"
-                app:titleText="@string/top_channels"
+                app:layout_constraintTop_toBottomOf="@id/twitchTopGamesList"
+                app:titleText="@string/live_following_streams"
                 app:titleTextColor="#ffffff"
                 app:titleTextSize="@dimen/captionStripeTitleSize"
                 tools:layout_editor_absoluteX="32dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/twitchTopChannelsList"
+                android:id="@+id/liveFollowingStreamsList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/itemMargin"
@@ -121,8 +121,39 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/twitchTopChannelsText"
+                app:layout_constraintTop_toBottomOf="@id/twitchFollowingLiveStreamsText"
                 tools:listitem="@layout/list_item_one" />
+
+            <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelText
+                android:id="@+id/followingChannelsText"
+                style="@style/TextAppearance.MaterialComponents.Headline4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:alignment="left"
+                android:rotationY="5"
+                android:shadowColor="@color/headlineShadowColor"
+                android:shadowDy="2"
+                android:shadowDx="2"
+                android:shadowRadius="1"
+                app:layout_constraintTop_toBottomOf="@id/liveFollowingStreamsList"
+                android:layout_marginEnd="@dimen/stripeLineMargin"
+                android:paddingEnd="10dp"
+                app:titleText="@string/following_channels"
+                android:elevation="20dp"
+                app:titleTextColor="#ffffff"
+                app:titleTextSize="@dimen/captionStripeTitleSize" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/followingStreamsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/followingChannelsText"
+                tools:listitem="@layout/list_item_three" />
 
             <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelText
                 android:id="@+id/mixerText"
@@ -136,7 +167,7 @@
                 app:alignment="left"
                 android:paddingEnd="10dp"
                 android:layout_marginEnd="@dimen/stripeLineMargin"
-                app:layout_constraintTop_toBottomOf="@id/twitchTopChannelsList"
+                app:layout_constraintTop_toBottomOf="@id/followingStreamsList"
                 app:titleText="MIXER"
                 app:titleTextColor="@color/colorOnSecondaryVariant"
                 app:titleTextSize="@dimen/mediumStripeTitleSize"
@@ -166,8 +197,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/itemMargin"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/mixerRecommendedChannels"
@@ -190,17 +219,7 @@
                 app:titleTextColor="#ffffff"
                 app:titleTextSize="@dimen/captionStripeTitleSize" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mixerTopChannelsList"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="@dimen/itemMargin"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mixerTopChannelsText"
-                tools:listitem="@layout/list_item_one" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView>
 

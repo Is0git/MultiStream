@@ -7,14 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <VideoView
-            android:id="@+id/bgVideo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelText
             android:id="@+id/startText"
@@ -28,7 +20,7 @@
             android:rotationY="2"
             android:textStyle="bold"
             app:alignment="left"
-            app:layout_constraintBottom_toTopOf="@+id/twitchRecommendedChannels"
+            app:layout_constraintBottom_toTopOf="@+id/topGamesText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +33,7 @@
 
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/twitchRecommendedChannels"
+            android:id="@+id/topGamesText"
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -64,8 +56,8 @@
             android:layout_height="wrap_content"
             android:text="CONTINUE"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/twitchRecommendedChannels"
-            app:layout_constraintTop_toBottomOf="@+id/twitchRecommendedChannels" />
+            app:layout_constraintEnd_toEndOf="@+id/topGamesText"
+            app:layout_constraintTop_toBottomOf="@+id/topGamesText" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/skipButton"

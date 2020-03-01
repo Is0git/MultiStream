@@ -17,7 +17,7 @@ object ImageLoader {
 
     @JvmStatic
     @BindingAdapter("app:loadImage")
-    fun loadImage(imageView: ImageView, url: String?) {
+    fun loadImageTwitch(imageView: ImageView, url: String?) {
         val newUrl = addHeightAndWidth(url)
         Glide.with(imageView.context).load(newUrl).centerCrop().into(imageView)
     }
@@ -39,4 +39,7 @@ object ImageLoader {
         })
     }
 
+    fun loadImage(imageView: ImageView, url: String?) {
+        Glide.with(imageView.context).load(url).centerCrop().into(imageView)
+    }
 }

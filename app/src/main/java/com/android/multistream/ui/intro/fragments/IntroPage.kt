@@ -38,12 +38,6 @@ class IntroPage : DaggerFragment(){
 
         introViewModel = ViewModelProviders.of(this, viewModelFactory).get(IntroViewModel::class.java)
 
-        binding.bgVideo.apply {
-            setVideoURI(Uri.parse("android.resource://com.android.multistream/raw/bgvid"))
-            setOnCompletionListener { it.start() }
-            start()
-        }
-
         binding.apply {
             continueButton.setOnClickListener { nav.navigate(R.id.action_introPage_to_introPageTwo) }
             skipButton.setOnClickListener { nav.navigate(R.id.action_global_main) }

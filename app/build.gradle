@@ -138,6 +138,8 @@ dependencies {
 
     implementation project(":stripesliderview")
 
+    implementation('com.ramotion.cardslider:card-slider:0.3.1')
+
 
 
 }

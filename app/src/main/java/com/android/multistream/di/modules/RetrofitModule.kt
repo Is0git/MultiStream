@@ -42,9 +42,8 @@ object RetrofitModule {
         .authenticator(object : Authenticator {
             override fun authenticate(route: Route?, response: Response): Request? {
                     val authToken = platformManager.getPlatform(TwitchPlatform::class.java).refreshToken() ?: return null
-                    return  response.request.newBuilder().header("Authorization", authToken).build()
+                    return  response.request.newBuilder().header("Authorization", "OAuth $authToken").build()
             }
-
         })
         .connectTimeout(100, TimeUnit.SECONDS)
         .writeTimeout(100, TimeUnit.SECONDS)

@@ -1,17 +1,21 @@
 package com.android.multistream.ui.widgets.place_holder_material_card
 
 import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
+import android.animation.ValueAnimator
 import android.animation.ValueAnimator.INFINITE
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.view.animation.LinearInterpolator
 import com.android.multistream.R
+import com.android.multistream.ui.widgets.place_holder_material_card.place_holder_view.StreamPlaceHolder
 import com.google.android.material.card.MaterialCardView
 
 class PlaceHolderMaterialCardView : MaterialCardView {
     val placeHolderWidth = (250 * resources.displayMetrics.density).toInt()
-    lateinit var placeHolderAnimator: ObjectAnimator
+    lateinit var placeHolderAnimator: ValueAnimator
     lateinit var placeHolderView: View
     var addGradient = false
 
@@ -29,33 +33,28 @@ class PlaceHolderMaterialCardView : MaterialCardView {
             recycle()
         }
 
-        placeHolderView = View(context).apply {
-            this.layoutParams = LayoutParams(placeHolderWidth, MATCH_PARENT)
-            this.background = resources.getDrawable(R.drawable.placeholder_gradient)
-            this.alpha = 0.15f
+        placeHolderView = StreamPlaceHolder(context).also {streamPlaceHolder ->
+            streamPlaceHolder.id = R.id.placeholder
+            streamPlaceHolder.layoutParams = LayoutParams(MATCH_PARENT, MATCH_PARENT)
 
-        }
-        if (addGradient) {
-            val gradientView = View(context).apply {
-                this.layoutParams = LayoutParams(MATCH_PARENT, MATCH_PARENT)
-                this.setBackgroundResource(R.drawable.main_background_gradient)
+            val alphaProperty = PropertyValuesHolder.ofInt("alpha", 220, 50, 220)
+            placeHolderAnimator = ValueAnimator().apply {
+                duration = 2000
+                repeatCount = INFINITE
+                setValues(alphaProperty)
+                addUpdateListener {
+                    streamPlaceHolder.placeHolderAlpha = it.getAnimatedValue("alpha") as Int
+                    streamPlaceHolder.invalidate()
+                }
+                interpolator = LinearInterpolator()
+                start()
             }
 
-            addView(gradientView)
-
         }
 
-//        addView(placeHolderView)
-        placeHolderAnimator = ObjectAnimator.ofFloat(
-            placeHolderView,
-            "translationX",
-            -placeHolderWidth.toFloat(),
-            1500f
-        ).apply {
-            duration = 2000
-            repeatCount = INFINITE
-            start()
-        }
+        addView(placeHolderView)
+
+
     }
 
     fun cancelAnimation() {
