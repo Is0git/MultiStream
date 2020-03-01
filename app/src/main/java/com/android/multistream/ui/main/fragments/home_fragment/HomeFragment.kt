@@ -12,8 +12,11 @@ import com.android.multistream.databinding.ChannelsViewPagerItemBinding
 import com.android.multistream.databinding.HomeFragmentBinding
 import com.android.multistream.databinding.ListItemOneBinding
 import com.android.multistream.databinding.ListItemTwoBinding
-import com.android.multistream.network.twitch.models.Data
-import com.android.multistream.network.twitch.models.channels.DataItem
+import com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data
+import com.android.multistream.network.twitch.models.new_twitch_api.channels.DataItem
+import com.android.multistream.network.twitch.models.v5.featured_streams.FeaturedItem
+import com.android.multistream.network.twitch.models.v5.followed_streams.Followed
+import com.android.multistream.network.twitch.models.v5.followed_streams.StreamsItem
 import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.main.fragments.home_fragment.decorations.HorizontalMarginItemDecoration
 import com.android.multistream.ui.main.fragments.home_fragment.view_model.HomeFragmentViewModel
@@ -23,6 +26,7 @@ import com.android.multistream.ui.widgets.hide_scroll_view.animations.AlphaAnima
 import com.android.multistream.ui.widgets.hide_scroll_view.animations.TranslationXAnimation
 import com.android.multistream.utils.PlaceHolderAdapter
 import com.android.multistream.utils.ViewModelFactory
+import com.android.multistream.utils.data_binding.ImageLoader
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -31,7 +35,7 @@ class HomeFragment : DaggerFragment() {
     @Inject
     lateinit var factory: ViewModelFactory
     lateinit var channelsViewPagerAdapter: PlaceHolderAdapter<DataItem, ChannelsViewPagerItemBinding>
-    lateinit var twitchChannelsAdapter: PlaceHolderAdapter<DataItem, ListItemOneBinding>
+    lateinit var twitchChannelsAdapter: PlaceHolderAdapter<StreamsItem, ListItemTwoBinding>
     lateinit var viewModel: HomeFragmentViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,8 +45,8 @@ class HomeFragment : DaggerFragment() {
         binding = HomeFragmentBinding.inflate(inflater, container, false)
         viewModel = ViewModelProviders.of(this, factory).get(HomeFragmentViewModel::class.java)
         setupViewPager()
-        observe()
         setupLists()
+        observe()
         binding.hideScrollView.translationX
 
 
@@ -102,19 +106,46 @@ class HomeFragment : DaggerFragment() {
 
 
     private fun setupLists() {
-        twitchChannelsAdapter = PlaceHolderAdapter(R.layout.list_item_one, false) {k, t ->  }
-        binding.twitchRecommendedChannelsList.adapter = twitchChannelsAdapter
-        binding.twitchTopChannelsList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_two, false) {k, t ->  }
+        twitchChannelsAdapter = PlaceHolderAdapter(R.layout.list_item_two, false) { k, t ->
+            k.apply {
+                viewersCount.text = t.viewers.toString()
+                ImageLoader.loadImage(streamImage, t.preview?.large)
+                t.channel.also { channel ->
+                    streamTitle.text = channel?.status
+                    ImageLoader.loadImage(streamerBanner, channel?.logo)
+                    streamGame.text = channel?.game
+                    streamerName.text = channel?.name
+                }
+            }
+        }
 
-        binding.mixerRecommendedChannelsList.adapter  = PlaceHolderAdapter<Data, ListItemTwoBinding>(R.layout.list_item_two, false) {k, t ->  }
-        binding.mixerTopChannelsList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(R.layout.list_item_one, false) {k, t ->  }
 
-
+        binding.twitchRecommendedChannelsList.adapter =
+            PlaceHolderAdapter<Data, ListItemOneBinding>(
+                R.layout.list_item_one,
+                false
+            ) { k, t -> }
+        binding.twitchTopChannelsList.adapter = twitchChannelsAdapter
+        binding.mixerRecommendedChannelsList.adapter =
+            PlaceHolderAdapter<Data, ListItemTwoBinding>(
+                R.layout.list_item_two,
+                false
+            ) { k, t -> }
+        binding.mixerTopChannelsList.adapter = PlaceHolderAdapter<Data, ListItemOneBinding>(
+            R.layout.list_item_one,
+            false
+        ) { k, t -> }
     }
 
-    private fun observe() {
-        viewModel.topChannelsLiveData.observe(viewLifecycleOwner, Observer {
-            channelsViewPagerAdapter.data = it
-        })
+    fun observe() {
+        viewModel.apply {
+            topChannelsLiveData.observe(viewLifecycleOwner, Observer {
+                channelsViewPagerAdapter.data = it
+            })
+
+            followedStreamsLiveData.observe(viewLifecycleOwner, Observer {
+                twitchChannelsAdapter.data = it.streams
+            })
+        }
     }
 }

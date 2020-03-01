@@ -31,7 +31,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/viewersCount"
                 style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/right_stripe_gradient"
                 android:layout_marginEnd="8dp"

@@ -1,4 +1,4 @@
-package com.android.multistream.network.twitch.models.v5
+package com.android.multistream.network.twitch.models.v5.top_games
 
 data class Logo(
 	val small: String? = null,

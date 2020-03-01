@@ -1,9 +1,7 @@
-package com.android.multistream.network.twitch.models
+package com.android.multistream.network.twitch.models.new_twitch_api.top_games
 
-import android.net.Uri
 import android.os.Parcelable
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
-import com.android.multistream.network.twitch.models.v5.TopGamesV5
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 

@@ -114,7 +114,7 @@ abstract class Platform<T : Any, S : Any, U : Any>(
             val pair = provideAuthTokenPair(it)
             saveAccessTokenInPreference(provideAuthTokenPair(it), platformManager, this)
             Log.d("TESTPREF", "FIRST: ${pair.first} SECOND: ${pair.second}")
-            return pair.second
+            return pair.first
         }
         return null
     }

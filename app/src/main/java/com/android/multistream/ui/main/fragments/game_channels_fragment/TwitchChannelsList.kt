@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.databinding.ChannelsListBinding
 import com.android.multistream.di.main_activity.main_fragments.game_channels_fragment.GameChannelsFragmentScope
-import com.android.multistream.network.twitch.models.channels.DataItem
+import com.android.multistream.network.twitch.models.new_twitch_api.channels.DataItem
 import javax.inject.Inject
 
 @GameChannelsFragmentScope

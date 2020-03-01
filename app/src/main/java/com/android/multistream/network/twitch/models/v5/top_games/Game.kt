@@ -1,6 +1,7 @@
-package com.android.multistream.network.twitch.models.v5
+package com.android.multistream.network.twitch.models.v5.top_games
 
-import com.squareup.moshi.Json
+import com.android.multistream.network.twitch.models.v5.top_games.Box
+import com.android.multistream.network.twitch.models.v5.top_games.Logo
 
 data class Game(
 	val giantbombId: Int? = null,

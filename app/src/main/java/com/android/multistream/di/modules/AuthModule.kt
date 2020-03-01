@@ -1,6 +1,7 @@
 package com.android.multistream.di.modules
 
 import android.content.SharedPreferences
+import android.view.View
 import com.android.multistream.auth.PlatformManager
 import dagger.Module
 import dagger.Provides

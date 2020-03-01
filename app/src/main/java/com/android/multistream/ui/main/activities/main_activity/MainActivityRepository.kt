@@ -4,7 +4,7 @@ import android.net.Uri
 import com.android.multistream.di.main_activity.scopes.MainActivityScope
 import com.android.multistream.auth.PlatformManager
 import com.android.multistream.auth.Platforms.TwitchPlatform
-import com.android.multistream.network.twitch.models.Token
+import com.android.multistream.network.twitch.models.auth.Token
 import javax.inject.Inject
 
 @MainActivityScope

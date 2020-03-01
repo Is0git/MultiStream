@@ -5,7 +5,7 @@ import android.widget.Toast
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.top_fragment.TopFragmentGamesScope
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
-import com.android.multistream.network.twitch.models.Data
+import com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data
 import com.android.multistream.pagination.PagedOffSetListener
 import com.android.multistream.pagination.PagedOffsetLoader
 import kotlinx.coroutines.*
@@ -76,7 +76,7 @@ class TopFragmentRepository @Inject constructor(
 
         }
 
-        suspend fun getMixerGame(topItem: Data) : Data{
+        suspend fun getMixerGame(topItem: Data) : Data {
            val result = withContext(Dispatchers.IO) { mixerService.getMixerTopGame("name:eq:${topItem.name}", 1)}
             topItem.mixerTopGames = result.body()?.firstOrNull()
             return topItem

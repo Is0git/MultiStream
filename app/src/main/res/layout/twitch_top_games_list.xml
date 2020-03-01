@@ -7,7 +7,7 @@
 
         <variable
             name="topItem"
-            type="com.android.multistream.network.twitch.models.v5.TopItem" />
+            type="com.android.multistream.network.twitch.models.v5.top_games.TopItem" />
 
         <variable
             name="clickListener"

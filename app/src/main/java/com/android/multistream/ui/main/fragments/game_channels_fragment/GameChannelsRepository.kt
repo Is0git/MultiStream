@@ -6,7 +6,7 @@ import com.android.multistream.di.main_activity.main_fragments.game_channels_fra
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.mixer.models.channel.GameChannels
 import com.android.multistream.network.twitch.TwitchService
-import com.android.multistream.network.twitch.models.channels.DataItem
+import com.android.multistream.network.twitch.models.new_twitch_api.channels.DataItem
 import com.android.multistream.pagination.PagedKeyLoader
 import com.android.multistream.pagination.PagedPositionListener
 import com.android.multistream.pagination.PagedPositionLoader

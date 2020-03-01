@@ -1,5 +1,6 @@
-package com.android.multistream.network.twitch.models.v5
+package com.android.multistream.network.twitch.models.v5.top_games
 
+import com.android.multistream.network.twitch.models.v5.top_games.TopItem
 import com.squareup.moshi.Json
 
 data class TopGamesV5(

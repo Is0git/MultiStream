@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.anim.list_item_hower_anim.ItemHowerViewHolder
 import com.android.multistream.databinding.SingleTopGamesListBinding
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.top_fragment.TopFragmentGamesScope
-import com.android.multistream.network.twitch.models.Data
+import com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data
 import com.android.multistream.utils.UNKNOWN
 import javax.inject.Inject
 

@@ -41,8 +41,8 @@ object RetrofitModule {
         .addInterceptor(interceptor)
         .authenticator(object : Authenticator {
             override fun authenticate(route: Route?, response: Response): Request? {
-               val refreshToken = platformManager.getPlatform(TwitchPlatform::class.java).refreshToken()
-              return  response.request.newBuilder().header("Authorization", refreshToken ?: "null").build()
+                    val authToken = platformManager.getPlatform(TwitchPlatform::class.java).refreshToken() ?: return null
+                    return  response.request.newBuilder().header("Authorization", authToken).build()
             }
 
         })

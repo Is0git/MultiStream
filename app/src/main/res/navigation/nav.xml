@@ -55,7 +55,7 @@
                 <argument
                     android:name="data"
                     android:defaultValue="@null"
-                    app:argType="com.android.multistream.network.twitch.models.Data"
+                    app:argType="com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data"
                     app:nullable="true" />
 
             </action>

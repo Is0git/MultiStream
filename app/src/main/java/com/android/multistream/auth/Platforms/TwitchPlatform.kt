@@ -5,8 +5,8 @@ import com.android.multistream.auth.Platform
 import com.android.multistream.auth.PlatformManager
 import com.android.multistream.di.qualifiers.TwitchQualifier
 import com.android.multistream.network.twitch.TwitchAuthService
-import com.android.multistream.network.twitch.models.Token
-import com.android.multistream.network.twitch.models.Validation
+import com.android.multistream.network.twitch.models.auth.Token
+import com.android.multistream.network.twitch.models.auth.Validation
 import kotlinx.coroutines.CancellationException
 import retrofit2.Response
 import retrofit2.Retrofit

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="dataItem"
-            type="com.android.multistream.network.twitch.models.channels.DataItem" />
+            type="com.android.multistream.network.twitch.models.new_twitch_api.channels.DataItem" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -2,7 +2,7 @@ package com.android.multistream.network.mixer
 
 import com.android.multistream.network.mixer.models.channel.GameChannels
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
-import com.android.multistream.network.twitch.models.Data
+import com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

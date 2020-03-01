@@ -11,7 +11,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.R
 import com.android.multistream.databinding.GamesTopFragmentPageBinding
-import com.android.multistream.network.twitch.models.Data
+import com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data
 import com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragmentDirections
 import com.android.multistream.utils.ViewModelFactory
 import com.android.multistream.pagination.PageLoadingStates

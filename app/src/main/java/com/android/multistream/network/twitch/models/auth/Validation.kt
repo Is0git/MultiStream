@@ -1,4 +1,4 @@
-package com.android.multistream.network.twitch.models
+package com.android.multistream.network.twitch.models.auth
 
 
 import com.squareup.moshi.Json

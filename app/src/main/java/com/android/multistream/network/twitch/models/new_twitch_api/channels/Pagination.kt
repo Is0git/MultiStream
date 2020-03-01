@@ -1,4 +1,4 @@
-package com.android.multistream.network.twitch.models.channels
+package com.android.multistream.network.twitch.models.new_twitch_api.channels
 
 
 import com.squareup.moshi.Json

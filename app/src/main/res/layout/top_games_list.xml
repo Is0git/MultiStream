@@ -2,13 +2,14 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
+
         <variable
             name="Data"
-            type="com.android.multistream.network.twitch.models.Data" />
+            type="com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data" />
 
         <variable
             name="listener"
-            type="com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.top_fragment.CategoryNavigationListener&lt;com.android.multistream.network.twitch.models.Data&gt;" />
+            type="com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.top_fragment.CategoryNavigationListener&lt;com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,7 +1,7 @@
 package com.android.multistream.network.twitch
 
-import com.android.multistream.network.twitch.models.Token
-import com.android.multistream.network.twitch.models.Validation
+import com.android.multistream.network.twitch.models.auth.Token
+import com.android.multistream.network.twitch.models.auth.Validation
 import com.android.multistream.network.twitch.constants.CLIENT_ID
 import com.android.multistream.network.twitch.constants.CLIENT_SECRET
 import com.android.multistream.network.twitch.constants.REDIRECT_URI
