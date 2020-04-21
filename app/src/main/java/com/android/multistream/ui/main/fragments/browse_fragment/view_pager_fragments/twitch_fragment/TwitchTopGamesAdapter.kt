@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.R
-import com.android.multistream.anim.list_item_hower_anim.ItemHowerViewHolder
+import com.android.multistream.anim.list_item_hower_anim.ItemHoverViewHolder
 import com.android.multistream.databinding.SingleTopGamesListBinding
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.twitch_fragment.TwitchFragmentGamesScope
 import com.android.multistream.network.twitch.models.v5.top_games.TopItem
@@ -55,7 +55,7 @@ class TwitchTopGamesAdapter @Inject constructor() :
     }
 
     class MyViewHolder(val listBinding: SingleTopGamesListBinding, spanCount: Int = 0) :
-        ItemHowerViewHolder<SingleTopGamesListBinding>(listBinding, spanCount) {
+        ItemHoverViewHolder<SingleTopGamesListBinding>(listBinding, spanCount) {
 
         override fun navigate(binding: SingleTopGamesListBinding) {
             binding.onGameCategoryListener?.onGameClick(0, 0, null, "sds", "sdsd", "29595")

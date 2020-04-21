@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.net.toUri
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.android.multistream.R
 import com.android.multistream.auth.Platform
 import com.android.multistream.databinding.IntroPageTwoBinding
 import com.android.multistream.network.twitch.constants.twitchAuthPage
+import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.main.activities.main_activity.MainActivityViewModel
 import com.android.stripesliderview.slider.SlideLayout
 import com.android.stripesliderview.viewpager.PageData
@@ -30,7 +33,7 @@ class IntroPageTwo : DaggerFragment(){
         savedInstanceState: Bundle?
     ): View? {
 
-        mainActivityViewModel = ViewModelProviders.of(activity!!).get(MainActivityViewModel::class.java)
+        mainActivityViewModel = ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
 
 
 
@@ -40,32 +43,28 @@ class IntroPageTwo : DaggerFragment(){
         val listPage = listOf(
             PageData(
                 "SIGN",
-                R.string.hello,
+                "HELLO",
                 R.drawable.ic_twitch_logo,
                 R.drawable.ic_circle,
                 R.drawable.ic_lines,
                 1f,
                 0.70f,
-                0.50f
-            ){
-                startActivity(twitchIntent)
-            },
+                0.50f),
             PageData(
                 "SIGN IN",
-                R.string.hello,
+                "Hello",
                 R.drawable.mixer_logo,
                 R.drawable.ic_circle,
                 R.drawable.ic_lines,
                 1f,
                 0.30f,
                 0.85f
-            ) {
-
-            }
+            )
         )
 
         (binding.root as SlideLayout).apply {
             viewPagerAdapter.addPages(listPage)
+            onSkipButtonClick { findNavController().navigate(R.id.action_global_main) }
 
         }
 

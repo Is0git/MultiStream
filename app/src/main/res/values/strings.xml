@@ -9,4 +9,5 @@
     <string name="live_following_streams"><b>LIVE FOLLOWING</b> STREAMS</string>
     <string name="following_channels"><b>FOLLOWING</b> STREAMS</string>
     <string name="hello">HELLO <font color="#5e4eba">THERE</font></string>
+    <string name="twitch">TWITCH</string>
 </resources>

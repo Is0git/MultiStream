@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
@@ -31,6 +32,11 @@ android {
         enabled = true
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -49,7 +55,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
 
     //Testing frameworks
@@ -63,10 +69,10 @@ dependencies {
     testImplementation "org.hamcrest:hamcrest-all:1.3"
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
-    androidTestImplementation "android.arch.core:core-testing:$lifecycle_version"
+    androidTestImplementation 'androidx.arch.core:core-testing:2.0.0'
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$androidx_test_espresso"
-    debugImplementation 'androidx.fragment:fragment-testing:1.2.0-rc04'
-    implementation 'androidx.work:work-testing:2.3.0-beta02'
+    debugImplementation 'androidx.fragment:fragment-testing:1.3.0-alpha03'
+    implementation 'androidx.work:work-testing:2.4.0-alpha02'
 
     implementation "androidx.recyclerview:recyclerview:$recyclerView_version"
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0' no leaks
@@ -94,7 +100,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
     //noinspection LifecycleAnnotationProcessorWithJava8
-    kapt "android.arch.lifecycle:compiler:2.1.0"
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
 
 
     //Work Manager
@@ -115,9 +121,6 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:4.2.1"
     implementation "com.squareup.okhttp3:logging-interceptor:4.2.1"
 
-    //round images
-    implementation 'de.hdodenhof:circleimageview:3.0.1'
-
     implementation 'com.robinhood.spark:spark:1.2.0'
 
     //Glide
@@ -130,16 +133,19 @@ dependencies {
     //encrypted shared preferences
     implementation "androidx.security:security-crypto:1.0.0-alpha02"
 
-    implementation 'com.android.support:support-dynamic-animation:28.0.0'
+    implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
 
-    implementation 'de.hdodenhof:circleimageview:3.0.1'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.3.61"
 
 
-    implementation project(":stripesliderview")
-
     implementation('com.ramotion.cardslider:card-slider:0.3.1')
 
+    implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
 
+    implementation 'com.github.Is0git:MultiStreamPlayer:0.1.7'
 
+    implementation 'com.github.Is0git:MultiStream-Splash-Screen:0.1.5'
+
+    implementation 'com.github.Is0git:Multi-Stream-Step-Slider:0.1.4'
 }

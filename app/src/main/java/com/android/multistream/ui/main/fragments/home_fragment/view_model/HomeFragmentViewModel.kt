@@ -11,8 +11,8 @@ class HomeFragmentViewModel @Inject constructor(val repo: HomeFragmentRepository
 
     init {
         getChannels()
-        getFollowedLiveStreams("live")
-        getFollowedStreams("all")
+//        getFollowedLiveStreams("live")
+//        getFollowedStreams("all")
         getTopGames(10)
     }
     val topChannelsLiveData = repo.topChannelsLiveData

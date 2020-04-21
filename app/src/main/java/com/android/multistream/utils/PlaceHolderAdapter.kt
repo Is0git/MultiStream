@@ -7,10 +7,8 @@ import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.android.multistream.R
-import com.android.multistream.anim.anim_decorations.alphaAnimate
-import com.android.multistream.anim.list_item_hower_anim.ItemHowerViewHolder
-import com.android.multistream.databinding.ChannelsViewPagerItemBinding
+import com.android.multistream.anim.list_item_hower_anim.ItemHoverViewHolder
+import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
 
 class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onShowAnimation: Boolean = false, var cancelAnimator: (K, T) -> Unit) :
@@ -46,7 +44,7 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onSh
 
 
     class MyViewHolder<K : ViewDataBinding>(val dataBinding: K, onShowPressAnimation: Boolean) :
-        ItemHowerViewHolder<K>(dataBinding, onShowPress = onShowPressAnimation) {
+        ItemHoverViewHolder<K>(dataBinding, onShowPress = onShowPressAnimation) {
         init {
 //            (dataBinding.root as ViewGroup).children.forEach {
 //                it.visibility = View.INVISIBLE
@@ -57,7 +55,7 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onSh
         }
 
         override fun navigate(binding: K) {
-
+            (itemView.context as MainActivity).createPlayerFragment()
         }
 
     }

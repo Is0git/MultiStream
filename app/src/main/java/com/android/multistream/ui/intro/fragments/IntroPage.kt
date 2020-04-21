@@ -39,7 +39,7 @@ class IntroPage : DaggerFragment(){
         introViewModel = ViewModelProviders.of(this, viewModelFactory).get(IntroViewModel::class.java)
 
         binding.apply {
-            continueButton.setOnClickListener { nav.navigate(R.id.action_introPage_to_introPageTwo) }
+            continueButton.setOnClickListener { nav.navigate(R.id.action_splashScreenFragment_to_intro) }
             skipButton.setOnClickListener { nav.navigate(R.id.action_global_main) }
         }
         return binding.root

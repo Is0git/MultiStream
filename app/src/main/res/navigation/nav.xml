@@ -2,8 +2,17 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav"
-    app:startDestination="@id/intro">
+    app:startDestination="@id/splashScreenFragment">
 
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.android.multistream.ui.splash_screen.SplashScreenFragment"
+        android:label="SplashScreenFragment">
+
+        <action
+            android:id="@+id/action_splashScreenFragment_to_intro"
+            app:destination="@id/intro" />
+    </fragment>
     <navigation
         android:id="@+id/main"
         app:startDestination="@id/homeFragment" >
@@ -96,15 +105,7 @@
     </navigation>
     <navigation
         android:id="@+id/intro"
-        app:startDestination="@id/introPage" >
-        <fragment
-            android:id="@+id/introPage"
-            android:name="com.android.multistream.ui.intro.fragments.IntroPage"
-            android:label="IntroPage">
-            <action
-                android:id="@+id/action_introPage_to_introPageTwo"
-                app:destination="@id/introPageTwo" />
-        </fragment>
+        app:startDestination="@id/introPageTwo">
         <fragment
             android:id="@+id/introPageTwo"
             android:name="com.android.multistream.ui.intro.fragments.IntroPageTwo"

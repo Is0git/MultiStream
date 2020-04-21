@@ -17,6 +17,7 @@ import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.lang.Exception
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -41,8 +42,12 @@ object RetrofitModule {
         .addInterceptor(interceptor)
         .authenticator(object : Authenticator {
             override fun authenticate(route: Route?, response: Response): Request? {
-                    val authToken = platformManager.getPlatform(TwitchPlatform::class.java).refreshToken() ?: return null
-                    return  response.request.newBuilder().header("Authorization", "OAuth $authToken").build()
+                return try {
+                    val authToken = platformManager.getPlatform(TwitchPlatform::class.java).refreshToken()
+                     response.request.newBuilder().header("Authorization", "OAuth $authToken").build()
+                } catch (ex: Exception) {
+                    null
+                }
             }
         })
         .connectTimeout(100, TimeUnit.SECONDS)

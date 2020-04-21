@@ -62,12 +62,6 @@ class HomeFragment : DaggerFragment() {
             val alphaAnimation = AlphaAnimation(this, animationHandler.topDivider, animationHandler.bottomDivider)
 
             addHiddenView(binding.homeText, RIGHT, alphaAnimation)
-            addHiddenView(binding.twitchText, RIGHT, translationXAnimation)
-            addHiddenView(binding.topGamesText, LEFT, translationXAnimation)
-            addHiddenView(binding.twitchFollowingLiveStreamsText, RIGHT, translationXAnimation)
-            addHiddenView(binding.mixerText, LEFT, translationXAnimation)
-            addHiddenView(binding.mixerRecommendedChannels, LEFT, translationXAnimation)
-            addHiddenView(binding.mixerTopChannelsText, RIGHT, translationXAnimation)
         }
 
         (activity as MainActivity).showActionBar()
@@ -160,9 +154,9 @@ class HomeFragment : DaggerFragment() {
 
             }
 
-            followedStreamsLiveData.observe(viewLifecycleOwner) {
-                followingAdapter.data = it.streams
-            }
+//            followedStreamsLiveData.observe(viewLifecycleOwner) {
+//                followingAdapter.data = it.streams
+//            }
 
             topGamesLiveData.observe(viewLifecycleOwner) {
                 topGamesAdapter.data = it

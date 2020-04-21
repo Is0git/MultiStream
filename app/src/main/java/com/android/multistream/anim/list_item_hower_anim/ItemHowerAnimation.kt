@@ -9,9 +9,10 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.recyclerview.widget.RecyclerView
+import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import kotlinx.coroutines.CancellationException
 
-abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val spanCout: Int = 0, val onShowPress: Boolean = true) :
+abstract class ItemHoverViewHolder<T : ViewDataBinding>(val binding: T, val spanCout: Int = 0, val onShowPress: Boolean = true) :
     GestureDetector.OnGestureListener,
     View.OnTouchListener, RecyclerView.ViewHolder(binding.root) {
     lateinit var scaleYAnimation: ObjectAnimator
@@ -29,6 +30,7 @@ abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val span
             gestureListener = GestureDetector(binding.root.context, this)
             binding.root.setOnTouchListener(this)
         }
+        itemView.setOnClickListener {     (itemView.context as MainActivity).createPlayerFragment() }
 
     }
 
@@ -56,7 +58,7 @@ abstract class ItemHowerViewHolder<T : ViewDataBinding>(val binding: T, val span
     }
 
     override fun onSingleTapUp(e: MotionEvent?): Boolean {
-        navigate(binding)
+
         return true
     }
 

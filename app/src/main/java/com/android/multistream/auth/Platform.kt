@@ -108,7 +108,7 @@ abstract class Platform<T : Any, S : Any, U : Any>(
     }
 
     fun refreshToken(): String? {
-        val refreshToken = platformManager.getRefreshToken(this::class.java) ?: return "null"
+        val refreshToken = platformManager.getRefreshToken(this::class.java) ?: throw NoSuchElementException("no refresh token")
 
         val token = getNewToken(service, refreshToken)?.let {
             val pair = provideAuthTokenPair(it)
