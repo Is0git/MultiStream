@@ -116,4 +116,8 @@
             app:popUpTo="@+id/intro"
             app:popUpToInclusive="true" />
     </navigation>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.android.multistream.ui.auth.LoginFragment"
+        android:label="LoginFragment" />
 </navigation>

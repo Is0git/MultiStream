@@ -34,7 +34,7 @@ class TwitchPlatform @Inject constructor(
         service: TwitchAuthService,
         accessToken: String
     ): Response<Validation> {
-        return service.checkValidation(accessToken)
+        return service.checkValidation("OAuth $accessToken")
     }
 
     override fun provideAuthTokenPair(response: Response<Token>): Pair<String?, String?> {

@@ -1,5 +1,6 @@
 package com.android.multistream.ui.main.activities.main_activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.transition.TransitionManager
@@ -53,15 +54,7 @@ class MainActivity : DaggerAppCompatActivity() {
 //        binding.token.setOnClickListener { binding.textID.text = mainActivityViewModel.getToken(TWITCH_TOKEN) }
     }
 
-    override fun onResume() {
-        super.onResume()
-        intent?.data?.let {
-            navController.navigate(R.id.introPageTwo)
-        }
-//        authorizeTwitch()
-//        platformManager.getPlatform(TwitchPlatform::class.java).validateAccessToken()
 
-    }
 
     fun hideActionBar() {
         binding.apply {
@@ -82,7 +75,9 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     fun createPlayerFragment() {
-        supportFragmentManager.beginTransaction().replace(R.id.player_fragment_container, PlayerFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.player_fragment_container, PlayerFragment().apply {
+        }).commit()
     }
+
 
 }

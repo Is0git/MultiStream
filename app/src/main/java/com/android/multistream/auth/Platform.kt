@@ -91,8 +91,8 @@ abstract class Platform<T : Any, S : Any, U : Any>(
     /**
      * Validates access token
      */
-    fun validateAccessToken() {
-        validationJob = CoroutineScope(Dispatchers.IO).launch {
+    suspend fun validateAccessToken() {
+       coroutineScope {
             val accessToken = platformManager.getAccessToken(this@Platform::class.java)
                 ?: throw CancellationException("You need to get access token before validation")
             val validationResponse = getTokenValidationResponse(service, accessToken)
