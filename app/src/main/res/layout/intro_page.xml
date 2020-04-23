@@ -20,7 +20,7 @@
             android:rotationY="2"
             android:textStyle="bold"
             app:alignment="left"
-            app:layout_constraintBottom_toTopOf="@+id/topGamesText"
+            app:layout_constraintBottom_toTopOf="@+id/twitchTopGamesText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
 
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/topGamesText"
+            android:id="@+id/twitchTopGamesText"
             style="@style/TextAppearance.MaterialComponents.Body2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -56,8 +56,8 @@
             android:layout_height="wrap_content"
             android:text="CONTINUE"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/topGamesText"
-            app:layout_constraintTop_toBottomOf="@+id/topGamesText" />
+            app:layout_constraintEnd_toEndOf="@+id/twitchTopGamesText"
+            app:layout_constraintTop_toBottomOf="@+id/twitchTopGamesText" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/skipButton"

@@ -26,5 +26,9 @@
 
     <declare-styleable name="PlaceHolderMaterialCardView">
         <attr name="addGradient" format="boolean"/>
+        <attr name="placeHolderType" format="enum">
+            <enum name="stream_place_holder" value="0"/>
+            <enum name="empty_place_holder" value="1"/>
+        </attr>
     </declare-styleable>
 </resources>

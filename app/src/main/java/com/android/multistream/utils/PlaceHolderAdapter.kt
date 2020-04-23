@@ -11,7 +11,7 @@ import com.android.multistream.anim.list_item_hower_anim.ItemHoverViewHolder
 import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
 
-class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onShowAnimation: Boolean = false, var cancelAnimator: (K, T) -> Unit) :
+class PlaceHolderAdapter<T, K : ViewDataBinding>(private val itemLayoutId: Int, var onShowAnimation: Boolean = false, var cancelAnimator: (K, T) -> Unit) :
     RecyclerView.Adapter<PlaceHolderAdapter.MyViewHolder<K>>() {
 
     var data: MutableList<T>? = null
@@ -42,14 +42,9 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onSh
         }
     }
 
-
     class MyViewHolder<K : ViewDataBinding>(val dataBinding: K, onShowPressAnimation: Boolean) :
         ItemHoverViewHolder<K>(dataBinding, onShowPress = onShowPressAnimation) {
-        init {
-//            (dataBinding.root as ViewGroup).children.forEach {
-//                it.visibility = View.INVISIBLE
-//            }
-        }
+
         override fun backgroundAnimation() {
 
         }
@@ -57,7 +52,5 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(val itemLayoutId: Int, var onSh
         override fun navigate(binding: K) {
             (itemView.context as MainActivity).createPlayerFragment()
         }
-
     }
-
 }

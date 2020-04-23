@@ -11,6 +11,7 @@ import com.android.multistream.di.main_activity.main_fragments.game_channels_fra
 import com.android.multistream.di.main_activity.main_fragments.game_channels_fragment.GameChannelsViewModelModule
 import com.android.multistream.di.main_activity.main_fragments.home_fragment.HomeFragmentScope
 import com.android.multistream.di.main_activity.main_fragments.home_fragment.HomeFragmentViewModelModule
+import com.android.multistream.di.modules.SettingsModule
 import com.android.multistream.ui.intro.fragments.IntroPage
 import com.android.multistream.ui.intro.fragments.IntroPageTwo
 import com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragment
@@ -23,7 +24,7 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class FragmentBuilder {
 
-    @ContributesAndroidInjector(modules = [HomeFragmentViewModelModule::class])
+    @ContributesAndroidInjector(modules = [HomeFragmentViewModelModule::class, SettingsModule::class])
     @HomeFragmentScope
     abstract fun homeFragment() : HomeFragment
 

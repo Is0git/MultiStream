@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="twitch_visibility">TWITCH_VISIBILITY</string>
+    <string name="mixer_visibility">MIXER_VISIBILITY</string>
+    <string name="twitch_sync">TWITCH_SYNC</string>
+    <string name="mixer_sync">MIXER_SYNC</string>
+</resources>

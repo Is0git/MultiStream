@@ -10,7 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
+import androidx.preference.PreferenceScreen
 import com.android.multistream.R
+import com.android.multistream.auth.Platforms.TwitchPlatform
 import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.main.activities.main_activity.MainActivityViewModel
 import kotlinx.coroutines.Dispatchers
@@ -37,7 +40,10 @@ class SplashScreenFragment : Fragment(R.layout.splash_screen_layout) {
 
         lifecycleScope.launch {
             mainActivityViewModel.validateAccessTokens()
-            withContext(Dispatchers.Main) {navController.navigate(R.id.action_splashScreenFragment_to_intro)}
+            if(mainActivityViewModel.isValidated(TwitchPlatform::class.java)) {
+                withContext(Dispatchers.Main) {navController.navigate(R.id.action_splashScreenFragment_to_main)}
+            } else   withContext(Dispatchers.Main) {navController.navigate(R.id.action_splashScreenFragment_to_intro)}
+
         }
     }
 }

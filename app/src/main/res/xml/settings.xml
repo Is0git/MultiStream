@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:allowDividerAbove="true"
+    app:allowDividerBelow="true">
+
+    <PreferenceCategory
+        app:key="sync"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/synchronization">
+        <SwitchPreference
+            app:key="twitch_sync"
+            android:persistent="true"
+            android:summary="if on, synchronizes uses your twitch account data"
+            app:allowDividerBelow="true"
+            app:icon="@drawable/twitch_small_logo"
+            app:title="@string/twitch" />
+        <SwitchPreference
+            app:key="mixer_sync"
+            android:persistent="true"
+            android:summary="if on, synchronizes uses your mixer account data"
+            app:allowDividerAbove="true"
+            app:allowDividerBelow="true"
+            app:icon="@drawable/mixer_small_logo"
+            app:title="@string/mixer" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="TWITCH SETTINGS">
+        <CheckBoxPreference
+            app:key="twitch_visibility"
+            android:summary="@string/show_twitch_content"
+            app:allowDividerBelow="true"
+            app:title="@string/visibility" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="MIXER SETTINGS">
+        <CheckBoxPreference
+            app:key="mixer_visibility"
+            android:summary="@string/show_mixer_content"
+            app:allowDividerBelow="true"
+            app:title="@string/visibility" />
+    </PreferenceCategory>
+</PreferenceScreen>

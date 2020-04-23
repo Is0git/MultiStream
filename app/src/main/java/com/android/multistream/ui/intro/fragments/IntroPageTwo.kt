@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,7 @@ import dagger.android.support.DaggerFragment
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class IntroPageTwo : DaggerFragment(), OnProgressButtonListener{
+class IntroPageTwo : DaggerFragment(){
     lateinit var binding: IntroPageTwoBinding
 
     lateinit var mainActivityViewModel: MainActivityViewModel
@@ -44,31 +45,38 @@ class IntroPageTwo : DaggerFragment(), OnProgressButtonListener{
 
         mainActivityViewModel = ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
 
-        val listPage = listOf(
-            PageData(
-                "SIGN",
-                "SYNC TWITCH",
-                R.drawable.ic_twitch_logo,
-                R.drawable.ic_circle,
-                R.drawable.ic_lines,
-                1f,
-                0.70f,
-                0.50f) {findNavController().navigate(R.id.loginFragment)},
-            PageData(
-                "SIGN IN",
-                "SYNC MIXER",
-                R.drawable.mixer_logo,
-                R.drawable.ic_circle,
-                R.drawable.ic_lines,
-                1f,
-                0.30f,
-                0.85f
-            ) {findNavController().navigate(R.id.loginFragment)}
-        )
+
+        val pageOne = PageData.Builder()
+            .setPageButtonText("SIGN IN")
+            .setTitleText("TWITCH")
+            .setLogoDrawableId(R.drawable.ic_twitch_logo)
+            .setCircleDrawableId(R.drawable.ic_circle)
+            .setUnderCircleDrawableId(R.drawable.ic_lines)
+            .setLogoWidthRatio(1f)
+            .setHeightRatio(0.70f)
+            .setLogoOffSetRatio(0.50f)
+            .setState(PageData.ProgressButtonState.IDLE)
+            .setOnSyncButtonClickListener { findNavController().navigate(R.id.loginFragment) }
+            .build()
+
+        val pageTwo = PageData.Builder()
+            .setPageButtonText("SIGN IN")
+            .setTitleText("MIXER")
+            .setLogoDrawableId(R.drawable.mixer_logo)
+            .setCircleDrawableId(R.drawable.ic_circle)
+            .setUnderCircleDrawableId(R.drawable.ic_lines)
+            .setLogoWidthRatio(1f)
+            .setHeightRatio(0.30f)
+            .setLogoOffSetRatio(0.85f)
+            .setState(PageData.ProgressButtonState.STARTED)
+            .setOnSyncButtonClickListener { Log.d("AUTH", "MIXER CLICK") }
+            .build()
+
+        val pageList = listOf(pageOne, pageTwo)
+
 
         (binding.root as SlideLayout).apply {
-            setOnProgressButtonListener(this@IntroPageTwo)
-            viewPagerAdapter.addPages(listPage)
+            viewPagerAdapter.addPages(pageList)
             onSkipButtonClick { findNavController().navigate(R.id.action_global_main) }
         }
 
@@ -87,10 +95,4 @@ class IntroPageTwo : DaggerFragment(), OnProgressButtonListener{
         return binding.root
     }
 
-    override fun onClick(view: br.com.simplepass.loadingbutton.customViews.CircularProgressButton) {
-        lifecycleScope.launch {
-            delay(1500)
-            (binding.root as SlideLayout).getCurrentPageData().onSyncClick()
-        }
-    }
 }

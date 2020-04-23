@@ -34,27 +34,26 @@ class MainActivity : DaggerAppCompatActivity() {
             .inflateTransition(R.transition.games_list_expand_transition)
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        mainActivityViewModel = ViewModelProvider(this, viewModelFactory).get(
-            MainActivityViewModel::class.java
-        )
-        binding.settingsIcon.setOnClickListener {
-            TransitionManager.beginDelayedTransition(binding.root as ViewGroup, transition)
-
-        }
-
-        hideActionBar()
+        mainActivityViewModel = ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
 
         navController = findNavController(R.id.main_fragment_container)
+
         binding.bottomNav.setupWithNavController(navController)
-//        binding.token.setOnClickListener { binding.textID.text = mainActivityViewModel.getToken(TWITCH_TOKEN) }
+
+        setListeners()
+
+        hideActionBar()
     }
 
 
+
+    fun setListeners() {
+        binding.settingsIcon.setOnClickListener { navController.navigate(R.id.action_global_settingsFragment) }
+    }
 
     fun hideActionBar() {
         binding.apply {
@@ -78,6 +77,4 @@ class MainActivity : DaggerAppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.player_fragment_container, PlayerFragment().apply {
         }).commit()
     }
-
-
 }

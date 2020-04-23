@@ -49,20 +49,32 @@
                 android:background="?attr/colorSurface"
                 app:layout_constraintTop_toBottomOf="@+id/homeText" />
 
+            <ImageView
+                android:id="@+id/twitchLogo"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/twitch_small_logo"
+                android:backgroundTint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/twitchTopGamesText"
+                app:layout_constraintStart_toStartOf="@id/headlineGuideline"
+                app:layout_constraintTop_toTopOf="@+id/twitchText" />
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/twitchText"
                 style="@style/TextAppearance.MaterialComponents.Headline5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:fontFamily="@font/header_font"
                 android:text="@string/twitch"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/headlineGuideline"
+                app:layout_constraintStart_toEndOf="@id/twitchLogo"
                 app:layout_constraintTop_toBottomOf="@id/channelsViewPager"
                 app:titleTextSize="@dimen/mediumStripeTitleSize" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/topGamesText"
+                android:id="@+id/twitchTopGamesText"
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -79,7 +91,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/topGamesText"
+                app:layout_constraintTop_toBottomOf="@id/twitchTopGamesText"
                 tools:listitem="@layout/list_item_one" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -88,8 +100,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/itemMargin"
-                android:text="@string/top_games"
-                app:layout_constraintStart_toStartOf="@id/topGamesText"
+                android:text="@string/followed_live_streams"
+                app:layout_constraintStart_toStartOf="@id/headlineGuideline"
                 app:layout_constraintTop_toBottomOf="@id/twitchTopGamesList" />
 
 
@@ -106,13 +118,13 @@
                 tools:listitem="@layout/list_item_one" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/followingChannelsText"
+                android:id="@+id/twitchFollowingChannelsText"
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/itemMargin"
-                android:text="@string/top_games"
-                app:layout_constraintStart_toStartOf="@id/twitchText"
+                android:text="@string/streamers_you_follow"
+                app:layout_constraintStart_toStartOf="@id/headlineGuideline"
                 app:layout_constraintTop_toBottomOf="@id/liveFollowingStreamsList" />
 
 
@@ -124,7 +136,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/followingChannelsText"
+                app:layout_constraintTop_toBottomOf="@id/twitchFollowingChannelsText"
                 tools:listitem="@layout/list_item_three" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -136,7 +148,7 @@
                 android:fontFamily="@font/header_font"
                 android:text="@string/twitch"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/twitchText"
+                app:layout_constraintStart_toStartOf="@id/headlineGuideline"
                 app:layout_constraintTop_toBottomOf="@id/followingStreamsList" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -146,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/itemMargin"
                 android:text="@string/top_games"
-                app:layout_constraintStart_toStartOf="@id/twitchText"
+                app:layout_constraintStart_toStartOf="@id/headlineGuideline"
                 app:layout_constraintTop_toBottomOf="@id/mixerText" />
 
 
@@ -167,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/itemMargin"
                 android:text="@string/top_games"
-                app:layout_constraintStart_toStartOf="@id/twitchText"
+                app:layout_constraintStart_toStartOf="@id/headlineGuideline"
                 app:layout_constraintTop_toBottomOf="@id/mixerRecommendedChannelsList" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

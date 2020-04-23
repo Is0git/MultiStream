@@ -10,4 +10,11 @@
     <string name="following_channels"><b>FOLLOWING</b> STREAMS</string>
     <string name="hello">HELLO <font color="#5e4eba">THERE</font></string>
     <string name="twitch">TWITCH</string>
+    <string name="followed_live_streams"><b>FOLLOWED</b> LIVE STREAMS</string>
+    <string name="streamers_you_follow"><b>STREAMERS</b> YOU FOLLOW</string>
+    <string name="synchronization">SYNCHRONIZATION</string>
+    <string name="mixer">MIXER</string>
+    <string name="visibility">VISIBILITY</string>
+    <string name="show_mixer_content">show mixer content</string>
+    <string name="show_twitch_content">show twitch content</string>
 </resources>
