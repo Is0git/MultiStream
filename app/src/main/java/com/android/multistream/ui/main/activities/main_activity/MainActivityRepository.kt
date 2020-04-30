@@ -7,6 +7,7 @@ import com.android.multistream.di.main_activity.scopes.MainActivityScope
 import com.android.multistream.auth.PlatformManager
 import com.android.multistream.auth.Platforms.TwitchPlatform
 import com.android.multistream.network.twitch.models.auth.Token
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.supervisorScope
 import java.lang.Exception
 import javax.inject.Inject
@@ -30,6 +31,7 @@ class MainActivityRepository @Inject constructor(val platformManager: PlatformMa
     }
 
   suspend  fun validateAccessTokens() {
+      delay(2500)
         platformManager.platforms.forEach { supervisorScope {
             try {
                 it.value.validateAccessToken()

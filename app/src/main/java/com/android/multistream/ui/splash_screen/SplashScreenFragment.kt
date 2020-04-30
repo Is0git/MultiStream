@@ -42,7 +42,7 @@ class SplashScreenFragment : Fragment(R.layout.splash_screen_layout) {
             mainActivityViewModel.validateAccessTokens()
             if(mainActivityViewModel.isValidated(TwitchPlatform::class.java)) {
                 withContext(Dispatchers.Main) {navController.navigate(R.id.action_splashScreenFragment_to_main)}
-            } else   withContext(Dispatchers.Main) {navController.navigate(R.id.action_splashScreenFragment_to_intro)}
+            } else  withContext(Dispatchers.Main) {navController.navigate(R.id.action_splashScreenFragment_to_intro)}
 
         }
     }

@@ -16,12 +16,12 @@ import javax.inject.Inject
 class HomeFragmentRepository @Inject constructor(@TwitchQualifier val retrofit: Retrofit, val platformManager: PlatformManager) {
     val twitchService = retrofit.create(TwitchService::class.java)
     val topChannelsLiveData = MutableLiveData<MutableList<DataItem>?>()
-    val followedLiveStreamsLiveData = MutableLiveData<Followed>()
-    val followedStreamsLiveData = MutableLiveData<Followed>()
+    val followedLiveStreamsLiveData = MutableLiveData<Followed?>()
+    val followedStreamsLiveData = MutableLiveData<Followed?>()
     val topGamesLiveData = MutableLiveData<MutableList<Data>>()
 
     suspend fun getTopChannels() {
-        val twitchResult = twitchService.getChannels("0", 10, null)
+        val twitchResult = twitchService.getChannels(first = 10, gameId = null)
         topChannelsLiveData.postValue(twitchResult.body()?.data)
     }
 
@@ -37,18 +37,12 @@ class HomeFragmentRepository @Inject constructor(@TwitchQualifier val retrofit: 
 
     suspend fun getFollowedStreams(type: String) {
         val accessToken = platformManager.getAccessToken(TwitchPlatform::class.java)
-        val featured = twitchService.getFollowedStreams(
-            "OAuth $accessToken",
-            type
-        )
+        val featured = twitchService.getFollowedStreams("OAuth $accessToken", type)
         followedStreamsLiveData.postValue(featured.body())
     }
 
     suspend fun getTopGames(limit: Int) {
         val topGames = twitchService.getTopGamesV5(0, limit)
         topGamesLiveData.postValue(topGames.body())
-
     }
-
-
 }

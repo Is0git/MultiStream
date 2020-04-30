@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
 import com.android.multistream.R
 import com.android.multistream.databinding.*
@@ -26,6 +27,16 @@ import com.android.multistream.utils.ViewModelFactory
 import com.android.multistream.utils.data_binding.ImageLoader
 import com.ramotion.cardslider.CardSliderLayoutManager
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.channels_list.*
+import kotlinx.android.synthetic.main.channels_list.streamTitle
+import kotlinx.android.synthetic.main.channels_list.viewersCount
+import kotlinx.android.synthetic.main.games_top_fragment_page.*
+import kotlinx.android.synthetic.main.home_fragment.*
+import kotlinx.android.synthetic.main.list_item_three.*
+import kotlinx.android.synthetic.main.list_item_three.streamerBanner
+import kotlinx.android.synthetic.main.list_item_three.streamerName
+import kotlinx.android.synthetic.main.list_item_two.*
+import retrofit2.http.Field
 import java.util.*
 import javax.inject.Inject
 
@@ -33,7 +44,8 @@ class HomeFragment : DaggerFragment() {
     lateinit var binding: HomeFragmentBinding
     @Inject
     lateinit var factory: ViewModelFactory
-
+    @Inject
+    @SettingsPreferencesQualifier
     lateinit var settingsPreferences: SharedPreferences
 
     lateinit var channelsViewPagerAdapter: PlaceHolderAdapter<DataItem, ChannelsViewPagerItemBinding>
@@ -57,12 +69,18 @@ class HomeFragment : DaggerFragment() {
         mainActivityViewModel =
             ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
 
-        setupViewPager()
-        val value = settingsPreferences.getBoolean(getString(R.string.mixer_visibility), true)
-        value
-        if (settingsPreferences.getBoolean(getString(R.string.twitch_visibility), false)) setupTwitchUI() else hideTwitch()
 
-        if (settingsPreferences.getBoolean(getString(R.string.mixer_visibility), false)) setupMixerUI() else hideMixer()
+        if (settingsPreferences.getBoolean(
+                getString(R.string.twitch_visibility),
+                false
+            )
+        ) setupTwitchUI() else hideTwitch()
+
+        if (settingsPreferences.getBoolean(
+                getString(R.string.mixer_visibility),
+                true
+            )
+        ) setupMixerUI() else hideMixer()
 
         binding.hideScrollView.apply {
             val alphaAnimation =
@@ -73,6 +91,8 @@ class HomeFragment : DaggerFragment() {
         (requireActivity() as MainActivity).showActionBar()
         return binding.root
     }
+
+
 
     private fun setupViewPager() {
         channelsViewPagerAdapter =
@@ -92,7 +112,6 @@ class HomeFragment : DaggerFragment() {
         }
 
         binding.channelsViewPager.apply {
-
             adapter = channelsViewPagerAdapter
             offscreenPageLimit = 1
             setPageTransformer(pageTransformer)
@@ -107,76 +126,121 @@ class HomeFragment : DaggerFragment() {
 
     //TWITCH
 
+
     private fun setupTwitchUI() {
-        setupTwitchLists()
-        observeTwitch()
+        initViewPager()
+        initTwitchTopGames()
+
+        if (settingsPreferences.getBoolean(getString(R.string.twitch_sync), true)) {
+            initTwitchFollowingLiveStream()
+            initTwitchFollowedStreams()
+        } else {
+            binding.apply {
+                twitchFollowingLiveStreamsText.visibility = View.GONE
+                twitchFollowingChannelsText.visibility = View.GONE
+            }
+        }
     }
 
-    private fun setupTwitchLists() {
-        twitchChannelsAdapter = PlaceHolderAdapter(R.layout.list_item_two, false) { k, t ->
-            k.apply {
-                viewersCount.text = t.viewers.toString()
-                ImageLoader.loadImageTwitch(streamImage, t.preview?.large)
-                t.channel.also { channel ->
-                    streamTitle.text = channel?.status
-                    ImageLoader.loadImageTwitch(streamerBanner, channel?.logo)
-                    streamGame.text = channel?.game
-                    streamerName.text = channel?.name
-                }
-            }
-        }
-
-
-        followingAdapter = PlaceHolderAdapter(R.layout.list_item_three, false) { k, t ->
-            k.apply {
-                t.channel.also { channel ->
-                    ImageLoader.loadImageTwitch(streamerBanner, channel?.logo)
-                    streamerName.text = channel?.name?.toUpperCase(Locale.getDefault())
-                    ImageLoader.loadImage(streamerProfileBanner, t.channel?.logo)
-                }
-            }
-        }
-
-        topGamesAdapter = PlaceHolderAdapter(
-            R.layout.list_item_four,
-            false
-        ) { k, t ->
-            ImageLoader.loadImageTwitch(k.gameBanner, t.box_art_url)
-        }
-
-
+    private fun initViewPager() {
         binding.apply {
-            followingStreamsList.adapter = followingAdapter
-            liveFollowingStreamsList.adapter = twitchChannelsAdapter
-            twitchTopGamesList.also {
-                it.layoutManager = CardSliderLayoutManager(requireActivity())
-                it.adapter = topGamesAdapter
+            twitchText.visibility = View.VISIBLE
+            twitchLogo.visibility = View.VISIBLE
+            setupViewPager()
+            //ViewPager
+            viewModel.getChannels()
+
+            viewModel.topChannelsLiveData.observe(viewLifecycleOwner) {
+                channelsViewPagerAdapter.data = it
+
             }
         }
     }
 
-    private fun observeTwitch() {
-        viewModel.apply {
-            topChannelsLiveData.observe(viewLifecycleOwner) {
-                channelsViewPagerAdapter.data = it
-            }
+    private fun initTwitchTopGames() {
+        binding.apply {
+            viewModel.getTopGames(10)
 
-            followedLiveStreamsLiveData.observe(viewLifecycleOwner) {
-                twitchChannelsAdapter.data = it.streams
-
-            }
-
-            followedStreamsLiveData.observe(viewLifecycleOwner) {
-                followingAdapter.data = it.streams
-            }
-
-            topGamesLiveData.observe(viewLifecycleOwner) {
+            viewModel.topGamesLiveData.observe(viewLifecycleOwner) {
                 topGamesAdapter.data = it
                 binding.twitchTopGamesList.scrollToPosition(4)
             }
+            topGamesAdapter = PlaceHolderAdapter(
+                R.layout.list_item_four,
+                false
+            ) { k, t ->
+                ImageLoader.loadImageTwitch(k.gameBanner, t.box_art_url)
+            }
+
+            twitchTopGamesList.apply {
+                layoutManager = CardSliderLayoutManager(requireActivity())
+                adapter = topGamesAdapter
+            }
+
+            twitchTopGamesText.visibility = View.VISIBLE
         }
     }
 
+    private fun initTwitchFollowedStreams() {
+        binding.apply {
+            viewModel.getFollowedStreams("all")
+            viewModel.followedStreamsLiveData.observe(viewLifecycleOwner) {
+                followingAdapter.data = it?.streams
+            }
+
+            followingAdapter =
+                PlaceHolderAdapter(R.layout.list_item_three, false) { k, t ->
+                    k.apply {
+                        t.channel.also { channel ->
+                            ImageLoader.loadImageTwitch(streamerBanner, channel?.logo)
+                            streamerName.text =
+                                channel?.name?.toUpperCase(Locale.getDefault())
+                            ImageLoader.loadImage(
+                                streamerProfileBanner,
+                                t.channel?.logo
+                            )
+                        }
+                    }
+                }
+            followingStreamsList.adapter = followingAdapter
+            twitchFollowingChannelsText.visibility = View.VISIBLE
+        }
+    }
+
+    private fun initTwitchFollowingLiveStream() {
+        binding.apply {
+            viewModel.getFollowedLiveStreams("live")
+            viewModel.followedLiveStreamsLiveData.observe(viewLifecycleOwner) {
+                twitchChannelsAdapter.data = it?.streams
+
+            }
+            twitchChannelsAdapter =
+                PlaceHolderAdapter(R.layout.list_item_two, false) { k, t ->
+                    k.apply {
+                        viewersCount.text = t.viewers.toString()
+                        ImageLoader.loadImageTwitch(streamImage, t.preview?.large)
+                        t.channel.also { channel ->
+                            streamTitle.text = channel?.status
+                            ImageLoader.loadImageTwitch(streamerBanner, channel?.logo)
+                            streamGame.text = channel?.game
+                            streamerName.text = channel?.name
+                        }
+                    }
+                }
+            liveFollowingStreamsList.adapter = twitchChannelsAdapter.also {
+                it.setOnItemClickListener { streamsItem ->
+                    (requireActivity() as MainActivity).createPlayerFragment(
+                        streamsItem.channel?.status,
+                        streamsItem.channel?.name,
+                        streamsItem.channel?.logo,
+                        streamsItem.game,
+                        streamsItem.channel?.name
+                    )
+                }
+            }
+            twitchFollowingLiveStreamsText.visibility = View.VISIBLE
+        }
+    }
 
     private fun hideTwitch() {
         binding.apply {
@@ -189,10 +253,8 @@ class HomeFragment : DaggerFragment() {
     }
 
     //Mixer
+    fun setupMixerUI() {}
 
-    private fun setupMixerUI() {
-
-    }
 
     private fun hideMixer() {
         binding.apply {

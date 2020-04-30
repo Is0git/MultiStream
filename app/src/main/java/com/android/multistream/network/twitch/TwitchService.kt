@@ -18,7 +18,7 @@ interface TwitchService {
 
     @GET("helix/streams")
     @Headers("Client-ID: $CLIENT_ID")
-    suspend fun getChannels(@Query(value = "after") after: String?, @Query(value = "first") first: Int, @Query("game_id") gameId: String?) : Response<GameChannels>
+    suspend fun getChannels(@Query(value = "after") after: String? = null, @Query(value = "first") first: Int, @Query("game_id") gameId: String?) : Response<GameChannels>
 
 
 

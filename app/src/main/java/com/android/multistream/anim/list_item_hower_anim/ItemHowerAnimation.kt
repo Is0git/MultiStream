@@ -30,8 +30,6 @@ abstract class ItemHoverViewHolder<T : ViewDataBinding>(val binding: T, val span
             gestureListener = GestureDetector(binding.root.context, this)
             binding.root.setOnTouchListener(this)
         }
-        itemView.setOnClickListener {     (itemView.context as MainActivity).createPlayerFragment() }
-
     }
 
     private fun setupAnimators() {

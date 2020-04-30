@@ -4,11 +4,13 @@
     <item
         android:id="@+id/homeFragment"
         app:showAsAction="never"
+        android:menuCategory="secondary"
         android:icon="@drawable/home_icon"
         android:title="@string/home" />
     <item
         android:id="@+id/browseFragment"
         app:showAsAction="never"
+        android:menuCategory="secondary"
         android:icon="@drawable/browse_icon"
         android:title="@string/browse" />
 </menu>

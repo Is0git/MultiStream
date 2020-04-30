@@ -12,11 +12,13 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_intro"
             app:destination="@id/intro"
+            app:launchSingleTop="true"
             app:popUpTo="@id/splashScreenFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashScreenFragment_to_main"
             app:destination="@id/main"
+            app:launchSingleTop="true"
             app:popUpTo="@id/splashScreenFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -67,7 +69,8 @@
 
             <action
                 android:id="@+id/action_browseFragment_to_gameChannelsFragment2"
-                app:destination="@id/gameChannelsFragment">
+                app:destination="@id/gameChannelsFragment"
+                app:launchSingleTop="true">
                 <argument
                     android:name="data"
                     android:defaultValue="@null"
@@ -111,7 +114,8 @@
         </fragment>
         <action
             android:id="@+id/action_global_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:launchSingleTop="true" />
     </navigation>
     <navigation
         android:id="@+id/intro"
@@ -121,9 +125,9 @@
             android:name="com.android.multistream.ui.intro.fragments.IntroPageTwo"
             android:label="IntroPageTwo" />
         <action
-            android:id="@+id/action_global_main"
+            android:id="@+id/action_intro_to_main"
             app:destination="@id/main"
-            app:popUpTo="@id/splashScreenFragment"
+            app:popUpTo="@id/introPageTwo"
             app:popUpToInclusive="true" />
     </navigation>
     <fragment

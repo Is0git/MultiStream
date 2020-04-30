@@ -25,8 +25,7 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mainActivityViewModel =
-            ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
+        mainActivityViewModel = ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
 
         binding = LoginLayoutBinding.inflate(inflater, container, false).apply {
             webView.webViewClient = object : WebViewClient() {

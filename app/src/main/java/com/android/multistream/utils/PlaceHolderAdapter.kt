@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.anim.list_item_hower_anim.ItemHoverViewHolder
 import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
+import com.android.multistream.ui.widgets.place_holder_material_card.listeners.PlaceHolderViewListener
 
 class PlaceHolderAdapter<T, K : ViewDataBinding>(private val itemLayoutId: Int, var onShowAnimation: Boolean = false, var cancelAnimator: (K, T) -> Unit) :
     RecyclerView.Adapter<PlaceHolderAdapter.MyViewHolder<K>>() {
@@ -18,12 +19,22 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(private val itemLayoutId: Int, 
     set(value) {
         field = value
         notifyDataSetChanged()
-
     }
+
+    var onClickListener: PlaceHolderViewListener<T>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder<K> {
       val binding = DataBindingUtil.inflate<K>(LayoutInflater.from(parent.context), itemLayoutId, parent, false)
         return  MyViewHolder(binding, onShowAnimation)
+    }
+
+    fun setOnItemClickListener(onClick: (T) -> Unit) {
+        onClickListener = object : PlaceHolderViewListener<T> {
+            override fun onClick(item: T) {
+                onClick(item)
+            }
+
+        }
     }
 
     override fun getItemCount(): Int = data?.count() ?: 3
@@ -34,7 +45,11 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(private val itemLayoutId: Int, 
                 cancelAnimation()
                 removeView(placeHolderView)
             }
-            cancelAnimator(holder.binding, data?.get(position)!!)
+            val item = data?.get(position)!!
+
+            cancelAnimator(holder.binding, item)
+
+            holder.itemView.setOnClickListener { onClickListener?.onClick(item) }
 
             (holder.dataBinding.root as ViewGroup).children.forEach {
                 it.visibility = View.VISIBLE
@@ -50,7 +65,7 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(private val itemLayoutId: Int, 
         }
 
         override fun navigate(binding: K) {
-            (itemView.context as MainActivity).createPlayerFragment()
+
         }
     }
 }

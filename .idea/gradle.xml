@@ -9,6 +9,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
+            <option value="$PROJECT_DIR$/../Multi-Stream-Chat/multistreamchat" />
+            <option value="$PROJECT_DIR$/../Multi-Stream-Player/multistreamplayer" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
           </set>

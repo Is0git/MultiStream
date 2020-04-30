@@ -24,7 +24,7 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class FragmentBuilder {
 
-    @ContributesAndroidInjector(modules = [HomeFragmentViewModelModule::class, SettingsModule::class])
+    @ContributesAndroidInjector(modules = [HomeFragmentViewModelModule::class])
     @HomeFragmentScope
     abstract fun homeFragment() : HomeFragment
 

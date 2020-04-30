@@ -1,16 +1,10 @@
 package com.android.multistream.ui.main.activities.main_activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.transition.TransitionInflater
-import android.transition.TransitionManager
 import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.replace
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -42,22 +36,25 @@ class MainActivity : DaggerAppCompatActivity() {
 
         navController = findNavController(R.id.main_fragment_container)
 
-        binding.bottomNav.setupWithNavController(navController)
+        binding.apply {
+            bottomNav.setupWithNavController(navController)
+            motionLayout.setDefaultTransitionHandler(supportFragmentManager)
+        }
 
         setListeners()
 
-        hideActionBar()
+
     }
 
 
 
-    fun setListeners() {
+    private fun setListeners() {
         binding.settingsIcon.setOnClickListener { navController.navigate(R.id.action_global_settingsFragment) }
     }
 
     fun hideActionBar() {
         binding.apply {
-            bgImage.visibility = View.INVISIBLE
+            bgImage.visibility = View.GONE
             menuDrawerIcon.visibility = View.GONE
             settingsIcon.visibility = View.GONE
             bottomNav.visibility = View.GONE
@@ -73,8 +70,14 @@ class MainActivity : DaggerAppCompatActivity() {
             }
     }
 
-    fun createPlayerFragment() {
-        supportFragmentManager.beginTransaction().replace(R.id.player_fragment_container, PlayerFragment().apply {
-        }).commit()
+    fun createPlayerFragment(channelTitle: String?, channelName: String?, channelImage: String?, channelCategory: String?, channelDisplayName: String?) {
+        val bundle = Bundle().apply {
+            putString("channel_title", channelTitle)
+            putString("channel_name", channelName)
+            putString("channel_image", channelImage)
+            putString("channel_category", channelCategory)
+            putString("channel_display_name", channelDisplayName)
+        }
+        supportFragmentManager.beginTransaction().replace(R.id.player_fragment, PlayerFragment::class.java, bundle, "player_fragment").commit()
     }
 }

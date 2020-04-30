@@ -1,16 +1,12 @@
 package com.android.multistream.ui.intro.fragments
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.get
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.android.multistream.R
 import com.android.multistream.databinding.IntroPageBinding
 import com.android.multistream.ui.main.activities.main_activity.MainActivity
@@ -40,7 +36,7 @@ class IntroPage : DaggerFragment(){
 
         binding.apply {
             continueButton.setOnClickListener { nav.navigate(R.id.action_splashScreenFragment_to_intro) }
-            skipButton.setOnClickListener { nav.navigate(R.id.action_global_main) }
+            skipButton.setOnClickListener { nav.navigate(R.id.action_intro_to_main) }
         }
         return binding.root
     }

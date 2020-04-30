@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -35,26 +36,18 @@ class TwitchFragment : DaggerFragment(), OnGameCategoryListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("TWITCHFRAGMENT", "onCreate")
-        twitchFragmentViewModel =
-            ViewModelProviders.of(this, factory).get(TwitchFragmentViewModel::class.java)
+        twitchFragmentViewModel = ViewModelProvider(this, factory).get(TwitchFragmentViewModel::class.java)
         binding = TwitchGamesFragmentPageBinding.inflate(inflater, container, false)
         setupList()
         setupObservers()
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("TWITCHFRAGMENT", "onCreateView")
-        navController = Navigation.findNavController(activity!!, R.id.main_fragment_container)
+        navController = Navigation.findNavController(requireActivity(), R.id.main_fragment_container)
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d("TWITCHFRAGMENT", "onStart")
-    }
 
     private fun setupList() {
         binding.apply {
@@ -67,8 +60,6 @@ class TwitchFragment : DaggerFragment(), OnGameCategoryListener {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
 
                     super.onScrollStateChanged(recyclerView, newState)
-
-
                 }
 
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -80,7 +71,7 @@ class TwitchFragment : DaggerFragment(), OnGameCategoryListener {
                     if (dy > 0) {
                         if (twitchFragmentViewModel.getPaginationState() != PageLoadingStates.LOADING) {
                             val itemsCount =
-                                (binding.topTwitchGamesList.layoutManager as GridLayoutManager).itemCount
+                                (binding.topTwitchGamesList.layoutManager as RecyclerView.LayoutManager).itemCount
                             val lastVisibleItem =
                                 (binding.topTwitchGamesList.layoutManager as GridLayoutManager).findLastVisibleItemPosition()
 
@@ -124,23 +115,4 @@ class TwitchFragment : DaggerFragment(), OnGameCategoryListener {
         navController.navigate(directions)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("TWITCHFRAGMENT", "onDestroy")
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.d("TWITCHFRAGMENT", "onAttach")
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        Log.d("TWITCHFRAGMENT", "onDeatch")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d("TWITCHFRAGMENT", "onDestroyView")
-    }
 }

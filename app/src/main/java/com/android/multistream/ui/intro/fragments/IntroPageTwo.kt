@@ -1,34 +1,21 @@
 package com.android.multistream.ui.intro.fragments
 
-import android.content.Intent
-import android.graphics.BitmapFactory
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.net.toUri
-import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
-import br.com.simplepass.loadingbutton.customViews.CircularProgressButton
 import com.android.multistream.R
 import com.android.multistream.auth.Platform
-import com.android.multistream.auth.Platforms.TwitchPlatform
 import com.android.multistream.databinding.IntroPageTwoBinding
-import com.android.multistream.network.twitch.constants.TWITCH_AUTH_PAGE
 import com.android.multistream.ui.main.activities.main_activity.MainActivityViewModel
-import com.android.stripesliderview.listeners.OnProgressButtonListener
 import com.android.stripesliderview.slider.SlideLayout
 import com.android.stripesliderview.viewpager.PageData
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class IntroPageTwo : DaggerFragment(){
     lateinit var binding: IntroPageTwoBinding
@@ -77,7 +64,7 @@ class IntroPageTwo : DaggerFragment(){
 
         (binding.root as SlideLayout).apply {
             viewPagerAdapter.addPages(pageList)
-            onSkipButtonClick { findNavController().navigate(R.id.action_global_main) }
+            onSkipButtonClick { findNavController().navigate(R.id.action_intro_to_main) }
         }
 
         mainActivityViewModel.statesLiveData.observe(viewLifecycleOwner) {

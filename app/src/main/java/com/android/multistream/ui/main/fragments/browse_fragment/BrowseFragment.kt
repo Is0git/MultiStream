@@ -10,6 +10,7 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -50,7 +51,7 @@ class BrowseFragment : DaggerFragment(), View.OnTouchListener, GestureDetector.O
     ): View? {
         Log.d("TWITCHFRAGMENT", "onCreateView2")
         browseViewModel =
-            ViewModelProviders.of(this, factory).get(BrowseFragmentViewModel::class.java)
+            ViewModelProvider(this, factory).get(BrowseFragmentViewModel::class.java)
         binding = BrowseFragmentBinding.inflate(inflater, container, false)
         gestureDetector = GestureDetector(context, this)
         binding.root.apply {
@@ -60,10 +61,6 @@ class BrowseFragment : DaggerFragment(), View.OnTouchListener, GestureDetector.O
         setupViewPager()
         handleTabLayout()
         return binding.root
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
     }
 
 
