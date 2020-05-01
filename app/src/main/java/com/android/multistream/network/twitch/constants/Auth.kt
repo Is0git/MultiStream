@@ -1,5 +1,5 @@
 package com.android.multistream.network.twitch.constants
-const val SCOPE = "user:edit+user:read:email+analytics:read:games+bits:read+channel:read:subscriptions+clips:edit+user:edit"
+const val SCOPE = "user:edit+user:read:email+analytics:read:games+bits:read+channel:read:subscriptions+clips:edit+user:edit+user_read"
 const val CLIENT_ID = "f0dmag7h9n8tj4710up57pjyooo46q"
 const val CLIENT_SECRET = "ps5aq1pygaf68dz4szsctw7wjz349z"
 const val REDIRECT_URI = "schema://com.android.multistream/twitch"

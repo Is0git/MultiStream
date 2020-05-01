@@ -12,17 +12,4 @@ class SettingsFragment : PreferenceFragmentCompat() {
         (requireActivity() as MainActivity).hideActionBar()
         setPreferencesFromResource(R.xml.settings, rootKey)
     }
-
-
-
-    override fun onResume() {
-        super.onResume()
-
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-    }
-
 }

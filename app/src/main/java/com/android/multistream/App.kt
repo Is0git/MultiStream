@@ -1,7 +1,7 @@
 package com.android.multistream
 
 import com.android.multistream.auth.PlatformManager
-import com.android.multistream.auth.Platforms.TwitchPlatform
+import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication

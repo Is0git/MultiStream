@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -13,6 +14,7 @@ import com.android.multistream.databinding.ActivityMainBinding
 import com.android.multistream.ui.player.fragments.PlayerFragment
 import com.android.multistream.utils.ViewModelFactory
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -43,7 +45,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
         setListeners()
 
-
+        hideActionBar()
     }
 
 
@@ -54,7 +56,6 @@ class MainActivity : DaggerAppCompatActivity() {
 
     fun hideActionBar() {
         binding.apply {
-            bgImage.visibility = View.GONE
             menuDrawerIcon.visibility = View.GONE
             settingsIcon.visibility = View.GONE
             bottomNav.visibility = View.GONE
@@ -63,7 +64,6 @@ class MainActivity : DaggerAppCompatActivity() {
 
     fun showActionBar() {
             binding.apply {
-                bgImage.visibility = View.VISIBLE
                 menuDrawerIcon.visibility = View.VISIBLE
                 settingsIcon.visibility = View.VISIBLE
                 bottomNav.visibility = View.VISIBLE
@@ -78,6 +78,6 @@ class MainActivity : DaggerAppCompatActivity() {
             putString("channel_category", channelCategory)
             putString("channel_display_name", channelDisplayName)
         }
-        supportFragmentManager.beginTransaction().replace(R.id.player_fragment, PlayerFragment::class.java, bundle, "player_fragment").commit()
+        supportFragmentManager.beginTransaction().setCustomAnimations(R.anim.player_fragment_animation, R.anim.player_fragment_animation).replace(R.id.player_fragment, PlayerFragment::class.java, bundle, "player_fragment").commit()
     }
 }

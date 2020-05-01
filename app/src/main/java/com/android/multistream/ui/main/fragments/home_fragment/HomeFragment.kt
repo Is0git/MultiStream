@@ -93,13 +93,22 @@ class HomeFragment : DaggerFragment() {
     }
 
 
-
     private fun setupViewPager() {
         channelsViewPagerAdapter =
             PlaceHolderAdapter(R.layout.channels_view_pager_item) { binding, item ->
                 binding.viewPagerCard.cancelAnimation()
                 binding.data = item
             }
+
+        channelsViewPagerAdapter.setOnItemClickListener {
+            (requireActivity() as MainActivity).createPlayerFragment(
+                it.title,
+                it.user_name,
+                it.thumbnail_url,
+                it.gameId,
+                it.user_name
+            )
+        }
 
         val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
         val currentItemHorizontalMarginPx =

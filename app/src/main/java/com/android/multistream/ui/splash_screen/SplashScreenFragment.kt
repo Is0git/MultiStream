@@ -10,17 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceManager
-import androidx.preference.PreferenceScreen
 import com.android.multistream.R
-import com.android.multistream.auth.Platforms.TwitchPlatform
-import com.android.multistream.ui.main.activities.main_activity.MainActivity
+import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.ui.main.activities.main_activity.MainActivityViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlin.time.measureTime
 
 class SplashScreenFragment : Fragment(R.layout.splash_screen_layout) {
     lateinit var logoView: ImageView
@@ -42,7 +37,7 @@ class SplashScreenFragment : Fragment(R.layout.splash_screen_layout) {
             mainActivityViewModel.validateAccessTokens()
             if(mainActivityViewModel.isValidated(TwitchPlatform::class.java)) {
                 withContext(Dispatchers.Main) {navController.navigate(R.id.action_splashScreenFragment_to_main)}
-            } else  withContext(Dispatchers.Main) {navController.navigate(R.id.action_splashScreenFragment_to_intro)}
+            } else withContext(Dispatchers.Main) {navController.navigate(R.id.action_splashScreenFragment_to_intro)}
 
         }
     }

@@ -16,18 +16,21 @@ import retrofit2.Retrofit
  * @property T retrofit service class
  * @property S service response class
  * @property U service validation class
+ * @property V user response
  */
-abstract class Platform<T : Any, S : Any, U : Any>(
+abstract class Platform<T : Any, S : Any, U : Any, V>(
     var platformRetrofit: Retrofit,
     var serviceClass: Class<T>,
     var platformManager: PlatformManager
 ) {
 
-    sealed class AuthState{
+    sealed class AuthState {
         object Completed : AuthState()
 
         data class Failed(val throwable: Throwable) : AuthState()
     }
+
+    var currentUser: V? = null
 
     var service: T = platformRetrofit.create(serviceClass)
 
@@ -48,7 +51,11 @@ abstract class Platform<T : Any, S : Any, U : Any>(
      */
 
     init {
-        accessTokenJob?.invokeOnCompletion { it?.also { statesLiveData.value = AuthState.Failed(it) } }
+        accessTokenJob?.invokeOnCompletion {
+            it?.also {
+                statesLiveData.value = AuthState.Failed(it)
+            }
+        }
     }
 
     fun saveAccessTokenBearer(uriData: Uri?, responseClass: Class<S>) {
@@ -68,14 +75,16 @@ abstract class Platform<T : Any, S : Any, U : Any>(
             val pair = provideAuthTokenPair(responseResult)
             saveAccessTokenInPreference(pair, platformManager, this@Platform)
 
-            withContext(Dispatchers.Main) {statesLiveData.value = AuthState.Completed}
+            currentUser = if (pair.first != null) getUser(pair.first!!) else null
+
+            withContext(Dispatchers.Main) { statesLiveData.value = AuthState.Completed }
         }
     }
 
     private fun saveAccessTokenInPreference(
         authPair: Pair<String?, String?>,
         platformManager: PlatformManager,
-        platform: Platform<*, *, *>
+        platform: Platform<*, *, *, *>
     ) {
 
         if (authPair.first != null && authPair.second != null) {
@@ -92,7 +101,7 @@ abstract class Platform<T : Any, S : Any, U : Any>(
      * Validates access token
      */
     suspend fun validateAccessToken() {
-       coroutineScope {
+        coroutineScope {
             val accessToken = platformManager.getAccessToken(this@Platform::class.java)
                 ?: throw CancellationException("You need to get access token before validation")
             val validationResponse = getTokenValidationResponse(service, accessToken)
@@ -100,17 +109,24 @@ abstract class Platform<T : Any, S : Any, U : Any>(
             validationResponse.apply {
                 isValidated = when {
                     body() == null -> throw  CancellationException("response is null")
-                    isSuccessful -> true
-                    else -> false
+                    isSuccessful -> {
+                        getUser(accessToken)
+                        true
+                    }
+                    else -> {
+                        currentUser = null
+                        false
+                    }
                 }
             }
         }
     }
 
     fun refreshToken(): String? {
-        val refreshToken = platformManager.getRefreshToken(this::class.java) ?: throw NoSuchElementException("no refresh token")
+        val refreshToken = platformManager.getRefreshToken(this::class.java)
+            ?: throw NoSuchElementException("no refresh token")
 
-        val token = getNewToken(service, refreshToken)?.let {
+        getNewToken(service, refreshToken)?.let {
             val pair = provideAuthTokenPair(it)
             saveAccessTokenInPreference(provideAuthTokenPair(it), platformManager, this)
             Log.d("TESTPREF", "FIRST: ${pair.first} SECOND: ${pair.second}")
@@ -119,7 +135,7 @@ abstract class Platform<T : Any, S : Any, U : Any>(
         return null
     }
 
-    private fun getBearerCode(uriData: String) : String? =
+    private fun getBearerCode(uriData: String): String? =
         uriQuery(uriData)
 
 
@@ -129,6 +145,8 @@ abstract class Platform<T : Any, S : Any, U : Any>(
     abstract fun getNewToken(service: T, refreshToken: String): Response<S>?
 
     abstract fun provideAuthTokenPair(response: Response<S>): Pair<String?, String?>
+
+    abstract suspend fun getUser(accessToken: String): V
 
     abstract suspend fun getTokenValidationResponse(service: T, accessToken: String): Response<U>
 

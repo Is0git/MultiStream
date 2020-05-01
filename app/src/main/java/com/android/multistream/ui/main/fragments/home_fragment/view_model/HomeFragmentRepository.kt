@@ -2,7 +2,7 @@ package com.android.multistream.ui.main.fragments.home_fragment.view_model
 
 import androidx.lifecycle.MutableLiveData
 import com.android.multistream.auth.PlatformManager
-import com.android.multistream.auth.Platforms.TwitchPlatform
+import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.di.main_activity.main_fragments.home_fragment.HomeFragmentScope
 import com.android.multistream.di.qualifiers.TwitchQualifier
 import com.android.multistream.network.twitch.TwitchService
