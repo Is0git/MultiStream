@@ -1,10 +1,12 @@
 package com.android.multistream.pagination
 
 import androidx.lifecycle.MutableLiveData
+import com.android.multistream.pagination.listeners.PagedOffSetListener
+import com.android.multistream.pagination.listeners.PagedPositionListener
+import com.android.multistream.pagination.listeners.PaginationListener
 
 
-
-    //With reference object
+//With reference object
     class PagedKeyLoader<T>(val listener: PaginationListener<T>, val limit: Int) : PaginationListener<T> by listener {
         val data: MutableList<T> = mutableListOf()
         val dataLiveData = MutableLiveData<List<T>>()
@@ -98,10 +100,7 @@ class PagedOffsetLoader<T>(val listener: PagedOffSetListener<T>, val pageLimit: 
     val pageLoadingState = MutableLiveData<PageLoadingStates>()
     var pageOffset: Int = 0
     var initLoad: Boolean = false
-    fun loadHandler() {
-        pageLoadingState.value = PageLoadingStates.LOADING
-        if (!initLoad) loadInitial(this) else loadNext(this)
-    }
+
 
     init {
         pageLoadingState.value = PageLoadingStates.LOADING

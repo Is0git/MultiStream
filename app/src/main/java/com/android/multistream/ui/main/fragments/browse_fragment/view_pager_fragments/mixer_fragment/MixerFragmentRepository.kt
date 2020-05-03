@@ -5,14 +5,15 @@ import android.widget.Toast
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.mixer_fragment.MixerFragmentGamesScope
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
-import com.android.multistream.pagination.PagedPositionListener
+import com.android.multistream.pagination.listeners.PagedPositionListener
 import com.android.multistream.pagination.PagedPositionLoader
 import kotlinx.coroutines.*
 import java.io.IOException
 import javax.inject.Inject
 
 @MixerFragmentGamesScope
-class MixerFragmentRepository @Inject constructor(val mixerService: MixerService, val application: Application) : PagedPositionListener<MixerTopGames> {
+class MixerFragmentRepository @Inject constructor(val mixerService: MixerService, val application: Application) :
+    PagedPositionListener<MixerTopGames> {
     var loadJob: Job? = null
     val pageLimit = 20
 

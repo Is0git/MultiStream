@@ -6,8 +6,10 @@ import javax.inject.Inject
 
 @TwitchFragmentGamesScope
 class TwitchFragmentViewModel @Inject constructor(val repo: TwitchFragmentRepository) : ViewModel() {
-    val paginationLiveData = repo.pagedOffSetLoader.dataLiveData
-   fun loadPage() {repo.pagedOffSetLoader.loadHandler()}
+    val pageLoader = repo.pageLoader
 
-    fun getPaginationState() = repo.pagedOffSetLoader.pageLoadingState.value
+    val paginationLiveData = repo.pageLoader.dataLiveData
+
+
+
 }

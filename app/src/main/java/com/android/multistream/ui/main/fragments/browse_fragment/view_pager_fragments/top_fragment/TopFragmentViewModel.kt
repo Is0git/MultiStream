@@ -9,9 +9,6 @@ class TopFragmentViewModel @Inject constructor(val repo: TopFragmentRepository) 
 
     val pageLiveData = repo.pageLoader.dataLiveData
 
-    fun loadPage() {
-        repo.pageLoader.loadHandler()
-    }
 
     fun getPaginationSate() = repo.pageLoader.pageLoadingState.value
 }

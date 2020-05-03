@@ -18,6 +18,8 @@ import com.android.multistream.databinding.TwitchGamesFragmentPageBinding
 import com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragmentDirections
 import com.android.multistream.utils.ViewModelFactory
 import com.android.multistream.pagination.PageLoadingStates
+import com.android.multistream.pagination.attach
+import com.android.multistream.pagination.detach
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -51,41 +53,9 @@ class TwitchFragment : DaggerFragment(), OnGameCategoryListener {
 
     private fun setupList() {
         binding.apply {
-            topTwitchGamesList.adapter =
-                topGamesAdapter.also { it.clickListener = this@TwitchFragment }
-            topTwitchGamesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            topTwitchGamesList attach twitchFragmentViewModel.repo.pageLoader
+            topTwitchGamesList.adapter = topGamesAdapter.also { it.clickListener = this@TwitchFragment }
 
-                var scrolls = 0
-
-                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-
-                    super.onScrollStateChanged(recyclerView, newState)
-                }
-
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-
-
-                    super.onScrolled(recyclerView, dx, dy)
-                    Log.d("SCROLL", "dx: $dy, scrolls: $scrolls")
-
-                    if (dy > 0) {
-                        if (twitchFragmentViewModel.getPaginationState() != PageLoadingStates.LOADING) {
-                            val itemsCount =
-                                (binding.topTwitchGamesList.layoutManager as RecyclerView.LayoutManager).itemCount
-                            val lastVisibleItem =
-                                (binding.topTwitchGamesList.layoutManager as GridLayoutManager).findLastVisibleItemPosition()
-
-                            if (itemsCount - lastVisibleItem - 1 < 10 && twitchFragmentViewModel.getPaginationState() != PageLoadingStates.LOADING) {
-                                twitchFragmentViewModel.repo.pagedOffSetLoader.pageLoadingState.value = PageLoadingStates.LOADING
-                                twitchFragmentViewModel.loadPage()
-                            }
-                        }
-
-                    }
-
-
-                }
-            })
         }
 
     }
@@ -115,4 +85,9 @@ class TwitchFragment : DaggerFragment(), OnGameCategoryListener {
         navController.navigate(directions)
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.topTwitchGamesList detach twitchFragmentViewModel.pageLoader
+    }
 }

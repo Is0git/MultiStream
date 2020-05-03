@@ -8,9 +8,9 @@ import com.android.multistream.network.mixer.models.channel.GameChannels
 import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.models.new_twitch_api.channels.DataItem
 import com.android.multistream.pagination.PagedKeyLoader
-import com.android.multistream.pagination.PagedPositionListener
+import com.android.multistream.pagination.listeners.PagedPositionListener
 import com.android.multistream.pagination.PagedPositionLoader
-import com.android.multistream.pagination.PaginationListener
+import com.android.multistream.pagination.listeners.PaginationListener
 import kotlinx.coroutines.*
 import java.io.IOException
 import javax.inject.Inject
@@ -20,7 +20,8 @@ class GameChannelsRepository @Inject constructor(
     val mixerService: MixerService,
     val application: Application,
     val twitchService: TwitchService
-) : PaginationListener<DataItem>, PagedPositionListener<GameChannels> {
+) : PaginationListener<DataItem>,
+    PagedPositionListener<GameChannels> {
     val pageLimit = 20
     var loadJob: Job? = null
     val keyPager: PagedKeyLoader<DataItem>? by lazy { PagedKeyLoader(this, pageLimit) }

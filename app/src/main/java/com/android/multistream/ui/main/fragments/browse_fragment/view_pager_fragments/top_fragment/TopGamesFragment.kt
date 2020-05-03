@@ -40,19 +40,13 @@ class TopGamesFragment : DaggerFragment(), CategoryNavigationListener<Data> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(
-            activity!!,
+            requireActivity(),
             R.id.main_fragment_container
         )
     }
     fun setupList() {
         binding.apply {
             topGamesList.adapter = topGamesAdapter.also { it.listener = this@TopGamesFragment }
-            topGamesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
-                    if (!recyclerView.canScrollVertically(1) && topFragmentViewModel.getPaginationSate() != PageLoadingStates.LOADING) topFragmentViewModel.loadPage()
-                }
-            })
         }
     }
 

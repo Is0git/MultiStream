@@ -5,66 +5,47 @@ import android.widget.Toast
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.twitch_fragment.TwitchFragmentGamesScope
 import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.models.v5.top_games.TopItem
-import com.android.multistream.pagination.PagedOffSetListener
-import com.android.multistream.pagination.PagedOffsetLoader
+import com.android.multistream.pagination.PageLoader
+import com.android.multistream.utils.ResponseHandler
 import kotlinx.coroutines.*
 import java.io.IOException
 import javax.inject.Inject
 
 @TwitchFragmentGamesScope
-class TwitchFragmentRepository @Inject constructor(val twitchService: TwitchService, val application: Application) : PagedOffSetListener<TopItem> {
+class TwitchFragmentRepository @Inject constructor(
+    val twitchService: TwitchService,
+    val application: Application
+)  {
 
 
-    val pageLimit = 30
-    var pageOffSet = 0
-    var loadJob: Job? = null
-    val pagedOffSetLoader = PagedOffsetLoader<TopItem>(this, pageLimit)
-
-        override fun loadInitial(pagination: PagedOffsetLoader<TopItem>) {
-            loadJob = CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    val mixerResult =
-                        getTwitchTopGamesV5(pagination.pageLimit, pagination.pageOffset)
-
-                    when {
-                        mixerResult.await().isSuccessful -> pagination.loadInit(mixerResult.await().body()?.top)
-                    }
-                } catch (e: IOException) {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            application,
-                            "Connect to internet",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+    val pageLoader = PageLoader(object : PageLoader.PagedOffSetListener<TopItem> {
+        override suspend fun loadInitial(pageOffSet: Int, pageLimit: Int): List<TopItem>? {
+            try {
+                val result = twitchService.getTopGamesV5Full(pageOffSet, pageLimit)
+                if (ResponseHandler.handleResponse(result, application)) return result.body()?.top
+            } catch (e: IOException) {
+                withContext(Dispatchers.Main) {
+                    ResponseHandler.handleNetworkException(e, application)
                 }
             }
+            return null
         }
 
-
-        override fun loadNext(pagination: PagedOffsetLoader<TopItem>) {
-            loadJob = CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    val mixerResult = getTwitchTopGamesV5(pagination.pageLimit, pagination.pageOffset)
-
-                    when {
-                        mixerResult.await().isSuccessful -> pagination.loadInit(mixerResult.await().body()?.top)
-                    }
-                } catch (e: IOException) {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            application,
-                            "Connect to internet",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+        override suspend fun loadNext(pageOffSet: Int, pageLimit: Int): List<TopItem>? {
+            try {
+                val result = twitchService.getTopGamesV5Full(pageOffSet, pageLimit)
+                if (ResponseHandler.handleResponse(result, application)) return result.body()?.top
+            } catch (e: IOException) {
+                withContext(Dispatchers.Main) {
+                    ResponseHandler.handleNetworkException(e, application)
                 }
             }
+            return null
         }
 
+        override var pageOffSet: Int = 0
 
-    suspend fun getTwitchTopGamesV5(limit: Int, offSet: Int) = coroutineScope {
-        async { twitchService.getTopGamesV5Full(offSet, limit) }
-    }
+        override var pageLimit: Int = 20
+    })
 
 }

@@ -43,19 +43,13 @@ class MixerFragment : DaggerFragment(), OnGameCategoryListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(activity!!, R.id.main_fragment_container)
+        navController = Navigation.findNavController(requireActivity()!!, R.id.main_fragment_container)
     }
 
     private fun setupList() {
         binding.apply {
             topMixerGamesList.adapter =
                 mixerTopGamesAdapter.also { it.onGameCategoryListener = this@MixerFragment }
-            topMixerGamesList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                    super.onScrolled(recyclerView, dx, dy)
-                    if (!recyclerView.canScrollVertically(1) && mixerFragmentViewModel.getState() != PageLoadingStates.LOADING) mixerFragmentViewModel.loadPage()
-                }
-            })
         }
     }
 

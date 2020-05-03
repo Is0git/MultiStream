@@ -6,7 +6,7 @@ import com.android.multistream.di.main_activity.main_fragments.browse_fragment.v
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data
-import com.android.multistream.pagination.PagedOffSetListener
+import com.android.multistream.pagination.listeners.PagedOffSetListener
 import com.android.multistream.pagination.PagedOffsetLoader
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -20,7 +20,7 @@ class TopFragmentRepository @Inject constructor(
     val application: Application,
     val twitchService: TwitchService,
     val mixerService: MixerService
-) : PagedOffSetListener<Data>{
+) : PagedOffSetListener<Data> {
 
     var loadJob: Job? = null
     val pageLoader = PagedOffsetLoader(this, 20)

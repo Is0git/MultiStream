@@ -1,4 +1,8 @@
-package com.android.multistream.pagination
+package com.android.multistream.pagination.listeners
+
+import com.android.multistream.pagination.PagedKeyLoader
+import com.android.multistream.pagination.PagedOffsetLoader
+import com.android.multistream.pagination.PagedPositionLoader
 
 interface PaginationListener<T> {
 
