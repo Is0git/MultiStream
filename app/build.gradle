@@ -151,6 +151,8 @@ dependencies {
     implementation 'com.github.Is0git:MultiStream-Splash-Screen:0.1.5'
     implementation 'com.github.Is0git:Multi-Stream-Step-Slider:0.1.6'
 
+    implementation project(":multistreamnavigationdrawer")
+
 
 
 }

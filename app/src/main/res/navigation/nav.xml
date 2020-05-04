@@ -115,7 +115,11 @@
         <action
             android:id="@+id/action_global_settingsFragment"
             app:destination="@id/settingsFragment"
-            app:launchSingleTop="true" />
+            app:enterAnim="@anim/right_to_left_enter_anim"
+            app:exitAnim="@anim/right_to_left_exit_anim"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/right_to_left_pop_enter_anim"
+            app:popExitAnim="@anim/right_to_left_pop_exit_anim" />
     </navigation>
     <navigation
         android:id="@+id/intro"

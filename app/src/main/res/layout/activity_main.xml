@@ -6,9 +6,9 @@
     <com.android.player.ui.CustomMotion
         android:id="@+id/motion_layout"
         android:layout_width="match_parent"
-        app:layoutDescription="@xml/main_motion_scene"
+        android:layout_height="match_parent"
         android:background="@color/colorSurface"
-        android:layout_height="match_parent">
+        app:layoutDescription="@xml/main_motion_scene">
 
 
         <ImageView
@@ -19,7 +19,7 @@
             android:layout_marginBottom="0dp"
             android:background="@drawable/menu_drawer_icon"
             android:backgroundTint="@color/colorOnSecondaryVariant"
-            android:elevation="2dp"
+            android:elevation="12dp"
             app:layout_constraintBottom_toTopOf="@+id/toolBarGuideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,21 +29,21 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginEnd="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/menuDrawerIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/menuDrawerIcon"
             android:background="@drawable/settings_icon"
             android:backgroundTint="@color/colorOnSecondaryVariant"
-            android:elevation="2dp"/>
+            android:elevation="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/menuDrawerIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/menuDrawerIcon" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:elevation="0dp"
+            app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/bottom_nav_menu"
-            app:labelVisibilityMode="unlabeled"/>
+            app:menu="@menu/bottom_nav_menu" />
 
 
         <fragment
@@ -63,9 +63,9 @@
 
         <FrameLayout
             android:id="@+id/player_fragment"
-            android:elevation="10dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:elevation="13dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/toolBarGuideline"
@@ -73,6 +73,26 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="75dp" />
+
+
+        <com.multistream.navigationdrawer.NavigationDrawer
+            android:id="@+id/navigationDrawer"
+            android:layout_width="0dp"
+            android:animateLayoutChanges="true"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/navigation_guideline"
+            android:elevation="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/navigation_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.70" />
 
     </com.android.player.ui.CustomMotion>
 </layout>
