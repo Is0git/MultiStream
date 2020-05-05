@@ -21,7 +21,8 @@ import retrofit2.Retrofit
 abstract class Platform<T : Any, S : Any, U : Any, V>(
     var platformRetrofit: Retrofit,
     var serviceClass: Class<T>,
-    var platformManager: PlatformManager
+    var platformManager: PlatformManager,
+    var platformName: String? = null
 ) {
 
     sealed class AuthState {
@@ -110,7 +111,8 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
                 isValidated = when {
                     body() == null -> throw  CancellationException("response is null")
                     isSuccessful -> {
-                        getUser(accessToken)
+                       val user = getUser(accessToken)
+                        currentUser = user
                         true
                     }
                     else -> {

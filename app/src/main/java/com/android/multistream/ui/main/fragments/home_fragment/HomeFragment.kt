@@ -69,7 +69,6 @@ class HomeFragment : DaggerFragment() {
         mainActivityViewModel =
             ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
 
-
         if (settingsPreferences.getBoolean(
                 getString(R.string.twitch_visibility),
                 false

@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.android.multistream.R
 import com.android.multistream.auth.platforms.TwitchPlatform
+import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.main.activities.main_activity.MainActivityViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,7 +26,8 @@ class SplashScreenFragment : Fragment(R.layout.splash_screen_layout) {
         logoView = view.findViewById(R.id.logo)
         view.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.colorSurface, null))
 
-        mainActivityViewModel = ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
+        mainActivityViewModel =
+            ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
 
         if (logoView.drawable is AnimatedVectorDrawable) {
             (logoView.drawable as AnimatedVectorDrawable).start()
@@ -35,10 +37,12 @@ class SplashScreenFragment : Fragment(R.layout.splash_screen_layout) {
 
         lifecycleScope.launch {
             mainActivityViewModel.validateAccessTokens()
-            if(mainActivityViewModel.isValidated(TwitchPlatform::class.java)) {
-                withContext(Dispatchers.Main) {navController.navigate(R.id.action_splashScreenFragment_to_main)}
-            } else withContext(Dispatchers.Main) {navController.navigate(R.id.action_splashScreenFragment_to_intro)}
-
+            if (mainActivityViewModel.isValidated(TwitchPlatform::class.java)) {
+                withContext(Dispatchers.Main) {
+                    navController.navigate(R.id.action_splashScreenFragment_to_main)
+//                    (requireActivity() as MainActivity).initNavigationDrawer()
+                }
+            } else withContext(Dispatchers.Main) { navController.navigate(R.id.action_splashScreenFragment_to_intro) }
         }
     }
 }

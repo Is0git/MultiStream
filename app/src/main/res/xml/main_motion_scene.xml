@@ -31,6 +31,10 @@
             <PropertySet app:visibilityMode="ignore"/>
         </Constraint>
 
+        <Constraint android:id="@id/navigationDrawer">
+            <PropertySet app:visibilityMode="ignore"/>
+        </Constraint>
+
         <Constraint
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
@@ -47,17 +51,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/menuDrawerIcon"
             app:visibilityMode="ignore" />
-
-        <Constraint
-            android:id="@+id/menuDrawerIcon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="32dp"
-            app:layout_constraintBottom_toTopOf="@+id/toolBarGuideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:visibilityMode="ignore">
-            <Transform android:elevation="22dp" />
+        <Constraint android:id="@+id/menuDrawerIcon">
+            <PropertySet app:visibilityMode="ignore"/>
         </Constraint>
     </ConstraintSet>
 
@@ -91,16 +86,8 @@
             app:layout_constraintTop_toTopOf="@+id/menuDrawerIcon"
             app:visibilityMode="ignore" />
 
-        <Constraint
-            android:id="@+id/menuDrawerIcon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="32dp"
-            app:layout_constraintBottom_toTopOf="@+id/toolBarGuideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:visibilityMode="ignore">
-            <Transform android:elevation="25dp" />
+        <Constraint android:id="@+id/menuDrawerIcon">
+            <PropertySet app:visibilityMode="ignore"/>
         </Constraint>
     </ConstraintSet>
 
@@ -138,15 +125,10 @@
             app:layout_constraintTop_toTopOf="@+id/menuDrawerIcon"
             app:visibilityMode="ignore" />
 
-        <Constraint
-            android:id="@+id/menuDrawerIcon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="32dp"
-            app:layout_constraintBottom_toTopOf="@+id/toolBarGuideline"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:visibilityMode="ignore" />
+        <Constraint android:id="@+id/menuDrawerIcon">
+            <PropertySet app:visibilityMode="ignore"/>
+        </Constraint>
+
     </ConstraintSet>
 
 

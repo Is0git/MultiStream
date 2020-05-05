@@ -16,6 +16,7 @@ class App : DaggerApplication() {
 
     override fun onCreate() {
         super.onCreate()
+        twitchPlatform.platformName = "Twitch"
         platformManager.addPlatform(twitchPlatform)
     }
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {

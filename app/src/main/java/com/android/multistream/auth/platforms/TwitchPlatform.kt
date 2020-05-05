@@ -8,6 +8,7 @@ import com.android.multistream.network.twitch.TwitchAuthService
 import com.android.multistream.network.twitch.models.auth.Token
 import com.android.multistream.network.twitch.models.auth.Validation
 import com.android.multistream.network.twitch.models.v5.user.CurrentUser
+import com.android.multistream.utils.ResponseHandler
 import kotlinx.coroutines.CancellationException
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -58,7 +59,8 @@ class TwitchPlatform @Inject constructor(
 
     override suspend fun getUser(accessToken: String): CurrentUser {
         val result = service.getCurrentUser("OAuth $accessToken")
-       return result.body() ?: throw CancellationException("RESPONSEW ${result.message()}")
+        var isSuccessful = ResponseHandler.handleResponse(result, null)
+       return if (isSuccessful) result.body()!! else throw CancellationException("couldn't get user")
     }
 
 }
