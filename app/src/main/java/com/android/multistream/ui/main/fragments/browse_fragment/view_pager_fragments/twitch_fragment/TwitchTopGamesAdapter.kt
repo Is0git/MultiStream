@@ -46,7 +46,6 @@ class TwitchTopGamesAdapter @Inject constructor() :
             platformType = TWITCH
             viewersCurrent = list?.get(position)?.viewers
         }
-
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {

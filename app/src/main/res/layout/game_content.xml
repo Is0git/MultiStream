@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.android.multistream.ui.main.fragments.game_category_fragment.CategoryAppBar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/categoryAppBar"
+    app:layoutDescription="@xml/game_category_transition"
+    app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed">
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="8dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/gameName"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:fontFamily="@font/header_font"
+        android:lines="3"
+        android:text="Call of Duty: Modern Warfare"
+        android:textAlignment="textStart"
+        android:shadowColor="#94000000"
+        android:shadowDy="3"
+        android:shadowRadius="4"
+        android:textColor="@color/colorSurface"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/gameImage"
+        app:layout_constraintTop_toTopOf="@+id/gameImage" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/gameImage"
+        android:layout_width="140dp"
+        android:layout_height="210dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:paddingEnd="10dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/valo" />
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <View
+        android:id="@+id/eyeIcon"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/eye_icon"
+        android:backgroundTint="@color/colorOnSurface"
+        app:layout_constraintBottom_toBottomOf="@+id/gameImage"
+        app:layout_constraintEnd_toStartOf="@+id/viewersCount"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/gameImage"
+        app:layout_constraintStart_toStartOf="@+id/gameName"
+        app:layout_constraintTop_toBottomOf="@+id/gameName" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/viewersCount"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:breakStrategy="simple"
+        android:lines="2"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorOnSurface"
+        android:text="1.3k viewers"
+        app:layout_constraintBottom_toBottomOf="@+id/eyeIcon"
+        app:layout_constraintEnd_toStartOf="@+id/followersIcon"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/eyeIcon"
+        app:layout_constraintTop_toTopOf="@+id/eyeIcon" />
+
+    <View
+        android:id="@+id/followersIcon"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:backgroundTint="@color/colorOnSurface"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/love_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/viewersCount"
+        app:layout_constraintEnd_toStartOf="@+id/followersCount"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/viewersCount"
+        app:layout_constraintTop_toTopOf="@id/viewersCount" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/followersCount"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:breakStrategy="simple"
+        android:lines="2"
+        android:gravity="center_vertical"
+        android:text="5k followers"
+        android:textColor="@color/colorOnSurface"
+        app:layout_constraintBottom_toBottomOf="@+id/followersIcon"
+        app:layout_constraintEnd_toEndOf="@+id/gameName"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/followersIcon"
+        app:layout_constraintTop_toTopOf="@+id/followersIcon" />
+
+
+
+</com.android.multistream.ui.main.fragments.game_category_fragment.CategoryAppBar>
+

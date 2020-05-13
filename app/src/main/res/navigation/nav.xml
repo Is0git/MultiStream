@@ -28,7 +28,14 @@
         <fragment
             android:id="@+id/homeFragment"
             android:name="com.android.multistream.ui.main.fragments.home_fragment.HomeFragment"
-            android:label="HomeFragment" />
+            android:label="HomeFragment" >
+            <action
+                android:id="@+id/action_homeFragment_to_gameCategoryFragment"
+                app:destination="@id/gameCategoryFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_profileFragment"
+                app:destination="@id/profileFragment" />
+        </fragment>
         <fragment
             android:id="@+id/browseFragment"
             android:name="com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragment"
@@ -120,6 +127,18 @@
             app:launchSingleTop="true"
             app:popEnterAnim="@anim/right_to_left_pop_enter_anim"
             app:popExitAnim="@anim/right_to_left_pop_exit_anim" />
+        <fragment
+            android:id="@+id/searchFragment"
+            android:name="com.android.multistream.ui.main.fragments.search_fragment.SearchFragment"
+            android:label="SearchFragment" />
+        <fragment
+            android:id="@+id/gameCategoryFragment"
+            android:name="com.android.multistream.ui.main.fragments.game_category_fragment.GameCategoryFragment"
+            android:label="GameCategoryFragment" />
+        <fragment
+            android:id="@+id/profileFragment"
+            android:name="com.android.multistream.ui.main.fragments.profile_fragment.ProfileFragment"
+            android:label="ProfileFragment" />
     </navigation>
     <navigation
         android:id="@+id/intro"

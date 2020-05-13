@@ -2,39 +2,32 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.android.multistream.ui.main.fragments.browse_fragment.stripes_tab_layout.StripeTabLayout
-            android:id="@+id/stripeTabLayout"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            app:headerText="HOT GAMES"
-            app:indicatorColor="@color/colorOnSecondaryVariant"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/viewPagerCard"
-            android:layout_width="match_parent"
-            app:cardBackgroundColor="?colorSurface"
-            android:layout_height="0dp"
-            app:cardCornerRadius="0dp"
-            app:cardElevation="1dp"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stripeTabLayout">
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/topGamesViewPager"
+            android:backgroundTint="@color/colorSurface"
+            android:layout_height="wrap_content">
+            <com.android.multistream.ui.main.fragments.browse_fragment.stripes_tab_layout.StripeTabLayout
+                app:layout_scrollFlags="scroll|enterAlways|snap|enterAlwaysCollapsed"
+                android:id="@+id/stripeTabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-        </com.google.android.material.card.MaterialCardView>
+                android:layout_height="400dp"
+                app:headerText="HOT GAMES"
+                app:indicatorColor="@color/colorOnSecondaryVariant"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/topGamesViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

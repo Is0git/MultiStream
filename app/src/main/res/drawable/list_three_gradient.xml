@@ -5,6 +5,5 @@
         android:type="linear"
         android:startColor="@android:color/transparent"
         android:endColor="?attr/colorSurface"
-
         android:angle="-90" />
 </shape>

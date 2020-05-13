@@ -31,9 +31,6 @@
             <PropertySet app:visibilityMode="ignore"/>
         </Constraint>
 
-        <Constraint android:id="@id/navigationDrawer">
-            <PropertySet app:visibilityMode="ignore"/>
-        </Constraint>
 
         <Constraint
             android:id="@+id/bottomNav"
@@ -130,6 +127,4 @@
         </Constraint>
 
     </ConstraintSet>
-
-
 </MotionScene>

@@ -25,11 +25,11 @@ class GameChannelsFragment : DaggerFragment() {
     var gameId: String? = null
     var platformType: Int = UNKNOWN
     @Inject lateinit var factory: ViewModelFactory
-    val twitchChannelsAdapter: TwitchChannelsList by lazy { TwitchChannelsList() }
+    private val twitchChannelsAdapter: TwitchChannelsList by lazy { TwitchChannelsList() }
     lateinit var gameChannelViewModel: GameChannelViewModel
     lateinit var binding: GameChannelsFragmentBinding
     lateinit var navController: NavController
-    val mixerChannelsList by lazy { MixerChannelsList() }
+    private val mixerChannelsList by lazy { MixerChannelsList() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,9 +56,6 @@ class GameChannelsFragment : DaggerFragment() {
             setupMixerObservers()
             setupMixerList()
         }
-
-
-
         return binding.root
     }
 

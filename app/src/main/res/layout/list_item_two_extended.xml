@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        app:addGradient="false"
+        app:cardBackgroundColor="?colorSurface"
+        android:background="?colorSurface"
+        app:cardCornerRadius="0dp"
+        android:layout_marginBottom="5dp"
+        app:cardElevation="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <View
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:elevation="5dp"
+                android:background="@drawable/circle_drawable"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/viewersCount"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/right_stripe_gradient"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="22457 viewrs"
+                android:singleLine="true"
+                android:elevation="1dp"
+                app:layout_constraintBottom_toBottomOf="@+id/streamImage"
+                app:layout_constraintEnd_toEndOf="@+id/streamImage" />
+
+            <ImageView
+                android:id="@+id/streamImage"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cs_go"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/streamerBanner"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/cs_go"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/streamImage" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:id="@+id/streamerName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Shroud"
+                android:textStyle="bold"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/streamerBanner"
+                app:layout_constraintTop_toTopOf="@+id/streamerBanner" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:id="@+id/streamTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="StreamTitle"
+                android:lines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/streamerBanner"
+                app:layout_constraintTop_toBottomOf="@id/streamerName"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/streamGame"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:singleLine="true"
+                android:text="WolcenL Lords of Mayhem"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/streamerBanner"
+                app:layout_constraintTop_toBottomOf="@id/streamTitle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView>
+</layout>

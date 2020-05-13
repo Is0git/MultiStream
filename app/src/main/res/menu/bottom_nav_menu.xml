@@ -8,6 +8,12 @@
         android:icon="@drawable/home_icon"
         android:title="@string/home" />
     <item
+        android:id="@+id/searchFragment"
+        app:showAsAction="never"
+        android:menuCategory="secondary"
+        android:icon="@drawable/search_icon"
+        android:title="@string/search" />
+    <item
         android:id="@+id/browseFragment"
         app:showAsAction="never"
         android:menuCategory="secondary"

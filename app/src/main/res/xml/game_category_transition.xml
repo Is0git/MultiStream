@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+    <Transition
+        motion:constraintSetStart="@id/category_start"
+        motion:constraintSetEnd="@id/category_end">
+        <KeyFrameSet>
+            <KeyAttribute
+                android:alpha="1.0"
+                motion:framePosition="0"
+                motion:motionTarget="@id/gameName" />
+            <KeyAttribute
+                android:alpha="0.0"
+                motion:framePosition="70"
+                motion:motionTarget="@id/gameName" />
+            <KeyAttribute
+                android:alpha="1.0"
+                motion:framePosition="0"
+                android:rotationY="7"
+                motion:motionTarget="@id/gameImage" />
+            <KeyAttribute
+                android:alpha="0.0"
+                motion:framePosition="70"
+                android:rotationY="0"
+                motion:motionTarget="@id/gameImage" />
+
+            <KeyAttribute
+                android:alpha="1.0"
+                motion:framePosition="0"
+                motion:motionTarget="@id/viewersCount" />
+            <KeyAttribute
+                android:alpha="0.0"
+                motion:framePosition="70"
+                motion:motionTarget="@id/viewersCount" />
+
+            <KeyAttribute
+                android:alpha="1.0"
+                motion:framePosition="0"
+                motion:motionTarget="@id/followersCount" />
+            <KeyAttribute
+                android:alpha="0.0"
+                motion:framePosition="70"
+                motion:motionTarget="@id/followersCount" />
+            <KeyAttribute
+                android:alpha="1.0"
+                motion:framePosition="0"
+                motion:motionTarget="@id/eyeIcon" />
+            <KeyAttribute
+                android:alpha="0.0"
+                motion:framePosition="70"
+                motion:motionTarget="@id/eyeIcon" />
+            <KeyAttribute
+                android:alpha="1.0"
+                motion:framePosition="0"
+                motion:motionTarget="@id/followersIcon" />
+            <KeyAttribute
+                android:alpha="0.0"
+                motion:framePosition="70"
+                motion:motionTarget="@id/followersIcon" />
+        </KeyFrameSet>
+    </Transition>
+    <ConstraintSet android:id="@+id/category_start"/>
+    <ConstraintSet android:id="@+id/category_end"/>
+</MotionScene>

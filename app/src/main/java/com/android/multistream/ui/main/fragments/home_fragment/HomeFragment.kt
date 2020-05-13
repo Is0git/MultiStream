@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
 import com.android.multistream.R
@@ -68,7 +69,6 @@ class HomeFragment : DaggerFragment() {
         viewModel = ViewModelProvider(this, factory).get(HomeFragmentViewModel::class.java)
         mainActivityViewModel =
             ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
-
         if (settingsPreferences.getBoolean(
                 getString(R.string.twitch_visibility),
                 false
@@ -87,10 +87,11 @@ class HomeFragment : DaggerFragment() {
 
             addHiddenView(binding.homeText, RIGHT, alphaAnimation)
         }
+        binding.homeText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_gameCategoryFragment) }
+        binding.twitchText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_profileFragment) }
         (requireActivity() as MainActivity).showActionBar()
         return binding.root
     }
-
 
     private fun setupViewPager() {
         channelsViewPagerAdapter =
@@ -156,7 +157,7 @@ class HomeFragment : DaggerFragment() {
             twitchLogo.visibility = View.VISIBLE
             setupViewPager()
             //ViewPager
-            viewModel.getChannels()
+//            viewModel.getChannels()
 
             viewModel.topChannelsLiveData.observe(viewLifecycleOwner) {
                 channelsViewPagerAdapter.data = it
@@ -179,12 +180,10 @@ class HomeFragment : DaggerFragment() {
             ) { k, t ->
                 ImageLoader.loadImageTwitch(k.gameBanner, t.box_art_url)
             }
-
             twitchTopGamesList.apply {
                 layoutManager = CardSliderLayoutManager(requireActivity())
                 adapter = topGamesAdapter
             }
-
             twitchTopGamesText.visibility = View.VISIBLE
         }
     }

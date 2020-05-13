@@ -2,6 +2,8 @@ include ':app', ':multistreamnavigationdrawer'
 include ':multistreamplayer'
 project(':multistreamplayer').projectDir=new File('D:\\multistreamProject\\Multi-Stream-Player\\multistreamplayer')
 include ':multistreamchat'
+include ':multistreamsearchview'
+project(':multistreamsearchview').projectDir = new File('D:\\multistreamProject\\Multi-Stream-SearchView\\multistreamsearchview')
 project(':multistreamchat').projectDir=new File('D:\\multistreamProject\\Multi-Stream-Chat\\multistreamchat')
 project(':multistreamnavigationdrawer').projectDir= new File("D:\\multistreamProject\\MultiStreamNavigationDrawer\\navigationdrawer")
 rootProject.name='multistream'

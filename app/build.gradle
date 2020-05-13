@@ -153,6 +153,8 @@ dependencies {
 
     implementation project(":multistreamnavigationdrawer")
 
+    implementation project(":multistreamsearchview")
+
 
 
 }

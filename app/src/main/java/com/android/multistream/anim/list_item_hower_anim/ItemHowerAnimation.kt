@@ -56,7 +56,7 @@ abstract class ItemHoverViewHolder<T : ViewDataBinding>(val binding: T, val span
     }
 
     override fun onSingleTapUp(e: MotionEvent?): Boolean {
-
+        navigate(binding)
         return true
     }
 

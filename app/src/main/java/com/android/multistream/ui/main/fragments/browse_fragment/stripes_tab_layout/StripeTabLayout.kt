@@ -66,7 +66,7 @@ class StripeTabLayout : ConstraintLayout, TabLayout.OnTabSelectedListener {
             this.elevation = 2f
             this.isTabIndicatorFullWidth = true
             this.minimumWidth = 0
-            this.background = resources.getDrawable(R.drawable.main_background_gradient)
+            this.background = ResourcesCompat.getDrawable(resources, R.drawable.main_background_gradient, null)
             this.tabRippleColor = ColorStateList.valueOf(Color.TRANSPARENT)
             this.setSelectedTabIndicatorHeight(5)
             this.setSelectedTabIndicatorColor(indicatorColor)

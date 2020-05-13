@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/darken_gradient">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/streamerName"
+            style="@style/TextAppearance.MaterialComponents.Headline4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/header_font"
+            android:lines="1"
+            android:text="SHROUD"
+            android:textColor="@color/colorSurface"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/view2"
+            app:layout_constraintStart_toEndOf="@+id/view2"
+            app:layout_constraintTop_toTopOf="@+id/view2" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/back_icon"
+            android:backgroundTint="@color/colorOnSecondaryVariant"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/original"
+            app:civ_border_color="@color/colorSurface"
+            app:layout_constraintBottom_toBottomOf="@+id/streamerName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/streamerName"
+            app:layout_constraintTop_toTopOf="@+id/streamerName" />
+
+        <ImageView
+            android:id="@+id/banner_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0.3"
+            android:scaleType="centerCrop"
+            android:src="@drawable/shroud"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/top_guideline" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/viewersCount"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand"
+            android:text="1.340"
+            android:textColor="@color/colorOnSurface"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/banner_image"
+            app:layout_constraintEnd_toEndOf="@+id/viewersText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewersText" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/viewersText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand"
+            android:text="VIEWERS"
+            android:textColor="@color/colorSecondary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/viewersCount"
+            app:layout_constraintTop_toBottomOf="@+id/streamerName"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:layout_editor_absoluteX="44dp" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/followersCount"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand"
+            android:text="5.825.416"
+            android:textColor="@color/colorOnSurface"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/banner_image"
+            app:layout_constraintEnd_toEndOf="@+id/followersText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/followersText"
+            app:layout_constraintTop_toBottomOf="@+id/followersText" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/followersText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand"
+            android:text="FOLLOWERS"
+            android:textColor="@color/colorSecondary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/followersCount"
+            app:layout_constraintTop_toBottomOf="@+id/streamerName"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:layout_editor_absoluteX="112dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/viewsCount"
+            style="@style/TextAppearance.MaterialComponents.Headline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand"
+            android:text="8.425.426.123"
+            android:textColor="@color/colorOnSurface"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/banner_image"
+            app:layout_constraintEnd_toEndOf="@+id/viewsText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/viewsText"
+            app:layout_constraintTop_toBottomOf="@+id/viewsText" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/viewsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/quicksand"
+            android:text="VIEWS"
+            android:textColor="@color/colorSecondary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/viewsCount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/streamerName"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/top_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="219dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/bottom_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
