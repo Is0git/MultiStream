@@ -7,16 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.anim.list_item_hower_anim.ItemHoverViewHolder
 import com.android.multistream.databinding.SingleTopGamesListBinding
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.top_fragment.TopFragmentGamesScope
-import com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data
+import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame
 import com.android.multistream.utils.UNKNOWN
 import javax.inject.Inject
 
 @TopFragmentGamesScope
 class TopGamesListAdapter @Inject constructor() :
     RecyclerView.Adapter<TopGamesListAdapter.MyViewHolder>() {
-    lateinit var listener: CategoryNavigationListener<Data>
+    lateinit var listener: CategoryNavigationListener<TopGame>
     var spanCount = 0
-    var list: List<Data>? = null
+    var list: List<TopGame>? = null
         set(value) {
             val begin = if (field == null) 0 else field?.count()!! - 1
             field = value

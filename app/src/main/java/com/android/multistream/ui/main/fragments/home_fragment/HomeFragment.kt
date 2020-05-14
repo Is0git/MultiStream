@@ -8,13 +8,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
 import com.android.multistream.R
 import com.android.multistream.databinding.*
-import com.android.multistream.di.qualifiers.AuthPreferencesQualifier
 import com.android.multistream.di.qualifiers.SettingsPreferencesQualifier
-import com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data
+import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame
 import com.android.multistream.network.twitch.models.new_twitch_api.channels.DataItem
 import com.android.multistream.network.twitch.models.v5.followed_streams.StreamsItem
 import com.android.multistream.ui.main.activities.main_activity.MainActivity
@@ -28,16 +26,6 @@ import com.android.multistream.utils.ViewModelFactory
 import com.android.multistream.utils.data_binding.ImageLoader
 import com.ramotion.cardslider.CardSliderLayoutManager
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.channels_list.*
-import kotlinx.android.synthetic.main.channels_list.streamTitle
-import kotlinx.android.synthetic.main.channels_list.viewersCount
-import kotlinx.android.synthetic.main.games_top_fragment_page.*
-import kotlinx.android.synthetic.main.home_fragment.*
-import kotlinx.android.synthetic.main.list_item_three.*
-import kotlinx.android.synthetic.main.list_item_three.streamerBanner
-import kotlinx.android.synthetic.main.list_item_three.streamerName
-import kotlinx.android.synthetic.main.list_item_two.*
-import retrofit2.http.Field
 import java.util.*
 import javax.inject.Inject
 
@@ -52,7 +40,7 @@ class HomeFragment : DaggerFragment() {
     lateinit var channelsViewPagerAdapter: PlaceHolderAdapter<DataItem, ChannelsViewPagerItemBinding>
     lateinit var twitchChannelsAdapter: PlaceHolderAdapter<StreamsItem, ListItemTwoBinding>
     lateinit var followingAdapter: PlaceHolderAdapter<StreamsItem, ListItemThreeBinding>
-    lateinit var topGamesAdapter: PlaceHolderAdapter<Data, ListItemFourBinding>
+    lateinit var topGamesAdapter: PlaceHolderAdapter<TopGame, ListItemFourBinding>
     lateinit var mainActivityViewModel: MainActivityViewModel
     lateinit var viewModel: HomeFragmentViewModel
     override fun onCreate(savedInstanceState: Bundle?) {

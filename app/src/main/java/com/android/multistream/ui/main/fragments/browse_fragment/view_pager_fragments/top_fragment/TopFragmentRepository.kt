@@ -5,7 +5,7 @@ import android.widget.Toast
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.top_fragment.TopFragmentGamesScope
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
-import com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data
+import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame
 import com.android.multistream.pagination.listeners.PagedOffSetListener
 import com.android.multistream.pagination.PagedOffsetLoader
 import kotlinx.coroutines.*
@@ -20,12 +20,12 @@ class TopFragmentRepository @Inject constructor(
     val application: Application,
     val twitchService: TwitchService,
     val mixerService: MixerService
-) : PagedOffSetListener<Data> {
+) : PagedOffSetListener<TopGame> {
 
     var loadJob: Job? = null
     val pageLoader = PagedOffsetLoader(this, 20)
 
-        override fun loadInitial(pagination: PagedOffsetLoader<Data>) {
+        override fun loadInitial(pagination: PagedOffsetLoader<TopGame>) {
             loadJob = CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val twitchResult =
@@ -49,7 +49,7 @@ class TopFragmentRepository @Inject constructor(
             }
         }
 
-        override fun loadNext(pagination: PagedOffsetLoader<Data>) {
+        override fun loadNext(pagination: PagedOffsetLoader<TopGame>) {
             loadJob = CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val twitchResult = getTwitchTopGamesAsync(pagination.pageOffset, pagination.pageLimit)
@@ -76,12 +76,12 @@ class TopFragmentRepository @Inject constructor(
 
         }
 
-        suspend fun getMixerGame(topItem: Data) : Data {
+        suspend fun getMixerGame(topItem: TopGame) : TopGame {
            val result = withContext(Dispatchers.IO) { mixerService.getMixerTopGame("name:eq:${topItem.name}", 1)}
             topItem.mixerTopGames = result.body()?.firstOrNull()
             return topItem
 
         }
-        suspend fun topTwitchAndMixerGames(list: List<Data>?) : Flow<Data> = flow {list?.forEach { emit(it) }}
+        suspend fun topTwitchAndMixerGames(list: List<TopGame>?) : Flow<TopGame> = flow {list?.forEach { emit(it) }}
 
 }

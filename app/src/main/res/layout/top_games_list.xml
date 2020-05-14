@@ -5,11 +5,11 @@
 
         <variable
             name="Data"
-            type="com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data" />
+            type="com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame" />
 
         <variable
             name="listener"
-            type="com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.top_fragment.CategoryNavigationListener&lt;com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data>" />
+            type="com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.top_fragment.CategoryNavigationListener&lt;com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame>" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

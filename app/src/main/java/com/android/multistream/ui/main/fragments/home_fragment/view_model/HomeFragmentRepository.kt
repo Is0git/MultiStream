@@ -7,7 +7,7 @@ import com.android.multistream.di.main_activity.main_fragments.home_fragment.Hom
 import com.android.multistream.di.qualifiers.TwitchQualifier
 import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.models.new_twitch_api.channels.DataItem
-import com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data
+import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame
 import com.android.multistream.network.twitch.models.v5.followed_streams.Followed
 import retrofit2.Retrofit
 import javax.inject.Inject
@@ -18,7 +18,7 @@ class HomeFragmentRepository @Inject constructor(@TwitchQualifier val retrofit: 
     val topChannelsLiveData = MutableLiveData<MutableList<DataItem>?>()
     val followedLiveStreamsLiveData = MutableLiveData<Followed?>()
     val followedStreamsLiveData = MutableLiveData<Followed?>()
-    val topGamesLiveData = MutableLiveData<MutableList<Data>>()
+    val topGamesLiveData = MutableLiveData<MutableList<TopGame>>()
 
     suspend fun getTopChannels() {
         val twitchResult = twitchService.getChannels(first = 10, gameId = null)

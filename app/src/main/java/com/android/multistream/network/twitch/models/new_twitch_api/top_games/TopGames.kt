@@ -2,13 +2,14 @@ package com.android.multistream.network.twitch.models.new_twitch_api.top_games
 
 import android.os.Parcelable
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
+import com.android.multistream.utils.TWITCH
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 
-data class TopGames(@Json(name = "data") val data: MutableList<Data>, val pagination: Pagination?)
+data class TopGames(@Json(name = "data") val data: MutableList<TopGame>, val pagination: Pagination?)
 
 @Parcelize
-data class Data(val box_art_url: String?, val id: String?, val name: String?, val platformType: String?, val viewersCount: Int, var mixerTopGames: MixerTopGames? = null) : Parcelable
+data class TopGame(val box_art_url: String?, val id: String?, val name: String?, val platformType: Int = TWITCH, val viewersCount: Int) : Parcelable
 
 data class twitchData(val box_art_url: String?, val id: String?, val name: String?, val platformType: String?, val viewersCount: Int, val mixerCount: Int? = null)
 

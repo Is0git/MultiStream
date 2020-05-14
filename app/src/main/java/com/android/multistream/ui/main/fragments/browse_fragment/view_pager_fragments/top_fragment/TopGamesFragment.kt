@@ -8,17 +8,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.R
 import com.android.multistream.databinding.GamesTopFragmentPageBinding
-import com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data
+import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame
 import com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragmentDirections
 import com.android.multistream.utils.ViewModelFactory
-import com.android.multistream.pagination.PageLoadingStates
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class TopGamesFragment : DaggerFragment(), CategoryNavigationListener<Data> {
+class TopGamesFragment : DaggerFragment(), CategoryNavigationListener<TopGame> {
     lateinit var binding: GamesTopFragmentPageBinding
     @Inject lateinit var factory: ViewModelFactory
     lateinit var topFragmentViewModel: TopFragmentViewModel
@@ -54,7 +52,7 @@ class TopGamesFragment : DaggerFragment(), CategoryNavigationListener<Data> {
         topFragmentViewModel.pageLiveData.observe(viewLifecycleOwner, Observer { topGamesAdapter.list = it })
     }
 
-    override fun onGameClick(data: Data) {
+    override fun onGameClick(data: TopGame) {
        val directions = BrowseFragmentDirections.actionBrowseFragmentToGameChannelsFragment2(data, 0, 0, null, null, null)
         navController.navigate(directions)
     }
