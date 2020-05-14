@@ -18,7 +18,7 @@ class MainActivityRepository @Inject constructor(val platformManager: PlatformMa
 
     val twitchPlatformAuthLiveData = platformManager.getPlatform(TwitchPlatform::class.java).statesLiveData
 
-    fun getAndSaveToken(code: Uri?) {
+    fun getAndSaveToken(code: Uri?, platformClass: Class<out Platform<*,*,*,*>>) {
         platformManager.getPlatform(TwitchPlatform::class.java).saveAccessTokenBearer(code, Token::class.java)
     }
 
@@ -49,4 +49,8 @@ class MainActivityRepository @Inject constructor(val platformManager: PlatformMa
     fun getTwitchUser() : CurrentUser? {
        return platformManager.getPlatform(TwitchPlatform::class.java).currentUser
     }
+    fun saveAccessToken(platformClass: Class<out Platform<*, *, *, *>>, accessToken: String?, refreshToken: String?) {
+        platformManager.saveAccessTokenInPreference(platformClass, accessToken, refreshToken)
+    }
+
 }

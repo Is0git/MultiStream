@@ -1,0 +1,42 @@
+package com.android.multistream.auth.platforms
+
+import com.android.multistream.auth.Platform
+import com.android.multistream.auth.PlatformManager
+import com.android.multistream.di.qualifiers.MixerQualifier
+import com.android.multistream.network.mixer.MixerService
+import com.android.multistream.network.twitch.models.auth.Token
+import com.android.multistream.network.twitch.models.auth.Validation
+import com.android.multistream.network.twitch.models.v5.user.CurrentUser
+import retrofit2.Response
+import retrofit2.Retrofit
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class MixerPlatform @Inject constructor(@MixerQualifier retrofit: Retrofit, platformManager: PlatformManager ) : Platform<MixerService, Token, Validation, CurrentUser>(retrofit, MixerService::class.java, platformManager, "Mixer") {
+    override fun getNewToken(service: MixerService, refreshToken: String): Response<Token>? {
+        return service.getToken()
+    }
+
+    override fun provideAuthTokenPair(response: Response<Token>): Pair<String?, String?> {
+       return Pair(response.body()?.access_token, response.body()?.refresh_token)
+    }
+
+    override suspend fun getUser(accessToken: String): CurrentUser {
+       return CurrentUser()
+    }
+
+    override suspend fun getTokenValidationResponse(
+        service: MixerService,
+        accessToken: String
+    ): Response<Validation> {
+      return  service.getValidation()
+    }
+
+    override suspend fun getAccessTokenBearer(
+        service: MixerService,
+        code: String
+    ): Response<Token> {
+        return service.getToken()
+    }
+}

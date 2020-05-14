@@ -3,7 +3,6 @@ package com.android.multistream.auth
 import android.content.SharedPreferences
 import android.util.Log
 import javax.inject.Inject
-import javax.inject.Singleton
 
 
 class PlatformManager @Inject constructor(
@@ -44,4 +43,9 @@ class PlatformManager @Inject constructor(
         if (classResult != null) classResult as T else throw IllegalArgumentException("this type platform hasn't been found")
     }
 
+     fun saveAccessTokenInPreference(platformClass: Class<out Platform<*, *, *, *>>, accessToken: String?, refreshToken: String?) {
+         if (!accessToken.isNullOrBlank()) {
+             platforms[platformClass.simpleName]?.saveAccessTokenInPreference(Pair(accessToken, refreshToken), this)
+         }
+     }
 }

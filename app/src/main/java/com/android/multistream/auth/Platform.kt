@@ -74,7 +74,7 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
                 "function's token response does not match with service response"
             )
             val pair = provideAuthTokenPair(responseResult)
-            saveAccessTokenInPreference(pair, platformManager, this@Platform)
+            saveAccessTokenInPreference(pair, platformManager)
 
             currentUser = if (pair.first != null) getUser(pair.first!!) else null
 
@@ -82,18 +82,18 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
         }
     }
 
-    private fun saveAccessTokenInPreference(
+     fun saveAccessTokenInPreference(
         authPair: Pair<String?, String?>,
-        platformManager: PlatformManager,
-        platform: Platform<*, *, *, *>
+        platformManager: PlatformManager
     ) {
 
         if (authPair.first != null && authPair.second != null) {
             platformManager.sharedPreferencesEditor.also {
-                val className = platform.javaClass.simpleName
+                val className = this.javaClass.simpleName
                 it.putString("ACCESS_TOKEN_$className", authPair.first)
                 it.putString("REFRESH_TOKEN_$className", authPair.second)
                 it.apply()
+                isValidated = true
             }
         }
     }
@@ -130,7 +130,7 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
 
         getNewToken(service, refreshToken)?.let {
             val pair = provideAuthTokenPair(it)
-            saveAccessTokenInPreference(provideAuthTokenPair(it), platformManager, this)
+            saveAccessTokenInPreference(provideAuthTokenPair(it), platformManager)
             Log.d("TESTPREF", "FIRST: ${pair.first} SECOND: ${pair.second}")
             return pair.first
         }

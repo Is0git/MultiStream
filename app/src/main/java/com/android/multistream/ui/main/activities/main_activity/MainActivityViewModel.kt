@@ -12,8 +12,8 @@ class MainActivityViewModel @Inject constructor(val repo: MainActivityRepository
 
     val statesLiveData = repo.twitchPlatformAuthLiveData
 
-    fun getAndSaveToken(code: Uri?) {
-        repo.getAndSaveToken(code)
+    fun getAndSaveToken(code: Uri?, platformClass: Class<out Platform<*,*,*,*>>) {
+        repo.getAndSaveToken(code, platformClass)
     }
 
     fun isValidated(clazz: Class<out Platform<*, *, *, *>>): Boolean {
@@ -34,6 +34,10 @@ class MainActivityViewModel @Inject constructor(val repo: MainActivityRepository
 
     fun getTwitchUser(): CurrentUser? {
         return repo.getTwitchUser()
+    }
+
+    fun saveAccessToken(platformClass: Class<out Platform<*, *, *, *>>, accessToken: String?, refreshToken: String?) {
+        repo.saveAccessToken(platformClass, accessToken, refreshToken)
     }
 
 }

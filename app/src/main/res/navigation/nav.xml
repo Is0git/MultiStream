@@ -24,11 +24,11 @@
     </fragment>
     <navigation
         android:id="@+id/main"
-        app:startDestination="@id/homeFragment" >
+        app:startDestination="@id/homeFragment">
         <fragment
             android:id="@+id/homeFragment"
             android:name="com.android.multistream.ui.main.fragments.home_fragment.HomeFragment"
-            android:label="HomeFragment" >
+            android:label="HomeFragment">
             <action
                 android:id="@+id/action_homeFragment_to_gameCategoryFragment"
                 app:destination="@id/gameCategoryFragment" />
@@ -146,17 +146,31 @@
         <fragment
             android:id="@+id/introPageTwo"
             android:name="com.android.multistream.ui.intro.fragments.IntroPageTwo"
-            android:label="IntroPageTwo" />
+            android:label="IntroPageTwo">
+            <action
+                android:id="@+id/action_introPageTwo_to_loginFragment"
+                app:destination="@id/loginFragment">
+                <argument
+                    android:name="platform"
+                    app:argType="integer"
+                    android:defaultValue="0"/>
+            </action>
+        </fragment>
         <action
             android:id="@+id/action_intro_to_main"
             app:destination="@id/main"
             app:popUpTo="@id/introPageTwo"
             app:popUpToInclusive="true" />
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.android.multistream.ui.auth.LoginFragment"
+            android:label="LoginFragment">
+            <argument
+                android:name="platform"
+                app:argType="integer"
+                android:defaultValue="0"/>
+        </fragment>
     </navigation>
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.android.multistream.ui.auth.LoginFragment"
-        android:label="LoginFragment" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.android.multistream.ui.settings.SettingsFragment"
