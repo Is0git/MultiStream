@@ -19,4 +19,9 @@ object RoomModule {
     @JvmStatic
     @Singleton
     fun twitchDao(mainDatabase: MainDatabase ) = mainDatabase.twitchDao()
+
+    @Provides
+    @JvmStatic
+    @Singleton
+    fun searchDao(mainDatabase: MainDatabase ) = mainDatabase.searchDao()
 }

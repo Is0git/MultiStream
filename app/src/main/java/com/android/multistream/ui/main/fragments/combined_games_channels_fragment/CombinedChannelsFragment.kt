@@ -16,5 +16,5 @@ class CombinedChannelsFragment : DaggerFragment() {
     ): View? {
         binding = CombinedGamesTopChannelsBinding.inflate(inflater, container, false)
         return binding.root
-}
+    }
 }

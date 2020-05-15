@@ -49,11 +49,10 @@ class TopGamesFragment : DaggerFragment(), CategoryNavigationListener<TopGame> {
     }
 
     fun setupObservers() {
-        topFragmentViewModel.pageLiveData.observe(viewLifecycleOwner, Observer { topGamesAdapter.list = it })
+
     }
 
     override fun onGameClick(data: TopGame) {
-       val directions = BrowseFragmentDirections.actionBrowseFragmentToGameChannelsFragment2(data, 0, 0, null, null, null)
-        navController.navigate(directions)
+
     }
 }

@@ -5,10 +5,14 @@ import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.di.qualifiers.MixerQualifier
 import com.android.multistream.di.qualifiers.TwitchQualifier
 import com.android.multistream.network.mixer.MixerService
+import com.android.multistream.network.mixer.adapters.ChannelSearchesAdapter
 import com.android.multistream.network.mixer.adapters.MixerAdapter
-import com.android.multistream.network.twitch.TopGamesTwitchAdapter
+import com.android.multistream.network.twitch.adapters.TopGamesTwitchAdapter
 import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.mixer.constants.MIXER_URL
+import com.android.multistream.network.twitch.adapters.GameSearchesAdapter
+import com.android.multistream.network.twitch.adapters.StreamSearchesAdapter
+import com.android.multistream.network.twitch.adapters.qualifiers.GamesJsonQualifier
 import com.android.multistream.network.twitch.constants.TWITCH_URL
 import com.android.multistream.network.twitch.constants.URL
 import com.squareup.moshi.Moshi
@@ -84,7 +88,11 @@ object RetrofitModule {
     @JvmStatic
     @TwitchQualifier
     fun getTwitchRetrofit(@TwitchQualifier client: OkHttpClient): Retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().add(TopGamesTwitchAdapter()).build()))
+        .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder()
+            .add(TopGamesTwitchAdapter())
+            .add(StreamSearchesAdapter())
+            .add(GameSearchesAdapter())
+            .build()))
         .client(client)
         .baseUrl(TWITCH_URL)
         .build()
@@ -94,7 +102,10 @@ object RetrofitModule {
     @JvmStatic
     @MixerQualifier
     fun getMixerRetrofit(@MixerQualifier client: OkHttpClient): Retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder().add(MixerAdapter()).build()))
+        .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder()
+            .add(ChannelSearchesAdapter())
+            .add(MixerAdapter())
+            .build()))
         .client(client)
         .baseUrl(MIXER_URL)
         .build()

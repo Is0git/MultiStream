@@ -17,4 +17,5 @@
     <string name="visibility">VISIBILITY</string>
     <string name="show_mixer_content">show mixer content</string>
     <string name="show_twitch_content">show twitch content</string>
+    <string name="no_image">https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png</string>
 </resources>

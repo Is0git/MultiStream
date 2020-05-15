@@ -1,13 +1,14 @@
 package com.android.multistream.network.twitch
 
+import com.android.multistream.network.twitch.adapters.GameSearchesAdapter
+import com.android.multistream.network.twitch.adapters.StreamSearchesAdapter
+import com.android.multistream.network.twitch.adapters.qualifiers.GamesJsonQualifier
 import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame
 import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGames
 import com.android.multistream.network.twitch.models.new_twitch_api.channels.GameChannels
 import com.android.multistream.network.twitch.models.v5.top_games.TopGamesV5
 import com.android.multistream.network.twitch.constants.CLIENT_ID
 import com.android.multistream.network.twitch.models.v5.followed_streams.Followed
-import com.android.multistream.network.twitch.models.v5.search.games_search.GameSearches
-import com.android.multistream.network.twitch.models.v5.search.streams_search.StreamSearches
 import com.multistream.multistreamsearchview.search_view.SearchViewLayout
 import retrofit2.Response
 import retrofit2.http.*
@@ -39,13 +40,13 @@ interface TwitchService {
 
     @GET("kraken/search/channels")
     @Headers("Client-ID: $CLIENT_ID", "Accept: application/vnd.twitchtv.v5+json")
-    suspend fun getChannelSearches(@Query("query") query: String, @Query("limit") limit: Int, @Query("offset") offset: Int) : Response<List<SearchViewLayout.SearchData>?>
+    suspend fun getChannelSearches(@Query("query") query: String, @Query("limit") limit: Int, @Query("offset") offset: Int,  @Query("api_version") version: Int = 5) : Response<List<SearchViewLayout.SearchData>?>
 
     @GET("kraken/search/games")
     @Headers("Client-ID: $CLIENT_ID", "Accept: application/vnd.twitchtv.v5+json")
-    suspend fun getGamesSearches(@Query("query") query: String) : Response<List<SearchViewLayout.SearchData>?>
+    suspend fun getGamesSearches(@Query("query") query: String, @Query("limit") limit: Int = 10,  @Query("api_version") version: Int = 5) : Response<List<GameSearchesAdapter.GamesSearchData>?>
 
     @GET("kraken/search/streams")
     @Headers("Client-ID: $CLIENT_ID", "Accept: application/vnd.twitchtv.v5+json")
-    suspend fun getStreamSearches(@Query("query") query: String, @Query("limit") limit: Int, @Query("offset") offset: Int, @Query("hls") isHls: Boolean? = null) : Response<List<SearchViewLayout.SearchData>?>
+    suspend fun getStreamSearches(@Query("query") query: String, @Query("limit") limit: Int, @Query("offset") offset: Int, @Query("hls") isHls: Boolean? = null,  @Query("api_version") version: Int = 5) : Response<List<StreamSearchesAdapter.StreamSearchData>?>
 }

@@ -21,7 +21,7 @@ import javax.inject.Inject
 
 class GameChannelsFragment : DaggerFragment() {
 
-    val args: GameChannelsFragmentArgs by navArgs()
+
     var gameId: String? = null
     var platformType: Int = UNKNOWN
     @Inject lateinit var factory: ViewModelFactory
@@ -33,8 +33,7 @@ class GameChannelsFragment : DaggerFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        gameId = args.gameId
-        platformType = args.platformType
+
     }
 
     override fun onCreateView(

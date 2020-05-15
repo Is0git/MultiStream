@@ -16,6 +16,9 @@ data class Channel(
 	@Json(name="created_at")
 	val createdAt: String? = null,
 
+	@Json(name="description")
+	val description: String? = null,
+
 	@Json(name="language")
 	val language: String? = null,
 
@@ -28,17 +31,23 @@ data class Channel(
 	@Json(name="url")
 	val url: String? = null,
 
-	@Json(name="followers")
-	val followers: Int? = null,
+	@Json(name="broadcaster_type")
+	val broadcasterType: String? = null,
+
+	@Json(name="private_video")
+	val privateVideo: Boolean? = null,
 
 	@Json(name="profile_banner")
 	val profileBanner: String? = null,
 
-	@Json(name="partner")
-	val partner: Boolean? = null,
+	@Json(name="followers")
+	val followers: Int? = null,
 
 	@Json(name="updated_at")
 	val updatedAt: String? = null,
+
+	@Json(name="partner")
+	val partner: Boolean? = null,
 
 	@Json(name="broadcaster_language")
 	val broadcasterLanguage: String? = null,
@@ -49,6 +58,9 @@ data class Channel(
 	@Json(name="logo")
 	val logo: String? = null,
 
+	@Json(name="broadcaster_software")
+	val broadcasterSoftware: String? = null,
+
 	@Json(name="_id")
 	val id: Int? = null,
 
@@ -56,5 +68,8 @@ data class Channel(
 	val views: Int? = null,
 
 	@Json(name="status")
-	val status: String? = null
+	val status: String? = null,
+
+	@Json(name="privacy_options_enabled")
+	val privacyOptionsEnabled: Boolean? = null
 )

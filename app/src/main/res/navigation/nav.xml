@@ -43,34 +43,6 @@
             <action
                 android:id="@+id/action_browseFragment_to_gameChannelsFragment"
                 app:destination="@id/gameChannelsFragment">
-                <argument
-                    android:name="platformType"
-                    app:argType="integer" />
-                <argument
-                    android:name="viewers"
-                    app:argType="integer" />
-                <argument
-                    android:name="channels"
-                    android:defaultValue="@null"
-                    app:argType="string"
-                    app:nullable="true" />
-                <argument
-                    android:name="name"
-                    android:defaultValue="@null"
-                    app:argType="string"
-                    app:nullable="true" />
-                <argument
-                    android:name="boxImage"
-                    android:defaultValue="@null"
-                    app:argType="string"
-                    app:nullable="true" />
-
-                <argument
-                    android:name="gameId"
-                    android:defaultValue="@null"
-                    app:argType="string"
-                    app:nullable="true" />
-
 
             </action>
 
@@ -78,11 +50,6 @@
                 android:id="@+id/action_browseFragment_to_gameChannelsFragment2"
                 app:destination="@id/gameChannelsFragment"
                 app:launchSingleTop="true">
-                <argument
-                    android:name="data"
-                    android:defaultValue="@null"
-                    app:argType="com.android.multistream.network.twitch.models.new_twitch_api.top_games.Data"
-                    app:nullable="true" />
 
             </action>
         </fragment>
@@ -90,33 +57,7 @@
             android:id="@+id/gameChannelsFragment"
             android:name="com.android.multistream.ui.main.fragments.game_channels_fragment.GameChannelsFragment"
             android:label="GameChannelsFragment">
-            <argument
-                android:name="platformType"
-                app:argType="integer" />
-            <argument
-                android:name="viewers"
-                app:argType="integer" />
-            <argument
-                android:name="channels"
-                android:defaultValue="@null"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="name"
-                android:defaultValue="@null"
-                app:argType="string"
-                app:nullable="true" />
-            <argument
-                android:name="boxImage"
-                android:defaultValue="@null"
-                app:argType="string"
-                app:nullable="true" />
 
-            <argument
-                android:name="gameId"
-                android:defaultValue="@null"
-                app:argType="string"
-                app:nullable="true" />
 
         </fragment>
         <action
@@ -152,8 +93,8 @@
                 app:destination="@id/loginFragment">
                 <argument
                     android:name="platform"
-                    app:argType="integer"
-                    android:defaultValue="0"/>
+                    android:defaultValue="0"
+                    app:argType="integer" />
             </action>
         </fragment>
         <action
@@ -167,8 +108,8 @@
             android:label="LoginFragment">
             <argument
                 android:name="platform"
-                app:argType="integer"
-                android:defaultValue="0"/>
+                android:defaultValue="0"
+                app:argType="integer" />
         </fragment>
     </navigation>
     <fragment

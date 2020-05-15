@@ -29,7 +29,7 @@ class GameCategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = GameCategoryLayoutBinding.inflate(inflater, container, false)
-        val items = mutableListOf<StreamsItem>(
+        val items = mutableListOf(
             StreamsItem(null, null, null, null, null, null),
             StreamsItem(null, null, null, null, null, null),
             StreamsItem(null, null, null, null, null, null),
