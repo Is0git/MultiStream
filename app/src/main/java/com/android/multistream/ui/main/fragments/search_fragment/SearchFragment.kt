@@ -32,6 +32,15 @@ class SearchFragment : DaggerFragment() {
     ): View? {
         binding = SearchLayoutBinding.inflate(inflater, container, false)
         searchViewModel = ViewModelProvider(this, viewModelFactory).get(SearchViewModel::class.java)
+        createSourceDownloads()
+        createSearchFilters()
+        setObservers()
+        setEventListeners()
+        binding.searchLayout.initSearchView()
+        return binding.root
+    }
+
+    private fun createSourceDownloads() {
         val sourceDownloader = DataSource.Builder()
             .setIconDrawable(R.drawable.twitch_small_logo)
             .setName("Twitch")
@@ -51,11 +60,16 @@ class SearchFragment : DaggerFragment() {
             .setName("Mixer")
             .build(SearchViewLayout.SearchData::class.java) {
                 val query = binding.searchLayout.getQuery()
-                searchViewModel.getSearchedMixerChannels(query, 5)
+                val channels = searchViewModel.getSearchedMixerChannels(query, 5) ?: emptyList()
+                val games = searchViewModel.getSearchedMixerGames(query, 5) ?: emptyList()
+                val streams = searchViewModel.getSearchedMixerStreams(query, 5) ?: emptyList()
+                channels + games + streams
             }
         binding.searchLayout.addSourceDownloader(sourceDownloader)
-        binding.searchLayout.latestSearchesAdapter
         binding.searchLayout.addSourceDownloader(sourceDownloader2)
+    }
+
+    private fun createSearchFilters() {
         val category = FilterSelection.Builder()
             .setFilterSelectionName("Games")
             .build(SearchViewLayout.SearchData::class.java) { list -> list.filter { it.category == SearchViewLayout.GAMES } }
@@ -82,6 +96,24 @@ class SearchFragment : DaggerFragment() {
             isSingleSelection = true,
             isAllSelectionEnabled = true
         )
+    }
+
+    fun setSearchLayoutParams() {
+
+    }
+
+    private fun setObservers() {
+        searchViewModel.latestSearchesLiveData.observe(viewLifecycleOwner) {
+            binding.searchLayout.submitLatestSearchList(
+                it
+            )
+        }
+        searchViewModel.searchHistoryLiveData.observe(viewLifecycleOwner) {
+            binding.searchLayout.submitHistoryData(it)
+        }
+    }
+
+    private fun setEventListeners() {
         binding.searchLayout.apply {
             onAddHistoryData = { query, count -> searchViewModel.addHistoryData(query, count) }
             setOnRecentSearchCancelClickListener { position, view ->
@@ -92,21 +124,11 @@ class SearchFragment : DaggerFragment() {
                 val data = binding.searchLayout.getSearchAdapterItem(position)
                 data?.also { searchViewModel.addSearchedData(it) }
             }
-            searchViewModel.latestSearchesLiveData.observe(viewLifecycleOwner) {
-                submitLatestSearchList(
-                    it
-                )
-            }
             setOnClearButtonClickListener { searchViewModel.clearLatestSearches() }
             onSwipe = { position ->
                 val item = searchViewModel.latestSearchesLiveData.value?.get(position)
                 item?.also { searchViewModel.deleteItemFromLatestSearches(it) }
             }
-            initSearchView()
         }
-        searchViewModel.searchHistoryLiveData.observe(viewLifecycleOwner) {
-            binding.searchLayout.submitHistoryData(it)
-        }
-        return binding.root
     }
 }

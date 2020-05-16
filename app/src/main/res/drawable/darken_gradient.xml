@@ -5,6 +5,6 @@
         android:centerColor="?attr/colorPrimary"
         android:centerY="0.4"
         android:endColor="?attr/colorSecondaryVariant"
-        android:startColor="?attr/colorAccent" />
+        android:startColor="@color/colorOnPrimaryVariant" />
 
 </shape>

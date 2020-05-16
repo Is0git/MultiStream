@@ -5,9 +5,10 @@
     <color name="colorOnSurface">#CECECE</color>
     <color name="colorPrimary">#5e4eba</color>
     <color name="colorSecondary">#fe0000</color>
+    <color name="colorLight">#EFEDED</color>
     <color name="colorAccent">#172450</color>
     <color name="colorBackground">#FFFFFF</color>
-    <color name="colorOnPrimaryVariant">#4523F7</color>
+    <color name="colorOnPrimaryVariant">#FF172450</color>
     <color name="colorOnSecondaryVariant">#B43BFF</color>
     <color name="headlineShadowColor">#868585</color>
 </resources>

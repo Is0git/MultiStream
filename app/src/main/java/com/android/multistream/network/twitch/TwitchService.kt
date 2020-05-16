@@ -9,6 +9,7 @@ import com.android.multistream.network.twitch.models.new_twitch_api.channels.Gam
 import com.android.multistream.network.twitch.models.v5.top_games.TopGamesV5
 import com.android.multistream.network.twitch.constants.CLIENT_ID
 import com.android.multistream.network.twitch.models.v5.followed_streams.Followed
+import com.multistream.multistreamsearchview.search_result.SearchListAdapter
 import com.multistream.multistreamsearchview.search_view.SearchViewLayout
 import retrofit2.Response
 import retrofit2.http.*
@@ -48,5 +49,5 @@ interface TwitchService {
 
     @GET("kraken/search/streams")
     @Headers("Client-ID: $CLIENT_ID", "Accept: application/vnd.twitchtv.v5+json")
-    suspend fun getStreamSearches(@Query("query") query: String, @Query("limit") limit: Int, @Query("offset") offset: Int, @Query("hls") isHls: Boolean? = null,  @Query("api_version") version: Int = 5) : Response<List<StreamSearchesAdapter.StreamSearchData>?>
+    suspend fun getStreamSearches(@Query("query") query: String, @Query("limit") limit: Int, @Query("offset") offset: Int, @Query("hls") isHls: Boolean? = null,  @Query("api_version") version: Int = 5) : Response<List<SearchListAdapter.StreamSearchData>?>
 }

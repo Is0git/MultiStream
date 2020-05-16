@@ -3,8 +3,10 @@ package com.android.multistream.ui.main.fragments.search_fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.multistream.di.main_activity.main_fragments.search_fragment.SearchFragmentScope
+import com.android.multistream.network.twitch.adapters.StreamSearchesAdapter
 import com.android.multistream.utils.ResponseHandler
 import com.multistream.multistreamsearchview.recent_search.HistoryListAdapter
+import com.multistream.multistreamsearchview.search_result.SearchListAdapter
 import com.multistream.multistreamsearchview.search_view.LatestSearchedAdapter
 import com.multistream.multistreamsearchview.search_view.SearchViewLayout
 import kotlinx.coroutines.Dispatchers
@@ -43,6 +45,20 @@ class SearchViewModel @Inject constructor(var repo: SearchRepository) : ViewMode
         limit: Int
     ): List<SearchViewLayout.SearchData>? {
         return repo.getSearchedMixerChannels(query, limit)
+    }
+
+    suspend fun getSearchedMixerGames(
+        query: String,
+        limit: Int
+    ): List<SearchViewLayout.SearchData>? {
+        return repo.getSearchedMixerGames(query, limit)
+    }
+
+    suspend fun getSearchedMixerStreams(
+        query: String,
+        limit: Int
+    ): List<SearchListAdapter.StreamSearchData>? {
+        return repo.getSearchedMixerStreams(query, limit)
     }
 
     fun addHistoryData(query: String, count: Int) {

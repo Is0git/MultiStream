@@ -42,8 +42,6 @@ class PageLoader<T>(var pagedListener: PagedListener<T>) {
                 loadInitial(page).also { page += 1 }
             }
         }
-
-
         responseData?.let { this.data.addAll(it) }
         dataLiveData.postValue(this.data)
 

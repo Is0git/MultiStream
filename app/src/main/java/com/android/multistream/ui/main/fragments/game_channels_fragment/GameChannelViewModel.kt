@@ -13,8 +13,6 @@ class GameChannelViewModel @Inject constructor(val repo: GameChannelsRepository)
 
     fun getMixerPagedLoadData() = repo.pagedPositionLoader.dataLiveData
 
-
-
     fun getLoadState(type: Int) = if(type == TWITCH) repo.keyPager?.pageLoadingState?.value else repo.pagedPositionLoader.pageLoadingState.value
 
     fun loadNextPage(type: Int) = if(type == TWITCH) repo.keyPager?.loadHandler() else repo.pagedPositionLoader.loadHandler()

@@ -7,9 +7,11 @@ import com.android.multistream.di.main_activity.main_fragments.search_fragment.S
 import com.android.multistream.di.qualifiers.MixerQualifier
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
+import com.android.multistream.network.twitch.adapters.StreamSearchesAdapter
 import com.android.multistream.utils.ResponseHandler
 import com.android.multistream.utils.ResponseHandler.execute
 import com.multistream.multistreamsearchview.recent_search.HistoryListAdapter
+import com.multistream.multistreamsearchview.search_result.SearchListAdapter
 import com.multistream.multistreamsearchview.search_view.LatestSearchedAdapter
 import com.multistream.multistreamsearchview.search_view.SearchViewLayout
 import kotlinx.coroutines.Dispatchers
@@ -61,6 +63,14 @@ class SearchRepository @Inject constructor(
         limit: Int
     ): List<SearchViewLayout.SearchData>? {
         return execute(application) { mixerService.getSearchedChannels(query, limit) }
+    }
+
+    suspend fun getSearchedMixerGames(query: String, limit: Int)  : List<SearchViewLayout.SearchData>? {
+        return execute(application) {mixerService.getSearchedGames(query, limit)}
+    }
+
+    suspend fun getSearchedMixerStreams(query: String, limit: Int) : List<SearchListAdapter.StreamSearchData>? {
+        return execute(application) {mixerService.getSearchedStreams(query, limit)}
     }
 
     suspend fun addHistoryData(query: String, count: Int) {

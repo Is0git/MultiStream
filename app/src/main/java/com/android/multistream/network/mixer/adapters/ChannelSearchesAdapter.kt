@@ -12,7 +12,7 @@ class ChannelSearchesAdapter {
         return channelSearches.map {
             SearchViewLayout.SearchData(
                 it.user?.username,
-                it.user?.avatarUrl,
+                it.user?.avatarUrl ?: "https://mixer.com/api/v1/users/175971128/avatar?w=64&h=64",
                 SearchViewLayout.CHANNELS,
                 R.string.channels_category,
                 MIXER,

@@ -68,7 +68,7 @@ data class ChannelSearches(
 	val audience: String? = null,
 
 	@Json(name="thumbnail")
-	val thumbnail: Any? = null,
+	val thumbnail: String? = null,
 
 	@Json(name="interactiveGameId")
 	val interactiveGameId: Any? = null,

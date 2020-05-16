@@ -3,9 +3,11 @@ package com.android.multistream.network.mixer
 import com.android.multistream.network.mixer.models.channel.GameChannels
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
 import com.android.multistream.network.twitch.adapters.GameSearchesAdapter
+import com.android.multistream.network.twitch.adapters.StreamSearchesAdapter
 import com.android.multistream.network.twitch.models.auth.Token
 import com.android.multistream.network.twitch.models.auth.Validation
 import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame
+import com.multistream.multistreamsearchview.search_result.SearchListAdapter
 import com.multistream.multistreamsearchview.search_view.SearchViewLayout
 import retrofit2.Response
 import retrofit2.http.GET
@@ -29,16 +31,18 @@ interface MixerService {
 
     //Search
     @GET(value = "types")
-    suspend fun getSearchedGames(@Query("where") where: String?, @Query(value = "limit") limit: Int?) : Response<List<GameSearchesAdapter.GamesSearchData>?>
+    suspend fun getSearchedGames(@Query("query") query: String?, @Query(value = "limit") limit: Int?) : Response<List<GameSearchesAdapter.GamesSearchData>?>
 
     @GET("channels")
     suspend fun getSearchedChannels(@Query("q") q: String?, @Query(value = "limit") limit: Int?, @Query("scope") scope: String? = "all") : Response<List<SearchViewLayout.SearchData>?>
 
     @GET(value = "channels")
-    suspend fun getSearchedStreams(@Query("where") where: String?, @Query("order") order: String, @Query(value = "limit") limit: Int?) : Response<List<SearchViewLayout.SearchData>?>
+    suspend fun getSearchedStreams(@Query("q") query: String?,  @Query(value = "limit") limit: Int?, @Query("scope") scope: String? = "all") : Response<List<SearchListAdapter.StreamSearchData>?>
 
+    //AUTH
     @GET("oauth/token")
     fun getToken() : Response<Token>
+
     @GET("oauth/token")
     fun getValidation() : Response<Validation>
 
