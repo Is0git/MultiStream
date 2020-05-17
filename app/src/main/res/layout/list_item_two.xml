@@ -41,6 +41,7 @@
                 android:elevation="1dp"
                 app:layout_constraintBottom_toBottomOf="@+id/streamImage"
                 app:layout_constraintEnd_toEndOf="@+id/streamImage" />
+
             <ImageView
                 android:id="@+id/streamImage"
                 android:layout_width="match_parent"
@@ -86,7 +87,7 @@
                 android:lines="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/streamerBanner"
-              app:layout_constraintTop_toBottomOf="@id/streamerName"/>
+                app:layout_constraintTop_toBottomOf="@id/streamerName" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/streamGame"

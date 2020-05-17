@@ -1,13 +1,12 @@
 package com.android.multistream.ui.main.fragments.home_fragment.view_model
 
-import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.multistream.di.main_activity.main_fragments.home_fragment.HomeFragmentScope
-import com.android.multistream.di.qualifiers.SettingsPreferencesQualifier
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
 @HomeFragmentScope
 class HomeFragmentViewModel @Inject constructor(val repo: HomeFragmentRepository) : ViewModel() {
 
@@ -22,6 +21,7 @@ class HomeFragmentViewModel @Inject constructor(val repo: HomeFragmentRepository
     fun getChannels() {
         viewModelScope.launch { repo.getTopChannels() }
     }
+
     fun getFollowedLiveStreams(type: String) {
         viewModelScope.launch(Dispatchers.IO) { repo.getFollowedLiveStreams(type) }
     }

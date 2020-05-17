@@ -12,8 +12,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.android.multistream.R
 import com.android.multistream.databinding.*
 import com.android.multistream.di.qualifiers.SettingsPreferencesQualifier
-import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame
 import com.android.multistream.network.twitch.models.new_twitch_api.channels.DataItem
+import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame
 import com.android.multistream.network.twitch.models.v5.followed_streams.StreamsItem
 import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.main.activities.main_activity.MainActivityViewModel
@@ -22,30 +22,24 @@ import com.android.multistream.ui.main.fragments.home_fragment.view_model.HomeFr
 import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.RIGHT
 import com.android.multistream.ui.widgets.hide_scroll_view.animations.AlphaAnimation
 import com.android.multistream.utils.PlaceHolderAdapter
-import com.android.multistream.utils.ViewModelFactory
 import com.android.multistream.utils.data_binding.ImageLoader
+import com.example.daggerviewmodelfragment.DaggerViewModelFragment
+import com.example.daggerviewmodelfragment.ViewModelFactory
 import com.ramotion.cardslider.CardSliderLayoutManager
 import dagger.android.support.DaggerFragment
 import java.util.*
 import javax.inject.Inject
 
-class HomeFragment : DaggerFragment() {
+class HomeFragment : DaggerViewModelFragment<HomeFragmentViewModel>(HomeFragmentViewModel::class.java) {
     lateinit var binding: HomeFragmentBinding
-    @Inject
-    lateinit var factory: ViewModelFactory
     @Inject
     @SettingsPreferencesQualifier
     lateinit var settingsPreferences: SharedPreferences
-
-    lateinit var channelsViewPagerAdapter: PlaceHolderAdapter<DataItem, ChannelsViewPagerItemBinding>
-    lateinit var twitchChannelsAdapter: PlaceHolderAdapter<StreamsItem, ListItemTwoBinding>
-    lateinit var followingAdapter: PlaceHolderAdapter<StreamsItem, ListItemThreeBinding>
-    lateinit var topGamesAdapter: PlaceHolderAdapter<TopGame, ListItemFourBinding>
-    lateinit var mainActivityViewModel: MainActivityViewModel
-    lateinit var viewModel: HomeFragmentViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var channelsViewPagerAdapter: PlaceHolderAdapter<DataItem, ChannelsViewPagerItemBinding>
+    private lateinit var twitchChannelsAdapter: PlaceHolderAdapter<StreamsItem, ListItemTwoBinding>
+    private lateinit var followingAdapter: PlaceHolderAdapter<StreamsItem, ListItemThreeBinding>
+    private lateinit var topGamesAdapter: PlaceHolderAdapter<TopGame, ListItemFourBinding>
+    private lateinit var mainActivityViewModel: MainActivityViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,7 +47,6 @@ class HomeFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = HomeFragmentBinding.inflate(inflater, container, false)
-
         viewModel = ViewModelProvider(this, factory).get(HomeFragmentViewModel::class.java)
         mainActivityViewModel =
             ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
@@ -62,13 +55,11 @@ class HomeFragment : DaggerFragment() {
                 false
             )
         ) setupTwitchUI() else hideTwitch()
-
         if (settingsPreferences.getBoolean(
                 getString(R.string.mixer_visibility),
                 true
             )
         ) setupMixerUI() else hideMixer()
-
         binding.hideScrollView.apply {
             val alphaAnimation =
                 AlphaAnimation(this, animationHandler.topDivider, animationHandler.bottomDivider)
@@ -87,7 +78,6 @@ class HomeFragment : DaggerFragment() {
                 binding.viewPagerCard.cancelAnimation()
                 binding.data = item
             }
-
         channelsViewPagerAdapter.setOnItemClickListener {
             (requireActivity() as MainActivity).createPlayerFragment(
                 it.title,
@@ -97,7 +87,6 @@ class HomeFragment : DaggerFragment() {
                 it.user_name
             )
         }
-
         val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
         val currentItemHorizontalMarginPx =
             resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin)
@@ -105,9 +94,7 @@ class HomeFragment : DaggerFragment() {
         val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
             page.translationX = -pageTranslationX * position
             page.scaleY = 1 - (0.25f * kotlin.math.abs(position))
-
         }
-
         binding.channelsViewPager.apply {
             adapter = channelsViewPagerAdapter
             offscreenPageLimit = 1
@@ -122,12 +109,9 @@ class HomeFragment : DaggerFragment() {
     }
 
     //TWITCH
-
-
     private fun setupTwitchUI() {
         initViewPager()
         initTwitchTopGames()
-
         if (settingsPreferences.getBoolean(getString(R.string.twitch_sync), true)) {
             initTwitchFollowingLiveStream()
             initTwitchFollowedStreams()
@@ -146,10 +130,8 @@ class HomeFragment : DaggerFragment() {
             setupViewPager()
             //ViewPager
 //            viewModel.getChannels()
-
             viewModel.topChannelsLiveData.observe(viewLifecycleOwner) {
                 channelsViewPagerAdapter.data = it
-
             }
         }
     }
@@ -182,7 +164,6 @@ class HomeFragment : DaggerFragment() {
             viewModel.followedStreamsLiveData.observe(viewLifecycleOwner) {
                 followingAdapter.data = it?.streams
             }
-
             followingAdapter =
                 PlaceHolderAdapter(R.layout.list_item_three, false) { k, t ->
                     k.apply {
@@ -207,7 +188,6 @@ class HomeFragment : DaggerFragment() {
             viewModel.getFollowedLiveStreams("live")
             viewModel.followedLiveStreamsLiveData.observe(viewLifecycleOwner) {
                 twitchChannelsAdapter.data = it?.streams
-
             }
             twitchChannelsAdapter =
                 PlaceHolderAdapter(R.layout.list_item_two, false) { k, t ->

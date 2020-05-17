@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape  android:tint="@color/colorSecondary" android:tintMode="multiply" xmlns:android="http://schemas.android.com/apk/res/android">
-    <gradient  android:startColor="@color/colorAccent"
+<shape android:tint="@color/colorSecondary"
+    android:tintMode="multiply"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <gradient
+        android:startColor="@color/colorAccent"
         android:centerColor="@color/colorAccent"
 
         android:centerX="0.4"
         android:centerY="0.9"
         android:endColor="@android:color/transparent"
-        android:angle="90"/>
+        android:angle="90" />
 </shape>

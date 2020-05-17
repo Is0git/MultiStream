@@ -8,5 +8,4 @@ data class Token(
     @Json(name = "expires_in") val expires_in: Int,
     val scope: Array<String>,
     val token_type: String
-) {
-}
+)

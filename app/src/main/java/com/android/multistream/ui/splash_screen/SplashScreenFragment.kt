@@ -19,22 +19,21 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SplashScreenFragment : Fragment(R.layout.splash_screen_layout) {
+
     lateinit var logoView: ImageView
     lateinit var navController: NavController
     lateinit var mainActivityViewModel: MainActivityViewModel
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         logoView = view.findViewById(R.id.logo)
         view.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.colorSurface, null))
-
         mainActivityViewModel =
             ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
 
         if (logoView.drawable is AnimatedVectorDrawable) {
             (logoView.drawable as AnimatedVectorDrawable).start()
         }
-
         navController = findNavController()
-
         lifecycleScope.launch {
             mainActivityViewModel.validateAccessTokens()
             if (mainActivityViewModel.isValidated(TwitchPlatform::class.java)) {

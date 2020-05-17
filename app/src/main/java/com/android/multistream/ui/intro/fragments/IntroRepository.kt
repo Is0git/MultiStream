@@ -5,7 +5,4 @@ import com.android.multistream.di.main_activity.intro_fragments.scopes.IntroFrag
 import javax.inject.Inject
 
 @IntroFragmentScope
-class IntroRepository @Inject constructor(val platformManager: PlatformManager) {
-
-
-}
+class IntroRepository @Inject constructor(val platformManager: PlatformManager)

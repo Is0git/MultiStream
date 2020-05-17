@@ -4,10 +4,9 @@ import com.android.multistream.di.main_activity.main_fragments.combined_channels
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
 import javax.inject.Inject
+
 @CombinedChannelsScope
-class CombinedChannelsRepository @Inject constructor(val twitchService: TwitchService, val mixerService: MixerService) {
-
-
-
-
-}
+class CombinedChannelsRepository @Inject constructor(
+    val twitchService: TwitchService,
+    val mixerService: MixerService
+)

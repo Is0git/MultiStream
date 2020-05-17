@@ -5,5 +5,9 @@ include ':multistreamchat'
 include ':multistreamsearchview'
 project(':multistreamsearchview').projectDir = new File('D:\\multistreamProject\\Multi-Stream-SearchView\\multistreamsearchview')
 project(':multistreamchat').projectDir=new File('D:\\multistreamProject\\Multi-Stream-Chat\\multistreamchat')
-project(':multistreamnavigationdrawer').projectDir= new File("D:\\multistreamProject\\MultiStreamNavigationDrawer\\navigationdrawer")
+project(':multistreamnavigationdrawer').projectDir = new File("D:\\multistreamProject\\MultiStreamNavigationDrawer\\navigationdrawer")
+include(':daggerviewmodel')
+project(':daggerviewmodel').projectDir = new File("D:\\multistreamProject\\DaggerViewModelFragment\\daggerviewmodel")
+include(':pagination')
+project(':pagination').projectDir = new File("D:\\multistreamProject\\Pagination\\pagination")
 rootProject.name='multistream'

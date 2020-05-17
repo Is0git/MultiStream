@@ -4,13 +4,11 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ScrollView
-import androidx.core.view.marginTop
 import com.android.multistream.R
 import com.android.multistream.utils.ScreenUnit
 
 
 class HideScrollView : ScrollView {
-
 
     val animationHandler = AnimationHandler(this)
 
@@ -22,7 +20,7 @@ class HideScrollView : ScrollView {
 
     val hiddenViews: MutableList<Animation.AnimView> by lazy { mutableListOf<Animation.AnimView>() }
     var bottomHeightMargin = animationHandler.topDivider
-    var topHeightMargin =  animationHandler.bottomDivider
+    var topHeightMargin = animationHandler.bottomDivider
 
     constructor(context: Context?) : super(context) {
         init(context)
@@ -40,29 +38,19 @@ class HideScrollView : ScrollView {
         init(context, attrs)
     }
 
-
     private fun init(context: Context?, attrs: AttributeSet? = null) {
-
-
         isSmoothScrollingEnabled = true
         val typeArray = context?.obtainStyledAttributes(attrs, R.styleable.HideScrollView)
         if (typeArray != null) {
-            topHeightMargin = typeArray.getDimension(R.styleable.HideScrollView_topHideHeight, 0f).also { animationHandler.topDivider = it }
-            bottomHeightMargin =  (typeArray.getDimension(R.styleable.HideScrollView_bottomHideHeight, 0f) + ScreenUnit.convertDpToPixel(55f)).also {   animationHandler.bottomDivider = it }
+            topHeightMargin = typeArray.getDimension(R.styleable.HideScrollView_topHideHeight, 0f)
+                .also { animationHandler.topDivider = it }
+            bottomHeightMargin = (typeArray.getDimension(
+                R.styleable.HideScrollView_bottomHideHeight,
+                0f
+            ) + ScreenUnit.convertDpToPixel(55f)).also { animationHandler.bottomDivider = it }
             typeArray.recycle()
         }
-
-        if (topHeightMargin<= 0f || bottomHeightMargin <= 0f) throw IllegalStateException("hide height can't be negative or equal to zero")
-    }
-
-
-    constructor(
-        context: Context?,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-        defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes) {
-        init(context, attrs)
+        if (topHeightMargin <= 0f || bottomHeightMargin <= 0f) throw IllegalStateException("hide height can't be negative or equal to zero")
     }
 
     fun addHiddenView(view: View?, direction: Int = LEFT, animation: Animation) {
@@ -75,8 +63,6 @@ class HideScrollView : ScrollView {
                 )
             hiddenViews.add(hiddenView)
         }
-
-
     }
 
     fun addHiddenView(view: View?, animation: Animation) {
@@ -88,8 +74,6 @@ class HideScrollView : ScrollView {
                 )
             hiddenViews.add(hiddenView)
         }
-
-
     }
 
     fun addHiddenView(views: Collection<Animation.AnimView>) {
@@ -101,7 +85,6 @@ class HideScrollView : ScrollView {
             animationHandler.animate(it, t, oldt)
         }
     }
-
 
 }
 

@@ -30,7 +30,7 @@ class HomeFragmentRepository @Inject constructor(@TwitchQualifier val retrofit: 
         val accessToken = platformManager.getAccessToken(TwitchPlatform::class.java)
         val featured = twitchService.getFollowedStreams(
             "OAuth $accessToken",
-             type
+            type
         )
         followedLiveStreamsLiveData.postValue(featured.body())
     }

@@ -9,12 +9,15 @@ import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.recyclerview.widget.RecyclerView
-import com.android.multistream.ui.main.activities.main_activity.MainActivity
-import kotlinx.coroutines.CancellationException
 
-abstract class ItemHoverViewHolder<T : ViewDataBinding>(val binding: T, val spanCout: Int = 0, val onShowPress: Boolean = true) :
+abstract class ItemHoverViewHolder<T : ViewDataBinding>(
+    val binding: T,
+    val spanCout: Int = 0,
+    val onShowPress: Boolean = true
+) :
     GestureDetector.OnGestureListener,
     View.OnTouchListener, RecyclerView.ViewHolder(binding.root) {
+
     lateinit var scaleYAnimation: ObjectAnimator
     lateinit var scaleXAnimation: ObjectAnimator
     var gestureListener: GestureDetector? = null
@@ -23,9 +26,8 @@ abstract class ItemHoverViewHolder<T : ViewDataBinding>(val binding: T, val span
     lateinit var translationAnimation: ObjectAnimator
     lateinit var translationY: ObjectAnimator
 
-
     init {
-        if (onShowPress)  {
+        if (onShowPress) {
             setupAnimators()
             gestureListener = GestureDetector(binding.root.context, this)
             binding.root.setOnTouchListener(this)
@@ -33,13 +35,11 @@ abstract class ItemHoverViewHolder<T : ViewDataBinding>(val binding: T, val span
     }
 
     private fun setupAnimators() {
-
         scaleXAnimation = ObjectAnimator.ofFloat(binding.root, "scaleX", 1f, 1.20f)
         scaleYAnimation = ObjectAnimator.ofFloat(binding.root, "scaleY", 1f, 1.20f)
         elevationAnim = ObjectAnimator.ofFloat(binding.root, "elevation", 1f, 10f)
         translationAnimation = ObjectAnimator.ofFloat(binding.root, "translationX", 0f, 0f)
         translationY = ObjectAnimator.ofFloat(binding.root, "translationY", 0f, 80f)
-
         animatorSet = AnimatorSet().apply {
             interpolator = FastOutSlowInInterpolator()
             playTogether(
@@ -51,8 +51,6 @@ abstract class ItemHoverViewHolder<T : ViewDataBinding>(val binding: T, val span
 
     override fun onShowPress(e: MotionEvent?) {
         if (e?.action != MotionEvent.ACTION_SCROLL) focusGame(adapterPosition + 1)
-
-
     }
 
     override fun onSingleTapUp(e: MotionEvent?): Boolean {
@@ -83,7 +81,6 @@ abstract class ItemHoverViewHolder<T : ViewDataBinding>(val binding: T, val span
     }
 
     override fun onLongPress(e: MotionEvent?) {
-
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -96,21 +93,16 @@ abstract class ItemHoverViewHolder<T : ViewDataBinding>(val binding: T, val span
     }
 
     private fun focusGame(position: Int) {
-
-    backgroundAnimation()
-
+        backgroundAnimation()
         if (spanCout != 0)
-        when (position % spanCout) {
-            1 -> translationAnimation.setFloatValues(0f, 50f)
-            0 -> translationAnimation.setFloatValues(0f, -50f)
-            else -> translationAnimation.setFloatValues(0f, 0f)
-        }
+            when (position % spanCout) {
+                1 -> translationAnimation.setFloatValues(0f, 50f)
+                0 -> translationAnimation.setFloatValues(0f, -50f)
+                else -> translationAnimation.setFloatValues(0f, 0f)
+            }
         animatorSet.start()
     }
 
-
-
     abstract fun backgroundAnimation()
-
     abstract fun navigate(binding: T)
 }

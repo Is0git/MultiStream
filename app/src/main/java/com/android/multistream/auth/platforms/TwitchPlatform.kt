@@ -24,6 +24,7 @@ class TwitchPlatform @Inject constructor(
     TwitchAuthService::class.java,
     platformManager
 ) {
+
     override suspend fun getAccessTokenBearer(
         service: TwitchAuthService,
         code: String
@@ -60,7 +61,6 @@ class TwitchPlatform @Inject constructor(
     override suspend fun getUser(accessToken: String): CurrentUser {
         val result = service.getCurrentUser("OAuth $accessToken")
         var isSuccessful = ResponseHandler.handleResponse(result, null)
-       return if (isSuccessful) result.body()!! else throw CancellationException("couldn't get user")
+        return if (isSuccessful) result.body()!! else throw CancellationException("couldn't get user")
     }
-
 }

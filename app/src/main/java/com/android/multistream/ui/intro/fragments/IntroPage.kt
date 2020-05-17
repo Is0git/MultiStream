@@ -10,18 +10,15 @@ import androidx.navigation.fragment.findNavController
 import com.android.multistream.R
 import com.android.multistream.databinding.IntroPageBinding
 import com.android.multistream.ui.main.activities.main_activity.MainActivity
-import com.android.multistream.utils.ViewModelFactory
+import com.example.daggerviewmodelfragment.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class IntroPage : DaggerFragment(){
+class IntroPage : DaggerFragment() {
     lateinit var binding: IntroPageBinding
-
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
     lateinit var introViewModel: IntroViewModel
-
     lateinit var nav: NavController
 
     override fun onCreateView(
@@ -31,9 +28,8 @@ class IntroPage : DaggerFragment(){
     ): View? {
         binding = IntroPageBinding.inflate(inflater, container, false)
         (activity as MainActivity).hideActionBar()
-
-        introViewModel = ViewModelProviders.of(this, viewModelFactory).get(IntroViewModel::class.java)
-
+        introViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(IntroViewModel::class.java)
         binding.apply {
             continueButton.setOnClickListener { nav.navigate(R.id.action_splashScreenFragment_to_intro) }
             skipButton.setOnClickListener { nav.navigate(R.id.action_intro_to_main) }

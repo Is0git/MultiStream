@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.R
 import com.android.multistream.anim.list_item_hower_anim.ItemHoverViewHolder
 import com.android.multistream.databinding.SingleTopGamesListBinding
-import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.twitch_fragment.TwitchFragmentGamesScope
+import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.twitch_fragment.TwitchGamesBrowseFragmentScope
 import com.android.multistream.network.twitch.models.v5.top_games.TopItem
 import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragment
@@ -15,10 +15,10 @@ import com.android.multistream.utils.TWITCH
 import com.android.multistream.utils.data_binding.ImageLoader
 import javax.inject.Inject
 
-@TwitchFragmentGamesScope
+@TwitchGamesBrowseFragmentScope
 class TwitchTopGamesAdapter @Inject constructor() :
     RecyclerView.Adapter<TwitchTopGamesAdapter.MyViewHolder>() {
-    lateinit var clickListener: OnGameCategoryListener
+    var clickListener: OnGameCategoryListener? = null
     var spanCount = 0
     var list: List<TopItem>? = null
         set(value) {
@@ -29,7 +29,6 @@ class TwitchTopGamesAdapter @Inject constructor() :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-
         val binding =
             SingleTopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 .also { it.onGameCategoryListener = this.clickListener }
@@ -61,9 +60,11 @@ class TwitchTopGamesAdapter @Inject constructor() :
         }
 
         override fun backgroundAnimation() {
-         val bgView =   ( (binding.root.context as MainActivity).supportFragmentManager.findFragmentById(R.id.main_fragment_container)?.childFragmentManager?.fragments?.get(0)
-                    as BrowseFragment).binding.root
-
+            val bgView =
+                ((binding.root.context as MainActivity).supportFragmentManager.findFragmentById(R.id.main_fragment_container)?.childFragmentManager?.fragments?.get(
+                    0
+                )
+                        as BrowseFragment).binding.root
             ImageLoader.getImageDrawableFromUrl(bgView.context, binding.backgroundUrl, bgView)
         }
     }

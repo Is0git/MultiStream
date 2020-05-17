@@ -13,5 +13,5 @@ abstract class GameChannelsViewModelModule {
     @IntoMap
     @GameChannelsFragmentScope
     @ViewModelKey(GameChannelViewModel::class)
-    abstract fun bindViewModel(viewModel: GameChannelViewModel) : ViewModel
+    abstract fun bindViewModel(viewModel: GameChannelViewModel): ViewModel
 }

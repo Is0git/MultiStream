@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.multistream">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,8 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.android.multistream.ui.main.activities.main_activity.MainActivity"
+        <activity
+            android:name="com.android.multistream.ui.main.activities.main_activity.MainActivity"
             android:configChanges="screenSize|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,11 +25,14 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="schema"
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="schema"
                     android:host="com.android.multistream"
-                    android:path="/twitch"/>
+                    android:path="/twitch" />
             </intent-filter>
         </activity>
     </application>

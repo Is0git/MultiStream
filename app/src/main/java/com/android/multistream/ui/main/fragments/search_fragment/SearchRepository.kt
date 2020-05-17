@@ -4,20 +4,13 @@ import android.app.Application
 import com.android.multistream.R
 import com.android.multistream.database.dao.SearchDao
 import com.android.multistream.di.main_activity.main_fragments.search_fragment.SearchFragmentScope
-import com.android.multistream.di.qualifiers.MixerQualifier
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
-import com.android.multistream.network.twitch.adapters.StreamSearchesAdapter
-import com.android.multistream.utils.ResponseHandler
 import com.android.multistream.utils.ResponseHandler.execute
 import com.multistream.multistreamsearchview.recent_search.HistoryListAdapter
 import com.multistream.multistreamsearchview.search_result.SearchListAdapter
 import com.multistream.multistreamsearchview.search_view.LatestSearchedAdapter
 import com.multistream.multistreamsearchview.search_view.SearchViewLayout
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import retrofit2.Retrofit
-import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -65,12 +58,18 @@ class SearchRepository @Inject constructor(
         return execute(application) { mixerService.getSearchedChannels(query, limit) }
     }
 
-    suspend fun getSearchedMixerGames(query: String, limit: Int)  : List<SearchViewLayout.SearchData>? {
-        return execute(application) {mixerService.getSearchedGames(query, limit)}
+    suspend fun getSearchedMixerGames(
+        query: String,
+        limit: Int
+    ): List<SearchViewLayout.SearchData>? {
+        return execute(application) { mixerService.getSearchedGames(query, limit) }
     }
 
-    suspend fun getSearchedMixerStreams(query: String, limit: Int) : List<SearchListAdapter.StreamSearchData>? {
-        return execute(application) {mixerService.getSearchedStreams(query, limit)}
+    suspend fun getSearchedMixerStreams(
+        query: String,
+        limit: Int
+    ): List<SearchListAdapter.StreamSearchData>? {
+        return execute(application) { mixerService.getSearchedStreams(query, limit) }
     }
 
     suspend fun addHistoryData(query: String, count: Int) {

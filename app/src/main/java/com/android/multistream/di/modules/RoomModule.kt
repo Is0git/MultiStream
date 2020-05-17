@@ -13,15 +13,21 @@ object RoomModule {
     @Provides
     @JvmStatic
     @Singleton
-    fun getDatabase(application: Application) = synchronized(this) {Room.databaseBuilder(application, MainDatabase::class.java, "main_database").fallbackToDestructiveMigration().build()}
+    fun getDatabase(application: Application) = synchronized(this) {
+        Room.databaseBuilder(
+            application,
+            MainDatabase::class.java,
+            "main_database"
+        ).fallbackToDestructiveMigration().build()
+    }
 
     @Provides
     @JvmStatic
     @Singleton
-    fun twitchDao(mainDatabase: MainDatabase ) = mainDatabase.twitchDao()
+    fun twitchDao(mainDatabase: MainDatabase) = mainDatabase.twitchDao()
 
     @Provides
     @JvmStatic
     @Singleton
-    fun searchDao(mainDatabase: MainDatabase ) = mainDatabase.searchDao()
+    fun searchDao(mainDatabase: MainDatabase) = mainDatabase.searchDao()
 }

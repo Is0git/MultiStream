@@ -4,6 +4,6 @@ import com.squareup.moshi.Json
 
 data class Social(
 
-	@Json(name="verified")
-	val verified: List<Any?>? = null
+    @Json(name = "verified")
+    val verified: List<Any?>? = null
 )

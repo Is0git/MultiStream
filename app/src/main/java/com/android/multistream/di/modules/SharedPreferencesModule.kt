@@ -8,14 +8,16 @@ import com.android.multistream.di.qualifiers.AuthPreferencesQualifier
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
+
 const val AUTH_KEYS = "AUTH_TOKENS"
+
 @Module
 object SharedPreferencesModule {
     @JvmStatic
     @Provides
     @Singleton
     fun masterKeyAlias() = kotlin.run {
-      val  keyGenerator =  MasterKeys.AES256_GCM_SPEC
+        val keyGenerator = MasterKeys.AES256_GCM_SPEC
         MasterKeys.getOrCreate(keyGenerator)
 
     }
@@ -25,13 +27,23 @@ object SharedPreferencesModule {
     @Singleton
     @JvmStatic
     @AuthPreferencesQualifier
-    fun authEncryptedSharedPreferences(masterKey: String, application: Application) : SharedPreferences {
-        return EncryptedSharedPreferences.create(AUTH_KEYS,  masterKey, application, EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV, EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM)
+    fun authEncryptedSharedPreferences(
+        masterKey: String,
+        application: Application
+    ): SharedPreferences {
+        return EncryptedSharedPreferences.create(
+            AUTH_KEYS,
+            masterKey,
+            application,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
     }
 
     @Provides
     @Singleton
     @JvmStatic
     @AuthPreferencesQualifier
-    fun authEncryptedSharedPreferencesEditor( @AuthPreferencesQualifier sharedPreferences: SharedPreferences): SharedPreferences.Editor = sharedPreferences.edit()
+    fun authEncryptedSharedPreferencesEditor(@AuthPreferencesQualifier sharedPreferences: SharedPreferences): SharedPreferences.Editor =
+        sharedPreferences.edit()
 }

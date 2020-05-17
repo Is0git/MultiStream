@@ -2,7 +2,7 @@
 <resources>
     <declare-styleable name="StripeTabLayout">
         <attr name="showStripes" format="boolean" />
-        <attr name="indicatorColor" format="color"/>
-        <attr name="headerText" format="string"/>
+        <attr name="indicatorColor" format="color" />
+        <attr name="headerText" format="string" />
     </declare-styleable>
 </resources>

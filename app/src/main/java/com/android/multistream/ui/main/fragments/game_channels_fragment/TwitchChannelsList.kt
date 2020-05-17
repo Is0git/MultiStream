@@ -9,7 +9,8 @@ import com.android.multistream.network.twitch.models.new_twitch_api.channels.Dat
 import javax.inject.Inject
 
 @GameChannelsFragmentScope
-class TwitchChannelsList @Inject constructor(): RecyclerView.Adapter<TwitchChannelsList.MyViewHolder>() {
+class TwitchChannelsList @Inject constructor() :
+    RecyclerView.Adapter<TwitchChannelsList.MyViewHolder>() {
 
     var list: List<DataItem>? = null
         set(value) {
@@ -18,12 +19,11 @@ class TwitchChannelsList @Inject constructor(): RecyclerView.Adapter<TwitchChann
             notifyItemRangeChanged(begin, value?.size!! - 1)
         }
 
-    class MyViewHolder(val binding: ChannelsListBinding) : RecyclerView.ViewHolder(binding.root) {
-
-    }
+    class MyViewHolder(val binding: ChannelsListBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ChannelsListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ChannelsListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 

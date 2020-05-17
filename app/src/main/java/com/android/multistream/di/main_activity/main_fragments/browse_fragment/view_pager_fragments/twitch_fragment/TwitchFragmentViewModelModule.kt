@@ -2,7 +2,7 @@ package com.android.multistream.di.main_activity.main_fragments.browse_fragment.
 
 import androidx.lifecycle.ViewModel
 import com.android.multistream.di.main_activity.ViewModelKey
-import com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.twitch_fragment.TwitchFragmentViewModel
+import com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.twitch_fragment.TwitchGamesBrowseViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -12,7 +12,7 @@ abstract class TwitchFragmentViewModelModule {
 
     @Binds
     @IntoMap
-    @TwitchFragmentGamesScope
-    @ViewModelKey(TwitchFragmentViewModel::class)
-    abstract fun bind(viewModel: TwitchFragmentViewModel) : ViewModel
+    @TwitchGamesBrowseFragmentScope
+    @ViewModelKey(TwitchGamesBrowseViewModel::class)
+    abstract fun bind(viewModel: TwitchGamesBrowseViewModel): ViewModel
 }

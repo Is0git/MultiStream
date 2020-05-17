@@ -7,6 +7,7 @@ import com.multistream.multistreamsearchview.search_view.SearchViewLayout
 import com.squareup.moshi.FromJson
 
 class ChannelSearchesAdapter {
+
     @FromJson
     fun getChannelSearches(channelSearches: List<ChannelSearches>): List<SearchViewLayout.SearchData>? {
         return channelSearches.map {

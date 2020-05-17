@@ -18,8 +18,8 @@ class TranslationXAnimation(
     }
 
     override fun onBottom(view: AnimView, relativeCoordinate: Float): Float {
-     return   if (view.direction == HideScrollView.RIGHT) {
-         rootView.width * ((relativeCoordinate - (rootView.height - bottomDivider)) / bottomDivider)
+        return if (view.direction == HideScrollView.RIGHT) {
+            rootView.width * ((relativeCoordinate - (rootView.height - bottomDivider)) / bottomDivider)
         } else {
             -rootView.width * ((relativeCoordinate - (rootView.height - bottomDivider)) / bottomDivider)
         }

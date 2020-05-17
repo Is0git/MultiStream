@@ -59,6 +59,6 @@
                 motion:motionTarget="@id/followersIcon" />
         </KeyFrameSet>
     </Transition>
-    <ConstraintSet android:id="@+id/category_start"/>
-    <ConstraintSet android:id="@+id/category_end"/>
+    <ConstraintSet android:id="@+id/category_start" />
+    <ConstraintSet android:id="@+id/category_end" />
 </MotionScene>

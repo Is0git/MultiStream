@@ -119,6 +119,5 @@
         app:layout_constraintTop_toTopOf="@+id/followersIcon" />
 
 
-
 </com.android.multistream.ui.main.fragments.game_category_fragment.CategoryAppBar>
 

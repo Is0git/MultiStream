@@ -4,8 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.android.multistream.R
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.card.MaterialCardView
@@ -13,9 +11,10 @@ import kotlin.math.absoluteValue
 
 class CategoryAppBar : MotionLayout, AppBarLayout.OnOffsetChangedListener {
 
-   lateinit var card: MaterialCardView
+    lateinit var card: MaterialCardView
 
     var defaultCornerRadius = 0f
+
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
@@ -25,7 +24,7 @@ class CategoryAppBar : MotionLayout, AppBarLayout.OnOffsetChangedListener {
     )
 
     override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
-        val position = verticalOffset.absoluteValue/appBarLayout?.totalScrollRange?.toFloat()!!
+        val position = verticalOffset.absoluteValue / appBarLayout?.totalScrollRange?.toFloat()!!
         progress = position
         card.radius = defaultCornerRadius * (1 - position)
     }

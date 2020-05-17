@@ -3,7 +3,6 @@ package com.android.multistream.di.main_activity
 import com.android.multistream.di.main_activity.intro_fragments.modules.IntroFragmentViewModelModule
 import com.android.multistream.di.main_activity.intro_fragments.scopes.IntroFragmentScope
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.BrowseFragmentScope
-import com.android.multistream.di.main_activity.main_fragments.browse_fragment.BrowseFragmentViewModelModule
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.ViewPagerFragmentBuilder
 import com.android.multistream.di.main_activity.main_fragments.combined_channels_fragment.CombinedChannelsScope
 import com.android.multistream.di.main_activity.main_fragments.combined_channels_fragment.CombinedChannelsViewModelModule
@@ -28,29 +27,29 @@ abstract class FragmentBuilder {
 
     @ContributesAndroidInjector(modules = [HomeFragmentViewModelModule::class])
     @HomeFragmentScope
-    abstract fun homeFragment() : HomeFragment
+    abstract fun homeFragment(): HomeFragment
 
-    @ContributesAndroidInjector(modules = [BrowseFragmentViewModelModule::class, ViewPagerFragmentBuilder::class])
+    @ContributesAndroidInjector(modules = [ViewPagerFragmentBuilder::class])
     @BrowseFragmentScope
-    abstract fun browseFragment() : BrowseFragment
+    abstract fun browseFragment(): BrowseFragment
 
     @ContributesAndroidInjector(modules = [GameChannelsViewModelModule::class])
     @GameChannelsFragmentScope
-    abstract fun gameChannelsFragment() : GameChannelsFragment
+    abstract fun gameChannelsFragment(): GameChannelsFragment
 
     @ContributesAndroidInjector(modules = [CombinedChannelsViewModelModule::class])
     @CombinedChannelsScope
-    abstract fun combinedChannelsFragment() : CombinedChannelsFragment
+    abstract fun combinedChannelsFragment(): CombinedChannelsFragment
 
     @ContributesAndroidInjector(modules = [IntroFragmentViewModelModule::class])
     @IntroFragmentScope
-    abstract fun introFragment() : IntroPage
+    abstract fun introFragment(): IntroPage
 
     @ContributesAndroidInjector
     @IntroFragmentScope
-    abstract fun introFragmentTwo() : IntroPageTwo
+    abstract fun introFragmentTwo(): IntroPageTwo
 
     @ContributesAndroidInjector(modules = [SearchFragmentViewModelModule::class])
     @SearchFragmentScope
-    abstract fun searchFragment() : SearchFragment
+    abstract fun searchFragment(): SearchFragment
 }

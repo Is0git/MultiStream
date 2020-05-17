@@ -6,9 +6,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class MixerTopGames(
-    @Json(name = "id")  val id: Int?,
+    @Json(name = "id") val id: Int?,
     @Json(name = "name")
-     var name: String?,
+    var name: String?,
     @Json(name = "parent")
     var parent: String?,
     @Json(name = "description")
@@ -25,7 +25,4 @@ data class MixerTopGames(
     var online: Int?,
     @Json(name = "availableAt")
     var availableAt: String?
-) : Parcelable {
-
-
-}
+) : Parcelable

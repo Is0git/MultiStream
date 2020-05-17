@@ -11,12 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.android.multistream.R
 import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.ui.main.activities.main_activity.MainActivityViewModel
-import com.android.player.ui.MultiStreamPlayerLayout
 import com.android.player.chat.chat_factories.PlayerType
+import com.android.player.ui.MultiStreamPlayerLayout
 
 
 class PlayerFragment : Fragment() {
-
 
     private var channelName: String = "drdisrespect"
     private var title: String = "title"
@@ -32,12 +31,8 @@ class PlayerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreate(savedInstanceState)
-
         getArgs()
-
         mainViewModel = ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
-
-
         return if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) inflater.inflate(
             R.layout.player_layout,
             container,
@@ -48,7 +43,6 @@ class PlayerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initPlayer()
     }
-
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
@@ -63,9 +57,7 @@ class PlayerFragment : Fragment() {
             displayName = getString("channel_display_name", "null")
             imageUrl = getString("channel_image", "null")
         }
-
     }
-
 
     private fun initPlayer() {
         (view as MultiStreamPlayerLayout).apply {

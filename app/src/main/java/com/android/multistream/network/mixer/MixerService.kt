@@ -3,7 +3,6 @@ package com.android.multistream.network.mixer
 import com.android.multistream.network.mixer.models.channel.GameChannels
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
 import com.android.multistream.network.twitch.adapters.GameSearchesAdapter
-import com.android.multistream.network.twitch.adapters.StreamSearchesAdapter
 import com.android.multistream.network.twitch.models.auth.Token
 import com.android.multistream.network.twitch.models.auth.Validation
 import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame
@@ -17,33 +16,53 @@ import retrofit2.http.Query
 
 interface MixerService {
     @GET(value = "types")
-    suspend fun getMixerTopGames(@Query("where")where: String?, @Query("order") order: String?, @Query(value = "limit") limit: Int?, @Query(value = "page") page: Int?) : Response<List<TopGame>>
+    suspend fun getMixerTopGames(
+        @Query("where") where: String?, @Query("order") order: String?, @Query(
+            value = "limit"
+        ) limit: Int?, @Query(value = "page") page: Int?
+    ): Response<List<TopGame>>
 
     @GET(value = "types")
-    suspend fun getMixerTopGamesFull(@Query("order") order: String?, @Query(value = "limit") limit: Int?, @Query(value = "page") page: Int?) : Response<List<MixerTopGames>>
+    suspend fun getMixerTopGamesFull(
+        @Query("order") order: String?, @Query(value = "limit") limit: Int?, @Query(
+            value = "page"
+        ) page: Int?
+    ): Response<List<MixerTopGames>>
 
     @GET(value = "types")
-    suspend fun getMixerTopGame(@Query("where") where: String?, @Query(value = "limit") limit: Int?) : Response<List<MixerTopGames>>
+    suspend fun getMixerTopGame(@Query("where") where: String?, @Query(value = "limit") limit: Int?): Response<List<MixerTopGames>>
 
     @GET("types/{id}/channels")
-    suspend fun getGameChannels(@Path(value = "id") gameId: String?,  @Query(value = "page") page: Int?, @Query(value = "limit") limit: Int, @Query("order") order: String? = "DESC") : Response<List<GameChannels>>
+    suspend fun getGameChannels(
+        @Path(value = "id") gameId: String?, @Query(value = "page") page: Int?, @Query(
+            value = "limit"
+        ) limit: Int, @Query("order") order: String? = "DESC"
+    ): Response<List<GameChannels>>
 
 
     //Search
     @GET(value = "types")
-    suspend fun getSearchedGames(@Query("query") query: String?, @Query(value = "limit") limit: Int?) : Response<List<GameSearchesAdapter.GamesSearchData>?>
+    suspend fun getSearchedGames(@Query("query") query: String?, @Query(value = "limit") limit: Int?): Response<List<GameSearchesAdapter.GamesSearchData>?>
 
     @GET("channels")
-    suspend fun getSearchedChannels(@Query("q") q: String?, @Query(value = "limit") limit: Int?, @Query("scope") scope: String? = "all") : Response<List<SearchViewLayout.SearchData>?>
+    suspend fun getSearchedChannels(
+        @Query("q") q: String?, @Query(value = "limit") limit: Int?, @Query(
+            "scope"
+        ) scope: String? = "all"
+    ): Response<List<SearchViewLayout.SearchData>?>
 
     @GET(value = "channels")
-    suspend fun getSearchedStreams(@Query("q") query: String?,  @Query(value = "limit") limit: Int?, @Query("scope") scope: String? = "all") : Response<List<SearchListAdapter.StreamSearchData>?>
+    suspend fun getSearchedStreams(
+        @Query("q") query: String?, @Query(value = "limit") limit: Int?, @Query(
+            "scope"
+        ) scope: String? = "all"
+    ): Response<List<SearchListAdapter.StreamSearchData>?>
 
     //AUTH
     @GET("oauth/token")
-    fun getToken() : Response<Token>
+    fun getToken(): Response<Token>
 
     @GET("oauth/token")
-    fun getValidation() : Response<Validation>
+    fun getValidation(): Response<Validation>
 
 }

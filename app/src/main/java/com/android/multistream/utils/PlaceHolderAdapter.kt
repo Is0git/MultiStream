@@ -8,24 +8,31 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.anim.list_item_hower_anim.ItemHoverViewHolder
-import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
 import com.android.multistream.ui.widgets.place_holder_material_card.listeners.PlaceHolderViewListener
 
-class PlaceHolderAdapter<T, K : ViewDataBinding>(private val itemLayoutId: Int, var onShowAnimation: Boolean = false, var cancelAnimator: (K, T) -> Unit) :
+class PlaceHolderAdapter<T, K : ViewDataBinding>(
+    private val itemLayoutId: Int,
+    var onShowAnimation: Boolean = false,
+    var cancelAnimator: (K, T) -> Unit
+) :
     RecyclerView.Adapter<PlaceHolderAdapter.MyViewHolder<K>>() {
 
     var data: MutableList<T>? = null
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
-
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
     var onClickListener: PlaceHolderViewListener<T>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder<K> {
-      val binding = DataBindingUtil.inflate<K>(LayoutInflater.from(parent.context), itemLayoutId, parent, false)
-        return  MyViewHolder(binding, onShowAnimation)
+        val binding = DataBindingUtil.inflate<K>(
+            LayoutInflater.from(parent.context),
+            itemLayoutId,
+            parent,
+            false
+        )
+        return MyViewHolder(binding, onShowAnimation)
     }
 
     fun setOnItemClickListener(onClick: (T) -> Unit) {
@@ -33,7 +40,6 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(private val itemLayoutId: Int, 
             override fun onClick(item: T) {
                 onClick(item)
             }
-
         }
     }
 
@@ -61,11 +67,9 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(private val itemLayoutId: Int, 
         ItemHoverViewHolder<K>(dataBinding, onShowPress = onShowPressAnimation) {
 
         override fun backgroundAnimation() {
-
         }
 
         override fun navigate(binding: K) {
-
         }
     }
 }

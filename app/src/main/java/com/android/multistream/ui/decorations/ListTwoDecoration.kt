@@ -2,7 +2,6 @@ package com.android.multistream.ui.decorations
 
 import android.graphics.Rect
 import android.view.View
-import androidx.core.view.marginEnd
 import androidx.recyclerview.widget.RecyclerView
 
 class ListTwoDecoration : RecyclerView.ItemDecoration() {
@@ -14,7 +13,5 @@ class ListTwoDecoration : RecyclerView.ItemDecoration() {
         state: RecyclerView.State
     ) {
         outRect.right = 145
-
-
     }
 }

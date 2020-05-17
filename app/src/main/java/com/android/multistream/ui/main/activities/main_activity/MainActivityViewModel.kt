@@ -12,7 +12,7 @@ class MainActivityViewModel @Inject constructor(val repo: MainActivityRepository
 
     val statesLiveData = repo.twitchPlatformAuthLiveData
 
-    fun getAndSaveToken(code: Uri?, platformClass: Class<out Platform<*,*,*,*>>) {
+    fun getAndSaveToken(code: Uri?, platformClass: Class<out Platform<*, *, *, *>>) {
         repo.getAndSaveToken(code, platformClass)
     }
 
@@ -36,7 +36,11 @@ class MainActivityViewModel @Inject constructor(val repo: MainActivityRepository
         return repo.getTwitchUser()
     }
 
-    fun saveAccessToken(platformClass: Class<out Platform<*, *, *, *>>, accessToken: String?, refreshToken: String?) {
+    fun saveAccessToken(
+        platformClass: Class<out Platform<*, *, *, *>>,
+        accessToken: String?,
+        refreshToken: String?
+    ) {
         repo.saveAccessToken(platformClass, accessToken, refreshToken)
     }
 

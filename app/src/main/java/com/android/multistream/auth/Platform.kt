@@ -62,7 +62,7 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
     fun saveAccessTokenBearer(uriData: Uri?, responseClass: Class<S>) {
         accessTokenJob = CoroutineScope(Dispatchers.IO).launch {
             val code = (if (uriData == null) {
-                throw CancellationException("response uri can't be null") as Throwable
+                throw CancellationException("response uri can't be null")
             } else getBearerCode(uriData.toString()))
                 ?: throw CancellationException("Code was not found")
 
@@ -82,7 +82,7 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
         }
     }
 
-     fun saveAccessTokenInPreference(
+    fun saveAccessTokenInPreference(
         authPair: Pair<String?, String?>,
         platformManager: PlatformManager
     ) {
@@ -111,7 +111,7 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
                 isValidated = when {
                     body() == null -> throw  CancellationException("response is null")
                     isSuccessful -> {
-                       val user = getUser(accessToken)
+                        val user = getUser(accessToken)
                         currentUser = user
                         true
                     }

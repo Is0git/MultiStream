@@ -16,7 +16,11 @@ class StreamPlaceHolder : View {
     lateinit var titlePlaceHolderRect: Rect
     lateinit var placeHolderPaint: Paint
     var placeHolderAlpha = 150
-    constructor(context: Context?) : super(context) {init(context)}
+
+    constructor(context: Context?) : super(context) {
+        init(context)
+    }
+
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
@@ -26,7 +30,13 @@ class StreamPlaceHolder : View {
 
 
     fun init(context: Context?) {
-        setBackgroundColor(ResourcesCompat.getColor(resources, R.color.colorSurface, context?.theme))
+        setBackgroundColor(
+            ResourcesCompat.getColor(
+                resources,
+                R.color.colorSurface,
+                context?.theme
+            )
+        )
         videoPlaceholderRect = Rect()
         elevation = 10f
         userNamePlaceHolderRect = Rect()
@@ -46,15 +56,15 @@ class StreamPlaceHolder : View {
 
         val startLeft = (w * 0.25f).toInt()
         userNamePlaceHolderRect.apply {
-            top =  (h * 0.70f).toInt()
-            bottom  = (h * 0.80f).toInt()
+            top = (h * 0.70f).toInt()
+            bottom = (h * 0.80f).toInt()
             left = startLeft
             right = (w * 0.60f).toInt()
         }
 
         titlePlaceHolderRect.apply {
-            top =  (h * 0.84f).toInt()
-            bottom  = (h * 0.91f).toInt()
+            top = (h * 0.84f).toInt()
+            bottom = (h * 0.91f).toInt()
             left = startLeft
             right = (w * 0.90f).toInt()
         }

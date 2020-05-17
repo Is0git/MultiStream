@@ -2,42 +2,32 @@ package com.android.multistream.ui.main.fragments.browse_fragment.stripes_tab_la
 
 import android.content.Context
 import android.graphics.*
-import android.os.Build
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import com.android.multistream.R
 
 class StripeView : View {
-
     lateinit var rect: Rect
-
     lateinit var stripePaint: Paint
     lateinit var textPaint: TextPaint
     var selected = 0
     var selectedAlpha = 30
-    set(value) {
-        field = value
-        invalidate()
-    }
-
+        set(value) {
+            field = value
+            invalidate()
+        }
     var defaultAlpha = 30
-
     val stripes = mutableListOf<Stripe>()
-
     lateinit var underLine: Rect
     lateinit var underLinePaint: Paint
-
-
     var textMargin: Int = 650
     var marginStart = 0f
     var marginTop = 0f
     var headerTextSize: Float = 35f
     var headerText: String? = null
     var textColor: Int = Color.BLACK
-
 
     constructor(context: Context?) : super(context) {
         init()
@@ -87,16 +77,6 @@ class StripeView : View {
         setMeasuredDimension(width, height)
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    constructor(
-        context: Context?,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-        defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes) {
-        init()
-    }
-
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         drawStripes(canvas)
@@ -122,7 +102,6 @@ class StripeView : View {
                 left = index * stripeWidth
                 right = index * stripeWidth + stripeWidth
             }
-
             underLine.apply {
                 top = this@StripeView.height - 54
                 bottom = this@StripeView.height - 45
@@ -147,7 +126,6 @@ class StripeView : View {
                 color = Color.parseColor(stripe.colorString)
 
             }
-
             canvas?.drawRect(rect, stripePaint)
             canvas?.drawRect(underLine, underLinePaint)
         }
@@ -157,9 +135,7 @@ class StripeView : View {
     private fun drawHeaderText(canvas: Canvas?) {
         if (!headerText.isNullOrBlank()) {
             if (headerTextSize * resources.displayMetrics.density + 450 > height) return
-
-            canvas?.drawText(headerText!!,marginStart, marginTop, textPaint)
-
+            canvas?.drawText(headerText!!, marginStart, marginTop, textPaint)
         }
     }
 

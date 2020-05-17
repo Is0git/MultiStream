@@ -1,10 +1,10 @@
 package com.android.multistream.network.twitch
 
-import com.android.multistream.network.twitch.models.auth.Token
-import com.android.multistream.network.twitch.models.auth.Validation
 import com.android.multistream.network.twitch.constants.CLIENT_ID
 import com.android.multistream.network.twitch.constants.CLIENT_SECRET
 import com.android.multistream.network.twitch.constants.REDIRECT_URI
+import com.android.multistream.network.twitch.models.auth.Token
+import com.android.multistream.network.twitch.models.auth.Validation
 import com.android.multistream.network.twitch.models.v5.user.CurrentUser
 import retrofit2.Call
 import retrofit2.Response
@@ -34,9 +34,9 @@ interface TwitchAuthService {
         @Field("client_secret") clientSecret: String = CLIENT_SECRET,
         @Field("refresh_token") refreshToken: String,
         @Url url: String = "https://id.twitch.tv/oauth2/token"
-    ) : Call<Token>
+    ): Call<Token>
 
     @GET
     @Headers("Client-ID: $CLIENT_ID", "Accept: application/vnd.twitchtv.v5+json")
-    suspend fun getCurrentUser(@Header("Authorization") access_token: String, @Url url: String = "https://api.twitch.tv/kraken/user") : Response<CurrentUser>
+    suspend fun getCurrentUser(@Header("Authorization") access_token: String, @Url url: String = "https://api.twitch.tv/kraken/user"): Response<CurrentUser>
 }

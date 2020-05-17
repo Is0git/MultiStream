@@ -6,9 +6,9 @@ import com.squareup.moshi.Json
 
 data class GameChannels(
 
-	@Json(name="pagination")
-	val pagination: Pagination? = null,
+    @Json(name = "pagination")
+    val pagination: Pagination? = null,
 
-	@Json(name="data")
-	val data: MutableList<DataItem>? = null
+    @Json(name = "data")
+    val data: MutableList<DataItem>? = null
 )

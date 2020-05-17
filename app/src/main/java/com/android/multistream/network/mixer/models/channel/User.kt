@@ -1,7 +1,5 @@
 package com.android.multistream.network.mixer.models.channel
 
-import com.android.multistream.network.mixer.models.channel.Social
-
 data class User(
     val sparks: Int? = null,
     val level: Int? = null,

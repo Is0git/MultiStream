@@ -5,7 +5,4 @@ import com.android.multistream.di.main_activity.intro_fragments.scopes.IntroFrag
 import javax.inject.Inject
 
 @IntroFragmentScope
-class IntroViewModel @Inject constructor(val repo: IntroRepository) : ViewModel() {
-
-
-}
+class IntroViewModel @Inject constructor(val repo: IntroRepository) : ViewModel()

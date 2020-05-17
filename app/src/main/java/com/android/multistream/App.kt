@@ -24,7 +24,8 @@ class App : DaggerApplication() {
         platformManager.addPlatform(twitchPlatform)
         platformManager.addPlatform(mixerPlatform)
     }
+
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-       return DaggerAppComponent.builder().application(this).build()
+        return DaggerAppComponent.builder().application(this).build()
     }
 }

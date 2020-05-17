@@ -1,17 +1,13 @@
 package com.android.multistream.ui.main.fragments.video_player_fragment
 
-import android.content.ContentResolver
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebSettings
 import androidx.fragment.app.Fragment
-import com.android.multistream.R
 import com.android.multistream.databinding.StreamPlayerFragmentBinding
 
-class VideoPlayerFragment : Fragment(){
+class VideoPlayerFragment : Fragment() {
     lateinit var binding: StreamPlayerFragmentBinding
     override fun onCreateView(
         inflater: LayoutInflater,

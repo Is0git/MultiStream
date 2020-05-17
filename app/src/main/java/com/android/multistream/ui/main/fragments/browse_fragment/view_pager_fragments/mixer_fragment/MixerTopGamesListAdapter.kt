@@ -6,17 +6,17 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.anim.list_item_hower_anim.ItemHoverViewHolder
 import com.android.multistream.databinding.SingleTopGamesListBinding
-import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.mixer_fragment.MixerFragmentGamesScope
+import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.mixer_fragment.MixerGamesBrowseFragmentScope
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
 import com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener
 import com.android.multistream.utils.MIXER
 import javax.inject.Inject
 
-@MixerFragmentGamesScope
+@MixerGamesBrowseFragmentScope
 class MixerTopGamesListAdapter @Inject constructor() :
     RecyclerView.Adapter<MixerTopGamesListAdapter.MyViewHolder>() {
     var spanCount = 0
-    lateinit var onGameCategoryListener: OnGameCategoryListener
+    var onGameCategoryListener: OnGameCategoryListener? = null
     var list: List<MixerTopGames>? = null
         set(value) {
             val begin = if (field == null) 0 else field?.count()!! - 1
@@ -27,7 +27,7 @@ class MixerTopGamesListAdapter @Inject constructor() :
     class MyViewHolder(val listBinding: SingleTopGamesListBinding, spanCount: Int = 0) :
         ItemHoverViewHolder<SingleTopGamesListBinding>(listBinding, spanCount) {
         override fun navigate(binding: SingleTopGamesListBinding) {
-          listBinding.root.callOnClick()
+            listBinding.root.callOnClick()
         }
 
         override fun backgroundAnimation() {
@@ -59,7 +59,5 @@ class MixerTopGamesListAdapter @Inject constructor() :
             platformType = MIXER
             viewersCurrent = list?.get(position)?.viewersCurrent
         }
-
-
     }
 }

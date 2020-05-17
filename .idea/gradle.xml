@@ -9,10 +9,12 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
+            <option value="$PROJECT_DIR$/../DaggerViewModelFragment/daggerviewmodel" />
             <option value="$PROJECT_DIR$/../Multi-Stream-Chat/multistreamchat" />
             <option value="$PROJECT_DIR$/../Multi-Stream-Player/multistreamplayer" />
             <option value="$PROJECT_DIR$/../Multi-Stream-SearchView/multistreamsearchview" />
             <option value="$PROJECT_DIR$/../MultiStreamNavigationDrawer/navigationdrawer" />
+            <option value="$PROJECT_DIR$/../Pagination/pagination" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
           </set>

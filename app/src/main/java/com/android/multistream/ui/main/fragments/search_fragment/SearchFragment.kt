@@ -3,11 +3,14 @@ package com.android.multistream.ui.main.fragments.search_fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.android.multistream.R
-import com.android.multistream.utils.ViewModelFactory
+import com.example.daggerviewmodelfragment.DaggerViewModelFragment
+import com.example.daggerviewmodelfragment.ViewModelFactory
 import com.multistream.multistreamsearchview.data_source.DataSource
 import com.multistream.multistreamsearchview.databinding.SearchLayoutBinding
 import com.multistream.multistreamsearchview.filter.FilterSelection
@@ -17,12 +20,11 @@ import javax.inject.Inject
 
 
 @Suppress("UNCHECKED_CAST")
-class SearchFragment : DaggerFragment() {
-    private lateinit var binding: SearchLayoutBinding
+class SearchFragment : DaggerViewModelFragment<SearchViewModel>(SearchViewModel::class.java) {
 
+    private lateinit var binding: SearchLayoutBinding
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
     lateinit var searchViewModel: SearchViewModel
 
     override fun onCreateView(
@@ -83,7 +85,8 @@ class SearchFragment : DaggerFragment() {
         binding.searchLayout.addFilter(
             "Choose category", listOfSelectionData1,
             isSingleSelection = false,
-            isAllSelectionEnabled = true
+            isAllSelectionEnabled = true,
+            allName = null
         )
         val sortCategory = FilterSelection.Builder()
             .setFilterSelectionName("Asc")
@@ -94,16 +97,14 @@ class SearchFragment : DaggerFragment() {
         binding.searchLayout.addFilter(
             "Sort: ", listOf(sortCategory, sortCategory2),
             isSingleSelection = true,
-            isAllSelectionEnabled = true
+            isAllSelectionEnabled = true,
+            allName = "Default"
         )
-    }
-
-    fun setSearchLayoutParams() {
-
     }
 
     private fun setObservers() {
         searchViewModel.latestSearchesLiveData.observe(viewLifecycleOwner) {
+            binding.noItem.visibility = if (it.isEmpty()) VISIBLE else INVISIBLE
             binding.searchLayout.submitLatestSearchList(
                 it
             )

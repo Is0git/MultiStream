@@ -1,35 +1,23 @@
 package com.android.multistream.ui.main.activities.main_activity
 
-import android.R.attr.radius
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.ViewCompat
-import androidx.core.view.marginTop
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.android.multistream.R
 import com.android.multistream.auth.PlatformManager
 import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.databinding.ActivityMainBinding
 import com.android.multistream.network.twitch.models.v5.user.CurrentUser
-import com.android.multistream.ui.main.activities.main_activity.MainActivity
 import com.android.multistream.ui.player.fragments.PlayerFragment
-import com.android.multistream.utils.ScreenUnit
-import com.android.multistream.utils.ViewModelFactory
 import com.bumptech.glide.Glide
-import com.google.android.material.shape.CornerFamily
-import com.google.android.material.shape.MaterialShapeDrawable
-import com.google.android.material.shape.ShapeAppearanceModel
+import com.example.daggerviewmodelfragment.ViewModelFactory
 import com.multistream.navigationdrawer.NavigationDrawer
 import com.multistream.navigationdrawer.StreamsAdapter
 import dagger.android.support.DaggerAppCompatActivity
@@ -38,22 +26,18 @@ import javax.inject.Inject
 
 
 class MainActivity : DaggerAppCompatActivity() {
+
     lateinit var binding: ActivityMainBinding
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
     lateinit var navController: NavController
-
     lateinit var mainActivityViewModel: MainActivityViewModel
-
     @Inject
     lateinit var platformManager: PlatformManager
-
     val transition by lazy {
         TransitionInflater.from(this)
             .inflateTransition(R.transition.games_list_expand_transition)
     }
-
     var topMarginGuideline = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,20 +49,13 @@ class MainActivity : DaggerAppCompatActivity() {
         navController = findNavController(R.id.main_fragment_container)
         binding.apply {
             bottomNav.setupWithNavController(navController)
-//           val radius =  ScreenUnit.convertDpToPixel(25f).toFloat()
-//            val shapeAppearanceModel = ShapeAppearanceModel()
-//                .toBuilder()
-//                .setTopRightCorner(CornerFamily.ROUNDED, radius)
-//                .setTopLeftCorner(CornerFamily.ROUNDED, radius)
-//                .build()
-//
-//            ViewCompat.setBackground(bottomNav, MaterialShapeDrawable(shapeAppearanceModel))
             motionLayout.setDefaultTransitionHandler(supportFragmentManager)
         }
+        topMarginGuideline =
+            (binding.toolBarGuideline.layoutParams as ConstraintLayout.LayoutParams).guideBegin
         setListeners()
         hideActionBar()
     }
-
 
     data class AdapterItem(
         var imageUrl: String,
@@ -92,9 +69,11 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     fun hideActionBar() {
-        topMarginGuideline = binding.toolBarGuideline.marginTop
         binding.apply {
-            binding.toolBarGuideline.layoutParams = (binding.toolBarGuideline.layoutParams as ConstraintLayout.LayoutParams).also { it.topMargin = 0 }
+            binding.toolBarGuideline.layoutParams =
+                (binding.toolBarGuideline.layoutParams as ConstraintLayout.LayoutParams).also {
+                    it.guideBegin = 0
+                }
             menuDrawerIcon.visibility = View.GONE
             settingsIcon.visibility = View.GONE
             bottomNav.visibility = View.GONE
@@ -103,7 +82,10 @@ class MainActivity : DaggerAppCompatActivity() {
 
     fun showActionBar() {
         binding.apply {
-            binding.toolBarGuideline.layoutParams = (binding.toolBarGuideline.layoutParams as ConstraintLayout.LayoutParams).also { it.topMargin = topMarginGuideline }
+            binding.toolBarGuideline.layoutParams =
+                (binding.toolBarGuideline.layoutParams as ConstraintLayout.LayoutParams).also {
+                    it.guideBegin = topMarginGuideline
+                }
             menuDrawerIcon.visibility = View.VISIBLE
             settingsIcon.visibility = View.VISIBLE
             bottomNav.visibility = View.VISIBLE
@@ -131,7 +113,6 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     fun initNavigationDrawer() {
-
         val listOfItems = mutableListOf(
             AdapterItem(
                 "https://static-cdn.jtvnw.net/jtv_user_pictures/1eb304dc-27da-411a-9fc2-d68addbbab14-profile_image-70x70.png",

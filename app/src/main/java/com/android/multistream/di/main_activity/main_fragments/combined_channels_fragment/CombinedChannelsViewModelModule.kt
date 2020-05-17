@@ -13,5 +13,5 @@ abstract class CombinedChannelsViewModelModule {
     @IntoMap
     @CombinedChannelsScope
     @ViewModelKey(CombinedChannelsViewModel::class)
-    abstract fun bind(viewModel: CombinedChannelsViewModel) : ViewModel
+    abstract fun bind(viewModel: CombinedChannelsViewModel): ViewModel
 }

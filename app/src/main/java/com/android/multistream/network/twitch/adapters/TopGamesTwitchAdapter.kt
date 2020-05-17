@@ -10,6 +10,7 @@ import com.multistream.multistreamsearchview.search_view.SearchViewLayout.Compan
 import com.squareup.moshi.FromJson
 
 class TopGamesTwitchAdapter {
+
     @FromJson
     fun topGamesTwitch(topGames: TopGamesV5): List<TopGame>? {
         return topGames.top?.map {
@@ -24,8 +25,16 @@ class TopGamesTwitchAdapter {
     }
 
     @FromJson
-    fun getChannelSearch(searches: SearchChannels) : List<SearchViewLayout.SearchData>? {
-        return searches.channels?.map { SearchViewLayout.SearchData(it.name, it.logo, CHANNELS, R.string.channels_category, TWITCH, R.drawable.twitch) }
+    fun getChannelSearch(searches: SearchChannels): List<SearchViewLayout.SearchData>? {
+        return searches.channels?.map {
+            SearchViewLayout.SearchData(
+                it.name,
+                it.logo,
+                CHANNELS,
+                R.string.channels_category,
+                TWITCH,
+                R.drawable.twitch
+            )
+        }
     }
-
 }

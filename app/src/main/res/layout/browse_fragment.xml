@@ -10,6 +10,7 @@
             android:layout_width="match_parent"
             android:backgroundTint="@color/colorSurface"
             android:layout_height="wrap_content">
+
             <com.android.multistream.ui.main.fragments.browse_fragment.stripes_tab_layout.StripeTabLayout
                 app:layout_scrollFlags="scroll|enterAlways|snap|enterAlwaysCollapsed"
                 android:id="@+id/stripeTabLayout"
@@ -25,7 +26,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/topGamesViewPager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

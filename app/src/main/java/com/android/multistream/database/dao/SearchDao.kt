@@ -11,10 +11,10 @@ import com.multistream.multistreamsearchview.search_view.LatestSearchedAdapter
 @Dao
 interface SearchDao {
     @Query("SELECT * FROM search_history_table ORDER BY time DESC")
-    fun getSearchesHistory() : LiveData<MutableList<HistoryListAdapter.SearchHistoryData>>
+    fun getSearchesHistory(): LiveData<MutableList<HistoryListAdapter.SearchHistoryData>>
 
     @Query("SELECT * FROM latest_searches_table ORDER BY time DESC")
-    fun getLatestSearches() : LiveData<MutableList<LatestSearchedAdapter.LatestSearchData>>
+    fun getLatestSearches(): LiveData<MutableList<LatestSearchedAdapter.LatestSearchData>>
 
     @Insert
     suspend fun addHistoryData(searchHistoryData: HistoryListAdapter.SearchHistoryData)

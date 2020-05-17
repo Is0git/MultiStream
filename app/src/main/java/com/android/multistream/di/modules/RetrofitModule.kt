@@ -7,12 +7,11 @@ import com.android.multistream.di.qualifiers.TwitchQualifier
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.mixer.adapters.ChannelSearchesAdapter
 import com.android.multistream.network.mixer.adapters.MixerAdapter
-import com.android.multistream.network.twitch.adapters.TopGamesTwitchAdapter
-import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.mixer.constants.MIXER_URL
+import com.android.multistream.network.twitch.TwitchService
 import com.android.multistream.network.twitch.adapters.GameSearchesAdapter
 import com.android.multistream.network.twitch.adapters.StreamSearchesAdapter
-import com.android.multistream.network.twitch.adapters.qualifiers.GamesJsonQualifier
+import com.android.multistream.network.twitch.adapters.TopGamesTwitchAdapter
 import com.android.multistream.network.twitch.constants.TWITCH_URL
 import com.android.multistream.network.twitch.constants.URL
 import com.squareup.moshi.Moshi
@@ -22,7 +21,6 @@ import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.lang.Exception
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -33,23 +31,27 @@ object RetrofitModule {
     @Singleton
     @JvmStatic
     fun interceptor(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor().also { it.level = HttpLoggingInterceptor.Level.BODY
+        HttpLoggingInterceptor().also {
+            it.level = HttpLoggingInterceptor.Level.BODY
         }
-
-
 
 
     @Provides
     @Singleton
     @JvmStatic
     @TwitchQualifier
-    fun getTwitchOkHttpClient(interceptor: HttpLoggingInterceptor, platformManager: PlatformManager) = OkHttpClient.Builder()
+    fun getTwitchOkHttpClient(
+        interceptor: HttpLoggingInterceptor,
+        platformManager: PlatformManager
+    ) = OkHttpClient.Builder()
         .addInterceptor(interceptor)
         .authenticator(object : Authenticator {
             override fun authenticate(route: Route?, response: Response): Request? {
                 return try {
-                    val authToken = platformManager.getPlatform(TwitchPlatform::class.java).refreshToken()
-                     response.request.newBuilder().header("Authorization", "OAuth $authToken").build()
+                    val authToken =
+                        platformManager.getPlatform(TwitchPlatform::class.java).refreshToken()
+                    response.request.newBuilder().header("Authorization", "OAuth $authToken")
+                        .build()
                 } catch (ex: Exception) {
                     null
                 }
@@ -88,11 +90,15 @@ object RetrofitModule {
     @JvmStatic
     @TwitchQualifier
     fun getTwitchRetrofit(@TwitchQualifier client: OkHttpClient): Retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder()
-            .add(TopGamesTwitchAdapter())
-            .add(StreamSearchesAdapter())
-            .add(GameSearchesAdapter())
-            .build()))
+        .addConverterFactory(
+            MoshiConverterFactory.create(
+                Moshi.Builder()
+                    .add(TopGamesTwitchAdapter())
+                    .add(StreamSearchesAdapter())
+                    .add(GameSearchesAdapter())
+                    .build()
+            )
+        )
         .client(client)
         .baseUrl(TWITCH_URL)
         .build()
@@ -102,10 +108,14 @@ object RetrofitModule {
     @JvmStatic
     @MixerQualifier
     fun getMixerRetrofit(@MixerQualifier client: OkHttpClient): Retrofit = Retrofit.Builder()
-        .addConverterFactory(MoshiConverterFactory.create(Moshi.Builder()
-            .add(ChannelSearchesAdapter())
-            .add(MixerAdapter())
-            .build()))
+        .addConverterFactory(
+            MoshiConverterFactory.create(
+                Moshi.Builder()
+                    .add(ChannelSearchesAdapter())
+                    .add(MixerAdapter())
+                    .build()
+            )
+        )
         .client(client)
         .baseUrl(MIXER_URL)
         .build()

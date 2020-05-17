@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
-        <import type="com.android.multistream.utils.PlatformTypesKt"/>
+
+        <import type="com.android.multistream.utils.PlatformTypesKt" />
+
         <variable
             name="backgroundUrl"
             type="String" />
+
         <variable
             name="platformType"
             type="Integer" />

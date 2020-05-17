@@ -4,16 +4,9 @@ import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.marginTop
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.R
-import com.android.multistream.utils.ScreenUnit
 import com.google.android.material.textview.MaterialTextView
-import kotlin.reflect.KClass
 
 class StripedPanelText : MaterialTextView {
     companion object {
@@ -21,6 +14,7 @@ class StripedPanelText : MaterialTextView {
         val ALIGNMENT_LEFT = 1
         val ALIGNMENT_RIGHT = 2
     }
+
     val view2: View = RecyclerView(context)
     var materialTextAlignment = 0
     var sideMargin = 0f
@@ -31,9 +25,7 @@ class StripedPanelText : MaterialTextView {
 
     lateinit var titleTextView: MaterialTextView
 
-    constructor(context: Context?) : super(context!!) {
-
-    }
+    constructor(context: Context?) : super(context!!)
 
     constructor(context: Context?, attrs: AttributeSet?) : super(context!!, attrs) {
         init(context, attrs)
@@ -47,29 +39,20 @@ class StripedPanelText : MaterialTextView {
         init(context, attrs)
     }
 
-    constructor(
-        context: Context?,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-        defStyleRes: Int
-    ) : super(context!!, attrs, defStyleAttr, defStyleRes) {
-        init(context, attrs)
-    }
-
-
     private fun init(context: Context?, attrs: AttributeSet?) {
         val typedArray = context?.obtainStyledAttributes(attrs, R.styleable.StripedPanelText)
 
         if (typedArray != null) {
-            materialTextAlignment = typedArray.getInteger(R.styleable.StripedPanelText_alignment, ALIGNMENT_NONE)
+            materialTextAlignment =
+                typedArray.getInteger(R.styleable.StripedPanelText_alignment, ALIGNMENT_NONE)
             sideMargin = typedArray.getDimension(R.styleable.StripedPanelText_sideMargin, 0f)
             titleText = typedArray.getText(R.styleable.StripedPanelText_titleText)
             viewsMargin = typedArray.getDimension(R.styleable.StripedPanelText_viewsMargin, 0f)
             titleTextSize = typedArray.getDimension(R.styleable.StripedPanelText_titleTextSize, 0f)
-            titleTextColor = typedArray.getColor(R.styleable.StripedPanelText_titleTextColor, Color.BLACK)
+            titleTextColor =
+                typedArray.getColor(R.styleable.StripedPanelText_titleTextColor, Color.BLACK)
             typedArray.recycle()
         }
-
         this.apply {
             textAlignment = when (materialTextAlignment) {
                 ALIGNMENT_NONE -> View.TEXT_ALIGNMENT_VIEW_START
@@ -77,14 +60,13 @@ class StripedPanelText : MaterialTextView {
                 ALIGNMENT_RIGHT -> View.TEXT_ALIGNMENT_VIEW_START
                 else -> View.TEXT_ALIGNMENT_CENTER
             }
-
             textSize = titleTextSize
-            val drawableId = if (materialTextAlignment == ALIGNMENT_LEFT) R.drawable.left_stripe_gradient else R.drawable.right_stripe_gradient
+            val drawableId =
+                if (materialTextAlignment == ALIGNMENT_LEFT) R.drawable.left_stripe_gradient else R.drawable.right_stripe_gradient
             background = context?.getDrawable(drawableId)
             text = titleText
             setTextColor(titleTextColor)
         }
-
     }
 
 //    private fun setConstraints() {

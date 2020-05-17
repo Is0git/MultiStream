@@ -6,7 +6,7 @@ import android.util.DisplayMetrics
 import kotlin.math.roundToInt
 
 
-object  ScreenUnit {
+object ScreenUnit {
     fun convertDpToPixel(dp: Float): Int {
         val metrics: DisplayMetrics = Resources.getSystem().displayMetrics
         val px = dp * (metrics.densityDpi / 160f)
@@ -14,6 +14,6 @@ object  ScreenUnit {
     }
 
     fun convertPixelsToDp(px: Float, context: Context): Float {
-        return px / (context.getResources().getDisplayMetrics().densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
+        return px / (context.resources.displayMetrics.densityDpi.toFloat() / DisplayMetrics.DENSITY_DEFAULT)
     }
 }

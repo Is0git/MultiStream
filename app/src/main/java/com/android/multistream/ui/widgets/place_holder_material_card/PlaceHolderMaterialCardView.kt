@@ -1,6 +1,5 @@
 package com.android.multistream.ui.widgets.place_holder_material_card
 
-import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
 import android.animation.ValueAnimator.INFINITE
@@ -19,21 +18,28 @@ class PlaceHolderMaterialCardView : MaterialCardView {
     lateinit var placeHolderView: View
     var addGradient = false
 
-    constructor(context: Context?) : super(context) {init(context)}
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {init(context, attrs)}
+    constructor(context: Context?) : super(context) {
+        init(context)
+    }
+
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
+        init(context, attrs)
+    }
+
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr
-    ) {init(context, attrs)}
+    ) {
+        init(context, attrs)
+    }
 
     private fun init(context: Context?, attrs: AttributeSet? = null) {
         context?.obtainStyledAttributes(attrs, R.styleable.PlaceHolderMaterialCardView)?.apply {
             addGradient = getBoolean(R.styleable.PlaceHolderMaterialCardView_addGradient, true)
             recycle()
         }
-
-        placeHolderView = StreamPlaceHolder(context).also {streamPlaceHolder ->
+        placeHolderView = StreamPlaceHolder(context).also { streamPlaceHolder ->
             streamPlaceHolder.id = R.id.placeholder
             streamPlaceHolder.layoutParams = LayoutParams(MATCH_PARENT, MATCH_PARENT)
 
@@ -49,12 +55,8 @@ class PlaceHolderMaterialCardView : MaterialCardView {
                 interpolator = LinearInterpolator()
                 start()
             }
-
         }
-
         addView(placeHolderView)
-
-
     }
 
     fun cancelAnimation() {

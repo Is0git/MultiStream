@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/colorBackground"/>
-    <item android:drawable="@drawable/mlogo"
+    <item android:drawable="@color/colorBackground" />
+    <item
+        android:drawable="@drawable/mlogo"
         android:height="100dp"
         android:gravity="center"
         android:bottom="48dp"
-        android:width="150dp"/>
+        android:width="150dp" />
 </layer-list>

@@ -7,7 +7,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 import java.io.IOException
-import java.lang.Exception
 
 object ResponseHandler {
 
@@ -16,25 +15,31 @@ object ResponseHandler {
     suspend fun handleResponse(response: Response<*>, appContext: Application?): Boolean {
         return response.run {
             when {
-                isSuccessful && body() != null-> onSuccess(response)
+                isSuccessful && body() != null -> onSuccess(response)
                 else -> onFailed(response, appContext)
             }
         }
     }
 
     private suspend fun onFailed(response: Response<*>, appContext: Application?): Boolean {
-     val message = when(response.code()) {
+        val message = when (response.code()) {
             in 500..599 -> "unauthorized, sync your accounts"
             in 400..500 -> "the request is not available right now or doesn't exist"
             else -> "Something went wrong.."
         }
-
         appContext?.also {
-         withContext(Dispatchers.Main) {Toast.makeText(it, "${response.code()}: $message", Toast.LENGTH_SHORT).show()}
+            withContext(Dispatchers.Main) {
+                Toast.makeText(
+                    it,
+                    "${response.code()}: $message",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
-
-        Log.e(RETROFIT_RESPONSE_TAG, "request with URL: ${response.raw().request.url} failed due to ${response.message()}")
-
+        Log.e(
+            RETROFIT_RESPONSE_TAG,
+            "request with URL: ${response.raw().request.url} failed due to ${response.message()}"
+        )
         return false
     }
 
@@ -44,17 +49,17 @@ object ResponseHandler {
     }
 
     fun handleNetworkException(exception: Exception, appContext: Application?) {
-        when(exception) {
+        when (exception) {
             is IOException -> {
                 appContext?.also { Toast.makeText(it, "NO INTERNET", Toast.LENGTH_SHORT).show() }
             }
         }
     }
 
-      suspend fun<T> execute(appContext: Application,  action: suspend () -> Response<T?>) : T? {
+    suspend fun <T> execute(appContext: Application, action: suspend () -> Response<T>): T? {
         try {
             val result = action()
-            if(handleResponse(result, appContext)) return result.body()
+            if (handleResponse(result, appContext)) return result.body()
         } catch (ex: Exception) {
             handleNetworkException(ex, appContext)
         }

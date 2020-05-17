@@ -9,5 +9,5 @@
         android:endColor="?attr/colorOnSurface"
         android:angle="135"
         android:centerX="0.8"
-        android:centerY="0.8"/>
+        android:centerY="0.8" />
 </shape>

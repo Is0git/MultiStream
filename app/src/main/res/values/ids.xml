@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="tabLayout" type="id"/>
-    <item name="stripeView" type="id"/>
-    <item name="headerText" type="id"/>
-    <item name="stripeLineText" type="id"/>
-    <item name="placeholder" type="id"/>
+    <item name="tabLayout" type="id" />
+    <item name="stripeView" type="id" />
+    <item name="headerText" type="id" />
+    <item name="stripeLineText" type="id" />
+    <item name="placeholder" type="id" />
 </resources>

@@ -8,7 +8,7 @@ import com.android.multistream.databinding.CombinedGamesTopChannelsBinding
 import dagger.android.support.DaggerFragment
 
 class CombinedChannelsFragment : DaggerFragment() {
-        lateinit var binding: CombinedGamesTopChannelsBinding
+    lateinit var binding: CombinedGamesTopChannelsBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
