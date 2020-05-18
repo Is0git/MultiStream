@@ -16,5 +16,8 @@ include(':multistreamaterialplaceholdercard')
 project(':multistreamaterialplaceholdercard').projectDir = new File("D:\\multistreamProject\\MultiStreamMaterialPlaceHolderCard\\multistreamaterialplaceholdercard")
 include(':multistreamstripetablayout')
 project(':multistreamstripetablayout').projectDir = new File("D:\\multistreamProject\\MultiStreamStripeTabLayout\\multistreamstripetablayout")
+include(':overscrollbehavior')
+project(':overscrollbehavior').projectDir = new File("D:\\multistreamProject\\OverScrollBehavior\\overscrollbehavior")
+
 
 rootProject.name='multistream'

@@ -6,14 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.android.multistream.R
 import com.android.multistream.databinding.BrowseFragmentBinding
+import com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.GamesBrowseFragment
+import com.example.overscrollbehavior.OverScrollBehavior
 import dagger.android.support.DaggerFragment
 
 
-class BrowseFragment : DaggerFragment() {
+class BrowseFragment : DaggerFragment(), OverScrollBehavior.OverScrollListener {
 
     lateinit var binding: BrowseFragmentBinding
     lateinit var navController: NavController
@@ -26,6 +29,8 @@ class BrowseFragment : DaggerFragment() {
         binding = BrowseFragmentBinding.inflate(inflater, container, false)
         setupViewPager()
         handleTabLayout()
+        ((binding.topGamesViewPager.layoutParams as CoordinatorLayout.LayoutParams).behavior as OverScrollBehavior).overScrollListener =
+            this
         return binding.root
     }
 
@@ -50,5 +55,21 @@ class BrowseFragment : DaggerFragment() {
             tab.customView?.findViewById<ImageView>(R.id.icon)
                 ?.setImageDrawable(getDrawable(activity?.baseContext!!, id))
         }
+    }
+
+    private fun invalidateViewPagerItem() {
+        val position = binding.topGamesViewPager.currentItem
+        val pageLoader =
+            (childFragmentManager.fragments[position] as GamesBrowseFragment<*>).getPageLoader()
+        pageLoader.invalidate(true)
+
+    }
+
+    override fun onOverScrollCompleted() {
+        invalidateViewPagerItem()
+    }
+
+    override fun onOverScrollStart() {
+
     }
 }

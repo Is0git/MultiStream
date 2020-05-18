@@ -1,19 +1,18 @@
 package com.android.multistream.network.twitch.models.new_twitch_api.channels
 
 
+import com.android.multistream.network.twitch.models.v5.user.User
 import com.squareup.moshi.Json
 
 
 data class DataItem(
 
-    @Json(name = "user_id")
-    val userId: String? = null,
+    val user_id: String? = null,
 
     @Json(name = "user_name")
     val user_name: String? = null,
 
-    @Json(name = "started_at")
-    val startedAt: String? = null,
+    val started_at: String? = null,
 
     @Json(name = "language")
     val language: String? = null,
@@ -30,9 +29,11 @@ data class DataItem(
     @Json(name = "title")
     val title: String? = null,
 
-    @Json(name = "thumbnail_url")
     val thumbnail_url: String? = null,
 
     @Json(name = "game_id")
-    val gameId: String? = null
+    val gameId: String? = null,
+
+    @Transient
+    var user: User? = null
 )

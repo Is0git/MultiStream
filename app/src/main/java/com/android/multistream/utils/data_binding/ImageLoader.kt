@@ -26,7 +26,7 @@ object ImageLoader {
     fun addHeightAndWidth(url: String?, height: String = HEIGHT, width: String = WIDTH) =
         url?.replace("{width}", width)?.replace("{height}", height)
 
-    fun getImageDrawableFromUrl(context: Context, url: String?, view: View) {
+    fun getImageDrawableFromUrl(context: Context, url: String?) {
         Glide.with(context).load(addHeightAndWidth(url, "1000", "400"))
             .into(object : CustomTarget<Drawable>() {
                 override fun onLoadCleared(placeholder: Drawable?) {
@@ -36,7 +36,6 @@ object ImageLoader {
                     resource: Drawable,
                     transition: Transition<in Drawable>?
                 ) {
-//             view.background = resource.also {  ObjectAnimator.ofInt(it, "alpha", 0, 30).start() }
                 }
             })
     }

@@ -1,12 +1,11 @@
 package com.android.multistream.auth.platforms
 
-import com.android.multistream.auth.Platform
-import com.android.multistream.auth.PlatformManager
+import com.android.multistream.auth.platform_manager.PlatformManager
 import com.android.multistream.di.qualifiers.MixerQualifier
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.models.auth.Token
 import com.android.multistream.network.twitch.models.auth.Validation
-import com.android.multistream.network.twitch.models.v5.user.CurrentUser
+import com.android.multistream.network.twitch.models.v5.current_user.CurrentUser
 import retrofit2.Response
 import retrofit2.Retrofit
 import javax.inject.Inject

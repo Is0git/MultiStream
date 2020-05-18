@@ -28,7 +28,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:layout_behavior="com.example.overscrollbehavior.OverScrollBehavior"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/progress_bar"
+                style="@style/SpinKitView.CubeGrid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="11dp"
+                android:visibility="invisible"
+                android:background="@color/colorSurface"
+                android:layout_gravity="top|center_horizontal"
+                app:layout_behavior="com.example.overscrollbehavior.OverScrollBehavior"
+                app:SpinKit_Color="@color/colorOnSecondaryVariant"
+                app:layout_constraintBottom_toBottomOf="@id/topGamesList"
+                app:layout_constraintEnd_toEndOf="@id/topGamesList"
+                app:layout_constraintStart_toStartOf="@id/topGamesList"
+                app:layout_constraintTop_toTopOf="@id/topGamesList" />
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

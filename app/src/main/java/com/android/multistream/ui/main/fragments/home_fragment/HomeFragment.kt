@@ -28,7 +28,8 @@ import com.ramotion.cardslider.CardSliderLayoutManager
 import java.util.*
 import javax.inject.Inject
 
-class HomeFragment : DaggerViewModelFragment<HomeFragmentViewModel>(HomeFragmentViewModel::class.java) {
+class HomeFragment :
+    DaggerViewModelFragment<HomeFragmentViewModel>(HomeFragmentViewModel::class.java) {
     lateinit var binding: HomeFragmentBinding
     @Inject
     @SettingsPreferencesQualifier
@@ -64,7 +65,7 @@ class HomeFragment : DaggerViewModelFragment<HomeFragmentViewModel>(HomeFragment
 
             addHiddenView(binding.homeText, RIGHT, alphaAnimation)
         }
-        binding.homeText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_gameCategoryFragment) }
+        binding.homeText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_twitchGameCategory) }
         binding.twitchText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_profileFragment) }
         (requireActivity() as MainActivity).showActionBar()
         return binding.root
@@ -76,14 +77,17 @@ class HomeFragment : DaggerViewModelFragment<HomeFragmentViewModel>(HomeFragment
                 binding.viewPagerCard.cancelAnimation()
                 binding.data = item
             }
-        channelsViewPagerAdapter.setOnItemClickListener {
-            (requireActivity() as MainActivity).createPlayerFragment(
-                it.title,
-                it.user_name,
-                it.thumbnail_url,
-                it.gameId,
-                it.user_name
-            )
+        channelsViewPagerAdapter.setOnItemClickListener { i, v ->
+            val item = channelsViewPagerAdapter.data?.get(i)
+            item?.let {
+                (requireActivity() as MainActivity).createPlayerFragment(
+                    it.title,
+                    it.user_name,
+                    it.thumbnail_url,
+                    it.user_name,
+                    it.user?.displayName
+                )
+            }
         }
         val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
         val currentItemHorizontalMarginPx =
@@ -127,7 +131,7 @@ class HomeFragment : DaggerViewModelFragment<HomeFragmentViewModel>(HomeFragment
             twitchLogo.visibility = View.VISIBLE
             setupViewPager()
             //ViewPager
-//            viewModel.getChannels()
+            viewModel.getChannels()
             viewModel.topChannelsLiveData.observe(viewLifecycleOwner) {
                 channelsViewPagerAdapter.data = it
             }
@@ -137,7 +141,6 @@ class HomeFragment : DaggerViewModelFragment<HomeFragmentViewModel>(HomeFragment
     private fun initTwitchTopGames() {
         binding.apply {
             viewModel.getTopGames(10)
-
             viewModel.topGamesLiveData.observe(viewLifecycleOwner) {
                 topGamesAdapter.data = it
                 binding.twitchTopGamesList.scrollToPosition(4)
@@ -201,14 +204,17 @@ class HomeFragment : DaggerViewModelFragment<HomeFragmentViewModel>(HomeFragment
                     }
                 }
             liveFollowingStreamsList.adapter = twitchChannelsAdapter.also {
-                it.setOnItemClickListener { streamsItem ->
-                    (requireActivity() as MainActivity).createPlayerFragment(
-                        streamsItem.channel?.status,
-                        streamsItem.channel?.name,
-                        streamsItem.channel?.logo,
-                        streamsItem.game,
-                        streamsItem.channel?.name
-                    )
+                it.setOnItemClickListener { i, v ->
+                    val item = it.data?.get(i)
+                    item?.also {
+                        (requireActivity() as MainActivity).createPlayerFragment(
+                            item.channel?.status,
+                            item.channel?.name,
+                            item.channel?.logo,
+                            item.game,
+                            item.channel?.name
+                        )
+                    }
                 }
             }
             twitchFollowingLiveStreamsText.visibility = View.VISIBLE
@@ -226,8 +232,7 @@ class HomeFragment : DaggerViewModelFragment<HomeFragmentViewModel>(HomeFragment
     }
 
     //Mixer
-    fun setupMixerUI() {}
-
+    private fun setupMixerUI() {}
 
     private fun hideMixer() {
         binding.apply {

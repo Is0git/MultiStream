@@ -1,6 +1,6 @@
 package com.android.multistream.di.modules
 
-import com.android.multistream.auth.PlatformManager
+import com.android.multistream.auth.platform_manager.PlatformManager
 import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.di.qualifiers.MixerQualifier
 import com.android.multistream.di.qualifiers.TwitchQualifier

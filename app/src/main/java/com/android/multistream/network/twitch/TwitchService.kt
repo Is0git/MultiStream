@@ -7,13 +7,11 @@ import com.android.multistream.network.twitch.models.new_twitch_api.top_games.To
 import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGames
 import com.android.multistream.network.twitch.models.v5.followed_streams.Followed
 import com.android.multistream.network.twitch.models.v5.top_games.TopGamesV5
+import com.android.multistream.network.twitch.models.v5.user.User
 import com.multistream.multistreamsearchview.search_result.SearchListAdapter
 import com.multistream.multistreamsearchview.search_view.SearchViewLayout
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Headers
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface TwitchService {
     //NEW TWITCH API
@@ -25,8 +23,8 @@ interface TwitchService {
     @Headers("Client-ID: $CLIENT_ID")
     suspend fun getChannels(
         @Query(value = "after") after: String? = null, @Query(value = "first") first: Int, @Query(
-            "game_id"
-        ) gameId: String?
+            "game_id") gameId: Int?,
+        @Header("Authorization") access_token: String?
     ): Response<GameChannels>
 
     //V5 API
@@ -49,6 +47,10 @@ interface TwitchService {
     @GET("kraken/streams/followed")
     @Headers("Client-ID: $CLIENT_ID", "Accept: application/vnd.twitchtv.v5+json")
     suspend fun getFollowedStreams(@Header("Authorization") access_token: String, @Query("stream_type") streamType: String = "live"): Response<Followed>
+
+    @GET("kraken/users/{userId}")
+    @Headers("Client-ID: $CLIENT_ID", "Accept: application/vnd.twitchtv.v5+json")
+    suspend fun getUser(@Path("userId", encoded = true) userId: Int?) : Response<User>
 
     //SEARCHES
 

@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav"
-    app:startDestination="@id/splashScreenFragment">
+    app:startDestination="@id/main">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -30,11 +30,11 @@
             android:name="com.android.multistream.ui.main.fragments.home_fragment.HomeFragment"
             android:label="HomeFragment">
             <action
-                android:id="@+id/action_homeFragment_to_gameCategoryFragment"
-                app:destination="@id/gameCategoryFragment" />
-            <action
                 android:id="@+id/action_homeFragment_to_profileFragment"
                 app:destination="@id/profileFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_twitchGameCategory"
+                app:destination="@id/twitchGameCategory" />
         </fragment>
         <fragment
             android:id="@+id/browseFragment"
@@ -73,13 +73,13 @@
             android:name="com.android.multistream.ui.main.fragments.search_fragment.SearchFragment"
             android:label="SearchFragment" />
         <fragment
-            android:id="@+id/gameCategoryFragment"
-            android:name="com.android.multistream.ui.main.fragments.game_category_fragment.GameCategoryFragment"
-            android:label="GameCategoryFragment" />
-        <fragment
             android:id="@+id/profileFragment"
             android:name="com.android.multistream.ui.main.fragments.profile_fragment.ProfileFragment"
             android:label="ProfileFragment" />
+        <fragment
+            android:id="@+id/twitchGameCategory"
+            android:name="com.android.multistream.ui.main.fragments.game_category_fragment.twitch_game_category.TwitchGameCategory"
+            android:label="TwitchGameCategory" />
     </navigation>
     <navigation
         android:id="@+id/intro"

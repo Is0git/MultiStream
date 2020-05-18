@@ -11,10 +11,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.android.multistream.R
-import com.android.multistream.auth.PlatformManager
+import com.android.multistream.auth.platform_manager.PlatformManager
 import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.databinding.ActivityMainBinding
-import com.android.multistream.network.twitch.models.v5.user.CurrentUser
+import com.android.multistream.network.twitch.models.v5.current_user.CurrentUser
 import com.android.multistream.ui.player.fragments.PlayerFragment
 import com.bumptech.glide.Glide
 import com.example.daggerviewmodelfragment.ViewModelFactory

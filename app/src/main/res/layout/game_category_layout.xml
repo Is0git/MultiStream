@@ -67,7 +67,7 @@
             android:id="@+id/channelsCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="90dp"
+            app:cardCornerRadius="50dp"
             app:cardElevation="35dp"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 

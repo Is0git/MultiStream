@@ -5,7 +5,7 @@ import com.android.multistream.network.twitch.constants.CLIENT_SECRET
 import com.android.multistream.network.twitch.constants.REDIRECT_URI
 import com.android.multistream.network.twitch.models.auth.Token
 import com.android.multistream.network.twitch.models.auth.Validation
-import com.android.multistream.network.twitch.models.v5.user.CurrentUser
+import com.android.multistream.network.twitch.models.v5.current_user.CurrentUser
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*

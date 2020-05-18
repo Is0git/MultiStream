@@ -2,17 +2,19 @@ package com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fra
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.android.multistream.R
-import com.android.multistream.ui.main.fragments.browse_fragment.GamesBrowseFragment
+import com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.GamesBrowseFragment
 import com.example.pagination.PageLoader
+import com.example.pagination.PageLoadingStates
 import com.example.pagination.attach
+import com.multistream.multistreamsearchview.search_view.OnItemClickListener
 import javax.inject.Inject
 
-class MixerGamesBrowseFragment :
-    GamesBrowseFragment<MixerGamesBrowseViewModel>(MixerGamesBrowseViewModel::class.java) {
+class MixerGamesBrowseFragment : GamesBrowseFragment<MixerGamesBrowseViewModel>(MixerGamesBrowseViewModel::class.java), OnItemClickListener {
 
     @Inject
     lateinit var mixerTopGamesAdapter: MixerTopGamesListAdapter
@@ -42,6 +44,14 @@ class MixerGamesBrowseFragment :
             binding.searchNoItem.visibility = if (it.isEmpty()) View.VISIBLE else View.INVISIBLE
             mixerTopGamesAdapter.list = it
         }
+    }
+
+    override fun getPageLoadStateLiveData(): LiveData<PageLoadingStates> {
+        return viewModel.pageLoader.pageLoadingState
+    }
+
+    override fun onClick(position: Int, view: View) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }

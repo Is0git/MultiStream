@@ -2,12 +2,14 @@ package com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fra
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.android.multistream.R
-import com.android.multistream.ui.main.fragments.browse_fragment.GamesBrowseFragment
+import com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.GamesBrowseFragment
 import com.example.pagination.PageLoader
+import com.example.pagination.PageLoadingStates
 import com.example.pagination.attach
 import com.example.pagination.detach
 import javax.inject.Inject
@@ -24,14 +26,17 @@ class TwitchGamesBrowseFragment : GamesBrowseFragment<TwitchGamesBrowseViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupList()
-        navController =
-            Navigation.findNavController(requireActivity(), R.id.main_fragment_container)
+        navController = Navigation.findNavController(requireActivity(), R.id.main_fragment_container)
+    }
+
+    override fun onClick(position: Int, view: View) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     private fun setupList() {
         binding.apply {
             topGamesList attach viewModel.repo.pageLoader
-            topGamesList.adapter = topGamesAdapter
+            topGamesList.adapter = topGamesAdapter.also { it.clickListener = this@TwitchGamesBrowseFragment }
         }
     }
 
@@ -49,5 +54,9 @@ class TwitchGamesBrowseFragment : GamesBrowseFragment<TwitchGamesBrowseViewModel
             binding.searchNoItem.visibility = if (it.isEmpty()) View.VISIBLE else View.INVISIBLE
             topGamesAdapter.list = it
         }
+    }
+
+    override fun getPageLoadStateLiveData(): LiveData<PageLoadingStates> {
+        return viewModel.pageLoader.pageLoadingState
     }
 }

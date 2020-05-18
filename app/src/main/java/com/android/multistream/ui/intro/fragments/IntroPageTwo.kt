@@ -10,7 +10,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.android.multistream.R
-import com.android.multistream.auth.Platform
+import com.android.multistream.auth.platforms.Platform
 import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.databinding.IntroPageTwoBinding
 import com.android.multistream.ui.main_activity.MainActivityViewModel

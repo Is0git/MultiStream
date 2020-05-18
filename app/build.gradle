@@ -133,6 +133,7 @@ dependencies {
     implementation project(':multistreamhidescrollview')
     implementation project(":multistreamaterialplaceholdercard")
     implementation project(":multistreamstripetablayout")
+    implementation project(":overscrollbehavior")
 
     // Dagger2 core
     api "com.google.dagger:dagger:$dagger_version"

@@ -1,6 +1,6 @@
 package com.android.multistream
 
-import com.android.multistream.auth.PlatformManager
+import com.android.multistream.auth.platform_manager.PlatformManager
 import com.android.multistream.auth.platforms.MixerPlatform
 import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.di.DaggerAppComponent
@@ -14,13 +14,13 @@ class App : DaggerApplication() {
     lateinit var platformManager: PlatformManager
     @Inject
     lateinit var twitchPlatform: TwitchPlatform
-
     @Inject
     lateinit var mixerPlatform: MixerPlatform
 
     override fun onCreate() {
         super.onCreate()
         twitchPlatform.platformName = "Twitch"
+        mixerPlatform.platformName = "Mixer"
         platformManager.addPlatform(twitchPlatform)
         platformManager.addPlatform(mixerPlatform)
     }

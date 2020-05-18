@@ -48,10 +48,10 @@ object ResponseHandler {
         return true
     }
 
-    fun handleNetworkException(exception: Exception, appContext: Application?) {
+   suspend fun handleNetworkException(exception: Exception, appContext: Application?) {
         when (exception) {
             is IOException -> {
-                appContext?.also { Toast.makeText(it, "NO INTERNET", Toast.LENGTH_SHORT).show() }
+                appContext?.also { withContext(Dispatchers.Main) {Toast.makeText(it, "NO INTERNET", Toast.LENGTH_SHORT).show()} }
             }
         }
     }

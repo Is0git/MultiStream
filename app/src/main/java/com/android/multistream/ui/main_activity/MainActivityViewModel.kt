@@ -2,10 +2,9 @@ package com.android.multistream.ui.main_activity
 
 import android.net.Uri
 import androidx.lifecycle.ViewModel
-import com.android.multistream.auth.Platform
+import com.android.multistream.auth.platforms.Platform
 import com.android.multistream.di.main_activity.scopes.MainActivityScope
-import com.android.multistream.network.twitch.models.v5.user.CurrentUser
-import com.android.multistream.ui.main_activity.MainActivityRepository
+import com.android.multistream.network.twitch.models.v5.current_user.CurrentUser
 import javax.inject.Inject
 
 @MainActivityScope

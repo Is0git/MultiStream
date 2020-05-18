@@ -17,7 +17,6 @@ class HorizontalMarginItemDecoration(context: Context, @DimenRes horizontalMargi
     ) {
         outRect.right = horizontalMarginInPx
         outRect.left = horizontalMarginInPx
-
     }
 
 }

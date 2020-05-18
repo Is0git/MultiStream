@@ -26,26 +26,23 @@
             name="id"
             type="String" />
 
-
-        <variable
-            name="onGameCategoryListener"
-            type="com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="@{() -> onGameCategoryListener.onGameClick(platformType, viewersCurrent, `0`, gameName, backgroundUrl, id)}">
-
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/gameImage"
             android:layout_width="138dp"
             android:layout_height="220dp"
+            android:scaleType="center"
+            android:background="@drawable/default_place_holder"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:loadImage="@{backgroundUrl}" />
+
 
         <View
             android:id="@+id/view"

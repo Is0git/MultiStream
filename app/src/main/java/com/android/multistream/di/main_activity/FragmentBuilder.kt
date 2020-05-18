@@ -4,10 +4,8 @@ import com.android.multistream.di.main_activity.intro_fragments.modules.IntroFra
 import com.android.multistream.di.main_activity.intro_fragments.scopes.IntroFragmentScope
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.BrowseFragmentScope
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.ViewPagerFragmentBuilder
-import com.android.multistream.di.main_activity.main_fragments.combined_channels_fragment.CombinedChannelsScope
-import com.android.multistream.di.main_activity.main_fragments.combined_channels_fragment.CombinedChannelsViewModelModule
-import com.android.multistream.di.main_activity.main_fragments.game_channels_fragment.GameChannelsFragmentScope
-import com.android.multistream.di.main_activity.main_fragments.game_channels_fragment.GameChannelsViewModelModule
+import com.android.multistream.di.main_activity.main_fragments.game_category_fragment.twitch_game_category_fragment.TwitchGameCategoryScope
+import com.android.multistream.di.main_activity.main_fragments.game_category_fragment.twitch_game_category_fragment.TwitchGameCategoryViewModelModule
 import com.android.multistream.di.main_activity.main_fragments.home_fragment.HomeFragmentScope
 import com.android.multistream.di.main_activity.main_fragments.home_fragment.HomeFragmentViewModelModule
 import com.android.multistream.di.main_activity.main_fragments.search_fragment.SearchFragmentScope
@@ -15,8 +13,7 @@ import com.android.multistream.di.main_activity.main_fragments.search_fragment.S
 import com.android.multistream.ui.intro.fragments.IntroPage
 import com.android.multistream.ui.intro.fragments.IntroPageTwo
 import com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragment
-import com.android.multistream.ui.main.fragments.combined_games_channels_fragment.CombinedChannelsFragment
-import com.android.multistream.ui.main.fragments.game_channels_fragment.GameChannelsFragment
+import com.android.multistream.ui.main.fragments.game_category_fragment.twitch_game_category.TwitchGameCategory
 import com.android.multistream.ui.main.fragments.home_fragment.HomeFragment
 import com.android.multistream.ui.main.fragments.search_fragment.SearchFragment
 import dagger.Module
@@ -33,14 +30,6 @@ abstract class FragmentBuilder {
     @BrowseFragmentScope
     abstract fun browseFragment(): BrowseFragment
 
-    @ContributesAndroidInjector(modules = [GameChannelsViewModelModule::class])
-    @GameChannelsFragmentScope
-    abstract fun gameChannelsFragment(): GameChannelsFragment
-
-    @ContributesAndroidInjector(modules = [CombinedChannelsViewModelModule::class])
-    @CombinedChannelsScope
-    abstract fun combinedChannelsFragment(): CombinedChannelsFragment
-
     @ContributesAndroidInjector(modules = [IntroFragmentViewModelModule::class])
     @IntroFragmentScope
     abstract fun introFragment(): IntroPage
@@ -52,4 +41,8 @@ abstract class FragmentBuilder {
     @ContributesAndroidInjector(modules = [SearchFragmentViewModelModule::class])
     @SearchFragmentScope
     abstract fun searchFragment(): SearchFragment
+
+    @ContributesAndroidInjector(modules = [TwitchGameCategoryViewModelModule::class])
+    @TwitchGameCategoryScope
+    abstract fun twitchGameCategoryFragment() : TwitchGameCategory
 }
