@@ -13,7 +13,10 @@
             <option value="$PROJECT_DIR$/../Multi-Stream-Chat/multistreamchat" />
             <option value="$PROJECT_DIR$/../Multi-Stream-Player/multistreamplayer" />
             <option value="$PROJECT_DIR$/../Multi-Stream-SearchView/multistreamsearchview" />
+            <option value="$PROJECT_DIR$/../MultiStreamMaterialPlaceHolderCard/multistreamaterialplaceholdercard" />
             <option value="$PROJECT_DIR$/../MultiStreamNavigationDrawer/navigationdrawer" />
+            <option value="$PROJECT_DIR$/../MultiStreamStripeTabLayout/multistreamstripetablayout" />
+            <option value="$PROJECT_DIR$/../MultistreamHideScrollView/multistreamhidescrollview" />
             <option value="$PROJECT_DIR$/../Pagination/pagination" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />

@@ -5,7 +5,7 @@ import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import androidx.preference.PreferenceFragmentCompat
 import com.android.multistream.R
-import com.android.multistream.ui.main.activities.main_activity.MainActivity
+import com.android.multistream.ui.main_activity.MainActivity
 
 class SettingsFragment : PreferenceFragmentCompat() {
 

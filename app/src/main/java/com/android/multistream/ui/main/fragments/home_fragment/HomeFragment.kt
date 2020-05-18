@@ -15,18 +15,16 @@ import com.android.multistream.di.qualifiers.SettingsPreferencesQualifier
 import com.android.multistream.network.twitch.models.new_twitch_api.channels.DataItem
 import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame
 import com.android.multistream.network.twitch.models.v5.followed_streams.StreamsItem
-import com.android.multistream.ui.main.activities.main_activity.MainActivity
-import com.android.multistream.ui.main.activities.main_activity.MainActivityViewModel
+import com.android.multistream.ui.main_activity.MainActivity
+import com.android.multistream.ui.main_activity.MainActivityViewModel
 import com.android.multistream.ui.main.fragments.home_fragment.decorations.HorizontalMarginItemDecoration
 import com.android.multistream.ui.main.fragments.home_fragment.view_model.HomeFragmentViewModel
-import com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView.Companion.RIGHT
-import com.android.multistream.ui.widgets.hide_scroll_view.animations.AlphaAnimation
 import com.android.multistream.utils.PlaceHolderAdapter
 import com.android.multistream.utils.data_binding.ImageLoader
 import com.example.daggerviewmodelfragment.DaggerViewModelFragment
-import com.example.daggerviewmodelfragment.ViewModelFactory
+import com.example.multistreamhidescrollview.HideScrollView.Companion.RIGHT
+import com.example.multistreamhidescrollview.animations.AlphaAnimation
 import com.ramotion.cardslider.CardSliderLayoutManager
-import dagger.android.support.DaggerFragment
 import java.util.*
 import javax.inject.Inject
 

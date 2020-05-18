@@ -1,4 +1,4 @@
-package com.android.multistream.ui.auth
+package com.android.multistream.ui.auth.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,12 +18,12 @@ import com.android.multistream.network.mixer.constants.MIXER_URL
 import com.android.multistream.network.twitch.constants.REDIRECT_URI
 import com.android.multistream.network.twitch.constants.TWITCH_AUTH_PAGE
 import com.android.multistream.network.twitch.constants.TWITCH_URL
-import com.android.multistream.ui.main.activities.main_activity.MainActivityViewModel
+import com.android.multistream.ui.main_activity.MainActivityViewModel
 
 class LoginFragment : Fragment() {
 
     lateinit var binding: LoginLayoutBinding
-    val args: LoginFragmentArgs by navArgs()
+    private val args: LoginFragmentArgs by navArgs()
     lateinit var mainActivityViewModel: MainActivityViewModel
 
     override fun onCreateView(

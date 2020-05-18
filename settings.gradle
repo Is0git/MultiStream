@@ -10,4 +10,11 @@ include(':daggerviewmodel')
 project(':daggerviewmodel').projectDir = new File("D:\\multistreamProject\\DaggerViewModelFragment\\daggerviewmodel")
 include(':pagination')
 project(':pagination').projectDir = new File("D:\\multistreamProject\\Pagination\\pagination")
+include(':multistreamhidescrollview')
+project(':multistreamhidescrollview').projectDir = new File("D:\\multistreamProject\\MultistreamHideScrollView\\multistreamhidescrollview")
+include(':multistreamaterialplaceholdercard')
+project(':multistreamaterialplaceholdercard').projectDir = new File("D:\\multistreamProject\\MultiStreamMaterialPlaceHolderCard\\multistreamaterialplaceholdercard")
+include(':multistreamstripetablayout')
+project(':multistreamstripetablayout').projectDir = new File("D:\\multistreamProject\\MultiStreamStripeTabLayout\\multistreamstripetablayout")
+
 rootProject.name='multistream'

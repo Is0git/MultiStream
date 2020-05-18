@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.android.multistream.R
 import com.android.multistream.auth.platforms.TwitchPlatform
-import com.android.multistream.ui.main.activities.main_activity.MainActivityViewModel
+import com.android.multistream.ui.main_activity.MainActivityViewModel
 import com.android.player.chat.chat_factories.PlayerType
 import com.android.player.ui.MultiStreamPlayerLayout
 

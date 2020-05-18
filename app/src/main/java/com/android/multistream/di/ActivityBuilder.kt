@@ -5,7 +5,7 @@ import com.android.multistream.di.main_activity.modules.MainActivityViewModelMod
 import com.android.multistream.di.main_activity.modules.ViewModelFactoryModule
 import com.android.multistream.di.main_activity.scopes.MainActivityScope
 import com.android.multistream.di.modules.SettingsModule
-import com.android.multistream.ui.main.activities.main_activity.MainActivity
+import com.android.multistream.ui.main_activity.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

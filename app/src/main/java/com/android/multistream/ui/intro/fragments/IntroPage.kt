@@ -9,7 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.android.multistream.R
 import com.android.multistream.databinding.IntroPageBinding
-import com.android.multistream.ui.main.activities.main_activity.MainActivity
+import com.android.multistream.ui.main_activity.MainActivity
 import com.example.daggerviewmodelfragment.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject

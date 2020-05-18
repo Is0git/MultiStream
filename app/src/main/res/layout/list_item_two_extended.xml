@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
+    <com.example.multistreamaterialplaceholdercard.PlaceHolderMaterialCardView
         android:layout_width="match_parent"
         android:layout_height="330dp"
         app:addGradient="false"
@@ -102,5 +102,5 @@
                 app:layout_constraintStart_toEndOf="@+id/streamerBanner"
                 app:layout_constraintTop_toBottomOf="@id/streamTitle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView>
+    </com.example.multistreamaterialplaceholdercard.PlaceHolderMaterialCardView>
 </layout>

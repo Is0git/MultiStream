@@ -1,4 +1,4 @@
-package com.android.multistream.ui.main.activities.main_activity
+package com.android.multistream.ui.main_activity
 
 import android.os.Bundle
 import android.transition.TransitionInflater

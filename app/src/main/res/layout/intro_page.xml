@@ -7,28 +7,6 @@
         android:layout_height="match_parent">
 
 
-        <com.android.multistream.ui.widgets.striped_title_panel.StripedPanelText
-            android:id="@+id/startText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/actionBarMargin"
-            android:layout_marginEnd="@dimen/stripeLineMargin"
-            android:elevation="5dp"
-            android:fontFamily="@font/header_font"
-            android:paddingEnd="10dp"
-            android:rotationY="2"
-            android:textStyle="bold"
-            app:alignment="left"
-            app:layout_constraintBottom_toTopOf="@+id/twitchTopGamesText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread"
-            app:titleText="START"
-            app:titleTextColor="@color/colorOnSecondaryVariant"
-            app:titleTextSize="@dimen/mediumStripeTitleSize"
-            app:viewsMargin="4dp" />
 
 
         <com.google.android.material.textview.MaterialTextView
@@ -43,11 +21,9 @@
             android:rotationY="-2"
             android:text="PRESS CONTINUE IN ORDER TO IMPROVE YOUR EXPERIENCE BY LINKING YOUR ACCOUT WITH PLATFORMS"
             android:textAlignment="textStart"
-            app:alignment="right"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/continueButton"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/startText" />
+            app:layout_constraintEnd_toStartOf="@+id/guideline2" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/continueButton"

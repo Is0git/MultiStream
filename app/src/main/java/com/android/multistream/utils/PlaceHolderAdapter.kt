@@ -8,8 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.anim.list_item_hower_anim.ItemHoverViewHolder
-import com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
-import com.android.multistream.ui.widgets.place_holder_material_card.listeners.PlaceHolderViewListener
+import com.example.multistreamaterialplaceholdercard.PlaceHolderMaterialCardView
+import com.example.multistreamaterialplaceholdercard.listeners.PlaceHolderViewListener
 
 class PlaceHolderAdapter<T, K : ViewDataBinding>(
     private val itemLayoutId: Int,

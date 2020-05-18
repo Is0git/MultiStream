@@ -13,7 +13,7 @@ import com.android.multistream.R
 import com.android.multistream.auth.Platform
 import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.databinding.IntroPageTwoBinding
-import com.android.multistream.ui.main.activities.main_activity.MainActivityViewModel
+import com.android.multistream.ui.main_activity.MainActivityViewModel
 import com.android.stripesliderview.slider.SlideLayout
 import com.android.stripesliderview.viewpager.PageData
 import dagger.android.support.DaggerFragment

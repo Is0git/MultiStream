@@ -11,7 +11,7 @@
             android:backgroundTint="@color/colorSurface"
             android:layout_height="wrap_content">
 
-            <com.android.multistream.ui.main.fragments.browse_fragment.stripes_tab_layout.StripeTabLayout
+            <com.example.multi_stream_stripe_tab_layout.StripeTabLayout
                 app:layout_scrollFlags="scroll|enterAlways|snap|enterAlwaysCollapsed"
                 android:id="@+id/stripeTabLayout"
                 android:layout_width="match_parent"

@@ -10,7 +10,7 @@
     </data>
 
 
-    <com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView
+    <com.example.multistreamaterialplaceholdercard.PlaceHolderMaterialCardView
         android:id="@+id/viewPagerCard"
         style="@style/defaultMaterialCard"
         android:layout_width="match_parent"
@@ -132,6 +132,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.android.multistream.ui.widgets.place_holder_material_card.PlaceHolderMaterialCardView>
+    </com.example.multistreamaterialplaceholdercard.PlaceHolderMaterialCardView>
 
 </layout>

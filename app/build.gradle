@@ -130,6 +130,9 @@ dependencies {
     implementation project(":multistreamsearchview")
     implementation project(':daggerviewmodel')
     implementation project(':pagination')
+    implementation project(':multistreamhidescrollview')
+    implementation project(":multistreamaterialplaceholdercard")
+    implementation project(":multistreamstripetablayout")
 
     // Dagger2 core
     api "com.google.dagger:dagger:$dagger_version"

@@ -104,7 +104,7 @@
             app:popUpToInclusive="true" />
         <fragment
             android:id="@+id/loginFragment"
-            android:name="com.android.multistream.ui.auth.LoginFragment"
+            android:name="com.android.multistream.ui.auth.fragments.LoginFragment"
             android:label="LoginFragment">
             <argument
                 android:name="platform"

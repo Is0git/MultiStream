@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import com.android.multistream.di.main_activity.scopes.MainActivityScope
 import com.android.multistream.di.qualifiers.SettingsPreferencesQualifier
-import com.android.multistream.ui.main.activities.main_activity.MainActivity
+import com.android.multistream.ui.main_activity.MainActivity
 import dagger.Module
 import dagger.Provides
 

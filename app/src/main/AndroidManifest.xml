@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.android.multistream.ui.main.activities.main_activity.MainActivity"
+            android:name="com.android.multistream.ui.main_activity.MainActivity"
             android:configChanges="screenSize|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -9,7 +9,7 @@ import com.android.multistream.anim.list_item_hower_anim.ItemHoverViewHolder
 import com.android.multistream.databinding.SingleTopGamesListBinding
 import com.android.multistream.di.main_activity.main_fragments.browse_fragment.view_pager_fragments.twitch_fragment.TwitchGamesBrowseFragmentScope
 import com.android.multistream.network.twitch.models.v5.top_games.TopItem
-import com.android.multistream.ui.main.activities.main_activity.MainActivity
+import com.android.multistream.ui.main_activity.MainActivity
 import com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragment
 import com.android.multistream.utils.TWITCH
 import com.android.multistream.utils.data_binding.ImageLoader

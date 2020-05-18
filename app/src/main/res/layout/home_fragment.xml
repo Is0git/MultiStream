@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView
+    <com.example.multistreamhidescrollview.HideScrollView
         android:id="@+id/hideScrollView"
-        app:topHideHeight="32dp"
-        app:bottomHideHeight="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/colorSurface"
         android:fadeScrollbars="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        app:bottomHideHeight="35dp"
+        app:topHideHeight="32dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -44,9 +44,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:layout_marginTop="20dp"
+                android:background="?attr/colorSurface"
                 android:elevation="1dp"
                 android:paddingBottom="20dp"
-                android:background="?attr/colorSurface"
                 app:layout_constraintTop_toBottomOf="@+id/homeText" />
 
             <ImageView
@@ -70,8 +70,7 @@
                 android:text="@string/twitch"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/twitchLogo"
-                app:layout_constraintTop_toBottomOf="@id/channelsViewPager"
-                app:titleTextSize="@dimen/mediumStripeTitleSize" />
+                app:layout_constraintTop_toBottomOf="@id/channelsViewPager"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/twitchTopGamesText"
@@ -86,8 +85,8 @@
                 android:id="@+id/twitchTopGamesList"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:background="@color/colorSurface"
                 android:layout_marginTop="@dimen/itemMargin"
+                android:background="@color/colorSurface"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -110,9 +109,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/itemMargin"
+                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/twitchFollowingLiveStreamsText"
                 tools:listitem="@layout/list_item_one" />
@@ -183,6 +182,5 @@
                 app:layout_constraintTop_toBottomOf="@id/mixerRecommendedChannelsList" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.android.multistream.ui.widgets.hide_scroll_view.HideScrollView>
-
+    </com.example.multistreamhidescrollview.HideScrollView>
 </layout>
