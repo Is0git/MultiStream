@@ -1,29 +1,24 @@
 package com.android.multistream.ui.main.fragments.browse_fragment
 
 import android.app.Application
-import com.android.multistream.di.main_activity.main_fragments.browse_fragment.BrowseFragmentScope
 import com.android.multistream.utils.ResponseHandler
 import com.example.pagination.PageLoader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
 
-
-@BrowseFragmentScope
-abstract class PageLoaderRepository<T>(
+abstract class PagedLoaderRepository<T>(
     application: Application,
-    pageStartOffSet: Int,
-    pageLimit: Int
+    startPage: Int,
+    pageLimit: Int,
+    isAutoLoad: Boolean
 ) {
 
-    val pageLoader = PageLoader(object : PageLoader.PagedOffSetListener<T> {
-        override var pageOffSet: Int = pageStartOffSet
+    val pageLoader = PageLoader(isAutoLoad, object : PageLoader.PagedNumberListener<T> {
 
-        override var pageLimit: Int = pageLimit
-
-        override suspend fun loadInitial(pageOffSet: Int, pageLimit: Int): List<T>? {
+        override suspend fun loadInitial(page: Int): List<T>? {
             try {
-                return getInitial(pageOffSet, pageLimit)
+                return getInitial(page, pageLimit)
             } catch (e: IOException) {
                 withContext(Dispatchers.Main) {
                     ResponseHandler.handleNetworkException(e, application)
@@ -32,9 +27,9 @@ abstract class PageLoaderRepository<T>(
             return null
         }
 
-        override suspend fun loadNext(pageOffSet: Int, pageLimit: Int): List<T>? {
+        override suspend fun loadNext(page: Int): List<T>? {
             try {
-                return getNext(pageOffSet, pageLimit)
+                return getNext(page, pageLimit)
             } catch (e: IOException) {
                 withContext(Dispatchers.Main) {
                     ResponseHandler.handleNetworkException(e, application)
@@ -42,10 +37,13 @@ abstract class PageLoaderRepository<T>(
             }
             return null
         }
+
+        override var page: Int = startPage
+
     })
 
-    abstract suspend fun getInitial(pageOffSet: Int, pageLimit: Int): List<T>?
+    abstract suspend fun getInitial(page: Int, pageLimit: Int): List<T>?
 
-    abstract suspend fun getNext(pageOffSet: Int, pageLimit: Int): List<T>?
+    abstract suspend fun getNext(page: Int, pageLimit: Int): List<T>?
 
 }

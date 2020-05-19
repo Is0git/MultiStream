@@ -34,6 +34,8 @@
                 android:background="@drawable/right_stripe_gradient"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:textAlignment="center"
                 android:text="22457 viewrs"
                 android:singleLine="true"
                 android:elevation="1dp"

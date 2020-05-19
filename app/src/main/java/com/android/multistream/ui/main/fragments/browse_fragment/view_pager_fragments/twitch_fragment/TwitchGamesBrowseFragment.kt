@@ -7,6 +7,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.android.multistream.R
+import com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragmentDirections
 import com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.GamesBrowseFragment
 import com.example.pagination.PageLoader
 import com.example.pagination.PageLoadingStates
@@ -30,7 +31,9 @@ class TwitchGamesBrowseFragment : GamesBrowseFragment<TwitchGamesBrowseViewModel
     }
 
     override fun onClick(position: Int, view: View) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val item = topGamesAdapter.list?.get(position)
+        val directions = BrowseFragmentDirections.actionBrowseFragmentToTwitchGameCategory(item)
+        navController.navigate(directions)
     }
 
     private fun setupList() {

@@ -25,6 +25,8 @@ import com.example.daggerviewmodelfragment.DaggerViewModelFragment
 import com.example.multistreamhidescrollview.HideScrollView.Companion.RIGHT
 import com.example.multistreamhidescrollview.animations.AlphaAnimation
 import com.ramotion.cardslider.CardSliderLayoutManager
+import kotlinx.android.synthetic.main.list_item_three.*
+import kotlinx.android.synthetic.main.profile_content.*
 import java.util.*
 import javax.inject.Inject
 
@@ -65,7 +67,7 @@ class HomeFragment :
 
             addHiddenView(binding.homeText, RIGHT, alphaAnimation)
         }
-        binding.homeText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_twitchGameCategory) }
+        binding.homeText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_mixerGameCategory) }
         binding.twitchText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_profileFragment) }
         (requireActivity() as MainActivity).showActionBar()
         return binding.root
@@ -143,7 +145,7 @@ class HomeFragment :
             viewModel.getTopGames(10)
             viewModel.topGamesLiveData.observe(viewLifecycleOwner) {
                 topGamesAdapter.data = it
-                binding.twitchTopGamesList.scrollToPosition(4)
+                binding.twitchTopGamesList.scrollToPosition(1)
             }
             topGamesAdapter = PlaceHolderAdapter(
                 R.layout.list_item_four,

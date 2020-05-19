@@ -147,18 +147,13 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
     private fun getBearerCode(uriData: String): String? =
         uriQuery(uriData)
 
-
     /**
      * run on current thread(because used in okHttpClient authenticator)
      */
     abstract fun getNewToken(service: T, refreshToken: String): Response<S>?
-
     abstract fun provideAuthTokenPair(response: Response<S>): Pair<String?, String?>
-
     abstract suspend fun getUser(accessToken: String): V
-
     abstract suspend fun getTokenValidationResponse(service: T, accessToken: String): Response<U>
-
     abstract suspend fun getAccessTokenBearer(service: T, code: String): Response<S>
 
 

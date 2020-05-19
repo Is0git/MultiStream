@@ -6,3 +6,7 @@ fun uriQuery(uri: String): String? {
     val matcher = regex.find(uri)
     return matcher?.value
 }
+
+fun getMixerImageUrl(channelId: Int?) : String {
+    return "https://thumbs.mixer.com/channel/$channelId.big.jpg"
+}

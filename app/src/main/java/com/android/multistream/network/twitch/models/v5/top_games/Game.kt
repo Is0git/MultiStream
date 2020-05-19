@@ -1,5 +1,9 @@
 package com.android.multistream.network.twitch.models.v5.top_games
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Game(
     val giantbombId: Int? = null,
     val popularity: Int? = null,
@@ -9,4 +13,4 @@ data class Game(
     val _id: Int? = null,
     val locale: String? = null,
     val localizedName: String? = null
-)
+) : Parcelable

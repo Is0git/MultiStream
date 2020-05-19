@@ -24,8 +24,9 @@
         android:layout_marginEnd="32dp"
         android:fontFamily="@font/header_font"
         android:lines="3"
-        android:text="Call of Duty: Modern Warfare"
+        android:text="@android:string/no"
         android:textAlignment="textStart"
+        android:layout_marginTop="24dp"
         android:shadowColor="#94000000"
         android:shadowDy="3"
         android:shadowRadius="4"
@@ -48,10 +49,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <ImageView
+            android:id="@+id/gameBg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/default_place_holder"
             android:scaleType="centerCrop"
             android:src="@drawable/valo" />
     </com.google.android.material.card.MaterialCardView>
@@ -78,10 +80,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:breakStrategy="simple"
-        android:lines="2"
         android:gravity="center_vertical"
         android:textColor="@color/colorOnSurface"
-        android:text="1.3k viewers"
+        android:text="@string/viewers"
         app:layout_constraintBottom_toBottomOf="@+id/eyeIcon"
         app:layout_constraintEnd_toStartOf="@+id/followersIcon"
         app:layout_constraintHorizontal_bias="0.5"
@@ -108,9 +109,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:breakStrategy="simple"
-        android:lines="2"
         android:gravity="center_vertical"
-        android:text="5k followers"
+        android:text="@string/followers"
+        android:lines="2"
         android:textColor="@color/colorOnSurface"
         app:layout_constraintBottom_toBottomOf="@+id/followersIcon"
         app:layout_constraintEnd_toEndOf="@+id/gameName"

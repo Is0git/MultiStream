@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent">
 
-            <include layout="@layout/game_content" />
+            <include android:id="@+id/headerLayout" layout="@layout/game_content" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -66,18 +66,30 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/channelsCard"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:cardCornerRadius="50dp"
             app:cardElevation="35dp"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
+            app:layout_behavior="com.example.overscrollbehavior.OverScrollBehavior">
             <androidx.recyclerview.widget.RecyclerView
+                android:overScrollMode="never"
                 android:id="@+id/channelsRecyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/list_item_two_extended" />
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/progress_bar"
+                style="@style/SpinKitView.DoubleBounce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:layout_marginTop="150dp"
+                android:elevation="36dp"
+                android:visibility="invisible"
+                app:SpinKit_Color="@color/colorOnSecondaryVariant" />
         </com.google.android.material.card.MaterialCardView>
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.observe
 import com.android.multistream.databinding.TopGamesFragmentPageBinding
+import com.android.multistream.utils.UIHelper
 import com.example.daggerviewmodelfragment.DaggerViewModelFragment
 import com.example.pagination.PageLoader
 import com.example.pagination.PageLoadingStates
@@ -17,7 +18,7 @@ import com.example.pagination.detach
 import com.multistream.multistreamsearchview.search_view.OnItemClickListener
 
 abstract class GamesBrowseFragment<T : ViewModel>(clazz: Class<T>) :
-    DaggerViewModelFragment<T>(clazz), OnItemClickListener {
+    DaggerViewModelFragment<T>(clazz), OnItemClickListener, UIHelper {
 
     lateinit var binding: TopGamesFragmentPageBinding
 
@@ -56,7 +57,6 @@ abstract class GamesBrowseFragment<T : ViewModel>(clazz: Class<T>) :
     }
 
     abstract fun getPageLoader(): PageLoader<*>
-    abstract fun observe()
     abstract fun getPageLoadStateLiveData(): LiveData<PageLoadingStates>
 
 }

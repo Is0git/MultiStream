@@ -62,7 +62,6 @@ class BrowseFragment : DaggerFragment(), OverScrollBehavior.OverScrollListener {
         val pageLoader =
             (childFragmentManager.fragments[position] as GamesBrowseFragment<*>).getPageLoader()
         pageLoader.invalidate(true)
-
     }
 
     override fun onOverScrollCompleted() {

@@ -5,24 +5,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.fragment.app.Fragment
+import android.widget.Toast
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.android.multistream.R
 import com.android.multistream.databinding.GameCategoryLayoutBinding
 import com.android.multistream.databinding.ListItemTwoExtendedBinding
-import com.android.multistream.network.twitch.models.v5.followed_streams.StreamsItem
 import com.android.multistream.utils.PlaceHolderAdapter
 import com.android.multistream.utils.UIHelper
-import com.android.multistream.utils.data_binding.ImageLoader
 import com.example.daggerviewmodelfragment.DaggerViewModelFragment
+import com.example.overscrollbehavior.OverScrollBehavior
 import com.example.pagination.PageLoader
+import com.example.pagination.PageLoadingStates
 import com.example.pagination.attach
-import com.multistream.multistreamsearchview.search_view.OnItemClickListener
 
-abstract class GameCategoryFragment<T, S : ViewModel>(clazz: Class<S>) : DaggerViewModelFragment<S>(clazz), UIHelper {
+abstract class GameCategoryFragment<T, S : ViewModel>(clazz: Class<S>) : DaggerViewModelFragment<S>(clazz), UIHelper, OverScrollBehavior.OverScrollListener {
 
     lateinit var binding: GameCategoryLayoutBinding
     lateinit var adapter: PlaceHolderAdapter<T, ListItemTwoExtendedBinding>
@@ -34,6 +34,7 @@ abstract class GameCategoryFragment<T, S : ViewModel>(clazz: Class<S>) : DaggerV
         savedInstanceState: Bundle?
     ): View? {
         binding = GameCategoryLayoutBinding.inflate(inflater, container, false)
+        ((binding.channelsCard.layoutParams as CoordinatorLayout.LayoutParams).behavior as OverScrollBehavior).overScrollListener = this
         binding.filledExposedDropdown.setAdapter(
             ArrayAdapter<String>(
                 requireContext(),
@@ -45,10 +46,47 @@ abstract class GameCategoryFragment<T, S : ViewModel>(clazz: Class<S>) : DaggerV
         binding.channelsRecyclerview attach getPageLoader()
         navController = findNavController()
         observe()
+        setArgs()
         return binding.root
     }
 
+
+    private fun invalidateList() {
+        val pageLoader = getPageLoader()
+        pageLoader.invalidate(true)
+    }
+
+    override fun onOverScrollCompleted() {
+        invalidateList()
+    }
+
+    override fun onOverScrollStart() {
+
+    }
+
+    override fun observe() {
+        val pageLoader = getPageLoader()
+        pageLoader.dataLiveData.observe(viewLifecycleOwner) {adapter.data = it}
+        pageLoader.pageLoadingState.observe(viewLifecycleOwner) {
+            binding.progressBar.visibility = when (it) {
+                PageLoadingStates.START -> View.VISIBLE
+                PageLoadingStates.FAILED -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "FAILED TO LOAD PAGED DATA",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    View.INVISIBLE
+                }
+                PageLoadingStates.LOADING -> View.VISIBLE
+                PageLoadingStates.SUCCESS -> View.INVISIBLE
+                else -> View.INVISIBLE
+            }
+        }
+    }
+
+    abstract fun setArgs()
     abstract fun getPlaceHolderAdapter() : PlaceHolderAdapter<T, ListItemTwoExtendedBinding>
     abstract fun onCardClick(position: Int, view: View)
-    abstract fun getPageLoader() : PageLoader<*>
+    abstract fun getPageLoader() : PageLoader<T>
 }

@@ -10,13 +10,14 @@ import com.android.multistream.di.main_activity.main_fragments.browse_fragment.v
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
 import com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener
 import com.android.multistream.utils.MIXER
+import com.multistream.multistreamsearchview.search_view.OnItemClickListener
 import javax.inject.Inject
 
 @MixerGamesBrowseFragmentScope
 class MixerTopGamesListAdapter @Inject constructor() :
     RecyclerView.Adapter<MixerTopGamesListAdapter.MyViewHolder>() {
     var spanCount = 0
-    var onGameCategoryListener: OnGameCategoryListener? = null
+    var itemClickListener: OnItemClickListener? = null
     var list: List<MixerTopGames>? = null
         set(value) {
             val begin = if (field == null) 0 else 0.coerceAtLeast(field?.count()!! - 1)
@@ -25,9 +26,11 @@ class MixerTopGamesListAdapter @Inject constructor() :
         }
 
     class MyViewHolder(val listBinding: SingleTopGamesListBinding, spanCount: Int = 0) :
-        ItemHoverViewHolder<SingleTopGamesListBinding>(listBinding, spanCount, false) {
+        ItemHoverViewHolder<SingleTopGamesListBinding>(listBinding, spanCount, true) {
+
+        var itemClickListener: OnItemClickListener? = null
         override fun navigate(binding: SingleTopGamesListBinding) {
-            listBinding.root.callOnClick()
+            itemClickListener?.onClick(adapterPosition, itemView)
         }
 
         override fun backgroundAnimation() {
@@ -46,7 +49,7 @@ class MixerTopGamesListAdapter @Inject constructor() :
         val binding =
             SingleTopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return MyViewHolder(binding, spanCount)
+        return MyViewHolder(binding, spanCount).also { it.itemClickListener = this.itemClickListener }
     }
 
     override fun getItemCount(): Int = list?.count() ?: 0

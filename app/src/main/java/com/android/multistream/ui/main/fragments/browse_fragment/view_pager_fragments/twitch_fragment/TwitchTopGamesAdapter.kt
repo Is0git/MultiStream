@@ -53,20 +53,17 @@ class TwitchTopGamesAdapter @Inject constructor() :
     }
 
     class MyViewHolder(val listBinding: SingleTopGamesListBinding, spanCount: Int = 0) :
-        ItemHoverViewHolder<SingleTopGamesListBinding>(listBinding, spanCount, false) {
+        ItemHoverViewHolder<SingleTopGamesListBinding>(listBinding, spanCount, true) {
 
         var itemClickListener: OnItemClickListener? = null
 
         override fun navigate(binding: SingleTopGamesListBinding) {
-          itemClickListener?.onClick(adapterPosition, itemView)
+            itemClickListener?.onClick(adapterPosition, itemView)
         }
 
         override fun backgroundAnimation() {
             val bgView =
-                ((binding.root.context as MainActivity).supportFragmentManager.findFragmentById(R.id.main_fragment_container)?.childFragmentManager?.fragments?.get(
-                    0
-                )
-                        as BrowseFragment).binding.root
+                ((binding.root.context as MainActivity).supportFragmentManager.findFragmentById(R.id.main_fragment_container)?.childFragmentManager?.fragments?.get(0) as BrowseFragment).binding.root
             ImageLoader.getImageDrawableFromUrl(bgView.context, binding.backgroundUrl)
         }
     }
