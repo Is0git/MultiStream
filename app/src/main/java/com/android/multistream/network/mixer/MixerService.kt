@@ -1,8 +1,11 @@
 package com.android.multistream.network.mixer
 
 import com.android.multistream.network.mixer.models.channel.GameChannels
+import com.android.multistream.network.mixer.models.clips.MixerClips
 import com.android.multistream.network.mixer.models.mixer_channels.MixerGameChannel
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
+import com.android.multistream.network.mixer.models.vods.MixerVods
+import com.android.multistream.network.mixer.models.vods.VodsItem
 import com.android.multistream.network.twitch.adapters.GameSearchesAdapter
 import com.android.multistream.network.twitch.models.auth.Token
 import com.android.multistream.network.twitch.models.auth.Validation
@@ -19,25 +22,30 @@ import retrofit2.http.Query
 interface MixerService {
     @GET(value = "types")
     suspend fun getMixerTopGames(
-        @Query("where") where: String?, @Query("order") order: String?, @Query(
-            value = "limit"
-        ) limit: Int?, @Query(value = "page") page: Int?
+        @Query("where") where: String?,
+        @Query("order") order: String?,
+        @Query(value = "limit") limit: Int?,
+        @Query(value = "page") page: Int?
     ): Response<List<TopGame>>
 
     @GET(value = "types")
     suspend fun getMixerTopGamesFull(
-        @Query("order") order: String?, @Query(value = "limit") limit: Int?, @Query(
-            value = "page"
-        ) page: Int?
+        @Query("order") order: String?,
+        @Query(value = "limit") limit: Int?,
+        @Query(value = "page") page: Int?
     ): Response<List<MixerTopGames>>
 
     @GET(value = "types")
-    suspend fun getMixerTopGame(@Query("where") where: String?, @Query(value = "limit") limit: Int?): Response<List<MixerTopGames>>
+    suspend fun getMixerTopGame(
+        @Query("where") where: String?,
+        @Query(value = "limit") limit: Int?
+    ): Response<List<MixerTopGames>>
 
     @GET("types/{id}/channels")
     suspend fun getGameChannels(
         @Path(value = "id") gameId: String?,
-        @Query(value = "page") page: Int?, @Query(value = "limit") limit: Int,
+        @Query(value = "page") page: Int?,
+        @Query(value = "limit") limit: Int,
         @Query("order") order: String? = "DESC"
     ): Response<List<GameChannels>>
 
@@ -48,6 +56,17 @@ interface MixerService {
         @Query("page", encoded = true) page: Int,
         @Query("order", encoded = false) order: String? = null
     ): Response<List<MixerGameChannel>?>
+
+    @GET("recordings")
+    suspend fun getVods(
+        @Query("where", encoded = true) where: String? = null,
+        @Query("limit", encoded = true) limit: Int,
+        @Query("page", encoded = true) page: Int,
+        @Query("order", encoded = false) order: String? = null
+    ) : Response<List<MixerVods>>
+
+    @GET("/clips/channels/{channelId}")
+    suspend fun getClips(@Path("channelId", encoded = true) channelId: Int) : Response<MixerClips>
 
     //Search
     @GET(value = "types")

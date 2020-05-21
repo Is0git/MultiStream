@@ -11,6 +11,7 @@ import com.android.multistream.di.main_activity.main_fragments.browse_fragment.v
 import com.android.multistream.network.twitch.models.v5.top_games.TopItem
 import com.android.multistream.ui.main_activity.MainActivity
 import com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragment
+import com.android.multistream.utils.NumbersConverter
 import com.android.multistream.utils.TWITCH
 import com.android.multistream.utils.data_binding.ImageLoader
 import com.multistream.multistreamsearchview.search_view.OnItemClickListener
@@ -24,10 +25,19 @@ class TwitchTopGamesAdapter @Inject constructor() :
     var spanCount = 0
     var list: List<TopItem>? = null
         set(value) {
-            val begin = if (field == null) 0 else 0.coerceAtLeast(field?.count()!! - 1)
-            field = value
-            if (!value.isNullOrEmpty()) notifyItemRangeChanged(begin, 0.coerceAtLeast(value.size))
+            when {
+                value == null || value.isEmpty() -> {
+                    field = value
+                    notifyDataSetChanged()
+                }
+                else -> {
+                    val begin = field?.count()
+                    field = value
+                    notifyItemRangeChanged(begin ?: 0, value.count())
+                }
+            }
         }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding =
@@ -38,12 +48,11 @@ class TwitchTopGamesAdapter @Inject constructor() :
     override fun getItemCount(): Int = list?.count() ?: 0
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val item = list?.get(position)
         holder.listBinding.apply {
-            backgroundUrl = list?.get(position)?.game?.box?.template
-            id = list?.get(position)?.game?._id.toString()
-            gameName = list?.get(position)?.game?.name
-            platformType = TWITCH
-            viewersCurrent = list?.get(position)?.viewers
+            ImageLoader.loadImageTwitchWithParams(gameImage, item?.game?.box?.template, 200, 125)
+            streamTitle.text = item?.game?.name
+            viewersCount.text = NumbersConverter.getK(item?.viewers, gameImage.context)
         }
     }
 
@@ -62,9 +71,7 @@ class TwitchTopGamesAdapter @Inject constructor() :
         }
 
         override fun backgroundAnimation() {
-            val bgView =
-                ((binding.root.context as MainActivity).supportFragmentManager.findFragmentById(R.id.main_fragment_container)?.childFragmentManager?.fragments?.get(0) as BrowseFragment).binding.root
-            ImageLoader.getImageDrawableFromUrl(bgView.context, binding.backgroundUrl)
+
         }
     }
 

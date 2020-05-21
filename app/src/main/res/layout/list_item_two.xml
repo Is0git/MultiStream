@@ -7,9 +7,9 @@
         android:layout_height="260dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="2dp"
+        android:background="?colorSurface"
         app:addGradient="false"
         app:cardBackgroundColor="?colorSurface"
-        android:background="?colorSurface"
         app:cardCornerRadius="0dp"
         app:cardElevation="1dp"
         app:cardUseCompatPadding="true">
@@ -21,24 +21,28 @@
             <View
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginTop="8dp"
-                android:elevation="5dp"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/circle_drawable"
+                android:elevation="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/viewersCount"
                 style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/right_stripe_gradient"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="22457 viewrs"
-                android:singleLine="true"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:background="@color/colorSurface"
                 android:elevation="1dp"
+                android:singleLine="true"
+                android:text="@string/viewers"
+                android:textAlignment="center"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/streamImage"
                 app:layout_constraintEnd_toEndOf="@+id/streamImage" />
 
@@ -46,8 +50,8 @@
                 android:id="@+id/streamImage"
                 android:layout_width="match_parent"
                 android:layout_height="165dp"
-                android:src="@drawable/cs_go"
                 android:scaleType="centerCrop"
+                android:src="@drawable/default_video_place_holder"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -63,28 +67,28 @@
                 app:layout_constraintTop_toBottomOf="@+id/streamImage" />
 
             <com.google.android.material.textview.MaterialTextView
-                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:id="@+id/streamerName"
+                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:singleLine="true"
                 android:text="Shroud"
                 android:textStyle="bold"
-                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/streamerBanner"
                 app:layout_constraintTop_toTopOf="@+id/streamerBanner" />
 
             <com.google.android.material.textview.MaterialTextView
-                style="@style/TextAppearance.MaterialComponents.Body2"
                 android:id="@+id/streamTitle"
+                style="@style/TextAppearance.MaterialComponents.Body2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="StreamTitle"
                 android:lines="1"
+                android:text="StreamTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/streamerBanner"
                 app:layout_constraintTop_toBottomOf="@id/streamerName" />

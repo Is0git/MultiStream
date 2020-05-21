@@ -21,6 +21,12 @@ object ImageLoader {
         Glide.with(imageView.context).load(newUrl).centerCrop().into(imageView)
     }
 
+
+    fun loadImageTwitchWithParams(imageView: ImageView, url: String?, height: Int, width: Int) {
+        val newUrl = addHeightAndWidth(url, height.toString(), width.toString())
+        Glide.with(imageView.context).load(newUrl).centerCrop().into(imageView)
+    }
+
     //for image template url
     @JvmStatic
     fun addHeightAndWidth(url: String?, height: String = HEIGHT, width: String = WIDTH) =

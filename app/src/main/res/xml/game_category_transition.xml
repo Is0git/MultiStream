@@ -14,13 +14,11 @@
                 motion:framePosition="70"
                 motion:motionTarget="@id/gameName" />
             <KeyAttribute
-                android:alpha="1.0"
                 motion:framePosition="0"
-                android:rotationY="7"
+                android:rotationY="10"
                 motion:motionTarget="@id/gameImage" />
             <KeyAttribute
-                android:alpha="0.0"
-                motion:framePosition="70"
+                motion:framePosition="40"
                 android:rotationY="0"
                 motion:motionTarget="@id/gameImage" />
 

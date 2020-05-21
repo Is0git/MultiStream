@@ -6,6 +6,7 @@ import com.android.multistream.R
 import com.android.multistream.databinding.ListItemTwoExtendedBinding
 import com.android.multistream.network.mixer.models.mixer_channels.MixerGameChannel
 import com.android.multistream.ui.main.fragments.game_category_fragment.GameCategoryFragment
+import com.android.multistream.utils.NumbersConverter
 import com.android.multistream.utils.PlaceHolderAdapter
 import com.android.multistream.utils.data_binding.ImageLoader
 import com.android.multistream.utils.getMixerImageUrl
@@ -24,7 +25,7 @@ class MixerGameCategory : GameCategoryFragment<MixerGameChannel, MixerGameCatego
                 ImageLoader.loadImageTwitch(streamImage, t.user?.avatarUrl)
                 ImageLoader.loadImage(streamerBanner, getMixerImageUrl(t.id))
                 streamerName.text = t.user?.username
-                viewersCount.text = t.viewersCurrent.toString()
+                viewersCount.text = NumbersConverter.getK(t.viewersCurrent, requireContext())
                 streamGame.text = args.mixerGame?.name
             }
         }

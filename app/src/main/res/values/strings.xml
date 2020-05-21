@@ -20,4 +20,29 @@
     <string name="no_image">https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png</string>
     <string name="viewers">%d viewers</string>
     <string name="followers">%d followers</string>
+    <string name="followers_text">followers</string>
+    <string name="past_streams">Past streams</string>
+    <string name="video_clips">Video clips</string>
+    <string name="views">Views</string>
+    <string name="watch_now">WATCH NOW</string>
+    <string name="back">BACK</string>
+    <string name="sort">sort</string>
+    <string name="category">category</string>
+    <string name="period">period</string>
+
+    <string name="all">all</string>
+    <string name="upload">upload</string>
+    <string name="past_stream">past stream</string>
+    <string name="highlight">highlights</string>
+    <string name="time">time</string>
+    <string name="views_sort">views</string>
+    <string name="trending">trending</string>
+    <string name="day">day</string>
+    <string name="week">week</string>
+    <string name="month">month</string>
+    <string name="k_value">%.2fk</string>
+    <string name="default_value">default</string>
+
+
+
 </resources>

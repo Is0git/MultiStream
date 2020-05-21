@@ -17,4 +17,5 @@ class GamesFragmentsViewPagerAdapter(fragmentManager: FragmentManager, lifecycle
             else -> TwitchGamesBrowseFragment()
         }
     }
+
 }

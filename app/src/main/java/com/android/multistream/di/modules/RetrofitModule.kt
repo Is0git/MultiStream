@@ -50,7 +50,10 @@ object RetrofitModule {
                 return try {
                     val authToken =
                         platformManager.getPlatform(TwitchPlatform::class.java).refreshToken()
-                    response.request.newBuilder().header("Authorization", "OAuth $authToken")
+                    response.request.newBuilder().header(
+                        "Authorization",
+                        if (response.request.header("Authorization")?.contains("OAuth")!!) "OAuth $authToken" else "Bearer $authToken"
+                    )
                         .build()
                 } catch (ex: Exception) {
                     null

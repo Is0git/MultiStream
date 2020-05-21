@@ -1,4 +1,4 @@
-package com.android.multistream.di.main_activity.scopes
+package com.android.multistream.di.main_activity
 
 import javax.inject.Scope
 

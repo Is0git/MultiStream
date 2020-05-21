@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.android.multistream.R
 import com.android.multistream.databinding.*
 import com.android.multistream.di.qualifiers.SettingsPreferencesQualifier
+import com.android.multistream.network.mixer.models.mixer_channels.MixerGameChannel
 import com.android.multistream.network.twitch.models.new_twitch_api.channels.DataItem
 import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame
 import com.android.multistream.network.twitch.models.v5.followed_streams.StreamsItem
@@ -19,11 +22,14 @@ import com.android.multistream.ui.main_activity.MainActivity
 import com.android.multistream.ui.main_activity.MainActivityViewModel
 import com.android.multistream.ui.main.fragments.home_fragment.decorations.HorizontalMarginItemDecoration
 import com.android.multistream.ui.main.fragments.home_fragment.view_model.HomeFragmentViewModel
+import com.android.multistream.utils.NumbersConverter
 import com.android.multistream.utils.PlaceHolderAdapter
 import com.android.multistream.utils.data_binding.ImageLoader
 import com.example.daggerviewmodelfragment.DaggerViewModelFragment
+import com.example.multistreamaterialplaceholdercard.listeners.PlaceHolderViewListener
 import com.example.multistreamhidescrollview.HideScrollView.Companion.RIGHT
 import com.example.multistreamhidescrollview.animations.AlphaAnimation
+import com.multistream.multistreamsearchview.search_view.OnItemClickListener
 import com.ramotion.cardslider.CardSliderLayoutManager
 import kotlinx.android.synthetic.main.list_item_three.*
 import kotlinx.android.synthetic.main.profile_content.*
@@ -31,8 +37,10 @@ import java.util.*
 import javax.inject.Inject
 
 class HomeFragment :
-    DaggerViewModelFragment<HomeFragmentViewModel>(HomeFragmentViewModel::class.java) {
+    DaggerViewModelFragment<HomeFragmentViewModel>(HomeFragmentViewModel::class.java),
+    PlaceHolderViewListener {
     lateinit var binding: HomeFragmentBinding
+    lateinit var navController: NavController
     @Inject
     @SettingsPreferencesQualifier
     lateinit var settingsPreferences: SharedPreferences
@@ -67,10 +75,16 @@ class HomeFragment :
 
             addHiddenView(binding.homeText, RIGHT, alphaAnimation)
         }
-        binding.homeText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_mixerGameCategory) }
+        binding.homeText.setOnClickListener { HomeFragmentDirections.actionHomeFragmentToMixerProfileFragment(
+            MixerGameChannel(id = 6020650)
+        ).also { navController.navigate(it) } }
         binding.twitchText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_profileFragment) }
         (requireActivity() as MainActivity).showActionBar()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        navController = Navigation.findNavController(view)
     }
 
     private fun setupViewPager() {
@@ -168,7 +182,7 @@ class HomeFragment :
                 followingAdapter.data = it?.streams
             }
             followingAdapter =
-                PlaceHolderAdapter(R.layout.list_item_three, false) { k, t ->
+                PlaceHolderAdapter(R.layout.list_item_three, true) { k, t ->
                     k.apply {
                         t.channel.also { channel ->
                             ImageLoader.loadImageTwitch(streamerBanner, channel?.logo)
@@ -182,6 +196,7 @@ class HomeFragment :
                     }
                 }
             followingStreamsList.adapter = followingAdapter
+            followingAdapter.onClickListener = this@HomeFragment
             twitchFollowingChannelsText.visibility = View.VISIBLE
         }
     }
@@ -195,7 +210,7 @@ class HomeFragment :
             twitchChannelsAdapter =
                 PlaceHolderAdapter(R.layout.list_item_two, false) { k, t ->
                     k.apply {
-                        viewersCount.text = t.viewers.toString()
+                        viewersCount.text = NumbersConverter.getK(t.viewers, requireContext())
                         ImageLoader.loadImageTwitch(streamImage, t.preview?.large)
                         t.channel.also { channel ->
                             streamTitle.text = channel?.status
@@ -242,5 +257,11 @@ class HomeFragment :
             mixerRecommendedChannels.visibility = View.GONE
             mixerTopChannelsText.visibility = View.GONE
         }
+    }
+
+    override fun onClick(position: Int, view: View) {
+        val item = followingAdapter.data?.get(position)
+        val directions = HomeFragmentDirections.actionHomeFragmentToTwitchProfileFragment(item?.channel)
+        navController.navigate(directions)
     }
 }

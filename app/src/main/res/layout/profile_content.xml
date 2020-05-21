@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.android.multistream.ui.main.fragments.profile_fragment.ProfileMotionLayout android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<com.android.multistream.ui.main.fragments.profile_fragment.ProfileMotionLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/darken_gradient"
-    app:layoutDescription="@xml/profile_motion_scene"
-    app:layout_scrollFlags="scroll|enterAlways|snap"
-    app:showPaths="true"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/profileAppBar"
+    app:layoutDescription="@xml/profile_content_scene"
+    app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap">
 
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/darken_gradient"
+        app:altSrc="@drawable/profile_bg" />
 
     <ImageView
         android:id="@+id/banner_image"
@@ -26,10 +31,10 @@
         android:layout_width="2dp"
         android:layout_height="0dp"
         android:background="@color/colorOnSecondaryVariant"
+        app:layout_constraintBottom_toBottomOf="@id/followersText"
         app:layout_constraintEnd_toEndOf="@+id/circleImageView"
         app:layout_constraintStart_toStartOf="@+id/circleImageView"
-        app:layout_constraintTop_toTopOf="@+id/followersCount"
-        app:layout_constraintBottom_toBottomOf="@id/followersText" />
+        app:layout_constraintTop_toTopOf="@+id/followersCount" />
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -40,12 +45,24 @@
         android:layout_marginStart="8dp"
         android:fontFamily="@font/header_font"
         android:lines="1"
-        android:text="BACK"
+        android:text="@string/back"
         android:textColor="@color/colorSurface"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/back_button"
         app:layout_constraintStart_toEndOf="@+id/back_button"
         app:layout_constraintTop_toTopOf="@+id/back_button" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/banner_image"
+        app:layout_constraintTop_toBottomOf="@+id/back"
+        android:src="@drawable/original"
+        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_width="5dp"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/streamerUserName"
@@ -55,36 +72,23 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/header_font"
         android:lines="1"
-        android:text="SHROUD"
+        android:text="name"
         android:textAlignment="center"
         android:textColor="@color/colorSurface"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/right_guideline"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintTop_toBottomOf="@id/circleImageView" />
 
     <View
         android:id="@+id/back_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/back_icon"
         android:backgroundTint="@color/colorOnSecondaryVariant"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="24dp"
-        android:src="@drawable/original"
-        app:civ_border_color="@color/colorPrimary"
-        app:civ_border_width="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/banner_image"
-        app:layout_constraintTop_toBottomOf="@+id/back" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/viewersCount"
@@ -92,12 +96,12 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/agencyfb"
         android:lines="1"
-        android:text="1054876"
+        android:text="0"
         android:textColor="@color/colorSurface"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/followersCount"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/right_guideline"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toEndOf="@+id/info_divider"
         app:layout_constraintTop_toTopOf="@+id/followersCount" />
@@ -108,7 +112,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lines="1"
-        android:text="Viewers"
+        android:text="@string/views"
         android:textColor="@color/colorOnSurface"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/info_divider"
@@ -131,14 +135,14 @@
         android:layout_marginTop="48dp"
         android:fontFamily="@font/agencyfb"
         android:lines="1"
-        android:text="1423684"
+        android:text="0"
         android:textColor="@color/colorSurface"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/banner_image"
         app:layout_constraintEnd_toStartOf="@+id/info_divider"
         app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/streamerUserName"
         app:layout_constraintVertical_bias="0.25" />
 
@@ -148,7 +152,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lines="1"
-        android:text="Followers"
+        android:text="@string/followers_text"
         android:textColor="@color/colorOnSurface"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/followersCount"
@@ -162,7 +166,7 @@
         android:layout_marginTop="64dp"
         android:layout_marginBottom="32dp"
         android:gravity="center"
-        android:text="WATCH NOW"
+        android:text="@string/watch_now"
         app:cornerRadius="10dp"
         app:elevation="10dp"
         app:icon="@drawable/play_icon"
@@ -170,8 +174,8 @@
         app:iconPadding="-5dp"
         app:iconSize="40dp"
         app:layout_constraintBottom_toTopOf="@id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/circleImageView"
-        app:layout_constraintStart_toStartOf="@+id/circleImageView"
+        app:layout_constraintEnd_toEndOf="@+id/right_guideline"
+        app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toBottomOf="@+id/info_divider" />
 
     <View
@@ -179,9 +183,24 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/colorBackground"
         android:background="@drawable/arrow_down"
+        android:backgroundTint="@color/colorBackground"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/watchButton"
-        app:layout_constraintStart_toStartOf="@+id/watchButton" />
+        app:layout_constraintEnd_toEndOf="@+id/right_guideline"
+        app:layout_constraintStart_toStartOf="@+id/left_guideline" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="32dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="32dp" />
 </com.android.multistream.ui.main.fragments.profile_fragment.ProfileMotionLayout>

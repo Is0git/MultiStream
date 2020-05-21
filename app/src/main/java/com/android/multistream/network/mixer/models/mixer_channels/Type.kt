@@ -1,7 +1,10 @@
 package com.android.multistream.network.mixer.models.mixer_channels
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Type(
 
 	@Json(name="coverUrl")
@@ -16,14 +19,8 @@ data class Type(
 	@Json(name="viewersCurrent")
 	val viewersCurrent: Int? = null,
 
-	@Json(name="availableAt")
-	val availableAt: Any? = null,
-
 	@Json(name="name")
 	val name: String? = null,
-
-	@Json(name="description")
-	val description: Any? = null,
 
 	@Json(name="online")
 	val online: Int? = null,
@@ -33,4 +30,4 @@ data class Type(
 
 	@Json(name="source")
 	val source: String? = null
-)
+) : Parcelable

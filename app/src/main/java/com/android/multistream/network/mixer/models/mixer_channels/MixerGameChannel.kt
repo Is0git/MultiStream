@@ -1,7 +1,10 @@
 package com.android.multistream.network.mixer.models.mixer_channels
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class MixerGameChannel(
 
 	@Json(name="featured")
@@ -52,9 +55,6 @@ data class MixerGameChannel(
 	@Json(name="id")
 	val id: Int? = null,
 
-	@Json(name="hosteeId")
-	val hosteeId: Any? = null,
-
 	@Json(name="partnered")
 	val partnered: Boolean? = null,
 
@@ -69,9 +69,6 @@ data class MixerGameChannel(
 
 	@Json(name="thumbnail")
 	val thumbnail: Thumbnail? = null,
-
-	@Json(name="interactiveGameId")
-	val interactiveGameId: Any? = null,
 
 	@Json(name="languageId")
 	val languageId: String? = null,
@@ -88,14 +85,8 @@ data class MixerGameChannel(
 	@Json(name="token")
 	val token: String? = null,
 
-	@Json(name="deletedAt")
-	val deletedAt: Any? = null,
-
 	@Json(name="vodsEnabled")
 	val vodsEnabled: Boolean? = null,
-
-	@Json(name="costreamId")
-	val costreamId: Any? = null,
 
 	@Json(name="name")
 	val name: String? = null,
@@ -108,4 +99,4 @@ data class MixerGameChannel(
 
 	@Json(name="user")
 	val user: User? = null
-)
+) : Parcelable

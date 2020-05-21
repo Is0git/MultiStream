@@ -46,7 +46,7 @@ abstract class GamesBrowseFragment<T : ViewModel>(clazz: Class<T>) :
                 else -> View.INVISIBLE
             }
         }
-        observe()
+        observeData()
         return binding.root
     }
 

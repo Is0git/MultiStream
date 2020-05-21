@@ -45,7 +45,7 @@ abstract class GameCategoryFragment<T, S : ViewModel>(clazz: Class<S>) : DaggerV
         binding.channelsRecyclerview.adapter = adapter
         binding.channelsRecyclerview attach getPageLoader()
         navController = findNavController()
-        observe()
+        observeData()
         setArgs()
         return binding.root
     }
@@ -64,7 +64,7 @@ abstract class GameCategoryFragment<T, S : ViewModel>(clazz: Class<S>) : DaggerV
 
     }
 
-    override fun observe() {
+    override fun observeData() {
         val pageLoader = getPageLoader()
         pageLoader.dataLiveData.observe(viewLifecycleOwner) {adapter.data = it}
         pageLoader.pageLoadingState.observe(viewLifecycleOwner) {

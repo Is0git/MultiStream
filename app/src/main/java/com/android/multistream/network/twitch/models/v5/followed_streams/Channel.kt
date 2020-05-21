@@ -1,9 +1,11 @@
 package com.android.multistream.network.twitch.models.v5.followed_streams
 
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class Channel(
 
     @Json(name = "game")
@@ -21,11 +23,7 @@ data class Channel(
     @Json(name = "language")
     val language: String? = null,
 
-    @Json(name = "profile_banner_background_color")
-    val profileBannerBackgroundColor: Any? = null,
-
-    @Json(name = "display_name")
-    val displayName: String? = null,
+    val display_name: String? = null,
 
     @Json(name = "url")
     val url: String? = null,
@@ -33,8 +31,9 @@ data class Channel(
     @Json(name = "followers")
     val followers: Int? = null,
 
-    @Json(name = "profile_banner")
-    val profileBanner: String? = null,
+    val broadcast_platform: String? = null,
+
+    val profile_banner: String? = null,
 
     @Json(name = "partner")
     val partner: Boolean? = null,
@@ -51,12 +50,11 @@ data class Channel(
     @Json(name = "logo")
     val logo: String? = null,
 
-    @Json(name = "_id")
-    val id: Int? = null,
+    val _id: Int? = null,
 
     @Json(name = "views")
     val views: Int? = null,
 
     @Json(name = "status")
     val status: String? = null
-)
+) : Parcelable

@@ -2,7 +2,7 @@ package com.android.multistream.di.main_activity.modules
 
 import androidx.lifecycle.ViewModel
 import com.android.multistream.di.main_activity.ViewModelKey
-import com.android.multistream.di.main_activity.scopes.MainActivityScope
+import com.android.multistream.di.main_activity.MainActivityScope
 import com.android.multistream.ui.main_activity.MainActivityViewModel
 import dagger.Binds
 import dagger.Module

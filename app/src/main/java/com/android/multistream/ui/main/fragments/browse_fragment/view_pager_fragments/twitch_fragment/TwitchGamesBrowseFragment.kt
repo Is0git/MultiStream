@@ -27,6 +27,7 @@ class TwitchGamesBrowseFragment : GamesBrowseFragment<TwitchGamesBrowseViewModel
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupList()
+        viewModel.pageLoader.loadInit()
         navController = Navigation.findNavController(requireActivity(), R.id.main_fragment_container)
     }
 
@@ -52,7 +53,7 @@ class TwitchGamesBrowseFragment : GamesBrowseFragment<TwitchGamesBrowseViewModel
         return viewModel.pageLoader
     }
 
-    override fun observe() {
+    override fun observeData() {
         viewModel.pageLoader.dataLiveData.observe(viewLifecycleOwner) {
             binding.searchNoItem.visibility = if (it.isEmpty()) View.VISIBLE else View.INVISIBLE
             topGamesAdapter.list = it

@@ -12,7 +12,7 @@ import javax.inject.Inject
 class TwitchGamesBrowseRepository @Inject constructor(
     private val twitchService: TwitchService,
     val application: Application
-) : PageOffSetLoaderRepository<TopItem>(application, 0, 20, true) {
+) : PageOffSetLoaderRepository<TopItem>(application, 0, 20, false) {
 
     override suspend fun getInitial(pageOffSet: Int, pageLimit: Int): List<TopItem>? {
         return execute(application) { twitchService.getTopGamesV5Full(pageOffSet, pageLimit) }?.top

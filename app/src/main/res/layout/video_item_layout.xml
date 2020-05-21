@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="2dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/streamThumbNail"
+                android:layout_width="140dp"
+                android:layout_height="75dp"
+                android:scaleType="fitXY"
+                android:background="@drawable/default_video_place_holder"
+                android:src="@drawable/default_video_place_holder"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/title"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:lines="2"
+                android:text="Hi iam who the fck i am"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/streamThumbNail"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/timeIcon"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/colorSurface"
+                android:background="@drawable/icon_clock"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/timeText"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/streamThumbNail"
+                app:layout_constraintStart_toStartOf="@+id/title"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/timeText"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="3:23"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/timeIcon"
+                app:layout_constraintEnd_toStartOf="@+id/eyeIcon"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/timeIcon"
+                app:layout_constraintTop_toTopOf="@+id/timeIcon" />
+
+            <View
+                android:id="@+id/eyeIcon"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/colorSurface"
+                android:background="@drawable/eye_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/timeText"
+                app:layout_constraintEnd_toStartOf="@+id/viewersCount"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/timeText"
+                app:layout_constraintTop_toTopOf="@+id/timeText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/viewersCount"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="78645"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/timeIcon"
+                app:layout_constraintEnd_toStartOf="@+id/iconDate"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/eyeIcon"
+                app:layout_constraintTop_toTopOf="@+id/timeIcon" />
+
+            <View
+                android:id="@+id/iconDate"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/icon_date"
+                android:backgroundTint="@color/colorSurface"
+                app:layout_constraintBottom_toBottomOf="@+id/timeText"
+                app:layout_constraintEnd_toStartOf="@+id/dateText"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/viewersCount"
+                app:layout_constraintTop_toTopOf="@+id/timeText" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/dateText"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:singleLine="true"
+                android:text="Yesterday"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/timeIcon"
+                app:layout_constraintEnd_toEndOf="@+id/title"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iconDate"
+                app:layout_constraintTop_toTopOf="@+id/timeIcon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

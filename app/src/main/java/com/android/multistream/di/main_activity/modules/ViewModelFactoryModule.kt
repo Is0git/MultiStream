@@ -1,7 +1,7 @@
 package com.android.multistream.di.main_activity.modules
 
 import androidx.lifecycle.ViewModelProvider
-import com.android.multistream.di.main_activity.scopes.MainActivityScope
+import com.android.multistream.di.main_activity.MainActivityScope
 import com.example.daggerviewmodelfragment.ViewModelFactory
 import dagger.Binds
 import dagger.Module

@@ -6,6 +6,7 @@ import com.android.multistream.R
 import com.android.multistream.databinding.ListItemTwoExtendedBinding
 import com.android.multistream.network.twitch.models.new_twitch_api.channels.DataItem
 import com.android.multistream.ui.main.fragments.game_category_fragment.GameCategoryFragment
+import com.android.multistream.utils.NumbersConverter
 import com.android.multistream.utils.PlaceHolderAdapter
 import com.android.multistream.utils.data_binding.ImageLoader
 import com.example.pagination.PageLoader
@@ -24,7 +25,7 @@ class TwitchGameCategory :
                 ImageLoader.loadImageTwitch(streamImage, t.thumbnail_url)
                 ImageLoader.loadImage(streamerBanner, t.user?.logo)
                 streamerName.text = t.user_name
-                viewersCount.text = t.viewer_count.toString()
+                viewersCount.text = NumbersConverter.getK(t.viewer_count, requireContext())
                 streamGame.text = args.twitchGame?.game?.name
             }
         }

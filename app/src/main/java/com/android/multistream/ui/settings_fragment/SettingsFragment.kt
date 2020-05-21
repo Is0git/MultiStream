@@ -1,4 +1,4 @@
-package com.android.multistream.ui.settings
+package com.android.multistream.ui.settings_fragment
 
 import android.os.Bundle
 import android.view.View

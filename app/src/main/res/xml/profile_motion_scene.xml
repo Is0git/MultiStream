@@ -1,41 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <Transition
-        app:constraintSetEnd="@id/R.id.end"
-        app:constraintSetStart="@id/R.id.start">
-        <KeyFrameSet>
-            <!--            <KeyAttribute-->
-            <!--                android:translationX="150dp"-->
-            <!--                app:curveFit="spline"-->
-            <!--                app:framePosition="50"-->
-            <!--                app:motionTarget="@id/streamerUserName" />-->
-
-<!--            <KeyPosition-->
-<!--                app:framePosition="0"-->
-<!--                app:keyPositionType="parentRelative"-->
-<!--                app:motionTarget="@+id/streamerUserName"-->
-<!--                app:percentX="0"-->
-<!--                app:percentY="0" />-->
-<!--            <KeyPosition-->
-<!--                app:framePosition="100"-->
-<!--                app:keyPositionType="parentRelative"-->
-<!--                app:motionTarget="@+id/streamerUserName"-->
-<!--                app:percentX="1"-->
-<!--                app:percentY="1" />-->
-
-            <KeyCycle
-                android:translationY="50dp"
-                app:framePosition="0"
-                app:motionTarget="@+id/circleImageView"
-                app:wavePeriod="0" />
-            <KeyCycle
-                android:translationY="50dp"
-                app:framePosition="25"
-                app:motionTarget="@+id/circleImageView"
-                app:wavePeriod="1" />
-        </KeyFrameSet>
-    </Transition>
     <ConstraintSet android:id="@+id/R.id.start" />
     <ConstraintSet android:id="@+id/R.id.end" />
 </MotionScene>

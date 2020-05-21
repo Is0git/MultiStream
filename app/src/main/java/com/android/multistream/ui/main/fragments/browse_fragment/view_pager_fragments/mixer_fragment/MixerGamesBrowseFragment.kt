@@ -24,7 +24,8 @@ class MixerGamesBrowseFragment : GamesBrowseFragment<MixerGamesBrowseViewModel>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupList()
-        observe()
+        viewModel.repo.pageLoader.loadInit()
+        observeData()
         navController =
             Navigation.findNavController(requireActivity(), R.id.main_fragment_container)
     }
@@ -40,7 +41,7 @@ class MixerGamesBrowseFragment : GamesBrowseFragment<MixerGamesBrowseViewModel>(
         return viewModel.pageLoader
     }
 
-    override fun observe() {
+    override fun observeData() {
         viewModel.pageLoader.dataLiveData.observe(viewLifecycleOwner) {
             binding.searchNoItem.visibility = if (it.isEmpty()) View.VISIBLE else View.INVISIBLE
             mixerTopGamesAdapter.list = it

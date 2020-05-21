@@ -19,7 +19,7 @@ class ProfileMotionLayout : MotionLayout, AppBarLayout.OnOffsetChangedListener {
 
     override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
        val position = -verticalOffset/appBarLayout?.totalScrollRange?.toFloat()!!
-        progress = position
+        progress = position * 3
     }
 
     override fun onAttachedToWindow() {

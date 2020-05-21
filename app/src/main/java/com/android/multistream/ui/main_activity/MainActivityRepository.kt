@@ -5,7 +5,7 @@ import android.util.Log
 import com.android.multistream.auth.platforms.Platform
 import com.android.multistream.auth.platform_manager.PlatformManager
 import com.android.multistream.auth.platforms.TwitchPlatform
-import com.android.multistream.di.main_activity.scopes.MainActivityScope
+import com.android.multistream.di.main_activity.MainActivityScope
 import com.android.multistream.network.twitch.models.auth.Token
 import com.android.multistream.network.twitch.models.v5.current_user.CurrentUser
 import kotlinx.coroutines.delay

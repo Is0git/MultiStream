@@ -10,6 +10,8 @@ import com.android.multistream.di.main_activity.main_fragments.browse_fragment.v
 import com.android.multistream.network.mixer.models.top_games.MixerTopGames
 import com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener
 import com.android.multistream.utils.MIXER
+import com.android.multistream.utils.NumbersConverter
+import com.android.multistream.utils.data_binding.ImageLoader
 import com.multistream.multistreamsearchview.search_view.OnItemClickListener
 import javax.inject.Inject
 
@@ -48,19 +50,19 @@ class MixerTopGamesListAdapter @Inject constructor() :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding =
             SingleTopGamesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
-        return MyViewHolder(binding, spanCount).also { it.itemClickListener = this.itemClickListener }
+        return MyViewHolder(binding, spanCount).also {
+            it.itemClickListener = this.itemClickListener
+        }
     }
 
     override fun getItemCount(): Int = list?.count() ?: 0
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val item = list?.get(position)
         holder.binding.apply {
-            backgroundUrl = list?.get(position)?.backgroundUrl
-            id = list?.get(position)?.id.toString()
-            gameName = list?.get(position)?.name
-            platformType = MIXER
-            viewersCurrent = list?.get(position)?.viewersCurrent
+            ImageLoader.loadImage(gameImage, item?.backgroundUrl)
+            streamTitle.text = item?.name
+            viewersCount.text = NumbersConverter.getK(item?.viewersCurrent, gameImage.context)
         }
     }
 }

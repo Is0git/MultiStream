@@ -12,7 +12,7 @@ import javax.inject.Inject
 class MixerGamesBrowseRepository @Inject constructor(
     private val mixerService: MixerService,
     val application: Application
-) : PageOffSetLoaderRepository<MixerTopGames>(application, 0, 20, true) {
+) : PageOffSetLoaderRepository<MixerTopGames>(application, 0, 20, false) {
 
     override suspend fun getInitial(pageOffSet: Int, pageLimit: Int): List<MixerTopGames>? {
         return execute(application) {

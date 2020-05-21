@@ -1,7 +1,10 @@
 package com.android.multistream.network.mixer.models.mixer_channels
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class User(
 
 	@Json(name="sparks")
@@ -10,8 +13,6 @@ data class User(
 	@Json(name="level")
 	val level: Int? = null,
 
-	@Json(name="social")
-	val social: Social? = null,
 
 	@Json(name="avatarUrl")
 	val avatarUrl: String? = null,
@@ -28,12 +29,6 @@ data class User(
 	@Json(name="createdAt")
 	val createdAt: String? = null,
 
-	@Json(name="deletedAt")
-	val deletedAt: Any? = null,
-
-	@Json(name="primaryTeam")
-	val primaryTeam: Any? = null,
-
 	@Json(name="id")
 	val id: Int? = null,
 
@@ -42,4 +37,4 @@ data class User(
 
 	@Json(name="updatedAt")
 	val updatedAt: String? = null
-)
+) : Parcelable
