@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.android.multistream.ui.main.fragments.profile_fragment.ProfileMotionLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<com.android.multistream.ui.main.fragments.profile_fragment.ProfileMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,17 +14,36 @@
         android:src="@drawable/darken_gradient"
         app:altSrc="@drawable/profile_bg" />
 
+    <com.android.multistream.ui.widgets.follow_button.FollowButton
+        style="@style/FollowButtonStyle"
+        android:id="@+id/follow_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:iconSize="25dp"
+        app:selectedColor="@color/colorOnSecondaryVariant"
+        app:layout_constraintBottom_toBottomOf="@+id/back"
+        app:layout_constraintEnd_toStartOf="@+id/right_guideline"
+        app:layout_constraintTop_toTopOf="@+id/back" />
+
     <ImageView
         android:id="@+id/banner_image"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:alpha="0.1"
         android:scaleType="centerCrop"
-        android:src="@drawable/shroud"
+        android:src="@drawable/button_gradient"
         app:layout_constraintBottom_toBottomOf="@id/followersCount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/banner_progress_bar"
+        style="@style/SpinKitView.Circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:SpinKit_Color="@color/colorOnSecondaryVariant" />
 
     <View
         android:id="@+id/info_divider"
@@ -60,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/banner_image"
         app:layout_constraintTop_toBottomOf="@+id/back"
-        android:src="@drawable/original"
+        android:src="@drawable/default_place_holder"
         app:civ_border_color="@color/colorPrimary"
         app:civ_border_width="5dp"/>
 

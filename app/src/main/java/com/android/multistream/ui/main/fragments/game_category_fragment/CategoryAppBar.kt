@@ -12,7 +12,6 @@ import kotlin.math.absoluteValue
 class CategoryAppBar : MotionLayout, AppBarLayout.OnOffsetChangedListener {
 
     lateinit var card: MaterialCardView
-
     var defaultCornerRadius = 0f
 
     constructor(context: Context?) : super(context)

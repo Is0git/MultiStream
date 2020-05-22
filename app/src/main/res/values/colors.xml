@@ -11,4 +11,5 @@
     <color name="colorOnPrimaryVariant">#FF172450</color>
     <color name="colorOnSecondaryVariant">#B43BFF</color>
     <color name="headlineShadowColor">#868585</color>
+    <color name="stripeTabLayoutTitle">#ffffff</color>
 </resources>

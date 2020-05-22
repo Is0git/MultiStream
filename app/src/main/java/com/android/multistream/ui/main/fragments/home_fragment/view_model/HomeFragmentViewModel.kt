@@ -11,11 +11,8 @@ import javax.inject.Inject
 class HomeFragmentViewModel @Inject constructor(val repo: HomeFragmentRepository) : ViewModel() {
 
     val topChannelsLiveData = repo.topChannelsLiveData
-
     val followedLiveStreamsLiveData = repo.followedLiveStreamsLiveData
-
     val followedStreamsLiveData = repo.followedStreamsLiveData
-
     val topGamesLiveData = repo.topGamesLiveData
 
     fun getChannels() {

@@ -39,6 +39,9 @@ abstract class ProfileFragment : DaggerFragment(), View.OnClickListener {
             back_button.setOnClickListener(this@ProfileFragment)
 
         }
+        binding.profileLayout.follow_button.setOnClickListener {
+            it.isSelected = !it.isSelected
+        }
         return binding.root
     }
 

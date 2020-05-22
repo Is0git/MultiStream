@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000">
+        <KeyFrameSet>
+            <KeyAttribute
+                motion:alpha="1"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/title" />
+
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="50"
+                motion:motionTarget="@+id/title" />
+
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/title" />
+
+            <KeyAttribute
+                motion:alpha="1"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/arrow_view" />
+
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="50"
+                motion:motionTarget="@+id/arrow_view" />
+
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/arrow_view" />
+
+
+            <KeyAttribute
+                android:translationX="0dp"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/arrow_view" />
+
+            <KeyAttribute
+                android:translationX="-0dp"
+                motion:framePosition="20"
+                motion:motionTarget="@+id/arrow_view" />
+
+            <KeyAttribute
+                android:translationX="-150dp"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/arrow_view" />
+
+            <KeyAttribute
+                android:rotation="0"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/arrow_view" />
+
+            <KeyAttribute
+                android:rotation="180"
+                motion:framePosition="20"
+                motion:motionTarget="@+id/arrow_view" />
+
+            <KeyAttribute
+
+                android:rotation="180"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/arrow_view" />
+
+
+            <KeyAttribute
+                android:translationX="0dp"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/title" />
+
+            <KeyAttribute
+                android:translationX="0dp"
+                motion:framePosition="20"
+                motion:motionTarget="@+id/title" />
+
+            <KeyAttribute
+                android:translationX="-100dp"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/title" />
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/arrow_view"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="8dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/arrow_view"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toEndOf="@id/arrow_view"
+            motion:layout_constraintTop_toTopOf="@+id/arrow_view" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end"></ConstraintSet>
+</MotionScene>

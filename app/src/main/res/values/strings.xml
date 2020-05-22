@@ -11,6 +11,10 @@
     <string name="hello">HELLO <font color="#5e4eba">THERE</font></string>
     <string name="twitch">TWITCH</string>
     <string name="followed_live_streams"><b>FOLLOWED</b> LIVE STREAMS</string>
+    <string name="followed_live_streams_html"><![CDATA[
+    <b>FOLLOWED</b> LIVE STREAMS
+    ]]>
+    </string>
     <string name="streamers_you_follow"><b>STREAMERS</b> YOU FOLLOW</string>
     <string name="synchronization">SYNCHRONIZATION</string>
     <string name="mixer">MIXER</string>
@@ -42,7 +46,21 @@
     <string name="month">month</string>
     <string name="k_value">%.2fk</string>
     <string name="default_value">default</string>
-
-
+    <string name="view_all">view all</string>
+    <string name="millions_value">%.2f million</string>
+    <string name="live_streams"> <![CDATA[
+    <b>live</b> streams
+    ]]>
+    </string>
+    <string name="followed_channels_html">
+        <![CDATA[
+    <b>FOLLOWED</b> CHANNELS
+    ]]>
+    </string>
+    <string name="top_games_html">
+        <![CDATA[
+    <b>TOP</b> GAMES
+    ]]>
+    </string>
 
 </resources>

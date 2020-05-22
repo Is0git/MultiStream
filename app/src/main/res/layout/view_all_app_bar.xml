@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<com.android.multistream.ui.main.fragments.view_all_fragments.ViewAllMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorSurface"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:id="@+id/view_motion"
+    app:layoutDescription="@xml/view_all_app_bar_scene"
+    app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed|snap">
 
     <View
         android:id="@+id/arrow_view"
-        android:layout_width="40dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/back_icon"
         android:backgroundTint="@color/colorOnSecondaryVariant"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,10 +28,9 @@
         android:layout_marginEnd="32dp"
         android:fontFamily="@font/header_font"
         android:text="GAMES LIST"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/arrow_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/arrow_view"
         app:layout_constraintTop_toTopOf="@+id/arrow_view" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.android.multistream.ui.main.fragments.view_all_fragments.ViewAllMotionLayout>

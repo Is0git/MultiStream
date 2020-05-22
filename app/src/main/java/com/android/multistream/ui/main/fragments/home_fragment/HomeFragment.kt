@@ -27,8 +27,10 @@ import com.android.multistream.utils.PlaceHolderAdapter
 import com.android.multistream.utils.data_binding.ImageLoader
 import com.example.daggerviewmodelfragment.DaggerViewModelFragment
 import com.example.multistreamaterialplaceholdercard.listeners.PlaceHolderViewListener
+import com.example.multistreamhidescrollview.HideScrollView
 import com.example.multistreamhidescrollview.HideScrollView.Companion.RIGHT
 import com.example.multistreamhidescrollview.animations.AlphaAnimation
+import com.example.multistreamhidescrollview.animations.TranslationXAnimation
 import com.multistream.multistreamsearchview.search_view.OnItemClickListener
 import com.ramotion.cardslider.CardSliderLayoutManager
 import kotlinx.android.synthetic.main.list_item_three.*
@@ -49,6 +51,7 @@ class HomeFragment :
     private lateinit var followingAdapter: PlaceHolderAdapter<StreamsItem, ListItemThreeBinding>
     private lateinit var topGamesAdapter: PlaceHolderAdapter<TopGame, ListItemFourBinding>
     private lateinit var mainActivityViewModel: MainActivityViewModel
+    lateinit var translationXAnimation: TranslationXAnimation
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,12 +75,13 @@ class HomeFragment :
         binding.hideScrollView.apply {
             val alphaAnimation =
                 AlphaAnimation(this, animationHandler.topDivider, animationHandler.bottomDivider)
-
             addHiddenView(binding.homeText, RIGHT, alphaAnimation)
         }
-        binding.homeText.setOnClickListener { HomeFragmentDirections.actionHomeFragmentToMixerProfileFragment(
-            MixerGameChannel(id = 6020650)
-        ).also { navController.navigate(it) } }
+        binding.homeText.setOnClickListener {
+            HomeFragmentDirections.actionHomeFragmentToMixerProfileFragment(
+                MixerGameChannel(id = 6020650)
+            ).also { navController.navigate(it) }
+        }
         binding.twitchText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_profileFragment) }
         (requireActivity() as MainActivity).showActionBar()
         return binding.root
@@ -137,6 +141,8 @@ class HomeFragment :
             binding.apply {
                 twitchFollowingLiveStreamsText.visibility = View.GONE
                 twitchFollowingChannelsText.visibility = View.GONE
+                twitchFollowedLiveStreamsViewAllText.visibility = View.GONE
+                twitchStreamersYouFollowViewAllText.visibility = View.GONE
             }
         }
     }
@@ -173,6 +179,18 @@ class HomeFragment :
             }
             twitchTopGamesText.visibility = View.VISIBLE
         }
+        translationXAnimation = TranslationXAnimation(
+            binding.hideScrollView,
+            binding.hideScrollView.animationHandler.topDivider,
+            binding.hideScrollView.animationHandler.bottomDivider
+        )
+        binding.hideScrollView.addHiddenView(
+            binding.topGamesViewAllText,
+            RIGHT,
+            translationXAnimation
+        )
+        binding.topGamesViewAllText.setOnClickListener { navController.navigate(R.id.action_homeFragment_to_twitchGamesViewAllFragment) }
+//        addHiddenView(binding.twitchStreamersYouFollowViewAllText, RIGHT, translationXAnimation)
     }
 
     private fun initTwitchFollowedStreams() {
@@ -198,6 +216,8 @@ class HomeFragment :
             followingStreamsList.adapter = followingAdapter
             followingAdapter.onClickListener = this@HomeFragment
             twitchFollowingChannelsText.visibility = View.VISIBLE
+            twitchStreamersYouFollowViewAllText.visibility = View.VISIBLE
+            twitchStreamersYouFollowViewAllText.setOnClickListener { navController.navigate(R.id.action_homeFragment_to_twitchChannelsAllViewFragment) }
         }
     }
 
@@ -234,7 +254,14 @@ class HomeFragment :
                     }
                 }
             }
+            binding.hideScrollView.addHiddenView(
+                binding.twitchFollowedLiveStreamsViewAllText,
+                RIGHT,
+                translationXAnimation
+            )
             twitchFollowingLiveStreamsText.visibility = View.VISIBLE
+            twitchFollowedLiveStreamsViewAllText.visibility = View.VISIBLE
+            twitchFollowedLiveStreamsViewAllText.setOnClickListener { navController.navigate(R.id.action_homeFragment_to_twitchStreamsAllViewFragment) }
         }
     }
 
@@ -245,6 +272,9 @@ class HomeFragment :
             twitchTopGamesText.visibility = View.GONE
             twitchText.visibility = View.GONE
             twitchLogo.visibility = View.GONE
+            topGamesViewAllText.visibility = View.GONE
+            twitchFollowedLiveStreamsViewAllText.visibility = View.GONE
+            twitchStreamersYouFollowViewAllText.visibility = View.GONE
         }
     }
 
@@ -261,7 +291,8 @@ class HomeFragment :
 
     override fun onClick(position: Int, view: View) {
         val item = followingAdapter.data?.get(position)
-        val directions = HomeFragmentDirections.actionHomeFragmentToTwitchProfileFragment(item?.channel)
+        val directions =
+            HomeFragmentDirections.actionHomeFragmentToTwitchProfileFragment(item?.channel)
         navController.navigate(directions)
     }
 }

@@ -21,7 +21,7 @@ class MixerProfileFragment : ProfileFragment() {
                 streamerUserName.text = it.name
                 viewersCount.text = it.viewersTotal.toString()
                 followersCount.text = it.numFollowers.toString()
-                ImageLoader.loadImage(banner_image, it.bannerUrl)
+                ImageLoader.loadImageWithProgressBar(banner_image, banner_progress_bar, it.bannerUrl)
                 ImageLoader.loadImage(circleImageView, it.thumbnail?.url)
             }
         }

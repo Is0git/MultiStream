@@ -23,7 +23,7 @@ class TwitchProfileFragment : ProfileFragment() {
                     streamerUserName.text = it.display_name
                     viewersCount.text = it.views.toString()
                     followersCount.text = it.followers.toString()
-                    ImageLoader.loadImage(banner_image, it.profile_banner)
+                    ImageLoader.loadImageWithProgressBar(banner_image, banner_progress_bar, it.profile_banner)
                     ImageLoader.loadImage(circleImageView, it.logo)
                 }
             }

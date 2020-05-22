@@ -35,7 +35,6 @@
                     android:shadowDy="3"
                     android:shadowRadius="4"
                     android:text="CHANNELS"
-                    android:textColor="@color/colorSurface"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textInputLayout"
@@ -60,6 +59,7 @@
                         style="@style/Widget.AppCompat.AutoCompleteTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="all"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -56,6 +56,15 @@
                     app:argType="com.android.multistream.network.mixer.models.mixer_channels.MixerGameChannel"
                     app:nullable="true" />
             </action>
+            <action
+                android:id="@+id/action_homeFragment_to_twitchGamesViewAllFragment"
+                app:destination="@id/twitchGamesViewAllFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_twitchStreamsAllViewFragment"
+                app:destination="@id/twitchStreamsAllViewFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_twitchChannelsAllViewFragment"
+                app:destination="@id/twitchChannelsAllViewFragment" />
         </fragment>
         <fragment
             android:id="@+id/browseFragment"
@@ -138,6 +147,18 @@
                 app:argType="com.android.multistream.network.mixer.models.mixer_channels.MixerGameChannel"
                 app:nullable="true" />
         </fragment>
+        <fragment
+            android:id="@+id/twitchGamesViewAllFragment"
+            android:name="com.android.multistream.ui.main.fragments.view_all_fragments.twitch.games_view_all.TwitchGamesViewAllFragment"
+            android:label="TwitchGamesViewAllFragment" />
+        <fragment
+            android:id="@+id/twitchStreamsAllViewFragment"
+            android:name="com.android.multistream.ui.main.fragments.view_all_fragments.twitch.streams_view_all.TwitchStreamsAllViewFragment"
+            android:label="TwitchStreamsAllViewFragment" />
+        <fragment
+            android:id="@+id/twitchChannelsAllViewFragment"
+            android:name="com.android.multistream.ui.main.fragments.view_all_fragments.twitch.channels_view_all.TwitchChannelsAllViewFragment"
+            android:label="TwitchChannelsAllViewFragment" />
     </navigation>
     <navigation
         android:id="@+id/intro"

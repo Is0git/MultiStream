@@ -63,16 +63,18 @@ interface TwitchService {
     @GET("kraken/games/top")
     @Headers("Client-ID: $CLIENT_ID")
     suspend fun getTopGamesV5Full(
-        @Query(value = "offset") offset: Int, @Query(value = "limit") limit: Int, @Query(
-            "api_version"
-        ) version: Int = 5
+        @Query(value = "offset") offset: Int,
+        @Query(value = "limit") limit: Int,
+        @Query("api_version") version: Int = 5
     ): Response<TopGamesV5>
 
     @GET("kraken/streams/followed")
     @Headers("Client-ID: $CLIENT_ID", "Accept: application/vnd.twitchtv.v5+json")
     suspend fun getFollowedStreams(
         @Header("Authorization") access_token: String,
-        @Query("stream_type") streamType: String = "live"
+        @Query("stream_type") streamType: String = "live",
+        @Query("limit") limit: Int? = null,
+        @Query("offset") offset: Int? = null
     ): Response<Followed>
 
     @GET("kraken/users/{userId}")

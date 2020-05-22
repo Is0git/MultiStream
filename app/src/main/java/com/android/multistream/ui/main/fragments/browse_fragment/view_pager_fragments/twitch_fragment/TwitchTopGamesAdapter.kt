@@ -50,7 +50,7 @@ class TwitchTopGamesAdapter @Inject constructor() :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = list?.get(position)
         holder.listBinding.apply {
-            ImageLoader.loadImageTwitchWithParams(gameImage, item?.game?.box?.template, 200, 125)
+            ImageLoader.loadImageTwitchWithParams(gameImage, item?.game?.box?.template, 750, 525)
             streamTitle.text = item?.game?.name
             viewersCount.text = NumbersConverter.getK(item?.viewers, gameImage.context)
         }

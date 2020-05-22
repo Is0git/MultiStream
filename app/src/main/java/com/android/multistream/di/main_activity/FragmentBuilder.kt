@@ -17,6 +17,10 @@ import com.android.multistream.di.main_activity.main_fragments.profile_fragments
 import com.android.multistream.di.main_activity.main_fragments.profile_fragments.twitch_profile_fragment.twitch_profile_fragments.TwitchProfileFragmentViewModelModule
 import com.android.multistream.di.main_activity.main_fragments.search_fragment.SearchFragmentScope
 import com.android.multistream.di.main_activity.main_fragments.search_fragment.SearchFragmentViewModelModule
+import com.android.multistream.di.main_activity.main_fragments.view_all_fragments.ViewAllFragmentScope
+import com.android.multistream.di.main_activity.main_fragments.view_all_fragments.twitch_view_all_fragments.channels.TwitchChannelsViewAllViewModelModule
+import com.android.multistream.di.main_activity.main_fragments.view_all_fragments.twitch_view_all_fragments.games.TwitchGamesViewAllViewModelModule
+import com.android.multistream.di.main_activity.main_fragments.view_all_fragments.twitch_view_all_fragments.streams.TwitchStreamsViewAllViewModelModule
 import com.android.multistream.ui.intro.fragments.IntroPage
 import com.android.multistream.ui.intro.fragments.IntroPageTwo
 import com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragment
@@ -29,6 +33,9 @@ import com.android.multistream.ui.main.fragments.profile_fragment.twitch_profile
 import com.android.multistream.ui.main.fragments.profile_fragment.twitch_profile.past_recordings.TwitchPastStreamsFragment
 import com.android.multistream.ui.main.fragments.profile_fragment.twitch_profile.past_videos.TwitchClipsFragment
 import com.android.multistream.ui.main.fragments.search_fragment.SearchFragment
+import com.android.multistream.ui.main.fragments.view_all_fragments.twitch.channels_view_all.TwitchChannelsAllViewFragment
+import com.android.multistream.ui.main.fragments.view_all_fragments.twitch.games_view_all.TwitchGamesViewAllFragment
+import com.android.multistream.ui.main.fragments.view_all_fragments.twitch.streams_view_all.TwitchStreamsAllViewFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -82,4 +89,16 @@ abstract class FragmentBuilder {
     @ContributesAndroidInjector(modules = [MixerProfileFragmentViewModelModule::class])
     @ProfileFragmentScope
     abstract fun mixerVodsFragment() : MixerVodsFragment
+
+    @ContributesAndroidInjector(modules = [TwitchGamesViewAllViewModelModule::class])
+    @ViewAllFragmentScope
+    abstract fun getTwitchGamesViewAll() : TwitchGamesViewAllFragment
+
+    @ContributesAndroidInjector(modules = [TwitchStreamsViewAllViewModelModule::class])
+    @ViewAllFragmentScope
+    abstract fun getTwitchStreamsViewAll() : TwitchStreamsAllViewFragment
+
+    @ContributesAndroidInjector(modules = [TwitchChannelsViewAllViewModelModule::class])
+    @ViewAllFragmentScope
+    abstract fun getTwitchChannelsViewAll() : TwitchChannelsAllViewFragment
 }

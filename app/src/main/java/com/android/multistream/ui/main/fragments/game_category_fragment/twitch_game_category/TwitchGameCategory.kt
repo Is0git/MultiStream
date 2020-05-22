@@ -22,7 +22,7 @@ class TwitchGameCategory :
         return PlaceHolderAdapter(R.layout.list_item_two_extended, false) { k, t ->
             k.apply {
                 streamTitle.text = t.title
-                ImageLoader.loadImageTwitch(streamImage, t.thumbnail_url)
+                ImageLoader.loadImageTwitchWithParams(streamImage, t.thumbnail_url, 350, 660)
                 ImageLoader.loadImage(streamerBanner, t.user?.logo)
                 streamerName.text = t.user_name
                 viewersCount.text = NumbersConverter.getK(t.viewer_count, requireContext())
@@ -48,7 +48,7 @@ class TwitchGameCategory :
             gameName.text = args.twitchGame?.game?.name
             followersCount.text = getString(R.string.followers, args.twitchGame?.channels)
             viewersCount.text = getString(R.string.viewers, args.twitchGame?.viewers)
-            ImageLoader.loadImageTwitch(gameBg, args.twitchGame?.game?.box?.medium)
+            ImageLoader.loadImageTwitchWithParams(gameBg, args.twitchGame?.game?.box?.large, 300, 660)
         }
     }
 }

@@ -33,4 +33,17 @@
         <item name="cornerSize">@dimen/defaultCardCornerRadius</item>
     </style>
 
+    <style name="FollowButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="icon">@drawable/love_icon</item>
+        <item name="iconTint">@color/colorAccent</item>
+        <item name="iconPadding">0dp</item>
+        <item name="backgroundTint">@color/colorOnSecondaryVariant</item>
+        <item name="iconGravity">textStart</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="cornerRadius">10dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
 </resources>

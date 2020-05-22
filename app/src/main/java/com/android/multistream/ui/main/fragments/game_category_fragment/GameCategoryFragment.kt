@@ -39,7 +39,7 @@ abstract class GameCategoryFragment<T, S : ViewModel>(clazz: Class<S>) : DaggerV
             ArrayAdapter<String>(
                 requireContext(),
                 R.layout.drop_down_menu_item,
-                Array(2) { "Hi" })
+                Array(1) { getString(R.string.all) })
         )
         adapter = getPlaceHolderAdapter().also { it.setOnItemClickListener { position, itemView -> onCardClick(position, itemView) } }
         binding.channelsRecyclerview.adapter = adapter

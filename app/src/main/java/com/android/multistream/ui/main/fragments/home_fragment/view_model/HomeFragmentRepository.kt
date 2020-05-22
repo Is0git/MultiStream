@@ -13,8 +13,8 @@ import retrofit2.Retrofit
 import javax.inject.Inject
 
 @HomeFragmentScope
-class HomeFragmentRepository @Inject constructor(@TwitchQualifier val retrofit: Retrofit, val platformManager: PlatformManager) {
-    val twitchService = retrofit.create(TwitchService::class.java)
+class HomeFragmentRepository @Inject constructor(val platformManager: PlatformManager, var twitchService: TwitchService) {
+
     val topChannelsLiveData = MutableLiveData<MutableList<DataItem>?>()
     val followedLiveStreamsLiveData = MutableLiveData<Followed?>()
     val followedStreamsLiveData = MutableLiveData<Followed?>()
