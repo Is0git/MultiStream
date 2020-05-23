@@ -37,6 +37,8 @@ class FollowButton : MaterialButton {
                 ?: ResourcesCompat.getColorStateList(resources, R.color.colorAccent, null)
             unselectedColor = this.getColorStateList(R.styleable.FollowButton_unSelectedColor)
                 ?: ResourcesCompat.getColorStateList(resources, R.color.colorAccent, null)
+            val select = getBoolean(R.styleable.FollowButton_isSelected, false)
+            isSelected = select
             recycle()
         }
     }

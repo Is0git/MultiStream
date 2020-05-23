@@ -1,4 +1,4 @@
-package com.android.multistream.di.main_activity.main_fragments.profile_fragments.twitch_profile_fragment.mixer_profile_fragments
+package com.android.multistream.di.main_activity.main_fragments.profile_fragments.twitch_profile_fragment.mixer_profile_fragments.modules
 
 import androidx.lifecycle.ViewModel
 import com.android.multistream.di.main_activity.ViewModelKey
@@ -9,7 +9,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class MixerProfileFragmentViewModelModule {
+abstract class MixerVodstViewModelModule {
 
     @Binds
     @IntoMap

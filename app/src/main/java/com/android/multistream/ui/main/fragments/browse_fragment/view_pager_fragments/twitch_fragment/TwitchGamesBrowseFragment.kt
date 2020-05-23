@@ -55,7 +55,7 @@ class TwitchGamesBrowseFragment : GamesBrowseFragment<TwitchGamesBrowseViewModel
 
     override fun observeData() {
         viewModel.pageLoader.dataLiveData.observe(viewLifecycleOwner) {
-            binding.searchNoItem.visibility = if (it.isEmpty()) View.VISIBLE else View.INVISIBLE
+            binding.searchNoItem.visibility = if (it != null && it.isEmpty()) View.VISIBLE else View.INVISIBLE
             topGamesAdapter.list = it
         }
     }

@@ -10,7 +10,7 @@ data class CurrentUser(
     val updatedAt: String? = null,
     val name: String? = null,
     val logo: String? = null,
-    val id: Int? = null,
+    val _id: Int? = null,
     val email: String? = null,
     val notifications: Notifications? = null,
     val partnered: Boolean? = null

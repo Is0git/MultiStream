@@ -66,7 +66,6 @@ class PlaceHolderAdapter<T, K : ViewDataBinding>(
 
         var placeHolderListener: PlaceHolderViewListener? =  null
 
-
         override fun backgroundAnimation() {
         }
 

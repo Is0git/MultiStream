@@ -15,7 +15,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        (requireActivity() as MainActivity).hideActionBar()
         setPreferencesFromResource(R.xml.settings, rootKey)
     }
 }

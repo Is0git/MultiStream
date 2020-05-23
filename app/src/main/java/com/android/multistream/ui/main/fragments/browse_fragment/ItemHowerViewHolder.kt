@@ -21,17 +21,17 @@ abstract class ItemHoverViewHolder<T : ViewDataBinding>(
     lateinit var scaleYAnimation: ObjectAnimator
     lateinit var scaleXAnimation: ObjectAnimator
     var gestureListener: GestureDetector? = null
-    lateinit var animatorSet: AnimatorSet
-    lateinit var elevationAnim: ObjectAnimator
+    var animatorSet: AnimatorSet? = null
+    private lateinit var elevationAnim: ObjectAnimator
     lateinit var translationAnimation: ObjectAnimator
     lateinit var translationY: ObjectAnimator
 
     init {
         if (onShowPress) {
             setupAnimators()
-            gestureListener = GestureDetector(binding.root.context, this)
-            binding.root.setOnTouchListener(this)
         }
+        binding.root.setOnTouchListener(this)
+        gestureListener = GestureDetector(binding.root.context, this)
     }
 
     private fun setupAnimators() {
@@ -87,7 +87,7 @@ abstract class ItemHoverViewHolder<T : ViewDataBinding>(
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         gestureListener?.onTouchEvent(event)
         if (event?.action == 1 || event?.action == MotionEvent.ACTION_CANCEL) {
-            animatorSet.reverse()
+            animatorSet?.reverse()
         }
         return true
     }
@@ -100,7 +100,7 @@ abstract class ItemHoverViewHolder<T : ViewDataBinding>(
                 0 -> translationAnimation.setFloatValues(0f, -50f)
                 else -> translationAnimation.setFloatValues(0f, 0f)
             }
-        animatorSet.start()
+        animatorSet?.start()
     }
 
     abstract fun backgroundAnimation()

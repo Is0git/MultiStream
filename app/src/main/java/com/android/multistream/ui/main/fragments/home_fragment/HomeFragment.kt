@@ -51,7 +51,7 @@ class HomeFragment :
     private lateinit var followingAdapter: PlaceHolderAdapter<StreamsItem, ListItemThreeBinding>
     private lateinit var topGamesAdapter: PlaceHolderAdapter<TopGame, ListItemFourBinding>
     private lateinit var mainActivityViewModel: MainActivityViewModel
-    lateinit var translationXAnimation: TranslationXAnimation
+    private lateinit var translationXAnimation: TranslationXAnimation
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,7 +59,6 @@ class HomeFragment :
         savedInstanceState: Bundle?
     ): View? {
         binding = HomeFragmentBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this, factory).get(HomeFragmentViewModel::class.java)
         mainActivityViewModel =
             ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
         if (settingsPreferences.getBoolean(
@@ -172,6 +171,12 @@ class HomeFragment :
                 false
             ) { k, t ->
                 ImageLoader.loadImageTwitch(k.gameBanner, t.box_art_url)
+            }
+            topGamesAdapter.onClickListener = object : PlaceHolderViewListener {
+                override fun onClick(position: Int, itemView: View) {
+
+                }
+
             }
             twitchTopGamesList.apply {
                 layoutManager = CardSliderLayoutManager(requireActivity())

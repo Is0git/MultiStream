@@ -33,6 +33,7 @@
                     android:fontFamily="@font/header_font"
                     android:shadowColor="#94000000"
                     android:shadowDy="3"
+                    android:textColor="@color/stripeTabLayoutTitle"
                     android:shadowRadius="4"
                     android:text="CHANNELS"
                     android:textStyle="bold"

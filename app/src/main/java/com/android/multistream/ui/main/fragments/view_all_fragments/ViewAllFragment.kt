@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.view_all_app_bar.view.*
 abstract class ViewAllFragment<T : ViewModel, S>(clazz: Class<T>) :
     DaggerViewModelFragment<T>(clazz), UIHelper, OnItemClickListener, View.OnClickListener {
 
-    private lateinit var viewAllListAdapter: ViewAllListAdapter<S>
+    protected lateinit var viewAllListAdapter: ViewAllListAdapter<S>
     lateinit var binding: ViewAllLayoutBinding
     lateinit var navController: NavController
 

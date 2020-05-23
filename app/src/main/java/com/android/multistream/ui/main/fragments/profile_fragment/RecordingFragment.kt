@@ -82,7 +82,7 @@ abstract class RecordingFragment<T : ViewModel, S>(clazz: Class<T>) :
     override fun observeData() {
         getPageLoader().apply {
             dataLiveData.observe(viewLifecycleOwner) {
-                binding.noItem.visibility = if (it.isEmpty()) {
+                binding.noItem.visibility = if (it != null && it.isEmpty()) {
                     View.VISIBLE
                 } else View.INVISIBLE
                 videoListAdapter.data = it
@@ -140,7 +140,6 @@ abstract class RecordingFragment<T : ViewModel, S>(clazz: Class<T>) :
     }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        videoListAdapter.data = null
         getPageLoader().invalidate(true)
     }
 

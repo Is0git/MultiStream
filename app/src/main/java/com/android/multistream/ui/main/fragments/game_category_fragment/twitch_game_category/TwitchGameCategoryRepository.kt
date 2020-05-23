@@ -47,7 +47,7 @@ class TwitchGameCategoryRepository @Inject constructor(
         val channelsResult = execute(application) {
             twitchService.getChannels(
                 pageCursor,
-                pageLimit,
+                pageLimit + 1,
                 gameId,
                 "Bearer ${platformManager.getAccessToken(TwitchPlatform::class.java)}"
             )

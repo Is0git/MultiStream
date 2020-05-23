@@ -12,8 +12,9 @@ import com.android.multistream.di.main_activity.main_fragments.home_fragment.Hom
 import com.android.multistream.di.main_activity.main_fragments.home_fragment.HomeFragmentViewModelModule
 import com.android.multistream.di.main_activity.main_fragments.profile_fragments.twitch_profile_fragment.twitch_profile_fragments.modules.TwitchFragmentManagerModule
 import com.android.multistream.di.main_activity.main_fragments.profile_fragments.twitch_profile_fragment.ProfileFragmentScope
-import com.android.multistream.di.main_activity.main_fragments.profile_fragments.twitch_profile_fragment.mixer_profile_fragments.MixerProfileFragmentViewModelModule
+import com.android.multistream.di.main_activity.main_fragments.profile_fragments.twitch_profile_fragment.mixer_profile_fragments.modules.MixerVodstViewModelModule
 import com.android.multistream.di.main_activity.main_fragments.profile_fragments.twitch_profile_fragment.mixer_profile_fragments.modules.MixerFragmentManagerModule
+import com.android.multistream.di.main_activity.main_fragments.profile_fragments.twitch_profile_fragment.mixer_profile_fragments.modules.MixerProfileViewModelModule
 import com.android.multistream.di.main_activity.main_fragments.profile_fragments.twitch_profile_fragment.twitch_profile_fragments.TwitchProfileFragmentViewModelModule
 import com.android.multistream.di.main_activity.main_fragments.search_fragment.SearchFragmentScope
 import com.android.multistream.di.main_activity.main_fragments.search_fragment.SearchFragmentViewModelModule
@@ -70,14 +71,6 @@ abstract class FragmentBuilder {
     @MixerGameCategoryScope
     abstract fun mixerGameCategoryFragment() : MixerGameCategory
 
-    @ContributesAndroidInjector(modules = [TwitchFragmentManagerModule::class])
-    @ProfileFragmentScope
-    abstract fun twitchProfileFragment() : TwitchProfileFragment
-
-    @ContributesAndroidInjector(modules = [MixerFragmentManagerModule::class])
-    @ProfileFragmentScope
-    abstract fun mixerProfileFragment() : MixerProfileFragment
-
     @ContributesAndroidInjector(modules = [TwitchProfileFragmentViewModelModule::class])
     @ProfileFragmentScope
     abstract fun twitchVideosFragment() : TwitchPastStreamsFragment
@@ -86,7 +79,7 @@ abstract class FragmentBuilder {
     @ProfileFragmentScope
     abstract fun twitchClipsFragment() : TwitchClipsFragment
 
-    @ContributesAndroidInjector(modules = [MixerProfileFragmentViewModelModule::class])
+    @ContributesAndroidInjector(modules = [MixerVodstViewModelModule::class])
     @ProfileFragmentScope
     abstract fun mixerVodsFragment() : MixerVodsFragment
 
@@ -101,4 +94,12 @@ abstract class FragmentBuilder {
     @ContributesAndroidInjector(modules = [TwitchChannelsViewAllViewModelModule::class])
     @ViewAllFragmentScope
     abstract fun getTwitchChannelsViewAll() : TwitchChannelsAllViewFragment
+
+    @ContributesAndroidInjector(modules = [TwitchProfileFragmentViewModelModule::class, TwitchFragmentManagerModule::class])
+    @ProfileFragmentScope
+    abstract fun getTwitchProfile() : TwitchProfileFragment
+
+    @ContributesAndroidInjector(modules = [MixerProfileViewModelModule::class, MixerFragmentManagerModule::class])
+    @ProfileFragmentScope
+    abstract fun getMixerProfile() : MixerProfileFragment
 }

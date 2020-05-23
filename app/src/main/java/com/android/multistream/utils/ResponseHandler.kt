@@ -15,7 +15,7 @@ object ResponseHandler {
     suspend fun handleResponse(response: Response<*>, appContext: Application?): Boolean {
         return response.run {
             when {
-                isSuccessful && body() != null -> onSuccess(response)
+                isSuccessful -> onSuccess(response)
                 else -> onFailed(response, appContext)
             }
         }

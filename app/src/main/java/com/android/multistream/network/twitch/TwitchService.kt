@@ -7,6 +7,7 @@ import com.android.multistream.network.twitch.models.new_twitch_api.clips.Clips
 import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGame
 import com.android.multistream.network.twitch.models.new_twitch_api.top_games.TopGames
 import com.android.multistream.network.twitch.models.new_twitch_api.videos.TwitchVideos
+import com.android.multistream.network.twitch.models.v5.follow.FollowUser
 import com.android.multistream.network.twitch.models.v5.followed_streams.Followed
 import com.android.multistream.network.twitch.models.v5.top_games.TopGamesV5
 import com.android.multistream.network.twitch.models.v5.user.User
@@ -109,4 +110,30 @@ interface TwitchService {
         @Query("hls") isHls: Boolean? = null,
         @Query("api_version") version: Int = 5
     ): Response<List<SearchListAdapter.StreamSearchData>?>
+
+    @PUT("kraken/users/{userId}/follows/channels/{channelId}")
+    @Headers("Client-ID: $CLIENT_ID")
+    suspend fun followChannel(
+        @Path("userId") userId: String? = null,
+        @Path("channelId") channelId: String? = null,
+        @Header("Authorization") access_token: String,
+        @Query("api_version") version: Int = 5
+    ): Response<FollowUser>
+
+    @DELETE("kraken/users/{userId}/follows/channels/{channelId}")
+    @Headers("Client-ID: $CLIENT_ID")
+    suspend fun unFollowChannel(
+        @Path("userId") userId: String? = null,
+        @Path("channelId") channelId: String? = null,
+        @Header("Authorization") access_token: String,
+        @Query("api_version") version: Int = 5
+    ) : Response<Unit>
+
+    @GET("kraken/users/{userId}/follows/channels/{channelId}")
+    @Headers("Client-ID: $CLIENT_ID")
+    suspend fun checkIfFollows(
+        @Path("userId") userId: String? = null,
+        @Path("channelId") channelId: String? = null,
+        @Query("api_version") version: Int = 5
+    ): Response<FollowUser?>
 }

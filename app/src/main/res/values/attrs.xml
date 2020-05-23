@@ -3,5 +3,6 @@
     <declare-styleable name="FollowButton">
         <attr name="selectedColor" format="color"/>
         <attr name="unSelectedColor" format="color"/>
+        <attr name="isSelected" format="boolean"/>
     </declare-styleable>
 </resources>

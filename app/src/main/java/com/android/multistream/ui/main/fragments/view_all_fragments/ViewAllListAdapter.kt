@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.multistream.R
+import com.android.multistream.ui.widgets.follow_button.FollowButton
 import com.multistream.multistreamsearchview.search_view.OnItemClickListener
 
 class ViewAllListAdapter<T>(
@@ -19,6 +20,7 @@ class ViewAllListAdapter<T>(
         const val STREAMS = 2
     }
 
+    var onFollowButtonClickListener: OnItemClickListener? = null
     var onBind: ((SearchViewHolder, T?, Int) -> Unit)? = null
     var data: List<T>? = null
         set(value) {
@@ -45,7 +47,14 @@ class ViewAllListAdapter<T>(
             }
             CHANNELS -> {
                 val view = layoutInflater.inflate(R.layout.view_all_channel_item, parent, false)
-                SearchViewHolder.ChannelsViewHolder(view)
+                SearchViewHolder.ChannelsViewHolder(view).also {
+                    it.followButton.setOnClickListener { view ->
+                        onFollowButtonClickListener?.onClick(
+                            it.adapterPosition,
+                            view
+                        )
+                    }
+                }
             }
             else -> {
                 val view = layoutInflater.inflate(R.layout.view_all_stream_item, parent, false)
@@ -84,12 +93,16 @@ class ViewAllListAdapter<T>(
         class ChannelsViewHolder(view: View) : SearchViewHolder(view) {
             var viewersText: TextView = view.findViewById(R.id.viewers_text)
             var followersCount: TextView = view.findViewById(R.id.followers_text)
+            var followButton: FollowButton = view.findViewById(R.id.follow_button)
+            var onFollowButtonClickListener: OnItemClickListener? = null
         }
+
         class GamesViewHolder(view: View) : SearchViewHolder(view) {
 
             var viewerCount: TextView = view.findViewById(R.id.viewers_count)
             var channelsCount: TextView = view.findViewById(R.id.channels_count)
         }
+
         class StreamsViewHolder(view: View) : SearchViewHolder(view) {
 
             private var liveImage: ImageView = view.findViewById(R.id.live_image)

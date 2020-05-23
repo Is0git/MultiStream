@@ -5,8 +5,11 @@ import android.transition.TransitionInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.updateLayoutParams
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -16,13 +19,22 @@ import com.android.multistream.auth.platform_manager.PlatformManager
 import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.databinding.ActivityMainBinding
 import com.android.multistream.network.twitch.models.v5.current_user.CurrentUser
+import com.android.multistream.network.twitch.models.v5.followed_streams.StreamsItem
 import com.android.multistream.ui.player.fragments.PlayerFragment
+import com.android.multistream.utils.NumbersConverter
+import com.android.multistream.utils.ScreenUnit
+import com.android.stripesliderview.slider.dpToPx
 import com.bumptech.glide.Glide
 import com.example.daggerviewmodelfragment.ViewModelFactory
+import com.example.pagination.attach
+import com.example.pagination.detach
 import com.multistream.navigationdrawer.NavigationDrawer
 import com.multistream.navigationdrawer.StreamsAdapter
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 
@@ -35,6 +47,7 @@ class MainActivity : DaggerAppCompatActivity() {
     lateinit var mainActivityViewModel: MainActivityViewModel
     @Inject
     lateinit var platformManager: PlatformManager
+    lateinit var streamsDrawerAdapter: StreamsAdapter<StreamsItem>
     val transition by lazy {
         TransitionInflater.from(this)
             .inflateTransition(R.transition.games_list_expand_transition)
@@ -52,18 +65,15 @@ class MainActivity : DaggerAppCompatActivity() {
             bottomNav.setupWithNavController(navController)
             motionLayout.setDefaultTransitionHandler(supportFragmentManager)
         }
-        topMarginGuideline =
-            (binding.toolBarGuideline.layoutParams as ConstraintLayout.LayoutParams).guideBegin
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            when(destination.id) {
+                R.id.twitchProfileFragment, R.id.mixerProfileFragment, R.id.twitchGamesViewAllFragment, R.id.twitchChannelsAllViewFragment, R.id.twitchStreamsAllViewFragment, R.id.settingsFragment, R.id.splashScreenFragment -> hideActionBar()
+                else -> showActionBar()
+            }
+        }
         setListeners()
         hideActionBar()
     }
-
-    data class AdapterItem(
-        var imageUrl: String,
-        var streamName: String,
-        var gameName: String,
-        var viewersCount: String
-    )
 
     private fun setListeners() {
         binding.settingsIcon.setOnClickListener { navController.navigate(R.id.action_global_settingsFragment) }
@@ -71,10 +81,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
     fun hideActionBar() {
         binding.apply {
-            binding.toolBarGuideline.layoutParams =
-                (binding.toolBarGuideline.layoutParams as ConstraintLayout.LayoutParams).also {
-                    it.guideBegin = 0
-                }
+            (supportFragmentManager.findFragmentById(R.id.main_fragment_container) as NavHostFragment).requireView().updateLayoutParams<ConstraintLayout.LayoutParams> { topMargin = 0  }
             menuDrawerIcon.visibility = View.GONE
             settingsIcon.visibility = View.GONE
             bottomNav.visibility = View.GONE
@@ -83,10 +90,7 @@ class MainActivity : DaggerAppCompatActivity() {
 
     fun showActionBar() {
         binding.apply {
-            binding.toolBarGuideline.layoutParams =
-                (binding.toolBarGuideline.layoutParams as ConstraintLayout.LayoutParams).also {
-                    it.guideBegin = topMarginGuideline
-                }
+            (supportFragmentManager.findFragmentById(R.id.main_fragment_container) as NavHostFragment).requireView().updateLayoutParams<ConstraintLayout.LayoutParams> { topMargin = dpToPx(56f, resources)  }
             menuDrawerIcon.visibility = View.VISIBLE
             settingsIcon.visibility = View.VISIBLE
             bottomNav.visibility = View.VISIBLE
@@ -109,117 +113,37 @@ class MainActivity : DaggerAppCompatActivity() {
         }
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.player_fragment_animation, R.anim.player_fragment_animation)
-            .replace(R.id.player_fragment, PlayerFragment::class.java, bundle, "player_fragment")
+            .replace(
+                R.id.player_fragment,
+                PlayerFragment::class.java,
+                bundle,
+                "player_fragment"
+            )
             .commit()
     }
 
     fun initNavigationDrawer() {
-        val listOfItems = mutableListOf(
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/1eb304dc-27da-411a-9fc2-d68addbbab14-profile_image-70x70.png",
-                "Greekgodx",
-                "COD: MODERN WRAFARE",
-                "12454"
-            ),
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/d0d8b385-823b-4de5-8ec5-3737bc1c233c-profile_image-70x70.png",
-                "Myth",
-                "VALORANT",
-                "10001"
-            ),
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/1f47965f-7961-4b64-ad6f-71808d7d7fe9-profile_image-70x70.png",
-                "TrainswrecksTV",
-                "COUNTER-STRIKE: GO",
-                "6898"
-            ),
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/c901b680-9876-4e67-826a-e141381628e5-profile_image-70x70.jpg",
-                "M0xy",
-                "VALORANT",
-                "2134"
-            ),
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/774f1524-f873-4e60-b767-b17653a74ab5-profile_image-70x70.png",
-                "AndyPyro",
-                "COUNTER-STRIKE: GO",
-                "1898"
-            ),
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/1eb304dc-27da-411a-9fc2-d68addbbab14-profile_image-70x70.png",
-                "Greekgodx",
-                "COD: MODERN WRAFARE",
-                "12454"
-            ),
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/d0d8b385-823b-4de5-8ec5-3737bc1c233c-profile_image-70x70.png",
-                "Myth",
-                "VALORANT",
-                "10001"
-            ),
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/1f47965f-7961-4b64-ad6f-71808d7d7fe9-profile_image-70x70.png",
-                "TrainswrecksTV",
-                "COUNTER-STRIKE: GO",
-                "6898"
-            ),
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/c901b680-9876-4e67-826a-e141381628e5-profile_image-70x70.jpg",
-                "M0xy",
-                "VALORANT",
-                "2134"
-            ),
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/774f1524-f873-4e60-b767-b17653a74ab5-profile_image-70x70.png",
-                "AndyPyro",
-                "COUNTER-STRIKE: GO",
-                "1898"
-            ), AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/1eb304dc-27da-411a-9fc2-d68addbbab14-profile_image-70x70.png",
-                "Greekgodx",
-                "COD: MODERN WRAFARE",
-                "12454"
-            ),
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/d0d8b385-823b-4de5-8ec5-3737bc1c233c-profile_image-70x70.png",
-                "Myth",
-                "VALORANT",
-                "10001"
-            ),
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/1f47965f-7961-4b64-ad6f-71808d7d7fe9-profile_image-70x70.png",
-                "TrainswrecksTV",
-                "COUNTER-STRIKE: GO",
-                "6898"
-            ),
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/c901b680-9876-4e67-826a-e141381628e5-profile_image-70x70.jpg",
-                "M0xy",
-                "VALORANT",
-                "2134"
-            ),
-            AdapterItem(
-                "https://static-cdn.jtvnw.net/jtv_user_pictures/774f1524-f873-4e60-b767-b17653a74ab5-profile_image-70x70.png",
-                "AndyPyro",
-                "COUNTER-STRIKE: GO",
-                "1898"
-            )
-
-        )
-        val adapter = StreamsAdapter<AdapterItem> { item, holder ->
-            holder.binding.apply {
-                Glide.with(this@MainActivity).load(item.imageUrl).centerCrop().into(streamerImage)
-                gameName.text = item.gameName
-                username.text = item.streamName
-                viewerCount.text = item.viewersCount
+        if (mainActivityViewModel.isValidated(TwitchPlatform::class.java)) {
+            mainActivityViewModel.repo.pageLoader.dataLiveData.observe(this) {
+                streamsDrawerAdapter.loadPaginationData(it)
             }
         }
-        adapter.dataItems = listOfItems
+        streamsDrawerAdapter = StreamsAdapter { item, holder ->
+            holder.binding.apply {
+                Glide.with(this@MainActivity).load(item.channel?.logo).centerCrop()
+                    .into(streamerImage)
+                gameName.text = item.game
+                username.text = item.channel?.display_name
+                viewerCount.text = NumbersConverter.getK(item.viewers, this@MainActivity)
+            }
+        }
         binding.navigationDrawer.apply {
             val fragmentView =
                 (supportFragmentManager.findFragmentById(R.id.main_fragment_container) as NavHostFragment).requireView()
             setExpandClickListener(menuDrawerIcon, fragmentView)
-            setStreamsListAdapter(adapter)
+            setStreamsListAdapter(streamsDrawerAdapter)
+            recyclerView attach mainActivityViewModel.twitchFollowingChannelsPageLoader
+            mainActivityViewModel.twitchFollowingChannelsPageLoader.loadInit()
             val accounts = mutableListOf<NavigationDrawer.Account>()
             platformManager.platforms.forEach {
                 if (!it.value.isValidated) return
@@ -241,4 +165,15 @@ class MainActivity : DaggerAppCompatActivity() {
             }
         }
     }
+
+    override fun onDestroy() {
+        binding.navigationDrawer.recyclerView detach mainActivityViewModel.twitchFollowingChannelsPageLoader
+        super.onDestroy()
+    }
+
+}
+
+fun View.clicks(): Flow<Unit> = callbackFlow {
+    this@clicks.setOnClickListener { this.offer(Unit) }
+    awaitClose { this@clicks.setOnClickListener(null) }
 }

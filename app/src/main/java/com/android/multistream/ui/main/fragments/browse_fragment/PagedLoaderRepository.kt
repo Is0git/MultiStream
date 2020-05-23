@@ -39,6 +39,7 @@ abstract class PagedLoaderRepository<T>(
         }
 
         override var page: Int = startPage
+        override var pageLimit: Int = pageLimit
 
     })
 

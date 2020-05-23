@@ -129,7 +129,7 @@ dependencies {
     implementation project(":multistreamnavigationdrawer")
     implementation project(":multistreamsearchview")
     implementation project(':daggerviewmodel')
-    implementation project(':pagination')
+    api project(':pagination')
     implementation project(':multistreamhidescrollview')
     implementation project(":multistreamaterialplaceholdercard")
     implementation project(":multistreamstripetablayout")

@@ -17,7 +17,7 @@ class TwitchGamesViewAllRepository @Inject constructor(var application: Applicat
 }
 
     override suspend fun getNext(pageOffSet: Int, pageLimit: Int): List<TopItem>? {
-       return getGames(pageOffSet, pageLimit)
+       return getGames(pageOffSet, pageLimit+1)
     }
 
     private suspend fun getGames(pageOffSet: Int, pageLimit: Int) : List<TopItem>? {

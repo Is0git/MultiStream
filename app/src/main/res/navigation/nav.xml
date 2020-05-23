@@ -34,7 +34,13 @@
                 app:destination="@id/profileFragment" />
             <action
                 android:id="@+id/action_homeFragment_to_twitchGameCategory"
-                app:destination="@id/twitchGameCategory" />
+                app:destination="@id/twitchGameCategory">
+                <argument
+                    android:name="twitchGame"
+                    android:defaultValue="@null"
+                    app:argType="com.android.multistream.network.twitch.models.v5.top_games.TopItem"
+                    app:nullable="true" />
+            </action>
             <action
                 android:id="@+id/action_homeFragment_to_mixerGameCategory"
                 app:destination="@id/mixerGameCategory" />
@@ -58,7 +64,11 @@
             </action>
             <action
                 android:id="@+id/action_homeFragment_to_twitchGamesViewAllFragment"
-                app:destination="@id/twitchGamesViewAllFragment" />
+                app:destination="@id/twitchGamesViewAllFragment"
+                app:enterAnim="@anim/player_fragment_animation"
+                app:launchSingleTop="true"
+                app:popEnterAnim="@anim/player_fragment_animation"
+                app:popExitAnim="@anim/player_fragment_animation" />
             <action
                 android:id="@+id/action_homeFragment_to_twitchStreamsAllViewFragment"
                 app:destination="@id/twitchStreamsAllViewFragment" />
