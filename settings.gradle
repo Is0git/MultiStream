@@ -18,6 +18,8 @@ include(':multistreamstripetablayout')
 project(':multistreamstripetablayout').projectDir = new File("D:\\multistreamProject\\MultiStreamStripeTabLayout\\multistreamstripetablayout")
 include(':overscrollbehavior')
 project(':overscrollbehavior').projectDir = new File("D:\\multistreamProject\\OverScrollBehavior\\overscrollbehavior")
-
-
+include(':stripesliderview')
+project(':stripesliderview').projectDir = new File("D:\\multistreamProject\\Multi-Stream-Step-Slider\\stripesliderview")
+include(':multi-stream-splash-screen')
+project(':multi-stream-splash-screen').projectDir = new File("D:\\multistreamProject\\MultiStreamSplashScreen\\multi-stream-splash-screen")
 rootProject.name='multistream'

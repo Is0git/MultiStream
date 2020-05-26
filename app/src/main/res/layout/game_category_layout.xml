@@ -20,7 +20,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlways">
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/channelsText"
@@ -90,7 +90,7 @@
                 style="@style/SpinKitView.DoubleBounce"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top|center_horizontal"
+                android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginTop="150dp"
                 android:elevation="36dp"
                 android:visibility="invisible"

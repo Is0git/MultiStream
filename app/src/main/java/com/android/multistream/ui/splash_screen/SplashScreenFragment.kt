@@ -34,14 +34,14 @@ class SplashScreenFragment : Fragment(R.layout.splash_screen_layout) {
             (logoView.drawable as AnimatedVectorDrawable).start()
         }
         navController = findNavController()
-        lifecycleScope.launch {
-            mainActivityViewModel.validateAccessTokens()
-            if (mainActivityViewModel.isValidated(TwitchPlatform::class.java)) {
-                withContext(Dispatchers.Main) {
-                    navController.navigate(R.id.action_splashScreenFragment_to_main)
-                    (requireActivity() as MainActivity).initNavigationDrawer()
-                }
-            } else withContext(Dispatchers.Main) { navController.navigate(R.id.action_splashScreenFragment_to_intro) }
-        }
+//        lifecycleScope.launch {
+//            mainActivityViewModel.validateAccessTokens()
+//            if (mainActivityViewModel.isValidated(TwitchPlatform::class.java)) {
+//                withContext(Dispatchers.Main) {
+//                    navController.navigate(R.id.action_splashScreenFragment_to_main)
+//                    (requireActivity() as MainActivity).initNavigationDrawer()
+//                }
+//            } else withContext(Dispatchers.Main) { navController.navigate(R.id.action_splashScreenFragment_to_intro) }
+//        }
     }
 }

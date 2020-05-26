@@ -11,9 +11,9 @@
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="32dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/gameImage" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/gameName"
@@ -24,14 +24,14 @@
         android:layout_marginEnd="32dp"
         android:fontFamily="@font/header_font"
         android:lines="3"
-        android:text="@android:string/no"
-        android:textAlignment="textStart"
-        android:layout_marginTop="24dp"
-        android:textColor="@color/stripeTabLayoutTitle"
         android:shadowColor="#94000000"
         android:shadowDy="3"
         android:shadowRadius="4"
+        android:text="@android:string/no"
+        android:textAlignment="textStart"
+        android:textColor="@color/stripeTabLayoutTitle"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/gameImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/gameImage"
         app:layout_constraintTop_toTopOf="@+id/gameImage" />
@@ -41,14 +41,13 @@
         android:layout_width="140dp"
         android:layout_height="210dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="80dp"
         android:paddingEnd="10dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
             android:id="@+id/gameBg"
             android:layout_width="match_parent"
@@ -66,12 +65,11 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/eye_icon"
         android:backgroundTint="@color/colorOnSecondaryVariant"
-        app:layout_constraintBottom_toBottomOf="@+id/gameImage"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/viewersCount"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/gameImage"
-        app:layout_constraintStart_toStartOf="@+id/gameName"
-        app:layout_constraintTop_toBottomOf="@+id/gameName" />
+        app:layout_constraintStart_toStartOf="@+id/gameImage"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/viewersCount"

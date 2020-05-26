@@ -42,7 +42,6 @@ class HomeFragment :
     DaggerViewModelFragment<HomeFragmentViewModel>(HomeFragmentViewModel::class.java),
     PlaceHolderViewListener {
     lateinit var binding: HomeFragmentBinding
-    lateinit var navController: NavController
     @Inject
     @SettingsPreferencesQualifier
     lateinit var settingsPreferences: SharedPreferences
@@ -59,8 +58,7 @@ class HomeFragment :
         savedInstanceState: Bundle?
     ): View? {
         binding = HomeFragmentBinding.inflate(inflater, container, false)
-        mainActivityViewModel =
-            ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
+        mainActivityViewModel = ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
         if (settingsPreferences.getBoolean(
                 getString(R.string.twitch_visibility),
                 false
@@ -76,18 +74,20 @@ class HomeFragment :
                 AlphaAnimation(this, animationHandler.topDivider, animationHandler.bottomDivider)
             addHiddenView(binding.homeText, RIGHT, alphaAnimation)
         }
-        binding.homeText.setOnClickListener {
-            HomeFragmentDirections.actionHomeFragmentToMixerProfileFragment(
-                MixerGameChannel(id = 6020650)
-            ).also { navController.navigate(it) }
+
+//        binding.homeText.setOnClickListener {
+//            HomeFragmentDirections.actionHomeFragmentToMixerProfileFragment(
+//                MixerGameChannel(id = 6020650)
+//            ).also { navController.navigate(it) }
+//        }
+        (requireActivity() as MainActivity).apply {
+            showActionBar()
         }
-        binding.twitchText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_profileFragment) }
-        (requireActivity() as MainActivity).showActionBar()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        navController = Navigation.findNavController(view)
+        (activity as MainActivity).initNavigationDrawer()
     }
 
     private fun setupViewPager() {
@@ -170,13 +170,13 @@ class HomeFragment :
                 R.layout.list_item_four,
                 false
             ) { k, t ->
-                ImageLoader.loadImageTwitch(k.gameBanner, t.box_art_url)
+                ImageLoader.loadImageTwitchWithParams(k.gameBanner, t.box_art_url, 750, 400)
             }
             topGamesAdapter.onClickListener = object : PlaceHolderViewListener {
+
                 override fun onClick(position: Int, itemView: View) {
 
                 }
-
             }
             twitchTopGamesList.apply {
                 layoutManager = CardSliderLayoutManager(requireActivity())
@@ -194,7 +194,10 @@ class HomeFragment :
             RIGHT,
             translationXAnimation
         )
-        binding.topGamesViewAllText.setOnClickListener { navController.navigate(R.id.action_homeFragment_to_twitchGamesViewAllFragment) }
+        binding.topGamesViewAllText.setOnClickListener {
+            val directions = HomeFragmentDirections.actionHomeFragmentToTwitchGamesViewAllFragment()
+            findNavController().navigate(directions)
+        }
 //        addHiddenView(binding.twitchStreamersYouFollowViewAllText, RIGHT, translationXAnimation)
     }
 
@@ -222,7 +225,7 @@ class HomeFragment :
             followingAdapter.onClickListener = this@HomeFragment
             twitchFollowingChannelsText.visibility = View.VISIBLE
             twitchStreamersYouFollowViewAllText.visibility = View.VISIBLE
-            twitchStreamersYouFollowViewAllText.setOnClickListener { navController.navigate(R.id.action_homeFragment_to_twitchChannelsAllViewFragment) }
+            twitchStreamersYouFollowViewAllText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_twitchChannelsAllViewFragment) }
         }
     }
 
@@ -266,7 +269,7 @@ class HomeFragment :
             )
             twitchFollowingLiveStreamsText.visibility = View.VISIBLE
             twitchFollowedLiveStreamsViewAllText.visibility = View.VISIBLE
-            twitchFollowedLiveStreamsViewAllText.setOnClickListener { navController.navigate(R.id.action_homeFragment_to_twitchStreamsAllViewFragment) }
+            twitchFollowedLiveStreamsViewAllText.setOnClickListener { findNavController().navigate(R.id.action_homeFragment_to_twitchStreamsAllViewFragment) }
         }
     }
 
@@ -298,6 +301,6 @@ class HomeFragment :
         val item = followingAdapter.data?.get(position)
         val directions =
             HomeFragmentDirections.actionHomeFragmentToTwitchProfileFragment(item?.channel)
-        navController.navigate(directions)
+        findNavController().navigate(directions)
     }
 }

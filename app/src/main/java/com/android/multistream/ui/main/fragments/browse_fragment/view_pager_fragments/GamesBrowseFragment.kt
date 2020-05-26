@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.GridLayoutManager
 import com.android.multistream.databinding.TopGamesFragmentPageBinding
 import com.android.multistream.utils.UIHelper
 import com.example.daggerviewmodelfragment.DaggerViewModelFragment
@@ -16,6 +17,7 @@ import com.example.pagination.PageLoadingStates
 import com.example.pagination.attach
 import com.example.pagination.detach
 import com.multistream.multistreamsearchview.search_view.OnItemClickListener
+import com.multistream.multistreamsearchview.search_view.convertDpToPixel
 
 abstract class GamesBrowseFragment<T : ViewModel>(clazz: Class<T>) :
     DaggerViewModelFragment<T>(clazz), OnItemClickListener, UIHelper {
@@ -29,6 +31,7 @@ abstract class GamesBrowseFragment<T : ViewModel>(clazz: Class<T>) :
     ): View? {
         binding = TopGamesFragmentPageBinding.inflate(inflater, container, false)
         binding.topGamesList attach getPageLoader()
+        setItemCount()
         val stateLiveData = getPageLoadStateLiveData()
         stateLiveData.observe(viewLifecycleOwner) {
             binding.progressBar.visibility = when (it) {
@@ -48,6 +51,12 @@ abstract class GamesBrowseFragment<T : ViewModel>(clazz: Class<T>) :
         }
         observeData()
         return binding.root
+    }
+
+    private fun setItemCount() {
+        (binding.topGamesList.layoutManager as GridLayoutManager).apply {
+//            spanCount = resources.displayMetrics.widthPixels / convertDpToPixel(138, resources)
+        }
     }
 
     override fun onDestroy() {

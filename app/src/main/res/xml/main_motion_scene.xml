@@ -2,14 +2,14 @@
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <Transition
-        app:constraintSetStart="@id/start"
-        app:constraintSetEnd="@id/end">
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@id/start">
         <OnSwipe app:touchRegionId="@id/player_fragment" />
     </Transition>
 
     <Transition
-        app:constraintSetStart="@id/end"
-        app:constraintSetEnd="@id/slide">
+        app:constraintSetEnd="@id/slide"
+        app:constraintSetStart="@id/end">
         <OnSwipe
             app:dragDirection="dragRight"
             app:touchAnchorSide="bottom"
@@ -39,16 +39,9 @@
             app:visibilityMode="ignore" />
 
         <Constraint
-            android:id="@+id/settingsIcon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/menuDrawerIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/menuDrawerIcon"
-            app:visibilityMode="ignore" />
-        <Constraint android:id="@+id/menuDrawerIcon">
-            <PropertySet app:visibilityMode="ignore" />
+            android:id="@+id/toolbarLayout"
+            app:visibilityMode="ignore">
+            <PropertySet app:visibilityMode="ignore"/>
         </Constraint>
     </ConstraintSet>
 
@@ -73,17 +66,9 @@
             app:visibilityMode="ignore" />
 
         <Constraint
-            android:id="@+id/settingsIcon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/menuDrawerIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/menuDrawerIcon"
-            app:visibilityMode="ignore" />
-
-        <Constraint android:id="@+id/menuDrawerIcon">
-            <PropertySet app:visibilityMode="ignore" />
+            android:id="@+id/toolbarLayout"
+            app:visibilityMode="ignore">
+            <PropertySet app:visibilityMode="ignore"/>
         </Constraint>
     </ConstraintSet>
 
@@ -112,18 +97,9 @@
             app:visibilityMode="ignore" />
 
         <Constraint
-            android:id="@+id/settingsIcon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintBottom_toBottomOf="@+id/menuDrawerIcon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/menuDrawerIcon"
-            app:visibilityMode="ignore" />
-
-        <Constraint android:id="@+id/menuDrawerIcon">
-            <PropertySet app:visibilityMode="ignore" />
+            android:id="@+id/toolbarLayout"
+            app:visibilityMode="ignore">
+            <PropertySet app:visibilityMode="ignore"/>
         </Constraint>
-
     </ConstraintSet>
 </MotionScene>

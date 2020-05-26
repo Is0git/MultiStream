@@ -11,8 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.android.multistream.R
 import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.ui.main_activity.MainActivityViewModel
-import com.android.player.chat.chat_factories.PlayerType
+import com.android.player.chat.chat_factories.PlatformPlayerType
+import com.android.player.player.MultiStreamPlayer
 import com.android.player.ui.MultiStreamPlayerLayout
+import javax.inject.Inject
 
 
 class PlayerFragment : Fragment() {
@@ -22,8 +24,30 @@ class PlayerFragment : Fragment() {
     private var category: String? = "category"
     private var displayName: String? = "name"
     private var imageUrl: String? = null
-    lateinit var binding: ViewDataBinding
     lateinit var mainViewModel: MainActivityViewModel
+    var multiStreamPlayer: MultiStreamPlayer? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        retainInstance = true
+        mainViewModel = ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
+        val playerType = PlatformPlayerType.TwitchChatType(
+            mainViewModel.getTwitchUser()?.name,
+            mainViewModel.getToken(TwitchPlatform::class.java),
+            channelName,
+            title,
+            displayName,
+            category,
+            imageUrl,
+            null,
+            null
+        )
+        multiStreamPlayer = MultiStreamPlayer.createMultiStreamPlayer(
+            requireContext(),
+            playerType,
+            MultiStreamPlayer.LIVE_STREAM
+        )
+        multiStreamPlayer?.play()
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +56,6 @@ class PlayerFragment : Fragment() {
     ): View? {
         super.onCreate(savedInstanceState)
         getArgs()
-        mainViewModel = ViewModelProvider(requireActivity()).get(MainActivityViewModel::class.java)
         return if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) inflater.inflate(
             R.layout.player_layout,
             container,
@@ -41,7 +64,7 @@ class PlayerFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initPlayer()
+        (view as MultiStreamPlayerLayout).multiStreamPlayer = multiStreamPlayer
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -59,26 +82,8 @@ class PlayerFragment : Fragment() {
         }
     }
 
-    private fun initPlayer() {
-        (view as MultiStreamPlayerLayout).apply {
-            val playerType =
-                PlayerType.TwitchChatType(
-                    mainViewModel.getTwitchUser()?.name,
-                    mainViewModel.getToken(TwitchPlatform::class.java),
-                    channelName,
-                    title,
-                    displayName,
-                    category,
-                    imageUrl,
-                    null,
-                    null
-                )
-            initializePlayer(playerType)
-        }
-    }
-
-    override fun onDestroyView() {
-        (view as MultiStreamPlayerLayout).release()
-        super.onDestroyView()
+    override fun onDestroy() {
+        multiStreamPlayer?.clear()
+        super.onDestroy()
     }
 }

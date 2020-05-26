@@ -39,6 +39,7 @@ class BrowseFragment : DaggerFragment(), OverScrollBehavior.OverScrollListener {
         navController = Navigation.findNavController(view)
     }
 
+
     private fun setupViewPager() {
         binding.topGamesViewPager.adapter =
             GamesFragmentsViewPagerAdapter(childFragmentManager, lifecycle)

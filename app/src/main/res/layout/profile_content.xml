@@ -72,12 +72,12 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
         android:src="@drawable/default_place_holder"
         app:civ_border_color="@color/stripeTabLayoutTitle"
-        app:civ_border_width="3dp"
+        app:civ_border_width="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/banner_image"
         app:layout_constraintTop_toBottomOf="@+id/back" />

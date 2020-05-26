@@ -57,7 +57,6 @@ class TwitchProfileFragment :
     }
 
     override suspend fun onFollowClick(view: View) {
-        channelId
         if (view.isSelected) mainActivityViewModel.repo.followTwitchUser(channelId!!) else mainActivityViewModel.repo.unFollowTwitchUser(
             channelId!!
         )

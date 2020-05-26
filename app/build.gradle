@@ -122,10 +122,9 @@ dependencies {
     implementation 'androidx.preference:preference:1.1.1'
     implementation('com.ramotion.cardslider:card-slider:0.3.1')
     implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
-
+    implementation project(':stripesliderview')
     implementation project(":multistreamplayer")
-    implementation 'com.github.Is0git:MultiStream-Splash-Screen:0.1.5'
-    implementation 'com.github.Is0git:Multi-Stream-Step-Slider:0.1.6'
+    implementation project(':multi-stream-splash-screen')
     implementation project(":multistreamnavigationdrawer")
     implementation project(":multistreamsearchview")
     implementation project(':daggerviewmodel')

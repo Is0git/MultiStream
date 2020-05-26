@@ -21,7 +21,7 @@ class MixerPlatform @Inject constructor(@MixerQualifier retrofit: Retrofit, plat
     ) {
 
     override fun getNewToken(service: MixerService, refreshToken: String): Response<Token>? {
-        return service.getToken()
+        return null
     }
 
     override fun provideAuthTokenPair(response: Response<Token>): Pair<String?, String?> {

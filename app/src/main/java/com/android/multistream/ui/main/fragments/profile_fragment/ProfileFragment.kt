@@ -30,8 +30,6 @@ abstract class ProfileFragment<T : ViewModel>(clazz: Class<T>) : DaggerViewModel
     var channelId: String? = null
     lateinit var navController: NavController
     lateinit var mainActivityViewModel: MainActivityViewModel
-
-
     @Inject
     lateinit var viewPagerAdapter: ProfileViewPagerAdapter
 

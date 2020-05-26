@@ -2,19 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/home"
         app:showAsAction="never"
         android:menuCategory="secondary"
         android:icon="@drawable/home_icon"
         android:title="@string/home" />
     <item
-        android:id="@+id/searchFragment"
-        app:showAsAction="never"
-        android:menuCategory="secondary"
-        android:icon="@drawable/search_icon"
-        android:title="@string/search" />
-    <item
-        android:id="@+id/browseFragment"
+        android:id="@+id/browse"
         app:showAsAction="never"
         android:menuCategory="secondary"
         android:icon="@drawable/browse_icon"

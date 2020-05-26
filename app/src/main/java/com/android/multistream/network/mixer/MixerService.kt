@@ -1,5 +1,6 @@
 package com.android.multistream.network.mixer
 
+import com.android.multistream.network.mixer.constants.CLIENT_SECRET
 import com.android.multistream.network.mixer.models.channel.GameChannels
 import com.android.multistream.network.mixer.models.clips.MixerClips
 import com.android.multistream.network.mixer.models.mixer_channels.MixerGameChannel
@@ -13,10 +14,7 @@ import com.android.multistream.network.twitch.models.new_twitch_api.top_games.To
 import com.multistream.multistreamsearchview.search_result.SearchListAdapter
 import com.multistream.multistreamsearchview.search_view.SearchViewLayout
 import retrofit2.Response
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 
 interface MixerService {
@@ -63,10 +61,10 @@ interface MixerService {
         @Query("limit", encoded = true) limit: Int,
         @Query("page", encoded = true) page: Int,
         @Query("order", encoded = false) order: String? = null
-    ) : Response<List<MixerVods>>
+    ): Response<List<MixerVods>>
 
     @GET("/clips/channels/{channelId}")
-    suspend fun getClips(@Path("channelId", encoded = true) channelId: Int) : Response<MixerClips>
+    suspend fun getClips(@Path("channelId", encoded = true) channelId: Int): Response<MixerClips>
 
     //Search
     @GET(value = "types")
@@ -87,10 +85,21 @@ interface MixerService {
     ): Response<List<SearchListAdapter.StreamSearchData>?>
 
     //AUTH
-    @GET("oauth/token")
-    fun getToken(): Response<Token>
+    @POST("oauth/token")
+    suspend fun getToken(): Response<Token>
+
+    @FormUrlEncoded
+    @POST("oauth/token")
+    suspend fun getToken2(
+     @Field(
+            "code",
+            encoded = true
+        ) code: String, @Field("grant_type", encoded = true) grant_type: String,
+     @Field("client_id", encoded = true) client_id: String,
+        @Field ("client_secret", encoded = true) clientSecret: String = CLIENT_SECRET
+    ): Response<Token>
 
     @GET("oauth/token")
-    fun getValidation(): Response<Validation>
+    suspend fun getValidation(): Response<Validation>
 
 }

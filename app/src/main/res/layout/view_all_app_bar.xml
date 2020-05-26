@@ -6,7 +6,7 @@
     android:background="@android:color/transparent"
     android:id="@+id/view_motion"
     app:layoutDescription="@xml/view_all_app_bar_scene"
-    app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed|snap">
+    app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap">
 
     <View
         android:id="@+id/arrow_view"

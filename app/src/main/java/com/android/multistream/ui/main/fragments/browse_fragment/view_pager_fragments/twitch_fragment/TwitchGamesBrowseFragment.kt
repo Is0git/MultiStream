@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.android.multistream.R
 import com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragmentDirections
 import com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.GamesBrowseFragment
@@ -28,7 +29,7 @@ class TwitchGamesBrowseFragment : GamesBrowseFragment<TwitchGamesBrowseViewModel
         super.onViewCreated(view, savedInstanceState)
         setupList()
         viewModel.pageLoader.loadInit()
-        navController = Navigation.findNavController(requireActivity(), R.id.main_fragment_container)
+        navController = findNavController()
     }
 
     override fun onClick(position: Int, view: View) {

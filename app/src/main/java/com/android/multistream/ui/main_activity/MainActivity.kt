@@ -1,19 +1,19 @@
 package com.android.multistream.ui.main_activity
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.transition.TransitionInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.updateLayoutParams
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.android.multistream.R
 import com.android.multistream.auth.platform_manager.PlatformManager
 import com.android.multistream.auth.platforms.TwitchPlatform
@@ -22,8 +22,7 @@ import com.android.multistream.network.twitch.models.v5.current_user.CurrentUser
 import com.android.multistream.network.twitch.models.v5.followed_streams.StreamsItem
 import com.android.multistream.ui.player.fragments.PlayerFragment
 import com.android.multistream.utils.NumbersConverter
-import com.android.multistream.utils.ScreenUnit
-import com.android.stripesliderview.slider.dpToPx
+import com.android.multistream.utils.setupWithNavController
 import com.bumptech.glide.Glide
 import com.example.daggerviewmodelfragment.ViewModelFactory
 import com.example.pagination.attach
@@ -31,10 +30,13 @@ import com.example.pagination.detach
 import com.multistream.navigationdrawer.NavigationDrawer
 import com.multistream.navigationdrawer.StreamsAdapter
 import dagger.android.support.DaggerAppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.channels.Channel
+import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.tool_bar_layout.view.menuDrawerIcon
+import kotlinx.android.synthetic.main.tool_bar_layout.view.settingsIcon
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -43,7 +45,6 @@ class MainActivity : DaggerAppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-    lateinit var navController: NavController
     lateinit var mainActivityViewModel: MainActivityViewModel
     @Inject
     lateinit var platformManager: PlatformManager
@@ -52,7 +53,7 @@ class MainActivity : DaggerAppCompatActivity() {
         TransitionInflater.from(this)
             .inflateTransition(R.transition.games_list_expand_transition)
     }
-    var topMarginGuideline = 0
+    var currentNavController: LiveData<NavController>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,41 +61,68 @@ class MainActivity : DaggerAppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mainActivityViewModel =
             ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
-        navController = findNavController(R.id.main_fragment_container)
+        binding.motionLayout.setDefaultTransitionHandler(supportFragmentManager)
+        if (savedInstanceState == null) {
+            setupBottomNavigationBar()
+        } // Else, need to wait for onRestoreInstanceState
+        setListeners()
+    }
+
+    private fun setupBottomNavigationBar() {
         binding.apply {
-            bottomNav.setupWithNavController(navController)
-            motionLayout.setDefaultTransitionHandler(supportFragmentManager)
-        }
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
-            when(destination.id) {
-                R.id.twitchProfileFragment, R.id.mixerProfileFragment, R.id.twitchGamesViewAllFragment, R.id.twitchChannelsAllViewFragment, R.id.twitchStreamsAllViewFragment, R.id.settingsFragment, R.id.splashScreenFragment -> hideActionBar()
-                else -> showActionBar()
+            val navGraphIds = listOf(R.navigation.home, R.navigation.browse)
+            currentNavController = bottomNav.setupWithNavController(
+                navGraphIds,
+                supportFragmentManager,
+                R.id.nav_host_container,
+                intent
+            ) { controller: NavController, destination: NavDestination, arguments: Bundle? ->
+                when (destination.id) {
+                    R.id.twitchProfileFragment, R.id.mixerProfileFragment, R.id.twitchGamesViewAllFragment, R.id.twitchChannelsAllViewFragment, R.id.twitchStreamsAllViewFragment, R.id.searchFragment -> hideActionBar()
+                    R.id.settingsFragment -> setVisibility(View.GONE)
+                    else -> showActionBar()
+                }
             }
         }
-        setListeners()
-        hideActionBar()
+        // Whenever the selected controller changes, setup the action bar.
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        // Now that BottomNavigationBar has restored its instance state
+        // and its selectedItemId, we can proceed with setting up the
+        // BottomNavigationBar with Navigation
+        setupBottomNavigationBar()
     }
 
     private fun setListeners() {
-        binding.settingsIcon.setOnClickListener { navController.navigate(R.id.action_global_settingsFragment) }
+        binding.toolbarLayout.settingsIcon.setOnClickListener {
+            currentNavController?.value?.navigate(
+                R.id.settingsFragment
+            )
+        }
+        binding.toolbarLayout.search_icon.setOnClickListener {
+            currentNavController?.value?.navigate(
+                R.id.searchFragment
+            )
+        }
     }
 
     fun hideActionBar() {
+        setVisibility(View.INVISIBLE)
+    }
+
+    private fun setVisibility(visibility: Int) {
         binding.apply {
-            (supportFragmentManager.findFragmentById(R.id.main_fragment_container) as NavHostFragment).requireView().updateLayoutParams<ConstraintLayout.LayoutParams> { topMargin = 0  }
-            menuDrawerIcon.visibility = View.GONE
-            settingsIcon.visibility = View.GONE
-            bottomNav.visibility = View.GONE
+            toolbarLayout.menuDrawerIcon.visibility = visibility
+            toolbarLayout.settingsIcon.visibility = visibility
+            toolbarLayout.search_icon.visibility = visibility
+            bottomNav.visibility = visibility
         }
     }
 
     fun showActionBar() {
-        binding.apply {
-            (supportFragmentManager.findFragmentById(R.id.main_fragment_container) as NavHostFragment).requireView().updateLayoutParams<ConstraintLayout.LayoutParams> { topMargin = dpToPx(56f, resources)  }
-            menuDrawerIcon.visibility = View.VISIBLE
-            settingsIcon.visibility = View.VISIBLE
-            bottomNav.visibility = View.VISIBLE
-        }
+        setVisibility(View.VISIBLE)
     }
 
     fun createPlayerFragment(
@@ -138,9 +166,7 @@ class MainActivity : DaggerAppCompatActivity() {
             }
         }
         binding.navigationDrawer.apply {
-            val fragmentView =
-                (supportFragmentManager.findFragmentById(R.id.main_fragment_container) as NavHostFragment).requireView()
-            setExpandClickListener(menuDrawerIcon, fragmentView)
+            setExpandClickListener(binding.toolbarLayout.menuDrawerIcon, binding.navHostContainer)
             setStreamsListAdapter(streamsDrawerAdapter)
             recyclerView attach mainActivityViewModel.twitchFollowingChannelsPageLoader
             mainActivityViewModel.twitchFollowingChannelsPageLoader.loadInit()
@@ -169,6 +195,10 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onDestroy() {
         binding.navigationDrawer.recyclerView detach mainActivityViewModel.twitchFollowingChannelsPageLoader
         super.onDestroy()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return currentNavController?.value?.navigateUp() ?: false
     }
 
 }

@@ -16,7 +16,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="3"
-            tools:listitem="@layout/top_games_list" />
+            tools:listitem="@layout/single_top_games_list" />
 
         <include
             android:id="@+id/search_no_item"
@@ -40,7 +40,8 @@
             app:layout_constraintBottom_toBottomOf="@id/topGamesList"
             app:layout_constraintEnd_toEndOf="@id/topGamesList"
             app:layout_constraintStart_toStartOf="@id/topGamesList"
-            app:layout_constraintTop_toTopOf="@id/topGamesList" />
+            app:layout_constraintTop_toTopOf="@id/topGamesList"
+            app:layout_constraintVertical_bias="0.87" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

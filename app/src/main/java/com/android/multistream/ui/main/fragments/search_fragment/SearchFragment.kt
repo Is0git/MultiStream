@@ -38,7 +38,10 @@ class SearchFragment : DaggerViewModelFragment<SearchViewModel>(SearchViewModel:
         createSearchFilters()
         setObservers()
         setEventListeners()
-        binding.searchLayout.initSearchView()
+        binding.searchLayout.apply {
+            initSearchView()
+            registerLifecycle(lifecycle)
+        }
         return binding.root
     }
 
