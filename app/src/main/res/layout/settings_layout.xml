@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textview.MaterialTextView
+    style="@style/TextAppearance.MaterialComponents.Headline4"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="32dp"
+    android:layout_marginTop="32dp"
+    android:fontFamily="@font/header_font"
+    android:textAllCaps="true"
+    android:paddingBottom="32dp"
+    android:textStyle="bold"
+    android:text="@string/settings">
+</com.google.android.material.textview.MaterialTextView>

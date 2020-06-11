@@ -5,7 +5,6 @@ import android.content.res.Resources
 import android.util.DisplayMetrics
 import kotlin.math.roundToInt
 
-
 object ScreenUnit {
     fun convertDpToPixel(dp: Float): Int {
         val metrics: DisplayMetrics = Resources.getSystem().displayMetrics

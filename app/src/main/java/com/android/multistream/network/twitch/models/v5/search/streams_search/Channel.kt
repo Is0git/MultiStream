@@ -4,72 +4,70 @@ import com.squareup.moshi.Json
 
 data class Channel(
 
-    @Json(name = "game")
+    @field:Json(name = "game")
     val game: String? = null,
 
-    @Json(name = "mature")
+    @field:Json(name = "mature")
     val mature: Boolean? = null,
 
-    @Json(name = "video_banner")
-    val videoBanner: String? = null,
+    @field:Json(name = "video_banner")
+    val video_banner: String? = null,
 
-    @Json(name = "created_at")
-    val createdAt: String? = null,
+    @field:Json(name = "created_at")
+    val created_at: String? = null,
 
-    @Json(name = "description")
+    @field:Json(name = "description")
     val description: String? = null,
 
-    @Json(name = "language")
+    @field:Json(name = "language")
     val language: String? = null,
 
-    @Json(name = "profile_banner_background_color")
-    val profileBannerBackgroundColor: String? = null,
+    val profile_banner_background_color: String? = null,
 
-    @Json(name = "display_name")
-    val displayName: String? = null,
+    val display_name: String? = null,
 
-    @Json(name = "url")
+    @field:Json(name = "url")
     val url: String? = null,
 
-    @Json(name = "broadcaster_type")
+    @field:Json(name = "broadcaster_type")
     val broadcasterType: String? = null,
 
-    @Json(name = "private_video")
+    @field:Json(name = "private_video")
     val privateVideo: Boolean? = null,
 
-    @Json(name = "profile_banner")
+    @field:Json(name = "profile_banner")
     val profileBanner: String? = null,
 
-    @Json(name = "followers")
+    @field:Json(name = "followers")
     val followers: Int? = null,
 
-    @Json(name = "updated_at")
-    val updatedAt: String? = null,
+    @field:Json(name = "updated_at")
+    val updated_at: String? = null,
 
-    @Json(name = "partner")
+    @field:Json(name = "partner")
     val partner: Boolean? = null,
 
-    @Json(name = "broadcaster_language")
-    val broadcasterLanguage: String? = null,
+    @field:Json(name = "broadcaster_language")
+    val broadcaster_language: String? = null,
 
-    @Json(name = "name")
+    @field:Json(name = "name")
     val name: String? = null,
 
-    @Json(name = "logo")
+    @field:Json(name = "logo")
     val logo: String? = null,
 
-    @Json(name = "broadcaster_software")
-    val broadcasterSoftware: String? = null,
+    @field:Json(name = "broadcaster_software")
+    val broadcaster_software: String? = null,
 
-    @Json(name = "_id")
+    @field:Json(name = "_id")
     val id: Int? = null,
 
-    @Json(name = "views")
+    @field:Json(name = "views")
     val views: Int? = null,
 
-    @Json(name = "status")
+    @field:Json(name = "status")
     val status: String? = null,
 
-    @Json(name = "privacy_options_enabled")
-    val privacyOptionsEnabled: Boolean? = null
+    @field:Json(name = "privacy_options_enabled")
+    val privacy_options_enabled: Boolean? = null
 )

@@ -7,27 +7,27 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Thumbnail(
 
-	@Json(name="createdAt")
+	@field:Json(name="createdAt")
 	val createdAt: String? = null,
 
-	@Json(name="relid")
+	@field:Json(name="relid")
 	val relid: Int? = null,
 
-	@Json(name="remotePath")
+	@field:Json(name="remotePath")
 	val remotePath: String? = null,
 
-	@Json(name="id")
+	@field:Json(name="id")
 	val id: Int = 0,
 
-	@Json(name="store")
+	@field:Json(name="store")
 	val store: String? = null,
 
-	@Json(name="type")
+	@field:Json(name="type")
 	val type: String? = null,
 
-	@Json(name="url")
+	@field:Json(name="url")
 	val url: String? = null,
 
-	@Json(name="updatedAt")
+	@field:Json(name="updatedAt")
 	val updatedAt: String? = null
 ) : Parcelable

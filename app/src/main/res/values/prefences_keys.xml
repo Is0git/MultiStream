@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="twitch_visibility">twitch_visibility</string>
-    <string name="mixer_visibility">mixer_visibility</string>
-    <string name="twitch_sync">twitch_sync</string>
-    <string name="mixer_sync">mixer_sync</string>
+    <string name="twitch_visibility" translatable="false">twitch_visibility</string>
+    <string name="mixer_visibility" translatable="false">mixer_visibility</string>
+    <string name="twitch_sync" translatable="false">Twitch_sync</string>
+    <string name="mixer_sync" translatable="false">Mixer_sync</string>
+    <string name="dark_mode_preference" translatable="false">dark_mode</string>
+    <string name="locale_list" translatable="false">locale_list</string>
 </resources>

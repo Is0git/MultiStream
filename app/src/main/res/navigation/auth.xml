@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/auth"
+    app:startDestination="@id/splashScreenFragment">
+
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.android.multistream.ui.auth_activity.fragments.splash_screen.SplashScreenFragment"
+        android:label="SplashScreenFragment" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_introPageTwo"
+            app:destination="@id/introPageTwo"
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/introPageTwo"
+        android:name="com.android.multistream.ui.auth_activity.fragments.intro.IntroPageFragment"
+        android:label="IntroPageTwo" >
+        <action
+            android:id="@+id/action_introPageTwo_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.android.multistream.ui.auth_activity.fragments.login.LoginFragment"
+        android:label="LoginFragment" />
+</navigation>

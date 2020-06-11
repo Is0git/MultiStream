@@ -1,46 +1,57 @@
 package com.android.multistream.ui.main_activity
 
+import android.annotation.SuppressLint
+import android.content.SharedPreferences
+import android.graphics.Rect
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.transition.Transition
 import android.transition.TransitionInflater
+import android.util.Log
+import android.view.MotionEvent
+import android.view.TouchDelegate
 import android.view.View
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.constraintlayout.motion.widget.MotionLayout
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.postDelayed
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.android.multistream.R
 import com.android.multistream.auth.platform_manager.PlatformManager
 import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.databinding.ActivityMainBinding
+import com.android.multistream.di.qualifiers.SettingsPreferencesQualifier
 import com.android.multistream.network.twitch.models.v5.current_user.CurrentUser
 import com.android.multistream.network.twitch.models.v5.followed_streams.StreamsItem
+import com.android.multistream.ui.main_activity.fragments.settings_fragment.SettingsFragment
 import com.android.multistream.ui.player.fragments.PlayerFragment
+import com.android.multistream.ui.player.fragments.live_stream_player_fragment.LiveStreamPlayerFragment
+import com.android.multistream.ui.player.fragments.vod_player_fragment.VodPlayerFragment
+import com.android.multistream.ui.main_activity.fragments.settings_fragment.SettingsLoader
 import com.android.multistream.utils.NumbersConverter
 import com.android.multistream.utils.setupWithNavController
 import com.bumptech.glide.Glide
 import com.example.daggerviewmodelfragment.ViewModelFactory
 import com.example.pagination.attach
 import com.example.pagination.detach
+import com.multistream.multistreamsearchview.search_view.convertDpToPixel
 import com.multistream.navigationdrawer.NavigationDrawer
 import com.multistream.navigationdrawer.StreamsAdapter
 import dagger.android.support.DaggerAppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.tool_bar_layout.view.menuDrawerIcon
-import kotlinx.android.synthetic.main.tool_bar_layout.view.settingsIcon
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlin.math.absoluteValue
 
 
-class MainActivity : DaggerAppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
+    MotionLayout.TransitionListener {
 
     lateinit var binding: ActivityMainBinding
     @Inject
@@ -49,28 +60,38 @@ class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var platformManager: PlatformManager
     lateinit var streamsDrawerAdapter: StreamsAdapter<StreamsItem>
-    val transition by lazy {
+    val transition: Transition by lazy {
         TransitionInflater.from(this)
             .inflateTransition(R.transition.games_list_expand_transition)
     }
-    var currentNavController: LiveData<NavController>? = null
+    private var currentNavController: LiveData<NavController>? = null
+    @Inject
+    lateinit var settingsLoader: SettingsLoader
+    @Inject
+    @SettingsPreferencesQualifier
+    lateinit var preferences: SharedPreferences
+    private var scrollDistance = 0f
+    private var lastX = 0f
+    private var currentTransition = R.id.start
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mainActivityViewModel =
             ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
-        binding.motionLayout.setDefaultTransitionHandler(supportFragmentManager)
-        if (savedInstanceState == null) {
-            setupBottomNavigationBar()
-        } // Else, need to wait for onRestoreInstanceState
+        if (savedInstanceState == null) setupBottomNavigationBar()
         setListeners()
+        configureMotionLayout()
+        if (savedInstanceState != null) {
+            mainActivityViewModel.twitchFollowingChannelsPageLoader.invalidate(false)
+        }
+        initNavigationDrawer()
+        binding.motionLayout.post { increaseNavTouchRegion() }
     }
 
     private fun setupBottomNavigationBar() {
         binding.apply {
-            val navGraphIds = listOf(R.navigation.home, R.navigation.browse)
+            val navGraphIds = listOf(R.navigation.home, R.navigation.library, R.navigation.browse)
             currentNavController = bottomNav.setupWithNavController(
                 navGraphIds,
                 supportFragmentManager,
@@ -78,14 +99,13 @@ class MainActivity : DaggerAppCompatActivity() {
                 intent
             ) { controller: NavController, destination: NavDestination, arguments: Bundle? ->
                 when (destination.id) {
-                    R.id.twitchProfileFragment, R.id.mixerProfileFragment, R.id.twitchGamesViewAllFragment, R.id.twitchChannelsAllViewFragment, R.id.twitchStreamsAllViewFragment, R.id.searchFragment -> hideActionBar()
-                    R.id.settingsFragment -> setVisibility(View.GONE)
+                    R.id.twitchProfileFragment, R.id.mixerProfileFragment, R.id.twitchGamesViewAllFragment, R.id.twitchChannelsAllViewFragment, R.id.twitchStreamsAllViewFragment, R.id.searchFragment, R.id.mixerChannelsAllViewFragment, R.id.mixerTopGamesViewAllFragment -> hideActionBar()
                     else -> showActionBar()
                 }
             }
         }
-        // Whenever the selected controller changes, setup the action bar.
     }
+
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
@@ -95,99 +115,188 @@ class MainActivity : DaggerAppCompatActivity() {
         setupBottomNavigationBar()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setListeners() {
-        binding.toolbarLayout.settingsIcon.setOnClickListener {
-            currentNavController?.value?.navigate(
-                R.id.settingsFragment
-            )
+        binding.apply {
+            motionLayout.setTransitionListener(this@MainActivity)
+            navigationDrawer.setOnTouchListener(this@MainActivity)
         }
-        binding.toolbarLayout.search_icon.setOnClickListener {
-            currentNavController?.value?.navigate(
-                R.id.searchFragment
-            )
+        binding.settingsIcon.setOnClickListener {
+            val settingsFragment = SettingsFragment()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.settings_fragment_container, settingsFragment, "settings_fragment")
+                .addToBackStack(null).setPrimaryNavigationFragment(settingsFragment)
+                .commitAllowingStateLoss()
+        }
+        binding.searchIcon.setOnClickListener {
+            onSearchClick()
         }
     }
 
-    fun hideActionBar() {
+    private fun getSearchFragment(): Fragment {
+        return supportFragmentManager.findFragmentByTag("search_fragment")
+            ?: NavHostFragment.create(R.navigation.search_nav)
+    }
+
+    private fun onSearchClick() {
+        val fragment = getSearchFragment() as NavHostFragment
+        supportFragmentManager.beginTransaction()
+            .add(R.id.search_fragment_container, fragment, "search_fragment")
+            .addToBackStack(null)
+            .setPrimaryNavigationFragment(fragment)
+            .commit()
+    }
+
+    private fun hideActionBar() {
         setVisibility(View.INVISIBLE)
     }
 
     private fun setVisibility(visibility: Int) {
         binding.apply {
-            toolbarLayout.menuDrawerIcon.visibility = visibility
-            toolbarLayout.settingsIcon.visibility = visibility
-            toolbarLayout.search_icon.visibility = visibility
+            menuDrawerIcon.visibility = visibility
+            settingsIcon.visibility = visibility
+            searchIcon.visibility = visibility
             bottomNav.visibility = visibility
         }
     }
 
-    fun showActionBar() {
+    private fun showActionBar() {
         setVisibility(View.VISIBLE)
     }
 
-    fun createPlayerFragment(
+    fun initLiveStreamPlayerFragment(
         channelTitle: String?,
         channelName: String?,
         channelImage: String?,
         channelCategory: String?,
-        channelDisplayName: String?
+        channelDisplayName: String?,
+        channelId: String,
+        viewerCount: Int?
+
     ) {
-        val bundle = Bundle().apply {
+        val bundle = addCommonPlayerFragmentArgs(
+            channelTitle,
+            channelName,
+            channelImage,
+            channelCategory,
+            channelDisplayName,
+            channelId
+        ).also { it.putInt("viewer_count", viewerCount ?: 0) }
+        createFragmentAndStartPlayer(bundle, LiveStreamPlayerFragment::class.java)
+    }
+
+    fun initVodPlayerFragment(
+        channelTitle: String?,
+        channelName: String?,
+        channelImage: String?,
+        channelCategory: String?,
+        channelDisplayName: String?,
+        channelId: String,
+        vodId: String
+    ) {
+        val bundle = addCommonPlayerFragmentArgs(
+            channelTitle,
+            channelName,
+            channelImage,
+            channelCategory,
+            channelDisplayName,
+            channelId
+        ).also { it.putString("vodId", vodId) }
+        createFragmentAndStartPlayer(bundle, VodPlayerFragment::class.java)
+    }
+
+    private fun addCommonPlayerFragmentArgs(
+        channelTitle: String?,
+        channelName: String?,
+        channelImage: String?,
+        channelCategory: String?,
+        channelDisplayName: String?,
+        channelId: String
+    ): Bundle {
+        return Bundle().apply {
             putString("channel_title", channelTitle)
             putString("channel_name", channelName)
             putString("channel_image", channelImage)
             putString("channel_category", channelCategory)
             putString("channel_display_name", channelDisplayName)
+            putString("channel_id", channelId)
         }
-        supportFragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.player_fragment_animation, R.anim.player_fragment_animation)
-            .replace(
-                R.id.player_fragment,
-                PlayerFragment::class.java,
-                bundle,
-                "player_fragment"
-            )
-            .commit()
     }
 
-    fun initNavigationDrawer() {
-        if (mainActivityViewModel.isValidated(TwitchPlatform::class.java)) {
+    private fun createFragmentAndStartPlayer(
+        arguments: Bundle,
+        fragmentClass: Class<out PlayerFragment<*>>
+    ) {
+        val fragment = fragmentClass.newInstance()
+        fragment.arguments = arguments
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.anim.player_fragment_animation, R.anim.player_fragment_animation)
+            .replace(R.id.player_fragment, fragment, "player_fragment")
+            .commitNow()
+    }
+
+    private fun initNavigationDrawer() {
+        if (preferences.getBoolean(
+                getString(R.string.twitch_sync),
+                true
+            ) && preferences.getBoolean(
+                getString(R.string.twitch_visibility),
+                true
+            )
+        ) {
+            binding.navigationDrawer.recyclerView attach mainActivityViewModel.twitchFollowingChannelsPageLoader
             mainActivityViewModel.repo.pageLoader.dataLiveData.observe(this) {
                 streamsDrawerAdapter.loadPaginationData(it)
             }
-        }
-        streamsDrawerAdapter = StreamsAdapter { item, holder ->
-            holder.binding.apply {
-                Glide.with(this@MainActivity).load(item.channel?.logo).centerCrop()
-                    .into(streamerImage)
-                gameName.text = item.game
-                username.text = item.channel?.display_name
-                viewerCount.text = NumbersConverter.getK(item.viewers, this@MainActivity)
-            }
-        }
-        binding.navigationDrawer.apply {
-            setExpandClickListener(binding.toolbarLayout.menuDrawerIcon, binding.navHostContainer)
-            setStreamsListAdapter(streamsDrawerAdapter)
-            recyclerView attach mainActivityViewModel.twitchFollowingChannelsPageLoader
             mainActivityViewModel.twitchFollowingChannelsPageLoader.loadInit()
-            val accounts = mutableListOf<NavigationDrawer.Account>()
-            platformManager.platforms.forEach {
-                if (!it.value.isValidated) return
-                var name: String? = null
-                var imageUrl: String? = null
-                when (it.value) {
-                    is TwitchPlatform -> (it.value.currentUser as CurrentUser?).apply {
-                        name = this?.name
-                        imageUrl = this?.logo
-                    }
+            streamsDrawerAdapter = StreamsAdapter { item, holder ->
+                holder.binding.apply {
+                    Glide.with(this@MainActivity).load(item.channel?.logo).centerCrop()
+                        .into(streamerImage)
+                    gameName.text = item.game
+                    username.text = item.channel?.display_name
+                    viewerCount.text = NumbersConverter.getK(item.viewers, this@MainActivity)
                 }
-                val account = NavigationDrawer.Account(
-                    name,
-                    imageUrl ?: "null",
-                    it.value.platformName ?: "null"
-                )
-                accounts.add(account)
-                addAccounts(accounts)
+            }
+            binding.navigationDrawer.apply {
+                setStreamsListAdapter(streamsDrawerAdapter)
+                val accounts = mutableListOf<NavigationDrawer.Account>()
+                platformManager.platforms.forEach {
+                    if (!it.value.isValidated) return
+                    var name: String? = null
+                    var imageUrl: String? = null
+                    when (it.value) {
+                        is TwitchPlatform -> (it.value.currentUser as CurrentUser?).apply {
+                            name = this?.name
+                            imageUrl = this?.logo
+                        }
+                    }
+                    val account = NavigationDrawer.Account(
+                        name,
+                        imageUrl ?: "null",
+                        it.value.platformName ?: "null"
+                    )
+                    onRecyclerViewItemClick =
+                        object : NavigationDrawer.OnRecyclerViewItemClick<Any?> {
+                            override fun onClick(item: Any?, position: Int) {
+                              if(binding.motionLayout.getTransition(R.id.drawer_transition) != null)  binding.motionLayout.transitionToStart()
+                                postDelayed({
+                                    (item as StreamsItem).also { streamItem ->
+                                        initLiveStreamPlayerFragment(
+                                            streamItem.channel?.status,
+                                            streamItem.channel?.name,
+                                            streamItem.channel?.logo,
+                                            streamItem.game,
+                                            streamItem.channel?.display_name,
+                                            streamItem.channel?._id.toString(),
+                                            streamItem.viewers
+                                        )
+                                    }}, resources.getInteger(android.R.integer.config_mediumAnimTime).toLong())
+                            }
+                        }
+                    accounts.add(account)
+                    addAccounts(accounts)
+                }
             }
         }
     }
@@ -197,8 +306,87 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onDestroy()
     }
 
+    private fun configureMotionLayout() {
+        binding.motionLayout.apply {
+            //            setDefaultTransitionHandler(supportFragmentManager, null)
+//            setOnStateChangeListener {
+//                mainActivityViewModel.playerState = it
+//            }
+        }
+    }
+
+    private fun increaseNavTouchRegion() {
+        binding.navigationDrawer.isEnabled = true
+        val delegateArea = Rect()
+        binding.navigationDrawer.getHitRect(delegateArea)
+        delegateArea.right += delegateArea.left.absoluteValue + 500
+        (binding.navigationDrawer.parent as View).touchDelegate =
+            TouchDelegate(delegateArea, binding.navigationDrawer)
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         return currentNavController?.value?.navigateUp() ?: false
+    }
+
+
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        Log.d("TOUCHED", "TOYUC")
+        binding.apply {
+            when (event?.action) {
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    when (currentTransition) {
+                        R.id.start -> {
+                            scrollDistance = if (motionLayout.progress >= 0.25f) {
+                                motionLayout.transitionToEnd()
+                                binding.navigationDrawer.right.toFloat()
+                            } else {
+                                motionLayout.transitionToStart()
+                                0f
+                            }
+                        }
+                        R.id.show_drawer -> {
+                            scrollDistance = if (motionLayout.progress <= 0.75f) {
+                                motionLayout.transitionToStart()
+                                0f
+                            } else {
+                                motionLayout.transitionToEnd()
+                                navigationDrawer.right.toFloat()
+                            }
+                        }
+                    }
+                    return false
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    val scrolledX = lastX - event.x
+                    scrollDistance = if (scrolledX < 0) {
+                        (scrollDistance + scrolledX.absoluteValue).coerceAtMost(navigationDrawer.right.toFloat())
+                    } else {
+                        (scrollDistance - scrolledX).coerceAtLeast(navigationDrawer.left.toFloat())
+                    }
+                    val position = scrollDistance.absoluteValue / navigationDrawer.width
+                    motionLayout.progress = position
+                    return true
+                }
+                MotionEvent.ACTION_DOWN -> {
+                    motionLayout.setTransition(R.id.drawer_transition)
+                    scrollDistance =
+                        if (currentTransition == R.id.show_drawer) navigationDrawer.right.toFloat() else 0f
+                    lastX = event.x
+                    Log.d("DOWN", "DSSd")
+                    return true
+                }
+            }
+            return false
+        }
+    }
+
+    override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {}
+    override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {}
+    override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {}
+
+    override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
+        currentTransition = p1
     }
 
 }

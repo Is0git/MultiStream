@@ -4,12 +4,12 @@ import com.squareup.moshi.Json
 
 data class FollowUser(
 
-	@Json(name="channel")
+	@field:Json(name="channel")
 	val channel: Channel? = null,
 
-	@Json(name="created_at")
+	@field:Json(name="created_at")
 	val createdAt: String? = null,
 
-	@Json(name="notifications")
+	@field:Json(name="notifications")
 	val notifications: Boolean? = null
 )

@@ -4,9 +4,9 @@ import com.squareup.moshi.Json
 
 data class TwitchVideos(
 
-	@Json(name="pagination")
+	@field:Json(name="pagination")
 	val pagination: Pagination? = null,
 
-	@Json(name="data")
+	@field:Json(name="data")
 	val data: List<DataItem>? = null
 )

@@ -6,24 +6,24 @@ import com.squareup.moshi.Json
 
 data class FeaturedItem(
 
-    @Json(name = "image")
+    @field:Json(name = "image")
     val image: String? = null,
 
-    @Json(name = "stream")
+    @field:Json(name = "stream")
     val stream: Stream? = null,
 
-    @Json(name = "scheduled")
+    @field:Json(name = "scheduled")
     val scheduled: Boolean? = null,
 
-    @Json(name = "sponsored")
+    @field:Json(name = "sponsored")
     val sponsored: Boolean? = null,
 
-    @Json(name = "text")
+    @field:Json(name = "text")
     val text: String? = null,
 
-    @Json(name = "priority")
+    @field:Json(name = "priority")
     val priority: Int? = null,
 
-    @Json(name = "title")
+    @field:Json(name = "title")
     val title: String? = null
 )

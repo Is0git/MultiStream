@@ -4,9 +4,9 @@ import com.squareup.moshi.Json
 
 data class SearchChannels(
 
-    @Json(name = "channels")
+    @field:Json(name = "channels")
     val channels: List<ChannelsItem>? = null,
 
-    @Json(name = "_total")
+    @field:Json(name = "_total")
     val total: Int? = null
 )

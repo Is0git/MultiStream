@@ -1,5 +1,6 @@
 package com.android.multistream.network.twitch.models.v5.user
 
+import com.android.multistream.network.twitch.models.v5.featured_streams.Stream
 import com.squareup.moshi.Json
 
 data class User(
@@ -22,9 +23,11 @@ data class User(
 	@Json(name="_id")
 	val id: String? = null,
 
-	@Json(name="display_name")
-	val displayName: String? = null,
+	val display_name: String? = null,
 
 	@Json(name="type")
 	val type: String? = null
-)
+) {
+	@Transient
+	var stream: Stream? = null
+}

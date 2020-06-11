@@ -35,7 +35,8 @@
                     android:shadowDy="3"
                     android:textColor="@color/stripeTabLayoutTitle"
                     android:shadowRadius="4"
-                    android:text="CHANNELS"
+                    app:textAllCaps="true"
+                    android:text="@string/channels_category"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textInputLayout"
@@ -60,7 +61,7 @@
                         style="@style/Widget.AppCompat.AutoCompleteTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="all"
+                        android:text="@string/all"
                         android:editable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -91,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginTop="150dp"
+                android:layout_marginBottom="150dp"
                 android:elevation="36dp"
                 android:visibility="invisible"
                 app:SpinKit_Color="@color/colorOnSecondaryVariant" />

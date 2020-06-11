@@ -9,21 +9,22 @@
     <string name="live_following_streams"><b>LIVE FOLLOWING</b> STREAMS</string>
     <string name="following_channels"><b>FOLLOWING</b> STREAMS</string>
     <string name="hello">HELLO <font color="#5e4eba">THERE</font></string>
-    <string name="twitch">TWITCH</string>
+    <string name="twitch">Twitch</string>
     <string name="followed_live_streams"><b>FOLLOWED</b> LIVE STREAMS</string>
     <string name="followed_live_streams_html"><![CDATA[
     <b>FOLLOWED</b> LIVE STREAMS
     ]]>
     </string>
     <string name="streamers_you_follow"><b>STREAMERS</b> YOU FOLLOW</string>
-    <string name="synchronization">SYNCHRONIZATION</string>
-    <string name="mixer">MIXER</string>
-    <string name="visibility">VISIBILITY</string>
+    <string name="synchronization">Synchronization</string>
+    <string name="mixer">Mixer</string>
+    <string name="visibility">Visibility</string>
     <string name="show_mixer_content">show mixer content</string>
     <string name="show_twitch_content">show twitch content</string>
     <string name="no_image">https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png</string>
     <string name="viewers">%d viewers</string>
     <string name="followers">%d followers</string>
+    <string name="channels">%d channels</string>
     <string name="followers_text">followers</string>
     <string name="past_streams">Past streams</string>
     <string name="video_clips">Video clips</string>
@@ -33,7 +34,6 @@
     <string name="sort">sort</string>
     <string name="category">category</string>
     <string name="period">period</string>
-
     <string name="all">all</string>
     <string name="upload">upload</string>
     <string name="past_stream">past stream</string>
@@ -62,5 +62,35 @@
     <b>TOP</b> GAMES
     ]]>
     </string>
-
+    <string name="top_channels_html">
+        <![CDATA[
+    <b>TOP</b> CHANNELS
+    ]]>
+    </string>
+    <string name="ui_customizations">UI customizations</string>
+    <string name="twitch_settings">Twitch settings</string>
+    <string name="mixer_settings">Mixer settings</string>
+    <string name="enable_dark_mode">enable dark mode</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="locale">Locale</string>
+    <string name="app_language">App language</string>
+    <string name="language_summary">choose language which will persist in the whole app</string>
+    <string name="discover">DISCOVER</string>
+    <string name="name">name</string>
+    <string name="_0" translatable="false">0</string>
+    <string-array name="language_values">
+        <item>@string/en</item>
+        <item>@string/ru</item>
+    </string-array>
+    <string name="asc">ASC</string>
+    <string name="desc">DESC</string>
+    <string name="choose_category">Choose category</string>
+    <string name="ru" translatable="true">русский</string>
+    <string name="en" translatable="true">english</string>
+    <string name="alarm_channel" translatable="false">Alarm</string>
+    <string name="alarm_description" translatable="false">show notification when stream watching time period is over</string>
+    <string name="settings">Settings</string>
+    <string name="downloads">Downloads</string>
+    <string name="not_ready_yet">not ready yet</string>
+    <string name="peeposad">PeepoSad</string>
 </resources>

@@ -6,6 +6,6 @@ import com.squareup.moshi.Json
 
 data class Featured(
 
-    @Json(name = "featured")
+    @field:Json(name = "featured")
     val featured: MutableList<FeaturedItem>? = null
 )

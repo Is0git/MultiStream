@@ -2,6 +2,7 @@ package com.android.multistream.auth.platforms
 
 import android.app.Application
 import com.android.multistream.auth.platform_manager.PlatformManager
+import com.android.multistream.di.qualifiers.TwitchAuthQualifier
 import com.android.multistream.di.qualifiers.TwitchQualifier
 import com.android.multistream.network.twitch.TwitchAuthService
 import com.android.multistream.network.twitch.models.auth.Token
@@ -16,7 +17,7 @@ import javax.inject.Singleton
 
 @Singleton
 class TwitchPlatform @Inject constructor(
-    @TwitchQualifier val retrofit: Retrofit, platformManager: PlatformManager,
+    @TwitchAuthQualifier val retrofit: Retrofit, platformManager: PlatformManager,
     val app: Application
 ) : Platform<TwitchAuthService, Token, Validation, CurrentUser>(
     retrofit,
@@ -59,7 +60,7 @@ class TwitchPlatform @Inject constructor(
 
     override suspend fun getUser(accessToken: String): CurrentUser {
         val result = service.getCurrentUser("OAuth $accessToken")
-        var isSuccessful = ResponseHandler.handleResponse(result, null)
+        val isSuccessful = ResponseHandler.handleResponse(result, null)
         return if (isSuccessful) result.body()!! else throw CancellationException("couldn't get user")
     }
 }

@@ -4,18 +4,18 @@ import com.squareup.moshi.Json
 
 data class Social(
 
-	@Json(name="youtube")
+	@field:Json(name="youtube")
 	val youtube: String? = null,
 
-	@Json(name="twitter")
+	@field:Json(name="twitter")
 	val twitter: String? = null,
 
-	@Json(name="facebook")
+	@field:Json(name="facebook")
 	val facebook: String? = null,
 
-	@Json(name="verified")
+	@field:Json(name="verified")
 	val verified: List<Any?>? = null,
 
-	@Json(name="instagram")
+	@field:Json(name="instagram")
 	val instagram: String? = null
 )

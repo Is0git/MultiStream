@@ -1,6 +1,7 @@
 package com.android.multistream.network.twitch
 
 import com.android.multistream.network.twitch.adapters.GameSearchesAdapter
+import com.android.multistream.network.twitch.adapters.StreamSearchesAdapter
 import com.android.multistream.network.twitch.constants.CLIENT_ID
 import com.android.multistream.network.twitch.models.new_twitch_api.channels.GameChannels
 import com.android.multistream.network.twitch.models.new_twitch_api.clips.Clips
@@ -9,6 +10,8 @@ import com.android.multistream.network.twitch.models.new_twitch_api.top_games.To
 import com.android.multistream.network.twitch.models.new_twitch_api.videos.TwitchVideos
 import com.android.multistream.network.twitch.models.v5.follow.FollowUser
 import com.android.multistream.network.twitch.models.v5.followed_streams.Followed
+import com.android.multistream.network.twitch.models.v5.search.streams_search.StreamsItem
+import com.android.multistream.network.twitch.models.v5.single_stream.SingleStream
 import com.android.multistream.network.twitch.models.v5.top_games.TopGamesV5
 import com.android.multistream.network.twitch.models.v5.user.User
 import com.multistream.multistreamsearchview.search_result.SearchListAdapter
@@ -78,6 +81,10 @@ interface TwitchService {
         @Query("offset") offset: Int? = null
     ): Response<Followed>
 
+    @GET("kraken/streams/{channelId}")
+    @Headers("Client-ID: $CLIENT_ID", "Accept: application/vnd.twitchtv.v5+json")
+    suspend fun getStream(@Path("channelId", encoded = true) channelId: String, @Query("stream_type") streamType: String? = "live"): Response<SingleStream?>
+
     @GET("kraken/users/{userId}")
     @Headers("Client-ID: $CLIENT_ID", "Accept: application/vnd.twitchtv.v5+json")
     suspend fun getUser(@Path("userId", encoded = true) userId: Int?): Response<User>
@@ -109,7 +116,7 @@ interface TwitchService {
         @Query("offset") offset: Int,
         @Query("hls") isHls: Boolean? = null,
         @Query("api_version") version: Int = 5
-    ): Response<List<SearchListAdapter.StreamSearchData>?>
+    ): Response<List<StreamSearchesAdapter.LiveStreamSearchData>?>
 
     @PUT("kraken/users/{userId}/follows/channels/{channelId}")
     @Headers("Client-ID: $CLIENT_ID")

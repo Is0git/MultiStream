@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="2dp"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        app:cardElevation="3dp"
+        android:layout_marginBottom="2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -17,10 +18,9 @@
                 android:id="@+id/streamThumbNail"
                 android:layout_width="140dp"
                 android:layout_height="75dp"
-                android:scaleType="fitXY"
                 android:background="@drawable/default_video_place_holder"
+                android:scaleType="fitXY"
                 android:src="@drawable/default_video_place_holder"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,26 +39,28 @@
                 app:layout_constraintStart_toEndOf="@+id/streamThumbNail"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <View
+            <ImageView
                 android:id="@+id/timeIcon"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:backgroundTint="@color/colorSurface"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/icon_clock"
+                app:backgroundTint="@color/colorOnSecondaryVariant"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/timeText"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/streamThumbNail"
-                app:layout_constraintStart_toStartOf="@+id/title"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@+id/streamThumbNail"
+                app:layout_constraintTop_toBottomOf="@+id/streamThumbNail" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/timeText"
                 style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
+                android:layout_marginEnd="16dp"
                 android:text="3:23"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/timeIcon"
@@ -67,13 +69,12 @@
                 app:layout_constraintStart_toEndOf="@+id/timeIcon"
                 app:layout_constraintTop_toTopOf="@+id/timeIcon" />
 
-            <View
+            <ImageView
                 android:id="@+id/eyeIcon"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:layout_marginStart="8dp"
-                android:backgroundTint="@color/colorSurface"
                 android:background="@drawable/eye_icon"
+                app:backgroundTint="@color/colorOnSecondaryVariant"
                 app:layout_constraintBottom_toBottomOf="@+id/timeText"
                 app:layout_constraintEnd_toStartOf="@+id/viewersCount"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -83,9 +84,10 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/viewersCount"
                 style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
+                android:layout_marginEnd="16dp"
                 android:text="78645"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/timeIcon"
@@ -94,13 +96,12 @@
                 app:layout_constraintStart_toEndOf="@+id/eyeIcon"
                 app:layout_constraintTop_toTopOf="@+id/timeIcon" />
 
-            <View
+            <ImageView
                 android:id="@+id/iconDate"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:layout_marginStart="8dp"
                 android:background="@drawable/icon_date"
-                android:backgroundTint="@color/colorSurface"
+                app:backgroundTint="@color/colorOnSecondaryVariant"
                 app:layout_constraintBottom_toBottomOf="@+id/timeText"
                 app:layout_constraintEnd_toStartOf="@+id/dateText"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -110,9 +111,10 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/dateText"
                 style="@style/TextAppearance.MaterialComponents.Caption"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
                 android:singleLine="true"
                 android:text="Yesterday"
                 android:textStyle="bold"

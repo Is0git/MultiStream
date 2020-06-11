@@ -4,9 +4,9 @@ import com.squareup.moshi.Json
 
 data class StreamSearches(
 
-    @Json(name = "_total")
+    @field:Json(name = "_total")
     val total: Int? = null,
 
-    @Json(name = "streams")
-    val streams: List<StreamsItem?>? = null
+    @field:Json(name = "streams")
+    val streams: List<StreamsItem>? = null
 )

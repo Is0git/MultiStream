@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 
 data class Clips(
 
-	@Json(name="data")
+	@field:Json(name="data")
 	val data: List<DataItem>? = null,
 
 	var pagination: Pagination? = null

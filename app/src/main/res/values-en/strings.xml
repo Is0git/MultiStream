@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">MultiStream</string>
+    <string name="home">Home</string>
+    <string name="browse">Browse</string>
+    <string name="Title">Title</string>
+    <string name="recommended_channels"><b>RECOMMENDED</b> CHANNELS</string>
+    <string name="top_games"><b>TOP</b> GAMES</string>
+    <string name="top_channels"><b>TOP</b> CHANNELS</string>
+    <string name="live_following_streams"><b>LIVE FOLLOWING</b> STREAMS</string>
+    <string name="following_channels"><b>FOLLOWING</b> STREAMS</string>
+    <string name="hello">HELLO <font color="#5e4eba">THERE</font></string>
+    <string name="twitch">Twitch</string>
+    <string name="followed_live_streams"><b>FOLLOWED</b> LIVE STREAMS</string>
+    <string name="followed_live_streams_html"><![CDATA[
+    <b>FOLLOWED</b> LIVE STREAMS
+    ]]>
+    </string>
+    <string name="streamers_you_follow"><b>STREAMERS</b> YOU FOLLOW</string>
+    <string name="synchronization">Synchronization</string>
+    <string name="mixer">Mixer</string>
+    <string name="visibility">Visibility</string>
+    <string name="show_mixer_content">show mixer content</string>
+    <string name="show_twitch_content">show twitch content</string>
+    <string name="no_image">https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png</string>
+    <string name="viewers">%d viewers</string>
+    <string name="followers">%d followers</string>
+    <string name="channels">%d channels</string>
+    <string name="followers_text">followers</string>
+    <string name="past_streams">Past streams</string>
+    <string name="video_clips">Video clips</string>
+    <string name="views">Views</string>
+    <string name="watch_now">WATCH NOW</string>
+    <string name="back">BACK</string>
+    <string name="sort">sort</string>
+    <string name="category">category</string>
+    <string name="period">period</string>
+    <string name="all">all</string>
+    <string name="upload">upload</string>
+    <string name="past_stream">past stream</string>
+    <string name="highlight">highlights</string>
+    <string name="time">time</string>
+    <string name="views_sort">views</string>
+    <string name="trending">trending</string>
+    <string name="day">day</string>
+    <string name="week">week</string>
+    <string name="month">month</string>
+    <string name="k_value">%.2fk</string>
+    <string name="default_value">default</string>
+    <string name="view_all">view all</string>
+    <string name="millions_value">%.2f million</string>
+    <string name="live_streams"> <![CDATA[
+    <b>live</b> streams
+    ]]>
+    </string>
+    <string name="followed_channels_html">
+        <![CDATA[
+    <b>FOLLOWED</b> CHANNELS
+    ]]>
+    </string>
+    <string name="top_games_html">
+        <![CDATA[
+    <b>TOP</b> GAMES
+    ]]>
+    </string>
+    <string name="top_channels_html">
+        <![CDATA[
+    <b>TOP</b> CHANNELS
+    ]]>
+    </string>
+    <string name="ui_customizations">UI customizations</string>
+    <string name="twitch_settings">Twitch settings</string>
+    <string name="mixer_settings">Mixer settings</string>
+    <string name="enable_dark_mode">enable dark mode</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="locale">Locale</string>
+    <string name="app_language">App language</string>
+    <string name="language_summary">choose language which will persist in the whole app</string>
+    <string name="discover">DISCOVER</string>
+    <string name="name">name</string>
+    <string name="_0" translatable="false">0</string>
+    <string-array name="language_values">
+        <item>@string/en</item>
+        <item>@string/ru</item>
+    </string-array>
+    <string name="asc">ASC</string>
+    <string name="desc">DESC</string>
+    <string name="choose_category">Choose category</string>
+    <string name="ru" translatable="false">русский</string>
+    <string name="en" translatable="false">english</string>
+    <string name="settings">Settings</string>
+</resources>

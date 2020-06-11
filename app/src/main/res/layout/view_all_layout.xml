@@ -13,7 +13,6 @@
             android:background="@android:color/transparent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
             android:layout_height="wrap_content">
-
             <include
                 android:id="@+id/view_app_bar"
                 layout="@layout/view_all_app_bar" />
@@ -44,7 +43,6 @@
             android:layout_marginBottom="120dp"
             android:elevation="36dp"
             android:visibility="invisible"
-            app:SpinKit_Color="@color/colorOnSecondaryVariant"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+            app:SpinKit_Color="@color/colorOnSecondaryVariant" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

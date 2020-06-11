@@ -3,21 +3,21 @@ package com.android.multistream.auth.platform_manager
 import android.content.SharedPreferences
 import android.util.Log
 import com.android.multistream.auth.platforms.Platform
+import com.android.multistream.di.qualifiers.AuthPreferencesQualifier
 import javax.inject.Inject
 
+const val AUTHTAG = "AUTHTAG"
 
 class PlatformManager @Inject constructor(
-    private val sharedPreferences: SharedPreferences,
-    val sharedPreferencesEditor: SharedPreferences.Editor
+    @AuthPreferencesQualifier val sharedPreferences: SharedPreferences,
+    @AuthPreferencesQualifier val sharedPreferencesEditor: SharedPreferences.Editor
 ) {
-
 
     val platforms: MutableMap<String, Platform<*, *, *, *>> = mutableMapOf()
 
 
     fun getAccessToken(platformClass: Class<out Platform<*, *, *, *>>): String? {
         val res = sharedPreferences.getString("ACCESS_TOKEN_${platformClass.simpleName}", null)
-
         Log.d("TESTPREF", "$res size: ${sharedPreferences.all}")
         return res
     }
@@ -36,6 +36,27 @@ class PlatformManager @Inject constructor(
 
     fun <T : Platform<*, *, *, *>> addPlatform(platform: T) {
         platforms[platform.javaClass.simpleName] = platform
+    }
+
+    /**
+     *@return return true if invalidation was successful or platform is already in invalidated state, otherwise false
+     */
+    fun invalidateToken(platformClass: Class<out Platform<*, *, *, *>>): Boolean {
+        val className = platformClass.javaClass.simpleName
+        val platform = getPlatform(platformClass)
+        if (!platform.isValidated) {
+            Log.i(AUTHTAG, "$className is not validated")
+            return true
+        }
+        sharedPreferences
+        sharedPreferences.edit().clear().commit()
+        val token = sharedPreferences.getString("ACCESS_TOKEN_${platformClass.simpleName}", null)
+        val refreshToken = sharedPreferences.getString("REFRESH_TOKEN${platformClass.simpleName}", null)
+        token
+        refreshToken
+        getPlatform(platformClass).platformManager.getAccessToken(platformClass)
+        platform.invalidateToken()
+        return true
     }
 
     @Suppress("UNCHECKED_CAST")

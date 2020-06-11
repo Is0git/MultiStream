@@ -10,24 +10,24 @@ data class DataItem(
 
 	val created_at: String? = null,
 
-	@Json(name="language")
+	@field:Json(name="language")
 	val language: String? = null,
 
 	val broadcaster_name: String? = null,
 
-	@Json(name="title")
+	@field:Json(name="title")
 	val title: String? = null,
 
 	val thumbnail_url: String? = null,
 
-	@Json(name="url")
+	@field:Json(name="url")
 	val url: String? = null,
 
 	val creator_id: String? = null,
 
 	val creator_name: String? = null,
 
-	@Json(name="id")
+	@field:Json(name="id")
 	val id: String? = null,
 
 	val view_count: Int? = null,

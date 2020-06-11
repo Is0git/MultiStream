@@ -1,0 +1,116 @@
+<resources>
+    <string name="app_name">MultiStream</string>
+    <string name="home">дом</string>
+    <string name="browse">просматривать</string>
+    <string name="Title">звание</string>
+    <string name="recommended_channels"><b>рекомендуемые</b> каналы</string>
+    <string name="top_games"><b>популярные</b> игры</string>
+    <string name="top_channels"><b>популярные</b> каналы</string>
+    <string name="live_following_streams"><b>прямые следующие</b> трансляции</string>
+    <string name="following_channels"><b>следующие</b>прямые трансляции</string>
+    <string name="hello"><font color="#5e4eba">Привет</font></string>
+    <string name="twitch">Twitch</string>
+    <string name="followed_live_streams"><b>последующие</b> прямые трансляции</string>
+    <string name="followed_live_streams_html"><![CDATA[
+    <b>последующие</b> прямые трансляции
+    ]]>
+    </string>
+    <string name="ru" translatable="true">русский</string>
+    <string name="en" translatable="true">english</string>
+    <string name="streamers_you_follow"><b>стримеры</b> вы следуете</string>
+    <string name="synchronization">синхронизация</string>
+    <string name="mixer">Mixer</string>
+    <string name="visibility">видимость</string>
+    <string name="show_mixer_content">Показать mixer данные</string>
+    <string name="show_twitch_content">Показать twitch данные</string>
+    <string name="no_image">https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png</string>
+    <string name="viewers">%d зрителей</string>
+    <string name="followers">%d последователи</string>
+    <string name="channels">%d каналы</string>
+    <string name="followers_text">последователи</string>
+    <string name="past_streams">прошлые прямые трансляции</string>
+    <string name="video_clips">видеоклипы</string>
+    <string name="views">взгляды</string>
+    <string name="watch_now">смотреть</string>
+    <string name="back">назад</string>
+    <string name="sort">Сортировать</string>
+    <string name="category">категория</string>
+    <string name="period">период</string>
+    <string name="all">все</string>
+    <string name="upload">загрузка</string>
+    <string name="past_stream">прошлые трансляция</string>
+    <string name="highlight">Основные моменты</string>
+    <string name="time">время</string>
+    <string name="views_sort">взгляды</string>
+    <string name="trending">трендовый</string>
+    <string name="day">день</string>
+    <string name="week">неделя</string>
+    <string name="month">месяц</string>
+    <string name="k_value">%.2fк</string>
+    <string name="default_value">дефолт</string>
+    <string name="view_all">посмотреть все</string>
+    <string name="millions_value">%.2f миллион</string>
+    <string name="live_streams"> <![CDATA[
+    <b>прямые</b> трансляция
+    ]]>
+    </string>
+    <string name="followed_channels_html">
+        <![CDATA[
+    <b>последующие</b> каналы
+    ]]>
+    </string>
+    <string name="top_games_html">
+        <![CDATA[
+    <b>популярные</b> игры
+    ]]>
+    </string>
+    <string name="top_channels_html">
+        <![CDATA[
+    <b>популярные</b> каналы
+    ]]>
+    </string>
+    <string name="ui_customizations">Настройки интерфейса</string>
+    <string name="twitch_settings">Twitch настройки</string>
+    <string name="mixer_settings">Mixer настройки</string>
+    <string name="enable_dark_mode">включить темный режим</string>
+    <string name="dark_mode">темный режим</string>
+    <string name="locale">язык</string>
+    <string name="app_language">язык приложения</string>
+    <string name="language_summary">выберите язык</string>
+    <string name="discover">обнаружить</string>
+    <string name="name">имя</string>
+    <string-array name="language_values">
+        <item>@string/en</item>
+        <item>@string/ru</item>
+    </string-array>
+    <string name="clear_all">ОЧИСТИТЬ ВСЕ</string>
+    <string name="clear_data_confirmation">удалить последние найденные поиски?</string>
+    <string name="search_for_content">поиск контента</string>
+    <string name="choose_platform">choose platform</string>
+    <string name="default_filter_name">Выберите категорию</string>
+    <string name="search">ПОИСК</string>
+    <string name="category_filter_title">Поиск</string>
+    <string name="default_chip_name">все</string>
+    <string name="streams_category">прямые трансляции</string>
+    <string name="games_category">игры</string>
+    <string name="channels_category">каналы</string>
+    <string name="filters">фильтры</string>
+    <string name="just_now">прямо сейчас</string>
+    <string name="minute_ago">minute ago</string>
+    <string name="minutes_ago">минуту назад</string>
+    <string name="hour_ago">час назад</string>
+    <string name="hours_ago">несколько часов назад</string>
+    <string name="yesterday">вчера</string>
+    <string name="less_week_ago">меньше недели назад</string>
+    <string name="more_week_ago">более недели назад</string>
+    <string name="long_time_ago">давным-давно</string>
+    <string name="default_time">пустой</string>
+    <string name="latest_searches">ПОСЛЕДНИЕ ПОИСКИ</string>
+    <string name="results">%d результаты</string>
+    <string name="asc">по возрастанию</string>
+    <string name="desc">по убыванию</string>
+    <string name="choose_category">Выберите категорию</string>
+    <string name="i_am_empty">ПУСТОТА :(</string>
+    <string name="no_items_peeposad">нет товаров PeepoSad</string>
+    <string name="settings">настройки</string>
+</resources>

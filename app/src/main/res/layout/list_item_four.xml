@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.example.multistreamaterialplaceholdercard.PlaceHolderMaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.example.multistreamaterialplaceholdercard.PlaceHolderMaterialCardView
         android:layout_width="170dp"
         android:layout_height="230dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="2dp"
-        android:background="?colorSurface"
         app:addGradient="false"
-        app:cardBackgroundColor="?colorSurface"
         app:cardCornerRadius="0dp"
-        app:cardElevation="1dp"
+        app:cardElevation="3dp"
         app:cardUseCompatPadding="true">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,6 +23,26 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/viewersCount"
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:background="@color/colorAccent"
+                android:textColor="@color/stripeTabLayoutTitle"
+                android:paddingStart="8dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="3dp"
+                android:paddingBottom="3dp"
+                android:singleLine="true"
+                android:text="count"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.83"
+                app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.example.multistreamaterialplaceholdercard.PlaceHolderMaterialCardView>
 </layout>

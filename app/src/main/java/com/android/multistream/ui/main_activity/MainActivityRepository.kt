@@ -1,24 +1,20 @@
 package com.android.multistream.ui.main_activity
 
 import android.app.Application
-import android.net.Uri
-import android.util.Log
-import com.android.multistream.auth.platforms.Platform
 import com.android.multistream.auth.platform_manager.PlatformManager
+import com.android.multistream.auth.platforms.Platform
 import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.di.main_activity.MainActivityScope
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.twitch.TwitchService
-import com.android.multistream.network.twitch.models.auth.Token
 import com.android.multistream.network.twitch.models.v5.current_user.CurrentUser
 import com.android.multistream.network.twitch.models.v5.followed_streams.StreamsItem
-import com.android.multistream.ui.main.fragments.browse_fragment.PageOffSetLoaderRepository
+import com.android.multistream.ui.main_activity.fragments.browse_fragment.PageOffSetLoaderRepository
 import com.android.multistream.utils.ResponseHandler
 import com.android.multistream.utils.ResponseHandler.execute
 import com.android.multistream.utils.ResponseHandler.handleNetworkException
+import com.android.player.ui.MultiStreamPlayerLayout.Companion.PLAYER_FULLSCREEN
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.supervisorScope
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -30,33 +26,11 @@ class MainActivityRepository @Inject constructor(
     val platformManager: PlatformManager
 ) : PageOffSetLoaderRepository<StreamsItem>(application, 0, 10, false) {
 
-    val twitchPlatformAuthLiveData =
-        platformManager.getPlatform(TwitchPlatform::class.java).statesLiveData
 
-    fun getAndSaveToken(code: Uri?, platformClass: Class<out Platform<*, *, *, *>>) {
-        platformManager.getPlatform(TwitchPlatform::class.java)
-            .saveAccessTokenBearer(code, Token::class.java)
-    }
+    var playerState = PLAYER_FULLSCREEN
 
     fun isValidated(clazz: Class<out Platform<*, *, *, *>>): Boolean {
         return platformManager.getPlatform(clazz).isValidated
-    }
-
-    suspend fun validateToken(clazz: Class<out Platform<*, *, *, *>>) {
-        platformManager.getPlatform(clazz).validateAccessToken()
-    }
-
-    suspend fun validateAccessTokens() {
-        delay(2500)
-        platformManager.platforms.forEach {
-            supervisorScope {
-                try {
-                    it.value.validateAccessToken()
-                } catch (ex: Exception) {
-                    Log.e("AUTH", ex.message)
-                }
-            }
-        }
     }
 
     fun getToken(clazz: Class<out Platform<*, *, *, *>>): String? {

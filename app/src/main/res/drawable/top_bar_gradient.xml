@@ -4,6 +4,6 @@
         android:endColor="@android:color/transparent"
         android:angle="-90"
         android:centerY="0.01"
-        android:centerColor="@color/colorSurface"
-        android:startColor="@color/colorSurface" />
+        android:centerColor="@color/toolbarGradientCenterColor"
+        android:startColor="@color/toolbarGradientStartColor" />
 </shape>

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/tools"
-    xmlns:motion="http://schemas.android.com/apk/res-auto">
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    app:ignore="NamespaceTypo">
 
     <Transition
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
-        motion:duration="1000">
+        motion:layoutDuringTransition="ignoreRequest">
 
         <KeyFrameSet>
             <KeyAttribute
@@ -15,7 +16,7 @@
                 motion:motionTarget="@+id/follow_button" />
             <KeyAttribute
                 android:translationX="100dp"
-                motion:framePosition="20"
+                motion:framePosition="10"
                 motion:motionTarget="@+id/follow_button" />
             <KeyAttribute
                 android:translationX="100dp"
@@ -23,7 +24,11 @@
                 motion:motionTarget="@+id/follow_button" />
             <KeyAttribute
                 android:alpha="1"
-                motion:framePosition="60"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/streamerUserName" />
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="50"
                 motion:motionTarget="@+id/streamerUserName" />
             <KeyAttribute
                 android:alpha="0"
@@ -64,6 +69,11 @@
                 motion:motionTarget="@+id/view2" />
             <KeyAttribute
                 android:rotationX="180"
+                motion:framePosition="85"
+                motion:motionTarget="@+id/view2"
+                motion:transitionEasing="decelerate" />
+            <KeyAttribute
+                android:rotationX="180"
                 motion:framePosition="100"
                 motion:motionTarget="@+id/view2"
                 motion:transitionEasing="decelerate" />
@@ -82,16 +92,7 @@
                 android:scaleY="1.5"
                 motion:framePosition="100"
                 motion:motionTarget="@+id/view2" />
-            <KeyAttribute
-                android:scaleX="1.0"
-                android:scaleY="1.0"
-                motion:framePosition="35"
-                motion:motionTarget="@+id/watchButton" />
-            <KeyAttribute
-                android:scaleX="0.01"
-                android:scaleY="1"
-                motion:framePosition="80"
-                motion:motionTarget="@+id/watchButton" />
+
             <KeyAttribute
                 android:translationX="-80dp"
                 motion:framePosition="20"
@@ -100,11 +101,7 @@
                 android:translationX="-50dp"
                 motion:framePosition="20"
                 motion:motionTarget="@+id/back" />
-            <KeyAttribute
-                android:scaleX="0.01"
-                android:scaleY="0"
-                motion:framePosition="100"
-                motion:motionTarget="@+id/watchButton" />
+
             <KeyCycle
                 android:rotation="10"
                 motion:framePosition="100"

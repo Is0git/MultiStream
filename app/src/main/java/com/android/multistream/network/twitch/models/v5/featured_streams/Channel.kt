@@ -6,57 +6,57 @@ import com.squareup.moshi.Json
 
 data class Channel(
 
-    @Json(name = "game")
+    @field:Json(name = "game")
     val game: String? = null,
 
-    @Json(name = "mature")
+    @field:Json(name = "mature")
     val mature: Boolean? = null,
 
-    @Json(name = "video_banner")
+    @field:Json(name = "video_banner")
     val videoBanner: String? = null,
 
-    @Json(name = "created_at")
+    @field:Json(name = "created_at")
     val createdAt: String? = null,
 
-    @Json(name = "language")
+    @field:Json(name = "language")
     val language: String? = null,
 
-    @Json(name = "profile_banner_background_color")
+    @field:Json(name = "profile_banner_background_color")
     val profileBannerBackgroundColor: Any? = null,
 
-    @Json(name = "display_name")
+    @field:Json(name = "display_name")
     val displayName: String? = null,
 
-    @Json(name = "url")
+    @field:Json(name = "url")
     val url: String? = null,
 
-    @Json(name = "followers")
+    @field:Json(name = "followers")
     val followers: Int? = null,
 
-    @Json(name = "profile_banner")
+    @field:Json(name = "profile_banner")
     val profileBanner: String? = null,
 
-    @Json(name = "partner")
+    @field:Json(name = "partner")
     val partner: Boolean? = null,
 
-    @Json(name = "updated_at")
+    @field:Json(name = "updated_at")
     val updatedAt: String? = null,
 
-    @Json(name = "broadcaster_language")
+    @field:Json(name = "broadcaster_language")
     val broadcasterLanguage: String? = null,
 
-    @Json(name = "name")
+    @field:Json(name = "name")
     val name: String? = null,
 
-    @Json(name = "logo")
+    @field:Json(name = "logo")
     val logo: String? = null,
 
-    @Json(name = "_id")
+    @field:Json(name = "_id")
     val id: Int? = null,
 
-    @Json(name = "views")
+    @field:Json(name = "views")
     val views: Int? = null,
 
-    @Json(name = "status")
+    @field:Json(name = "status")
     val status: String? = null
 )

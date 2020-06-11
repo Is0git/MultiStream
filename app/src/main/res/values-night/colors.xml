@@ -12,4 +12,9 @@
     <color name="colorOnSecondaryVariant">#B43BFF</color>
     <color name="headlineShadowColor">#202020</color>
     <color name="stripeTabLayoutTitle">#ffffff</color>
+    <color name="toolbarGradientCenterColor">#090A0E</color>
+    <color name="toolbarGradientStartColor">#090A0E</color>
+    <color name="bottomNavColor">#172450</color>
+    <color name="chatColor">#000000</color>
+    <color name="navBgColor">#000000</color>
 </resources>

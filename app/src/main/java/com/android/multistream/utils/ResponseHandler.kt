@@ -1,6 +1,8 @@
 package com.android.multistream.utils
 
 import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
 import android.util.Log
 import android.widget.Toast
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +14,7 @@ object ResponseHandler {
 
     private const val RETROFIT_RESPONSE_TAG = "RETROFIT_RESPONSE"
 
-    suspend fun handleResponse(response: Response<*>, appContext: Application?): Boolean {
+    suspend fun handleResponse(response: Response<*>, appContext: Context?): Boolean {
         return response.run {
             when {
                 isSuccessful -> onSuccess(response)
@@ -21,20 +23,11 @@ object ResponseHandler {
         }
     }
 
-    private suspend fun onFailed(response: Response<*>, appContext: Application?): Boolean {
+    private suspend fun onFailed(response: Response<*>, appContext: Context?): Boolean {
         val message = when (response.code()) {
             in 500..599 -> "unauthorized, sync your accounts"
             in 400..500 -> "the request is not available right now or doesn't exist"
             else -> "Something went wrong.."
-        }
-        appContext?.also {
-            withContext(Dispatchers.Main) {
-                Toast.makeText(
-                    it,
-                    "${response.code()}: $message",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
         }
         Log.e(
             RETROFIT_RESPONSE_TAG,
@@ -48,16 +41,29 @@ object ResponseHandler {
         return true
     }
 
-   suspend fun handleNetworkException(exception: Exception, appContext: Application?) {
+    suspend fun handleNetworkException(exception: Exception, appContext: Context?) {
         when (exception) {
             is IOException -> {
-                appContext?.also { withContext(Dispatchers.Main) {Toast.makeText(it, "NO INTERNET", Toast.LENGTH_SHORT).show()} }
+                Log.i( RETROFIT_RESPONSE_TAG, "trouble making a request")
             }
+            is NoInternetException -> {
+                Log.i( RETROFIT_RESPONSE_TAG, "no internet")
+
+            }
+            else ->  Log.i( RETROFIT_RESPONSE_TAG, "${exception.message}")
         }
     }
 
-    suspend fun <T> execute(appContext: Application, action: suspend () -> Response<T>): T? {
+    suspend fun <T> execute(appContext: Context, action: suspend () -> Response<T>): T? {
         try {
+            val connectivityManager =
+                appContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                val connected =ConnectivityHelper.checkIfConnectedToInternet(connectivityManager)
+            if (!connected) Toast.makeText(
+                appContext,
+                "Connect to internet",
+                Toast.LENGTH_SHORT
+            ).show()
             val result = action()
             if (handleResponse(result, appContext)) return result.body()
         } catch (ex: Exception) {
@@ -65,4 +71,8 @@ object ResponseHandler {
         }
         return null
     }
+}
+
+class NoInternetException : Exception() {
+    override val message: String? = "Connect to the internet"
 }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <data>
 
         <import type="com.android.multistream.utils.PlatformTypesKt" />
@@ -8,17 +7,11 @@
         <variable
             name="topItem"
             type="com.android.multistream.network.twitch.models.v5.top_games.TopItem" />
-
-        <variable
-            name="clickListener"
-            type="com.android.multistream.ui.main.fragments.browse_fragment.view_pager_fragments.twitch_fragment.OnGameCategoryListener" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="100dp"
-        android:layout_height="140dp"
-        android:onClick="@{() -> clickListener.onGameClick(PlatformTypesKt.TWITCH,topItem.viewers, String.valueOf(topItem.channels), topItem.game.name, topItem.game.box.large, String.valueOf(topItem.game._id) )}">
+        android:layout_height="140dp">
         <!--        <com.google.android.material.textview.MaterialTextView-->
         <!--            android:id="@+id/textName"-->
         <!--            style="@style/TextAppearance.MaterialComponents.Body2"-->

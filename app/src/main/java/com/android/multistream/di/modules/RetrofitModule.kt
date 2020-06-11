@@ -1,8 +1,12 @@
 package com.android.multistream.di.modules
 
+import android.app.Application
+import android.content.Context
+import android.net.ConnectivityManager
 import com.android.multistream.auth.platform_manager.PlatformManager
 import com.android.multistream.auth.platforms.TwitchPlatform
 import com.android.multistream.di.qualifiers.MixerQualifier
+import com.android.multistream.di.qualifiers.TwitchAuthQualifier
 import com.android.multistream.di.qualifiers.TwitchQualifier
 import com.android.multistream.network.mixer.MixerService
 import com.android.multistream.network.mixer.adapters.ChannelSearchesAdapter
@@ -14,6 +18,9 @@ import com.android.multistream.network.twitch.adapters.StreamSearchesAdapter
 import com.android.multistream.network.twitch.adapters.TopGamesTwitchAdapter
 import com.android.multistream.network.twitch.constants.TWITCH_URL
 import com.android.multistream.network.twitch.constants.URL
+import com.android.multistream.utils.ConnectivityHelper
+import com.android.multistream.utils.NoInternetException
+import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -39,10 +46,18 @@ object RetrofitModule {
     @Provides
     @Singleton
     @JvmStatic
+    fun getConnectivityManager(application: Application) : ConnectivityManager {
+        return application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    }
+
+    @Provides
+    @Singleton
+    @JvmStatic
     @TwitchQualifier
     fun getTwitchOkHttpClient(
         interceptor: HttpLoggingInterceptor,
-        platformManager: PlatformManager
+        platformManager: PlatformManager,
+        connectivityManager: ConnectivityManager
     ) = OkHttpClient.Builder()
         .addInterceptor(interceptor)
         .authenticator(object : Authenticator {
@@ -81,7 +96,21 @@ object RetrofitModule {
     @Provides
     @Singleton
     @JvmStatic
-    fun getRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
+    @TwitchAuthQualifier
+    fun twitchAuthOkHttpClient(interceptor: HttpLoggingInterceptor) : OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .connectTimeout(100, TimeUnit.SECONDS)
+            .writeTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(300, TimeUnit.SECONDS)
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    @JvmStatic
+    @TwitchAuthQualifier
+    fun getRetrofit(@TwitchAuthQualifier client: OkHttpClient): Retrofit = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create())
         .client(client)
         .baseUrl(URL)

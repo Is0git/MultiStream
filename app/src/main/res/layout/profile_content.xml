@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.android.multistream.ui.main.fragments.profile_fragment.ProfileMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.android.multistream.ui.main_activity.fragments.profile_fragment.ProfileMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/profileAppBar"
     android:layout_width="match_parent"
@@ -91,7 +91,7 @@
         android:fontFamily="@font/header_font"
         android:textColor="@color/stripeTabLayoutTitle"
         android:lines="1"
-        android:text="name"
+        android:text="@string/name"
         android:textAlignment="center"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/right_guideline"
@@ -114,7 +114,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/agencyfb"
         android:lines="1"
-        android:text="0"
+        android:text="@string/_0"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/followersCount"
@@ -151,7 +151,7 @@
         android:layout_marginTop="48dp"
         android:fontFamily="@font/agencyfb"
         android:lines="1"
-        android:text="0"
+        android:text="@string/_0"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/banner_image"
@@ -219,4 +219,4 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="32dp" />
-</com.android.multistream.ui.main.fragments.profile_fragment.ProfileMotionLayout>
+</com.android.multistream.ui.main_activity.fragments.profile_fragment.ProfileMotionLayout>

@@ -12,4 +12,9 @@
     <color name="colorOnSecondaryVariant">#B43BFF</color>
     <color name="headlineShadowColor">#868585</color>
     <color name="stripeTabLayoutTitle">#ffffff</color>
+    <color name="toolbarGradientCenterColor">@android:color/transparent</color>
+    <color name="toolbarGradientStartColor">#C1C1FF</color>
+    <color name="bottomNavColor">#ffffff</color>
+    <color name="chatColor">#ffffff</color>
+    <color name="navBgColor">#ffffff</color>
 </resources>

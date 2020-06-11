@@ -12,6 +12,7 @@ class ChannelSearchesAdapter {
     fun getChannelSearches(channelSearches: List<ChannelSearches>): List<SearchViewLayout.SearchData>? {
         return channelSearches.map {
             SearchViewLayout.SearchData(
+                it.userId,
                 it.user?.username,
                 it.user?.avatarUrl ?: "https://mixer.com/api/v1/users/175971128/avatar?w=64&h=64",
                 SearchViewLayout.CHANNELS,

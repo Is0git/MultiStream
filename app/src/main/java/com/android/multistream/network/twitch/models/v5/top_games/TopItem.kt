@@ -8,4 +8,18 @@ data class TopItem(
     val game: Game? = null,
     val viewers: Int? = null,
     val channels: Int? = null
-) : Parcelable
+) : Parcelable {
+    companion object {
+        fun createTopItem(
+            gameId: Int?,
+            name: String?,
+            gameImage: String?,
+            channels: Int?,
+            viewers: Int?
+        ): TopItem {
+            val box = Box(null, null, gameImage, null)
+            val game = Game(null, null, name, _id = gameId, box = box)
+            return TopItem(game, viewers, channels)
+        }
+    }
+}

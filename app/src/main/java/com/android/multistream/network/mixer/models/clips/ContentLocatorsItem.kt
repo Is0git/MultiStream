@@ -4,9 +4,9 @@ import com.squareup.moshi.Json
 
 data class ContentLocatorsItem(
 
-	@Json(name="locatorType")
+	@field:Json(name="locatorType")
 	val locatorType: String? = null,
 
-	@Json(name="uri")
+	@field:Json(name="uri")
 	val uri: String? = null
 )

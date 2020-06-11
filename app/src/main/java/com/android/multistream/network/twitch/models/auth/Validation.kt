@@ -6,15 +6,15 @@ import com.squareup.moshi.Json
 
 data class Validation(
 
-    @Json(name = "user_id")
+    @field:Json(name = "user_id")
     val userId: String? = null,
 
-    @Json(name = "scopes")
+    @field:Json(name = "scopes")
     val scopes: List<String?>? = null,
 
-    @Json(name = "login")
+    @field:Json(name = "login")
     val login: String? = null,
 
-    @Json(name = "client_id")
+    @field:Json(name = "client_id")
     val clientId: String? = null
 )

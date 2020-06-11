@@ -6,6 +6,6 @@ import com.squareup.moshi.Json
 
 data class Meta(
 
-    @Json(name = "size")
+    @field:Json(name = "size")
     val size: List<Int>? = null
 )

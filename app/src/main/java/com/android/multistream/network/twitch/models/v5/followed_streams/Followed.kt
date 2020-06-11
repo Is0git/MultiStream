@@ -6,6 +6,6 @@ import com.squareup.moshi.Json
 
 data class Followed(
 
-    @Json(name = "streams")
+    @field:Json(name = "streams")
     val streams: MutableList<StreamsItem>? = null
 )

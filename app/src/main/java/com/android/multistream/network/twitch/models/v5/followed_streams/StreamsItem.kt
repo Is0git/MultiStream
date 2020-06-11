@@ -1,38 +1,52 @@
 package com.android.multistream.network.twitch.models.v5.followed_streams
 
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
-
+@Parcelize
 data class StreamsItem(
 
-    @Json(name = "preview")
+    @field:Json(name = "preview")
     val preview: Preview? = null,
 
-    @Json(name = "is_playlist")
+    @field:Json(name = "is_playlist")
     val isPlaylist: Boolean? = null,
 
-    @Json(name = "video_height")
+    @field:Json(name = "video_height")
     val videoHeight: Int? = null,
 
-    @Json(name = "game")
+    @field:Json(name = "game")
     val game: String? = null,
 
-    @Json(name = "viewers")
+    @field:Json(name = "viewers")
     val viewers: Int? = null,
 
-    @Json(name = "delay")
+    @field:Json(name = "delay")
     val delay: Int? = null,
 
-    @Json(name = "average_fps")
+    @field:Json(name = "average_fps")
     val averageFps: Int? = null,
 
-    @Json(name = "channel")
+    @field:Json(name = "channel")
     val channel: Channel? = null,
 
-    @Json(name = "created_at")
+    @field:Json(name = "created_at")
     val createdAt: String? = null,
 
-    @Json(name = "_id")
-    val id: Long? = null
-)
+    @field:Json(name = "_id")
+    val _id: Long? = null
+) : Parcelable {
+    companion object {
+        fun buildStreamItem(
+            userId: Int?,
+            name: String?,
+            logo: String?
+        ) : StreamsItem{
+            val channel = Channel(display_name = name, logo = logo, _id = userId)
+            return  StreamsItem(channel = channel)
+        }
+    }
+}

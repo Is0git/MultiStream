@@ -24,7 +24,7 @@
         android:id="@+id/followers_icon"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="4dp"
         android:background="@drawable/eye_icon"
         android:backgroundTint="@color/colorOnSecondaryVariant"
@@ -61,8 +61,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/live_image"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/followers_icon"
         app:layout_constraintTop_toTopOf="@+id/followers_icon"
         app:layout_constraintVertical_bias="0.0" />
@@ -74,9 +73,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="32dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/live_image"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/image"
         app:layout_constraintTop_toTopOf="parent"
         app:textAllCaps="true" />
@@ -100,13 +99,4 @@
         app:layout_constraintTop_toBottomOf="@id/text"
         app:textAllCaps="true" />
 
-    <ImageView
-        android:id="@+id/live_image"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/live_vector_animated"
-        app:layout_constraintBottom_toBottomOf="@+id/image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/image" />
 </androidx.constraintlayout.widget.ConstraintLayout>

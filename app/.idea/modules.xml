@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app.iml" group="multistream/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-43821154/daggerviewmodel.iml" filepath="$PROJECT_DIR$/.idea/modules/-43821154/daggerviewmodel.iml" group="multistream/daggerviewmodel" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1858403507/multi-stream-splash-screen.iml" filepath="$PROJECT_DIR$/.idea/modules/1858403507/multi-stream-splash-screen.iml" group="multistream/multi-stream-splash-screen" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/601041361/multistream.iml" filepath="$PROJECT_DIR$/.idea/modules/601041361/multistream.iml" group="multistream" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/593119571/multistreamaterialplaceholdercard.iml" filepath="$PROJECT_DIR$/.idea/modules/593119571/multistreamaterialplaceholdercard.iml" group="multistream/multistreamaterialplaceholdercard" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-635223780/multistreamchat.iml" filepath="$PROJECT_DIR$/.idea/modules/-635223780/multistreamchat.iml" group="multistream/multistreamchat" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1957959540/multistreamhidescrollview.iml" filepath="$PROJECT_DIR$/.idea/modules/1957959540/multistreamhidescrollview.iml" group="multistream/multistreamhidescrollview" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-957916435/multistreamnavigationdrawer.iml" filepath="$PROJECT_DIR$/.idea/modules/-957916435/multistreamnavigationdrawer.iml" group="multistream/multistreamnavigationdrawer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2038274450/multistreamplayer.iml" filepath="$PROJECT_DIR$/.idea/modules/-2038274450/multistreamplayer.iml" group="multistream/multistreamplayer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1477422906/multistreamsearchview.iml" filepath="$PROJECT_DIR$/.idea/modules/-1477422906/multistreamsearchview.iml" group="multistream/multistreamsearchview" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1835909960/multistreamstripetablayout.iml" filepath="$PROJECT_DIR$/.idea/modules/-1835909960/multistreamstripetablayout.iml" group="multistream/multistreamstripetablayout" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/90211960/overscrollbehavior.iml" filepath="$PROJECT_DIR$/.idea/modules/90211960/overscrollbehavior.iml" group="multistream/overscrollbehavior" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2069948904/pagination.iml" filepath="$PROJECT_DIR$/.idea/modules/-2069948904/pagination.iml" group="multistream/pagination" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/692096483/stripesliderview.iml" filepath="$PROJECT_DIR$/.idea/modules/692096483/stripesliderview.iml" group="multistream/stripesliderview" />
+    </modules>
+  </component>
+</project>

@@ -4,15 +4,8 @@ data class GamesItem(
 
 
     val giantbombId: Int? = null,
-
-
     val name: String? = null,
-
-
     val logo: Logo? = null,
-
     val box: Box? = null,
-
-
-    val id: Int? = null
+    val _id: Int? = null
 )

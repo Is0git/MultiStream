@@ -8,9 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorSurface"
+        android:scrollbarStyle="insideOverlay"
         android:fadeScrollbars="true"
-        app:bottomHideHeight="35dp"
-        app:topHideHeight="32dp">
+        app:bottomHideHeight="85dp"
+        app:topHideHeight="85dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,19 +33,20 @@
                 android:layout_marginTop="64dp"
                 android:fontFamily="@font/header_font"
                 android:lines="1"
-                android:text="DISCOVER"
+                android:text="@string/discover"
                 android:textAlignment="textStart"
                 android:textColor="@color/colorOnSurface"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:textAllCaps="true" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/channelsViewPager"
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
                 android:layout_marginTop="20dp"
-                android:background="?attr/colorSurface"
+                android:background="@android:color/transparent"
                 android:elevation="1dp"
                 android:paddingBottom="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/homeText"
@@ -67,11 +69,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/header_font"
                 android:text="@string/twitch"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/top_games_view_all_text"
                 app:layout_constraintStart_toEndOf="@id/twitchLogo"
-                app:layout_constraintTop_toBottomOf="@id/channelsViewPager"/>
+                app:layout_constraintTop_toBottomOf="@id/channelsViewPager" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/twitchTopGamesText"
@@ -79,6 +83,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/top_games"
+                app:layout_constraintEnd_toEndOf="@+id/twitchText"
                 app:layout_constraintStart_toStartOf="@id/twitchText"
                 app:layout_constraintTop_toBottomOf="@id/twitchText" />
 
@@ -86,7 +91,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/top_games_view_all_text"
                 style="@style/TextAppearance.MaterialComponents.Body2"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="@string/view_all"
@@ -95,23 +100,22 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/twitchTopGamesText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/twitchText"
                 app:layout_constraintTop_toTopOf="@+id/twitchText"
                 app:textAllCaps="true" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/twitch_followed_live_streams_view_all_text"
                 style="@style/TextAppearance.MaterialComponents.Body2"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="@string/view_all"
+                android:singleLine="true"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/colorOnSecondaryVariant"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/twitchFollowingLiveStreamsText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/twitchFollowingLiveStreamsText"
                 app:layout_constraintTop_toTopOf="@+id/twitchFollowingLiveStreamsText"
                 app:textAllCaps="true" />
 
@@ -119,12 +123,11 @@
                 android:id="@+id/twitchTopGamesList"
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
-                android:layout_marginTop="@dimen/itemMargin"
                 android:background="@color/colorSurface"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/twitchTopGamesText"
+                app:layout_constraintTop_toBottomOf="@+id/twitchTopGamesText"
                 tools:listitem="@layout/list_item_one" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -132,8 +135,10 @@
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/itemMargin"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/followed_live_streams"
+                app:layout_constraintEnd_toStartOf="@+id/twitch_followed_live_streams_view_all_text"
                 app:layout_constraintStart_toStartOf="@id/headlineGuideline"
                 app:layout_constraintTop_toBottomOf="@id/twitchTopGamesList" />
 
@@ -142,7 +147,7 @@
                 android:id="@+id/liveFollowingStreamsList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/itemMargin"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -155,8 +160,10 @@
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/itemMargin"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/streamers_you_follow"
+                app:layout_constraintEnd_toStartOf="@+id/twitch_streamers_you_follow_view_all_text"
                 app:layout_constraintStart_toStartOf="@id/headlineGuideline"
                 app:layout_constraintTop_toBottomOf="@id/liveFollowingStreamsList" />
 
@@ -168,12 +175,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:text="@string/view_all"
+                android:singleLine="true"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/colorOnSecondaryVariant"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/twitchFollowingChannelsText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/twitchFollowingChannelsText"
                 app:layout_constraintTop_toTopOf="@+id/twitchFollowingChannelsText"
                 app:textAllCaps="true" />
 
@@ -182,6 +189,7 @@
                 android:id="@+id/followingStreamsList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -189,37 +197,69 @@
                 app:layout_constraintTop_toBottomOf="@id/twitchFollowingChannelsText"
                 tools:listitem="@layout/list_item_three" />
 
+            <ImageView
+                android:id="@+id/mixerLogo"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/mixer_small_logo"
+                android:backgroundTint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="@+id/mixerTopGamesText"
+                app:layout_constraintStart_toStartOf="@id/headlineGuideline"
+                app:layout_constraintTop_toTopOf="@+id/mixerText" />
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/mixerText"
-                style="@style/TextAppearance.MaterialComponents.Headline6"
+                style="@style/TextAppearance.MaterialComponents.Headline5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/header_font"
                 android:text="@string/mixer"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/headlineGuideline"
-                app:layout_constraintTop_toBottomOf="@id/followingStreamsList" />
+                app:layout_constraintEnd_toStartOf="@+id/mixer_top_games_view_all_text"
+                app:layout_constraintStart_toEndOf="@id/mixerLogo"
+                app:layout_constraintTop_toBottomOf="@+id/followingStreamsList" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/mixerRecommendedChannels"
+                android:id="@+id/mixerTopGamesText"
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/itemMargin"
                 android:text="@string/top_games"
-                app:layout_constraintStart_toStartOf="@id/headlineGuideline"
+                app:layout_constraintEnd_toEndOf="@+id/mixerText"
+                app:layout_constraintStart_toStartOf="@id/mixerText"
                 app:layout_constraintTop_toBottomOf="@id/mixerText" />
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mixerRecommendedChannelsList"
-                android:layout_width="match_parent"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mixer_top_games_view_all_text"
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/view_all"
+                android:textAlignment="viewEnd"
+                android:singleLine="true"
+                android:textColor="@color/colorOnSecondaryVariant"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/mixerTopGamesText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/mixerText"
+                app:textAllCaps="true" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mixerTopGamesList"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
                 android:layout_marginTop="@dimen/itemMargin"
+                android:background="@color/colorSurface"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mixerRecommendedChannels"
+                app:layout_constraintTop_toBottomOf="@id/mixerTopGamesText"
                 tools:listitem="@layout/list_item_one" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -227,10 +267,44 @@
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/itemMargin"
-                android:text="@string/top_games"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/top_channels"
+                app:layout_constraintEnd_toStartOf="@+id/mixer_top_channels_view_all_text"
                 app:layout_constraintStart_toStartOf="@id/headlineGuideline"
-                app:layout_constraintTop_toBottomOf="@id/mixerRecommendedChannelsList" />
+                app:layout_constraintTop_toBottomOf="@id/mixerTopGamesList" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/mixer_top_channels_view_all_text"
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/view_all"
+                android:textAlignment="viewEnd"
+                android:singleLine="true"
+                android:textColor="@color/colorOnSecondaryVariant"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/mixerTopChannelsText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/mixerTopChannelsText"
+                app:textAllCaps="true" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mixerTopChannelsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
+                android:background="@color/colorSurface"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mixer_top_channels_view_all_text"
+                tools:listitem="@layout/list_item_one" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.example.multistreamhidescrollview.HideScrollView>

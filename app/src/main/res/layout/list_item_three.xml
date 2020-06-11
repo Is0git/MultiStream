@@ -9,10 +9,8 @@
         android:layout_marginEnd="2dp"
         app:addGradient="false"
         app:placeHolderType="stream_place_holder"
-        app:cardBackgroundColor="?colorSurface"
-        android:background="?colorSurface"
         app:cardCornerRadius="0dp"
-        app:cardElevation="1dp"
+        app:cardElevation="3dp"
         app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -4,7 +4,7 @@
     android:id="@+id/pickers"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorSurface">
+    android:background="@color/colorBackground">
 
     <View
         android:id="@+id/divider3"
@@ -26,6 +26,7 @@
         android:textColorHint="@color/colorOnSurface"
         app:boxCornerRadiusBottomEnd="2dp"
         app:boxCornerRadiusBottomStart="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sortPicker"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,10 +38,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:editable="false"
-            android:textColor="@color/colorPrimary"
             android:hint="@string/category"
-            android:textColorHighlight="@color/colorPrimary"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColor="@color/colorPrimary"
+            android:textColorHighlight="@color/colorPrimary" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -52,7 +53,7 @@
         android:textColorHint="@color/colorOnSurface"
         app:boxCornerRadiusBottomEnd="2dp"
         app:boxCornerRadiusBottomStart="2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/categoryPicker"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/periodPicker"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/categoryPicker"
@@ -80,6 +81,7 @@
         android:textColorHint="@color/colorOnSurface"
         app:boxCornerRadiusBottomEnd="2dp"
         app:boxCornerRadiusBottomStart="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/sortPicker"

@@ -8,38 +8,38 @@ data class DataItem(
 
 	val user_name: String? = null,
 
-	@Json(name="description")
+	@field:Json(name="description")
 	val description: String? = null,
 
 	val created_at: String? = null,
 
-	@Json(name="language")
+	@field:Json(name="language")
 	val language: String? = null,
 
-	@Json(name="title")
+	@field:Json(name="title")
 	val title: String? = null,
 
 	val thumbnail_url: String? = null,
 
-	@Json(name="type")
+	@field:Json(name="type")
 	val type: String? = null,
 
-	@Json(name="url")
+	@field:Json(name="url")
 	val url: String? = null,
 
-	@Json(name="duration")
+	@field:Json(name="duration")
 	val duration: String? = null,
 
-	@Json(name="viewable")
+	@field:Json(name="viewable")
 	val viewable: String? = null,
 
 	val user_id: String? = null,
 
-	@Json(name="id")
+	@field:Json(name="id")
 	val id: String? = null,
 
 	val published_at: String? = null,
 
-	@Json(name="view_count")
+	@field:Json(name="view_count")
 	val view_count: Int? = null
 )

@@ -1,52 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="Settings"
+    android:icon="@drawable/channels_icon"
     app:allowDividerAbove="true"
     app:allowDividerBelow="true">
-
+    <PreferenceCategory app:title="Settings" app:layout="@layout/settings_layout"/>
     <PreferenceCategory
-        app:key="sync"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:key="sync"
         app:title="@string/synchronization">
         <SwitchPreference
-            app:defaultValue="true"
-            app:key="twitch_sync"
+            android:defaultValue="false"
             android:summary="if on, synchronizes uses your twitch account data"
             app:allowDividerBelow="true"
-            app:icon="@drawable/twitch_small_logo"
+            app:defaultValue="false"
+            app:icon="@drawable/twitch"
+            app:key="@string/twitch_sync"
             app:title="@string/twitch" />
         <SwitchPreference
-            app:defaultValue="true"
-            app:key="mixer_sync"
             android:summary="if on, synchronizes uses your mixer account data"
             app:allowDividerAbove="true"
             app:allowDividerBelow="true"
+            app:defaultValue="false"
+            app:enabled="false"
             app:icon="@drawable/mixer_small_logo"
-            app:title="@string/mixer" />
+            app:key="Mixer_sync"
+            app:title="@string/mixer_sync" />
     </PreferenceCategory>
 
     <PreferenceCategory
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="TWITCH SETTINGS">
+        app:title="@string/twitch_settings">
         <CheckBoxPreference
-            app:defaultValue="true"
-            app:key="twitch_visibility"
             android:summary="@string/show_twitch_content"
             app:allowDividerBelow="true"
+            app:defaultValue="true"
+            app:key="twitch_visibility"
             app:title="@string/visibility" />
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:defaultValue="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="MIXER SETTINGS">
+        app:title="@string/mixer_settings">
         <CheckBoxPreference
-            app:key="mixer_visibility"
             android:summary="@string/show_mixer_content"
+            android:defaultValue="true"
             app:allowDividerBelow="true"
+            app:key="mixer_visibility"
             app:title="@string/visibility" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:key="ui_customizations"
+        app:title="@string/ui_customizations">
+        <SwitchPreference
+            android:summary="@string/enable_dark_mode"
+            app:allowDividerBelow="true"
+            app:key="dark_mode"
+            app:title="@string/dark_mode" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:key="locale"
+        app:title="@string/locale">
+        <ListPreference
+            app:key="@string/locale_list"
+            app:defaultValue="@string/en"
+            app:title="@string/app_language"
+            android:summary="@string/language_summary"
+            app:entries="@array/language_values"
+            app:entryValues="@array/language_values"/>
     </PreferenceCategory>
 </PreferenceScreen>

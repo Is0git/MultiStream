@@ -28,6 +28,7 @@ class MixerAdapter {
     fun topGamesSearches(topGames: List<MixerTopGames>): List<GameSearchesAdapter.GamesSearchData>? {
         return topGames.map {
             GameSearchesAdapter.GamesSearchData(
+                it.id,
                 it.name,
                 it.coverUrl
                     ?: "https://static.mixer.com/img/design/stream-categories/png/default.png",
@@ -41,6 +42,7 @@ class MixerAdapter {
     fun getTopStreamSearches(list: List<ChannelSearches>): List<SearchListAdapter.StreamSearchData?> {
         return list.map {
             SearchListAdapter.StreamSearchData(
+                it.id,
                 it.name,
                 it.type?.backgroundUrl,
                 it.viewersCurrent ?: 0,

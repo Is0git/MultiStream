@@ -8,9 +8,15 @@
         android:icon="@drawable/home_icon"
         android:title="@string/home" />
     <item
-        android:id="@+id/browse"
+        android:id="@+id/library"
         app:showAsAction="never"
+        android:title="@string/downloads"
         android:menuCategory="secondary"
-        android:icon="@drawable/browse_icon"
-        android:title="@string/browse" />
+        android:icon="@drawable/download_icon" />
+    <item
+    android:id="@+id/browse"
+    app:showAsAction="never"
+    android:menuCategory="secondary"
+    android:icon="@drawable/browse_icon"
+    android:title="@string/browse" />
 </menu>

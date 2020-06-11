@@ -4,24 +4,24 @@ import com.squareup.moshi.Json
 
 data class VodsItem(
 
-	@Json(name="createdAt")
+	@field:Json(name="createdAt")
 	val createdAt: String? = null,
 
-	@Json(name="baseUrl")
+	@field:Json(name="baseUrl")
 	val baseUrl: String? = null,
 
-	@Json(name="data")
+	@field:Json(name="data")
 	val data: Data? = null,
 
-	@Json(name="format")
+	@field:Json(name="format")
 	val format: String? = null,
 
-	@Json(name="id")
+	@field:Json(name="id")
 	val id: Int? = null,
 
-	@Json(name="recordingId")
+	@field:Json(name="recordingId")
 	val recordingId: Int? = null,
 
-	@Json(name="updatedAt")
+	@field:Json(name="updatedAt")
 	val updatedAt: String? = null
 )

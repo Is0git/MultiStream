@@ -4,39 +4,39 @@ import com.squareup.moshi.Json
 
 data class MixerVods(
 
-	@Json(name="duration")
+	@field:Json(name="duration")
 	val duration: Double? = null,
 
-	@Json(name="createdAt")
+	@field:Json(name="createdAt")
 	val createdAt: String? = null,
 
-	@Json(name="name")
+	@field:Json(name="name")
 	val name: String? = null,
 
-	@Json(name="contentId")
+	@field:Json(name="contentId")
 	val contentId: String? = null,
 
-	@Json(name="typeId")
+	@field:Json(name="typeId")
 	val typeId: Int? = null,
 
-	@Json(name="id")
+	@field:Json(name="id")
 	val id: Int? = null,
 
-	@Json(name="state")
+	@field:Json(name="state")
 	val state: String? = null,
 
-	@Json(name="expiresAt")
+	@field:Json(name="expiresAt")
 	val expiresAt: String? = null,
 
-	@Json(name="channelId")
+	@field:Json(name="channelId")
 	val channelId: Int? = null,
 
-	@Json(name="viewsTotal")
+	@field:Json(name="viewsTotal")
 	val viewsTotal: Int? = null,
 
-	@Json(name="updatedAt")
+	@field:Json(name="updatedAt")
 	val updatedAt: String? = null,
 
-	@Json(name="vods")
+	@field:Json(name="vods")
 	val vods: List<VodsItem>? = null
 )

@@ -5,12 +5,9 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorOnSurface">@color/colorOnSurface</item>
-        <item name="colorSurface">@color/colorSurface</item>
         <item name="colorPrimaryVariant">@color/colorOnPrimaryVariant</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="colorSecondary">@color/colorOnSecondaryVariant</item>
         <item name="android:colorBackground">@color/colorBackground</item>
         <item name="colorSecondaryVariant">@color/colorOnSecondaryVariant</item>
     </style>
@@ -33,5 +30,17 @@
         <item name="cardCornerRadius">25dp</item>
     </style>
 
+    <style name="SettingsFragmentStyle">
+        <item name="android:textColorPrimary">@color/colorOnSecondaryVariant</item>
+        <item name="android:textColorSecondary">#222</item>
+        <item name="android:textColor">#CCC</item>
+        <item name="android:background">#999</item>
+    </style>
+
+    <style name="preferenceCategoryTitleTextAppearance" parent="PreferenceThemeOverlay.v14.Material">
+        <item name="android:textColor">@color/colorOnSecondaryVariant</item>
+        <item name="android:textColorPrimary">@color/colorOnSecondaryVariant</item>
+        <item name="android:textColorHighlight">@color/colorOnSecondaryVariant</item>
+    </style>
 
 </resources>

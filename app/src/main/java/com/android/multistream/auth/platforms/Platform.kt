@@ -26,33 +26,24 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
     var platformManager: PlatformManager,
     var platformName: String? = null
 ) {
-
     sealed class AuthState {
         object Completed : AuthState()
 
-        data class Failed(val throwable: Throwable) : AuthState()
+        data class Failed(val throwable: Throwable?) : AuthState()
     }
-
     var currentUser: V? = null
-
     var service: T = platformRetrofit.create(serviceClass)
-
     var accessTokenJob: Job? = null
-
     var validationJob: Job? = null
-
     var isValidated: Boolean = false
-
     // listener for auth states during authentication
     var authListener: AuthListener? = null
-
     val statesLiveData by lazy { MutableLiveData<AuthState>() }
 
     /**
      * @param code code for bearer auth
      * @param S type of service Response object
      */
-
     init {
         accessTokenJob?.invokeOnCompletion {
             it?.also {
@@ -70,19 +61,14 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
                 throw CancellationException("response uri can't be null")
             } else getBearerCode(uriData.toString()))
                 ?: throw CancellationException("Code was not found")
-
             val responseResult = getAccessTokenBearer(service, code)
-
             if (responseResult.body() == null) throw CancellationException("access token result is null")
-
             if (!responseResult.body()?.javaClass?.isAssignableFrom(responseClass)!!) throw CancellationException(
                 "function's token response does not match with service response"
             )
             val pair = provideAuthTokenPair(responseResult)
             saveAccessTokenInPreference(pair, platformManager)
-
             currentUser = if (pair.first != null) getUser(pair.first!!) else null
-
             withContext(Dispatchers.Main) { statesLiveData.value =
                 AuthState.Completed
             }
@@ -93,7 +79,6 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
         authPair: Pair<String?, String?>,
         platformManager: PlatformManager
     ) {
-
         if (authPair.first != null && authPair.second != null) {
             platformManager.sharedPreferencesEditor.also {
                 val className = this.javaClass.simpleName
@@ -113,7 +98,6 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
             val accessToken = platformManager.getAccessToken(this@Platform::class.java)
                 ?: throw CancellationException("You need to get access token before validation")
             val validationResponse = getTokenValidationResponse(service, accessToken)
-
             validationResponse.apply {
                 isValidated = when {
                     body() == null -> throw  CancellationException("response is null")
@@ -134,7 +118,6 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
     fun refreshToken(): String? {
         val refreshToken = platformManager.getRefreshToken(this::class.java)
             ?: throw NoSuchElementException("no refresh token")
-
         getNewToken(service, refreshToken)?.let {
             val pair = provideAuthTokenPair(it)
             saveAccessTokenInPreference(provideAuthTokenPair(it), platformManager)
@@ -147,9 +130,15 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
     private fun getBearerCode(uriData: String): String? =
         uriQuery(uriData)
 
+    fun invalidateToken() {
+        currentUser = null
+        isValidated = false
+    }
+
     /**
-     * run on current thread(because used in okHttpClient authenticator)
+     * run on current thread(because used in okHttpClient authenticator which currently doesn't have ktx support)
      */
+
     abstract fun getNewToken(service: T, refreshToken: String): Response<S>?
     abstract fun provideAuthTokenPair(response: Response<S>): Pair<String?, String?>
     abstract suspend fun getUser(accessToken: String): V

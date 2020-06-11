@@ -10,7 +10,7 @@ import com.multistream.multistreamsearchview.search_view.LatestSearchedAdapter
 
 @Database(
     entities = [TopGames::class, HistoryListAdapter.SearchHistoryData::class, LatestSearchedAdapter.LatestSearchData::class],
-    version = 3,
+    version = 2,
     exportSchema = false
 )
 abstract class MainDatabase : RoomDatabase() {

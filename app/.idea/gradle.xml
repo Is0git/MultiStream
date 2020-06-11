@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="PLATFORM" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="1.8" />
+        <option name="modules">
+          <set>
+            <option value="D:/multistreamProject/Multi-Stream-Step-Slider/stripesliderview" />
+            <option value="$PROJECT_DIR$/../../DaggerViewModelFragment/daggerviewmodel" />
+            <option value="$PROJECT_DIR$/../../Multi-Stream-Chat/multistreamchat" />
+            <option value="$PROJECT_DIR$/../../Multi-Stream-Player/multistreamplayer" />
+            <option value="$PROJECT_DIR$/../../Multi-Stream-SearchView/multistreamsearchview" />
+            <option value="$PROJECT_DIR$/../../MultiStreamMaterialPlaceHolderCard/multistreamaterialplaceholdercard" />
+            <option value="$PROJECT_DIR$/../../MultiStreamNavigationDrawer/navigationdrawer" />
+            <option value="$PROJECT_DIR$/../../MultiStreamSplashScreen/multi-stream-splash-screen" />
+            <option value="$PROJECT_DIR$/../../MultiStreamStripeTabLayout/multistreamstripetablayout" />
+            <option value="$PROJECT_DIR$/../../MultistreamHideScrollView/multistreamhidescrollview" />
+            <option value="$PROJECT_DIR$/../../OverScrollBehavior/overscrollbehavior" />
+            <option value="$PROJECT_DIR$/../../Pagination/pagination" />
+            <option value="$PROJECT_DIR$/.." />
+            <option value="$PROJECT_DIR$" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

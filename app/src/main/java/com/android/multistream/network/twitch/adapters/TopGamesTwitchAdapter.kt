@@ -28,6 +28,7 @@ class TopGamesTwitchAdapter {
     fun getChannelSearch(searches: SearchChannels): List<SearchViewLayout.SearchData>? {
         return searches.channels?.map {
             SearchViewLayout.SearchData(
+                it.id,
                 it.name,
                 it.logo,
                 CHANNELS,

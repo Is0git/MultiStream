@@ -13,16 +13,18 @@ class GameSearchesAdapter {
     @FromJson
     fun getGameSearches(gameSearches: GameSearches): List<GamesSearchData>? {
         return gameSearches.games?.map {
-            GamesSearchData(it.name, it.box?.large, TWITCH, R.drawable.twitch)
+            GamesSearchData(it._id, it.name, it.box?.large, TWITCH, R.drawable.twitch)
         }
     }
 
     class GamesSearchData(
+        id: Int?,
         title: String? = null,
         imageUrl: String? = null,
         platform: Int,
         @DrawableRes platformResId: Int
     ) : SearchViewLayout.SearchData(
+        id,
         title,
         imageUrl,
         GAMES,

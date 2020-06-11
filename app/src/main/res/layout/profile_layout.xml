@@ -7,12 +7,12 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior"
             android:layout_height="match_parent">
 
             <include android:id="@+id/profileLayout" layout="@layout/profile_content" />
 
         </com.google.android.material.appbar.AppBarLayout>
-
 
         <com.google.android.material.tabs.TabLayout
             style="@style/Widget.MaterialComponents.TabLayout"
@@ -24,10 +24,9 @@
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             android:background="@drawable/profile_tablayout_gradient"
             app:tabTextColor="@color/stripeTabLayoutTitle"
-            app:tabIndicatorColor="@color/colorOnSecondaryVariant"
+            app:tabIndicatorColor="@color/stripeTabLayoutTitle"
             app:tabIndicatorFullWidth="true"
             app:tabIndicatorHeight="2dp"
-            android:layout_marginBottom="1dp"
             app:tabMode="scrollable"/>
 
         <androidx.viewpager2.widget.ViewPager2

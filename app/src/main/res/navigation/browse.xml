@@ -4,7 +4,7 @@
     app:startDestination="@id/browseStart">
     <fragment
         android:id="@+id/browseStart"
-        android:name="com.android.multistream.ui.main.fragments.browse_fragment.BrowseFragment"
+        android:name="com.android.multistream.ui.main_activity.fragments.browse_fragment.BrowseFragment"
         android:label="BrowseFragment">
 
         <argument
@@ -29,32 +29,48 @@
     </fragment>
     <fragment
         android:id="@+id/twitchGameCategory"
-        android:name="com.android.multistream.ui.main.fragments.game_category_fragment.twitch_game_category.TwitchGameCategory"
+        android:name="com.android.multistream.ui.main_activity.fragments.game_category_fragment.twitch_game_category.TwitchGameCategory"
         android:label="TwitchGameCategory">
         <argument
             android:name="twitchGame"
             android:defaultValue="@null"
             app:argType="com.android.multistream.network.twitch.models.v5.top_games.TopItem"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_twitchGameCategory_to_twitchProfileFragment"
+            app:destination="@id/twitchProfileFragment">
+            <argument
+                android:name="streamItem"
+                android:defaultValue="@null"
+                app:argType="com.android.multistream.network.twitch.models.v5.followed_streams.StreamsItem"
+                app:nullable="true" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/mixerGameCategory"
-        android:name="com.android.multistream.ui.main.fragments.game_category_fragment.mixer_game_category.MixerGameCategory"
+        android:name="com.android.multistream.ui.main_activity.fragments.game_category_fragment.mixer_game_category.MixerGameCategory"
         android:label="MixerGameCategory">
         <argument
             android:name="mixerGame"
             android:defaultValue="@null"
             app:argType="com.android.multistream.network.mixer.models.top_games.MixerTopGames"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_mixerGameCategory_to_mixerProfileFragment"
+            app:destination="@id/mixerProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.android.multistream.ui.settings_fragment.SettingsFragment"
+        android:name="com.android.multistream.ui.main_activity.fragments.settings_fragment.SettingsFragment"
         android:label="SettingsFragment" />
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.android.multistream.ui.main.fragments.search_fragment.SearchFragment"
-        android:label="SearchFragment" />
+        android:id="@+id/mixerProfileFragment"
+        android:name="com.android.multistream.ui.main_activity.fragments.profile_fragment.mixer_profile.MixerProfileFragment"
+        android:label="MixerProfileFragment" />
+    <fragment
+        android:id="@+id/twitchProfileFragment"
+        android:name="com.android.multistream.ui.main_activity.fragments.profile_fragment.twitch_profile.TwitchProfileFragment"
+        android:label="TwitchProfileFragment" />
 
 
 </navigation>

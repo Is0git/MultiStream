@@ -4,42 +4,42 @@ import com.squareup.moshi.Json
 
 data class MixerClips(
 
-	@Json(name="contentMaturity")
+	@field:Json(name="contentMaturity")
 	val contentMaturity: Int? = null,
 
-	@Json(name="ownerChannelId")
+	@field:Json(name="ownerChannelId")
 	val ownerChannelId: Int? = null,
 
-	@Json(name="durationInSeconds")
+	@field:Json(name="durationInSeconds")
 	val durationInSeconds: Int? = null,
 
-	@Json(name="contentId")
+	@field:Json(name="contentId")
 	val contentId: String? = null,
 
-	@Json(name="title")
+	@field:Json(name="title")
 	val title: String? = null,
 
-	@Json(name="shareableId")
+	@field:Json(name="shareableId")
 	val shareableId: String? = null,
 
-	@Json(name="tags")
+	@field:Json(name="tags")
 	val tags: List<Any?>? = null,
 
-	@Json(name="contentLocators")
+	@field:Json(name="contentLocators")
 	val contentLocators: List<ContentLocatorsItem?>? = null,
 
-	@Json(name="uploadDate")
+	@field:Json(name="uploadDate")
 	val uploadDate: String? = null,
 
-	@Json(name="streamerChannelId")
+	@field:Json(name="streamerChannelId")
 	val streamerChannelId: Int? = null,
 
-	@Json(name="typeId")
+	@field:Json(name="typeId")
 	val typeId: Int? = null,
 
-	@Json(name="viewCount")
+	@field:Json(name="viewCount")
 	val viewCount: Int? = null,
 
-	@Json(name="expirationDate")
+	@field:Json(name="expirationDate")
 	val expirationDate: String? = null
 )

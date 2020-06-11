@@ -5,17 +5,18 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorOnSurface">@color/colorOnSurface</item>
-        <item name="colorSurface">@color/colorSurface</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="colorPrimaryVariant">@color/colorOnPrimaryVariant</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorSecondary">@color/colorOnSecondaryVariant</item>
         <item name="android:windowBackground">@drawable/splash_screen</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:colorBackground">@color/colorBackground</item>
-        <item name="colorSecondaryVariant">@color/colorOnSecondaryVariant</item>
     </style>
 
+    <style name="MainTheme" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
 
     <style name="tabTextAppearance">
         <item name="android:textSize">0sp</item>
@@ -45,5 +46,4 @@
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
     </style>
-
 </resources>

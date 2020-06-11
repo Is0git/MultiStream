@@ -14,22 +14,10 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor(val repo: MainActivityRepository) : ViewModel() {
 
     val twitchFollowingChannelsPageLoader = repo.pageLoader
-    val statesLiveData = repo.twitchPlatformAuthLiveData
-
-    fun getAndSaveToken(code: Uri?, platformClass: Class<out Platform<*, *, *, *>>) {
-        repo.getAndSaveToken(code, platformClass)
-    }
+    var playerState = repo.playerState
 
     fun isValidated(clazz: Class<out Platform<*, *, *, *>>): Boolean {
         return repo.isValidated(clazz)
-    }
-
-    suspend fun validateToken(clazz: Class<out Platform<*, *, *, *>>) {
-        repo.validateToken(clazz)
-    }
-
-    suspend fun validateAccessTokens() {
-        repo.validateAccessTokens()
     }
 
     fun getToken(clazz: Class<out Platform<*, *, *, *>>): String? {
@@ -40,13 +28,6 @@ class MainActivityViewModel @Inject constructor(val repo: MainActivityRepository
         return repo.getTwitchUser()
     }
 
-    fun saveAccessToken(
-        platformClass: Class<out Platform<*, *, *, *>>,
-        accessToken: String?,
-        refreshToken: String?
-    ) {
-        repo.saveAccessToken(platformClass, accessToken, refreshToken)
-    }
 
     fun followTwitchUser(channelId: String) {
         viewModelScope.launch {

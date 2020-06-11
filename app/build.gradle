@@ -1,11 +1,7 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
-
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 
@@ -54,7 +50,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta6'
 
     //Testing frameworks
     testImplementation 'junit:junit:4.12'
@@ -103,6 +99,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-moshi:2.6.2'
     implementation "com.squareup.okhttp3:okhttp:4.2.1"
+    implementation "com.squareup.moshi:moshi-kotlin:1.5.0"
+    implementation "com.squareup.moshi:moshi-adapters:1.5.0"
     implementation "com.squareup.okhttp3:logging-interceptor:4.2.1"
     implementation 'com.robinhood.spark:spark:1.2.0'
 
