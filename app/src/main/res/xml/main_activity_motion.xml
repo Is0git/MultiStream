@@ -89,6 +89,12 @@
                 android:translationY="-50dp"
                 app:framePosition="100"
                 app:motionTarget="@id/search_icon" />
+
+            <KeyAttribute
+                android:alpha="0"
+                app:framePosition="100"
+                app:motionTarget="@id/top_bar_bg" />
+
         </KeyFrameSet>
     </Transition>
 
@@ -99,7 +105,19 @@
             android:layout_height="match_parent"
             android:visibility="visible" />
         <Constraint android:id="@id/settingsIcon">
-            <PropertySet app:visibilityMode="ignore"/>
+            <PropertySet app:visibilityMode="ignore" />
+        </Constraint>
+
+        <Constraint android:id="@id/search_icon">
+            <PropertySet app:visibilityMode="ignore" />
+        </Constraint>
+
+        <Constraint android:id="@id/menuDrawerIcon">
+            <PropertySet app:visibilityMode="ignore" />
+        </Constraint>
+
+        <Constraint android:id="@id/bottomNav">
+            <PropertySet app:visibilityMode="ignore" />
         </Constraint>
     </ConstraintSet>
 
@@ -110,13 +128,26 @@
             android:layout_height="match_parent"
             android:visibility="invisible" />
         <Constraint android:id="@id/settingsIcon">
-            <PropertySet app:visibilityMode="ignore"/>
+            <PropertySet app:visibilityMode="ignore" />
+        </Constraint>
+        <Constraint android:id="@id/bottomNav">
+            <PropertySet app:visibilityMode="ignore" />
         </Constraint>
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/show_drawer">
         <Constraint android:id="@id/settingsIcon">
-            <PropertySet app:visibilityMode="ignore"/>
+            <PropertySet app:visibilityMode="ignore" />
+        </Constraint>
+        <Constraint android:id="@id/search_icon">
+            <PropertySet app:visibilityMode="ignore" />
+        </Constraint>
+
+        <Constraint android:id="@id/menuDrawerIcon">
+            <PropertySet app:visibilityMode="ignore" />
+        </Constraint>
+        <Constraint android:id="@id/bottomNav">
+            <PropertySet app:visibilityMode="ignore" />
         </Constraint>
     </ConstraintSet>
 
@@ -124,31 +155,31 @@
         android:id="@+id/drawer_transition"
         app:constraintSetEnd="@id/show_drawer"
         app:constraintSetStart="@id/start"
-        app:motionInterpolator="easeInOut"
-        app:duration="@android:integer/config_mediumAnimTime">
+        app:duration="@android:integer/config_mediumAnimTime"
+        app:motionInterpolator="easeInOut">
         <OnClick
             app:clickAction="toggle"
             app:targetId="@id/menuDrawerIcon" />
         <KeyFrameSet>
             <KeyAttribute
+                android:elevation="10dp"
                 android:translationX="-300dp"
                 app:framePosition="0"
-                android:elevation="10dp"
                 app:motionTarget="@id/navigationDrawer" />
 
 
             <KeyAttribute
+                android:elevation="6dp"
                 android:rotationY="-5"
                 app:framePosition="50"
-                android:elevation="6dp"
                 app:motionTarget="@id/navigationDrawer" />
 
 
             <KeyAttribute
+                android:elevation="3dp"
                 android:rotationY="2"
                 android:translationX="0dp"
                 app:framePosition="100"
-                android:elevation="3dp"
                 app:motionTarget="@id/navigationDrawer" />
 
             <KeyAttribute
@@ -216,8 +247,8 @@
                 android:alpha="0"
                 android:scaleX="1"
                 android:scaleY="1"
-                android:translationY="0dp"
                 android:translationX="-50dp"
+                android:translationY="0dp"
                 app:framePosition="80"
                 app:motionTarget="@id/menuDrawerIcon" />
 
@@ -225,22 +256,22 @@
                 android:alpha="1"
                 android:scaleX="1.3"
                 android:scaleY="1.3"
-                android:translationY="10dp"
                 android:translationX="0dp"
+                android:translationY="10dp"
                 app:framePosition="100"
                 app:motionTarget="@id/menuDrawerIcon" />
             <KeyCycle
                 android:rotation="80"
                 app:framePosition="50"
-                app:wavePeriod="0.1"
                 app:motionTarget="@id/search_icon"
+                app:wavePeriod="0.1"
                 app:waveShape="sin" />
 
             <KeyCycle
                 android:rotation="0"
                 app:framePosition="100"
-                app:wavePeriod="0.1"
                 app:motionTarget="@id/search_icon"
+                app:wavePeriod="0.1"
                 app:waveShape="sin" />
 
         </KeyFrameSet>

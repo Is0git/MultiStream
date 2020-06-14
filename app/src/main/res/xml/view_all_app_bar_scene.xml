@@ -72,16 +72,17 @@
 
             <KeyAttribute
                 android:translationX="0dp"
+                android:translationY="0dp"
                 motion:framePosition="0"
                 motion:motionTarget="@+id/title" />
 
             <KeyAttribute
-                android:translationX="0dp"
-                motion:framePosition="20"
+                motion:framePosition="50"
+                android:translationY="-250dp"
                 motion:motionTarget="@+id/title" />
 
             <KeyAttribute
-                android:translationX="-100dp"
+                android:translationY="-250dp"
                 motion:framePosition="100"
                 motion:motionTarget="@+id/title" />
         </KeyFrameSet>
@@ -110,5 +111,5 @@
             motion:layout_constraintTop_toTopOf="@+id/arrow_view" />
     </ConstraintSet>
 
-    <ConstraintSet android:id="@+id/end"></ConstraintSet>
+    <ConstraintSet android:id="@+id/end"/>
 </MotionScene>

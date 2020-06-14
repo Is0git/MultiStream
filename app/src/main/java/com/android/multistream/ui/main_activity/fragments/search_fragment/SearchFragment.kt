@@ -163,7 +163,7 @@ class SearchFragment : DaggerViewModelFragment<SearchViewModel>(SearchViewModel:
         }
     }
 
-    fun onNavigationItemClick(data: SearchViewLayout.SearchData?) {
+    private fun onNavigationItemClick(data: SearchViewLayout.SearchData?) {
         lifecycleScope.launch {
             val navController = findNavController()
             data?.let {

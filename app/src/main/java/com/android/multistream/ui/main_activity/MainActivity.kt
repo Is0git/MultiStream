@@ -86,6 +86,7 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
             mainActivityViewModel.twitchFollowingChannelsPageLoader.invalidate(false)
         }
         initNavigationDrawer()
+        binding.navigationDrawer.forceLayout()
         binding.motionLayout.post { increaseNavTouchRegion() }
     }
 
@@ -227,11 +228,14 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
         arguments: Bundle,
         fragmentClass: Class<out PlayerFragment<*>>
     ) {
+        val lastFragment = supportFragmentManager.findFragmentByTag("player_fragment")
+        lastFragment?.also { supportFragmentManager.beginTransaction().remove(it).commitNow() }
         val fragment = fragmentClass.newInstance()
         fragment.arguments = arguments
         supportFragmentManager.beginTransaction()
             .setCustomAnimations(R.anim.player_fragment_animation, R.anim.player_fragment_animation)
             .replace(R.id.player_fragment, fragment, "player_fragment")
+            .runOnCommit {binding.motionLayout.transitionToEnd()  }
             .commitNow()
     }
 
@@ -279,19 +283,23 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
                     onRecyclerViewItemClick =
                         object : NavigationDrawer.OnRecyclerViewItemClick<Any?> {
                             override fun onClick(item: Any?, position: Int) {
-                              if(binding.motionLayout.getTransition(R.id.drawer_transition) != null)  binding.motionLayout.transitionToStart()
-                                postDelayed({
-                                    (item as StreamsItem).also { streamItem ->
-                                        initLiveStreamPlayerFragment(
-                                            streamItem.channel?.status,
-                                            streamItem.channel?.name,
-                                            streamItem.channel?.logo,
-                                            streamItem.game,
-                                            streamItem.channel?.display_name,
-                                            streamItem.channel?._id.toString(),
-                                            streamItem.viewers
-                                        )
-                                    }}, resources.getInteger(android.R.integer.config_mediumAnimTime).toLong())
+                                if (binding.motionLayout.getTransition(R.id.drawer_transition) != null) binding.motionLayout.transitionToStart()
+                                postDelayed(
+                                    {
+                                        (item as StreamsItem).also { streamItem ->
+                                            initLiveStreamPlayerFragment(
+                                                streamItem.channel?.status,
+                                                streamItem.channel?.name,
+                                                streamItem.channel?.logo,
+                                                streamItem.game,
+                                                streamItem.channel?.display_name,
+                                                streamItem.channel?._id.toString(),
+                                                streamItem.viewers
+                                            )
+                                        }
+                                    },
+                                    resources.getInteger(android.R.integer.config_mediumAnimTime).toLong()
+                                )
                             }
                         }
                     accounts.add(account)
@@ -320,8 +328,10 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
         val delegateArea = Rect()
         binding.navigationDrawer.getHitRect(delegateArea)
         delegateArea.right += delegateArea.left.absoluteValue + 500
+        binding.navigationDrawer.touchRect
         (binding.navigationDrawer.parent as View).touchDelegate =
             TouchDelegate(delegateArea, binding.navigationDrawer)
+        binding.navigationDrawer.touchRect
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -331,7 +341,6 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-        Log.d("TOUCHED", "TOYUC")
         binding.apply {
             when (event?.action) {
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {

@@ -372,7 +372,7 @@ class HomeFragment :
                     ImageLoader.loadImage(streamerBanner, t.user?.avatarUrl )
                     streamerName.text = t.user?.username
                     viewersCount.text = NumbersConverter.getK(t.viewersCurrent, requireContext())
-                    streamGame.text = t.name
+                    streamGame.text = t.type?.name
                 }
             }
             mixerTopChannelsList.setHasFixedSize(true)
