@@ -51,8 +51,8 @@ abstract class PlayerFragment<T : PlayerFragmentViewModel<*>>(viewModelClass: Cl
         (view as MultiStreamPlayerLayout).apply {
             setTransitionListener(this@PlayerFragment)
             if (!mainViewModel.isValidated(TwitchPlatform::class.java)) {
-                followButton?.visibility = View.GONE
-                chatInputGroup?.visibility = View.GONE
+                followButton.visibility = View.GONE
+                chatInputGroup.visibility = View.GONE
             } else {
                 viewModel.followUser.observe(viewLifecycleOwner) {
                     if (it == null) setButtonStateNotFollowing() else setButtonStateFollowing()
@@ -71,11 +71,11 @@ abstract class PlayerFragment<T : PlayerFragmentViewModel<*>>(viewModelClass: Cl
             }
             lifecycle.addObserver(viewModel)
             viewModel.userLiveData.observe(viewLifecycleOwner) {
-                channelNameView?.text = it?.stream?.channel?.displayName
-                categoryView?.text = it?.stream?.game
-                titleTextView?.text = it?.stream?.channel?.status
-                ImageLoader.loadImage(profileImageView!!, it?.stream?.channel?.logo)
-                viewersCount?.text = NumbersConverter.getK(it?.stream?.viewers, requireContext())
+                channelNameView.text = it?.stream?.channel?.displayName
+                categoryView.text = it?.stream?.game
+                titleTextView.text = it?.stream?.channel?.status
+                ImageLoader.loadImage(profileImageView, it?.stream?.channel?.logo)
+                viewersCount.text = NumbersConverter.getK(it?.stream?.viewers, requireContext())
             }
             viewModel.getStream(channelId)
         }
@@ -113,24 +113,24 @@ abstract class PlayerFragment<T : PlayerFragmentViewModel<*>>(viewModelClass: Cl
     private fun controllerMinimizeAnimation(progress: Float) {
         val alpha = 1 - progress
         (view as MultiStreamPlayerLayout).apply {
-            this.settingsIconView?.alpha = alpha
-            this.alarmImageButton?.alpha = alpha
-            this.settingsIconView?.alpha = alpha
-            this.fullscreenButton?.alpha = alpha
-            this.minimizeButton?.scaleY = 1 - (0.3f * progress)
-            this.minimizeButton?.scaleX = 1 - (0.3f * progress)
-            this.followButton?.alpha = alpha
-            this.minimizeButton?.rotation = 180 * progress
+            this.settingsIconView.alpha = alpha
+            this.alarmImageButton.alpha = alpha
+            this.settingsIconView.alpha = alpha
+            this.fullscreenButton.alpha = alpha
+            this.minimizeButton.scaleY = 1 - (0.3f * progress)
+            this.minimizeButton.scaleX = 1 - (0.3f * progress)
+            this.followButton.alpha = alpha
+            this.minimizeButton.rotation = 180 * progress
         }
     }
 
     private fun controllerSlideAnimation(progress: Float) {
         val alpha = 1 - progress
         (view as MultiStreamPlayerLayout).apply {
-            this.liveIcon?.alpha = alpha
-            this.viewersCount?.alpha = alpha
+            this.liveIcon.alpha = alpha
+            this.viewersCount.alpha = alpha
             if (progress < 0.5f) this.minimizeButton?.rotation = 180 + (180 * progress)
-            this.minimizeButton?.alpha =
+            this.minimizeButton.alpha =
                 if (progress > 0.50) 1 - ((progress - 0.50f) / 0.5f) else 1f
 
         }

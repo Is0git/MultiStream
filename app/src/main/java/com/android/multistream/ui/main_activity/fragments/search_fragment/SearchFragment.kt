@@ -232,7 +232,6 @@ class SearchFragment : DaggerViewModelFragment<SearchViewModel>(SearchViewModel:
                                 ).show()
                             }
                         }
-
                     }
                 }
             }

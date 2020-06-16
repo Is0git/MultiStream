@@ -21,8 +21,8 @@ class LiveStreamPlayerFragment : PlayerFragment<LiveStreamPlayerViewModel>(LiveS
         (view as MultiStreamPlayerLayout).apply {
             viewModel.getLiveStreamPeriodicWorkLiveData().observe(viewLifecycleOwner) {
                 if (it?.state == WorkInfo.State.SUCCEEDED) {
-                    titleTextView?.text = it.outputData.getString("title")
-                    viewersCount?.text = NumbersConverter.getK(
+                    titleTextView.text = it.outputData.getString("title")
+                    viewersCount.text = NumbersConverter.getK(
                         it.outputData.getInt("viewers_count", 0),
                         requireContext()
                     )

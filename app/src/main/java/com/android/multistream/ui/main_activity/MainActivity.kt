@@ -315,12 +315,8 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
     }
 
     private fun configureMotionLayout() {
-        binding.motionLayout.apply {
-            //            setDefaultTransitionHandler(supportFragmentManager, null)
-//            setOnStateChangeListener {
-//                mainActivityViewModel.playerState = it
-//            }
-        }
+
+
     }
 
     private fun increaseNavTouchRegion() {
