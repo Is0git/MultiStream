@@ -40,7 +40,7 @@ class App : DaggerApplication() {
         addCustomWorkManagerConfiguration()
         settingsLoader.apply {
             resolveLocale()
-            settingsLoader.resolveDarkMode(application.resources)
+            resolveDarkMode(application.resources)
             createNotificationChannels()
         }
     }

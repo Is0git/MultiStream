@@ -1,5 +1,7 @@
 package com.android.multistream.network.twitch
 
+import com.android.chat.twitch_chat.api.RetrofitInstance
+import com.android.chat.twitch_chat.api.twitch.models.channel.Channel
 import com.android.multistream.network.twitch.adapters.GameSearchesAdapter
 import com.android.multistream.network.twitch.adapters.StreamSearchesAdapter
 import com.android.multistream.network.twitch.constants.CLIENT_ID
@@ -143,4 +145,8 @@ interface TwitchService {
         @Path("channelId") channelId: String? = null,
         @Query("api_version") version: Int = 5
     ): Response<FollowUser?>
+
+    @GET
+    @Headers("Client-ID: ${RetrofitInstance.CLIENT_ID}", "Accept: application/vnd.twitchtv.v5+json")
+    suspend fun getChannel( @Url url: String = "https://api.twitch.tv/kraken/users", @Query("login", encoded = true) name: String) : Response<Channel>
 }

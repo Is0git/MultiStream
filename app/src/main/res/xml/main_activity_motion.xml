@@ -168,16 +168,15 @@
                 app:motionTarget="@id/navigationDrawer" />
 
 
-            <KeyAttribute
-                android:elevation="6dp"
-                android:rotationY="-5"
-                app:framePosition="50"
-                app:motionTarget="@id/navigationDrawer" />
+            <!--            <KeyAttribute-->
+            <!--                android:elevation="6dp"-->
+            <!--                android:rotationY="-5"-->
+            <!--                app:framePosition="50"-->
+            <!--                app:motionTarget="@id/navigationDrawer" />-->
 
-
+            <!--                android:rotationY="2"-->
             <KeyAttribute
-                android:elevation="3dp"
-                android:rotationY="2"
+                android:elevation="10dp"
                 android:translationX="0dp"
                 app:framePosition="100"
                 app:motionTarget="@id/navigationDrawer" />
@@ -234,7 +233,7 @@
             <KeyAttribute
                 android:scaleX="0.8"
                 android:scaleY="0.8"
-                android:translationX="260dp"
+                android:translationX="275dp"
                 app:framePosition="100"
                 app:motionTarget="@id/nav_host_container" />
 

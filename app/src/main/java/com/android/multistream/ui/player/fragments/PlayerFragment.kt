@@ -77,20 +77,23 @@ abstract class PlayerFragment<T : PlayerFragmentViewModel<*>>(viewModelClass: Cl
                 ImageLoader.loadImage(profileImageView, it?.stream?.channel?.logo)
                 viewersCount.text = NumbersConverter.getK(it?.stream?.viewers, requireContext())
             }
-            viewModel.getStream(channelId)
+//            viewModel.getStream(channelId)
         }
 //        (requireActivity() as MainActivity).binding.motionLayout.playerViewState =
 //            mainViewModel.playerState
         initPlayer()
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-//        (requireActivity() as MainActivity).binding.motionLayout.updateLayout()
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        val fragmentTransitionState = savedInstanceState?.getInt("fragment_transition_state", R.id.start)
+        if (fragmentTransitionState != null) (view as MultiStreamPlayerLayout).transitionToState(fragmentTransitionState)
+
+        super.onActivityCreated(savedInstanceState)
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt("fragment_transition_state", (view as MultiStreamPlayerLayout).currentConstraint)
+        super.onSaveInstanceState(outState)
     }
 
     open fun getArgs() {

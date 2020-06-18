@@ -20,12 +20,10 @@ class SyncLiveStreamWorker @Inject constructor(
     private val params: WorkerParameters,
     private val twitchService: TwitchService) : CoroutineWorker(context, params) {
     override suspend fun doWork(): Result = coroutineScope {
-        Log.d("WORKERD", "STARTED")
         val channelId = params.inputData.getString("channel_id")
         val result = execute(context) {twitchService.getStream(channelId!!)}
         if (result == null) Result.failure()
-       val data = workDataOf("viewers_count" to result?.stream?.viewers, "title" to result?.stream?.channel?.status)
-        Log.d("WORKERD", "FINISH")
+        val data = workDataOf("viewers_count" to result?.stream?.viewers, "title" to result?.stream?.channel?.status)
         Result.success(data)
     }
 }

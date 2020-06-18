@@ -10,9 +10,8 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.TouchDelegate
 import android.view.View
+import android.view.WindowManager
 import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.postDelayed
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -29,17 +28,16 @@ import com.android.multistream.di.qualifiers.SettingsPreferencesQualifier
 import com.android.multistream.network.twitch.models.v5.current_user.CurrentUser
 import com.android.multistream.network.twitch.models.v5.followed_streams.StreamsItem
 import com.android.multistream.ui.main_activity.fragments.settings_fragment.SettingsFragment
+import com.android.multistream.ui.main_activity.fragments.settings_fragment.SettingsLoader
 import com.android.multistream.ui.player.fragments.PlayerFragment
 import com.android.multistream.ui.player.fragments.live_stream_player_fragment.LiveStreamPlayerFragment
 import com.android.multistream.ui.player.fragments.vod_player_fragment.VodPlayerFragment
-import com.android.multistream.ui.main_activity.fragments.settings_fragment.SettingsLoader
 import com.android.multistream.utils.NumbersConverter
 import com.android.multistream.utils.setupWithNavController
 import com.bumptech.glide.Glide
 import com.example.daggerviewmodelfragment.ViewModelFactory
 import com.example.pagination.attach
 import com.example.pagination.detach
-import com.multistream.multistreamsearchview.search_view.convertDpToPixel
 import com.multistream.navigationdrawer.NavigationDrawer
 import com.multistream.navigationdrawer.StreamsAdapter
 import dagger.android.support.DaggerAppCompatActivity
@@ -76,6 +74,7 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mainActivityViewModel =
             ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
@@ -113,6 +112,8 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
         // Now that BottomNavigationBar has restored its instance state
         // and its selectedItemId, we can proceed with setting up the
         // BottomNavigationBar with Navigation
+        val transitionState = savedInstanceState?.getInt("activity_motion_state")
+        if (transitionState != null) binding.motionLayout.transitionToState(transitionState)
         setupBottomNavigationBar()
     }
 
@@ -123,11 +124,16 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
             navigationDrawer.setOnTouchListener(this@MainActivity)
         }
         binding.settingsIcon.setOnClickListener {
-            val settingsFragment = SettingsFragment()
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.settings_fragment_container, settingsFragment, "settings_fragment")
-                .addToBackStack(null).setPrimaryNavigationFragment(settingsFragment)
-                .commitAllowingStateLoss()
+            supportFragmentManager.apply {
+                var settingsFragment = findFragmentByTag("settings_fragment")
+                if (settingsFragment != null) beginTransaction().remove(settingsFragment).commitNow()
+                settingsFragment = SettingsFragment()
+                beginTransaction()
+                    .replace(R.id.settings_fragment_container, settingsFragment, "settings_fragment")
+                    .addToBackStack(null)
+                    .setPrimaryNavigationFragment(settingsFragment)
+                    .commitAllowingStateLoss()
+            }
         }
         binding.searchIcon.setOnClickListener {
             onSearchClick()
@@ -228,15 +234,19 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
         arguments: Bundle,
         fragmentClass: Class<out PlayerFragment<*>>
     ) {
-        val lastFragment = supportFragmentManager.findFragmentByTag("player_fragment")
-        lastFragment?.also { supportFragmentManager.beginTransaction().remove(it).commitNow() }
-        val fragment = fragmentClass.newInstance()
-        fragment.arguments = arguments
-        supportFragmentManager.beginTransaction()
-            .setCustomAnimations(R.anim.player_fragment_animation, R.anim.player_fragment_animation)
-            .replace(R.id.player_fragment, fragment, "player_fragment")
-            .runOnCommit {binding.motionLayout.transitionToEnd()  }
-            .commitNow()
+        supportFragmentManager.apply {
+            val searchFragment = findFragmentByTag("search_fragment")
+            if(searchFragment != null && searchFragment.isAdded) beginTransaction().remove(searchFragment).commitNow()
+            val lastFragment = findFragmentByTag("player_fragment")
+            lastFragment?.also { beginTransaction().remove(it).commitNow() }
+            val fragment = fragmentClass.newInstance()
+            fragment.arguments = arguments
+            beginTransaction()
+                .setCustomAnimations(R.anim.player_fragment_animation, R.anim.player_fragment_animation)
+                .replace(R.id.player_fragment, fragment, "player_fragment")
+                .runOnCommit {binding.motionLayout.transitionToEnd()  }
+                .commitNow()
+        }
     }
 
     private fun initNavigationDrawer() {
@@ -251,6 +261,9 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
             binding.navigationDrawer.recyclerView attach mainActivityViewModel.twitchFollowingChannelsPageLoader
             mainActivityViewModel.repo.pageLoader.dataLiveData.observe(this) {
                 streamsDrawerAdapter.loadPaginationData(it)
+                binding.navigationDrawer.recyclerView.apply {
+//                    postDelayed({scrollToPosition(0)}, 500)
+                }
             }
             mainActivityViewModel.twitchFollowingChannelsPageLoader.loadInit()
             streamsDrawerAdapter = StreamsAdapter { item, holder ->
@@ -309,13 +322,17 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt("activity_motion_state", currentTransition)
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onDestroy() {
         binding.navigationDrawer.recyclerView detach mainActivityViewModel.twitchFollowingChannelsPageLoader
         super.onDestroy()
     }
 
     private fun configureMotionLayout() {
-
 
     }
 
@@ -393,7 +410,6 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
     override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
         currentTransition = p1
     }
-
 }
 
 fun View.clicks(): Flow<Unit> = callbackFlow {

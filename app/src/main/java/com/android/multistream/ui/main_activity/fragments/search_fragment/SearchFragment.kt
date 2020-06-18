@@ -186,13 +186,17 @@ class SearchFragment : DaggerViewModelFragment<SearchViewModel>(SearchViewModel:
                                 navController.navigate(directions)
                             }
                             STREAMS -> {
+                                activity?.supportFragmentManager?.apply {
+                                    val fragment = findFragmentById(R.id.search_fragment_container)
+                                     if (fragment != null) this.beginTransaction().remove(fragment).commitNow()
+                                }
                                 (requireActivity() as MainActivity).initLiveStreamPlayerFragment(
                                     null,
                                     it.title?.toLowerCase(Locale.ROOT),
                                     it.imageUrl,
                                     null,
                                     it.title,
-                                    it.id.toString(),
+                                    it.categoryStringId.toString(),
                                     null
                                 )
                             }

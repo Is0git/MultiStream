@@ -13,7 +13,6 @@ import com.android.multistream.ui.main_activity.fragments.browse_fragment.PageOf
 import com.android.multistream.utils.ResponseHandler
 import com.android.multistream.utils.ResponseHandler.execute
 import com.android.multistream.utils.ResponseHandler.handleNetworkException
-import com.android.player.ui.MultiStreamPlayerLayout.Companion.PLAYER_FULLSCREEN
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -27,7 +26,6 @@ class MainActivityRepository @Inject constructor(
 ) : PageOffSetLoaderRepository<StreamsItem>(application, 0, 10, false) {
 
 
-    var playerState = PLAYER_FULLSCREEN
 
     fun isValidated(clazz: Class<out Platform<*, *, *, *>>): Boolean {
         return platformManager.getPlatform(clazz).isValidated

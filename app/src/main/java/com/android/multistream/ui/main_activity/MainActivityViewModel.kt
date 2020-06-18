@@ -14,7 +14,6 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor(val repo: MainActivityRepository) : ViewModel() {
 
     val twitchFollowingChannelsPageLoader = repo.pageLoader
-    var playerState = repo.playerState
 
     fun isValidated(clazz: Class<out Platform<*, *, *, *>>): Boolean {
         return repo.isValidated(clazz)

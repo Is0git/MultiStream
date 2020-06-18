@@ -17,5 +17,5 @@
     <color name="bottomNavColor">#ffffff</color>
     <color name="chatColor">#ffffff</color>
     <color name="navBgColor">#ffffff</color>
-    <color name="topBarColor">#C1C1C1</color>
+    <color name="topBarColor">#00000000</color>
 </resources>

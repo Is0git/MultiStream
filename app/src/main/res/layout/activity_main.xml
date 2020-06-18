@@ -19,7 +19,7 @@
             android:background="@drawable/top_bar"
             app:layout_constraintStart_toStartOf="parent"
             android:paddingBottom="10dp"
-            android:elevation="8dp"
+            android:elevation="11dp"
             app:layout_constraintTop_toTopOf="parent" />
         <ImageView
             android:id="@+id/menuDrawerIcon"
@@ -85,27 +85,88 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.multistream.navigationdrawer.NavigationDrawer
-            android:id="@+id/navigationDrawer"
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:animateLayoutChanges="true"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bottom_navigation_gradient"
-            android:elevation="10dp"
+            android:elevation="0dp"
             app:itemIconTint="@color/home_selector"
             app:itemTextColor="@color/colorOnSecondaryVariant"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/bottom_nav_menu" />
+
+        <com.multistream.navigationdrawer.NavigationDrawer
+            android:id="@+id/navigationDrawer"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/account_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/tab_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/streamsList"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guideline"
+                tools:listitem="@layout/stream_list_item" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/guideline" />
+
+            <View
+                android:id="@+id/empty"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/empty_picture"
+                android:backgroundTint="@color/colorOnSecondaryVariant"
+                app:layout_constraintBottom_toTopOf="@+id/emptyText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/emptyText"
+                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/no_accounts_have_been_synced"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/empty"
+                app:layout_constraintStart_toStartOf="@+id/empty"
+                app:layout_constraintTop_toBottomOf="@+id/empty" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.60" />
+        </com.multistream.navigationdrawer.NavigationDrawer>
 
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
