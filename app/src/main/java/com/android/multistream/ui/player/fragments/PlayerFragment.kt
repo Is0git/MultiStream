@@ -15,6 +15,7 @@ import com.android.multistream.ui.main_activity.MainActivity
 import com.android.multistream.ui.main_activity.MainActivityViewModel
 import com.android.multistream.utils.NumbersConverter
 import com.android.multistream.utils.data_binding.ImageLoader
+import com.android.player.player.MultiStreamPlayer
 import com.android.player.ui.MultiStreamPlayerLayout
 import com.android.player.ui.OnFollowButtonListener
 import com.example.daggerviewmodelfragment.DaggerViewModelFragment
@@ -70,14 +71,12 @@ abstract class PlayerFragment<T : PlayerFragmentViewModel<*>>(viewModelClass: Cl
 
             }
             lifecycle.addObserver(viewModel)
-            viewModel.userLiveData.observe(viewLifecycleOwner) {
-                channelNameView.text = it?.stream?.channel?.displayName
-                categoryView.text = it?.stream?.game
-                titleTextView.text = it?.stream?.channel?.status
-                ImageLoader.loadImage(profileImageView, it?.stream?.channel?.logo)
-                viewersCount.text = NumbersConverter.getK(it?.stream?.viewers, requireContext())
+            if (observeUserData()) {
+                viewModel.userLiveData.observe(viewLifecycleOwner) {
+                    ImageLoader.loadImage(profileImageView, it?.stream?.channel?.logo)
+                }
             }
-//            viewModel.getStream(channelId)
+            viewModel.getStream(channelId)
         }
 //        (requireActivity() as MainActivity).binding.motionLayout.playerViewState =
 //            mainViewModel.playerState
@@ -86,13 +85,32 @@ abstract class PlayerFragment<T : PlayerFragmentViewModel<*>>(viewModelClass: Cl
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         val fragmentTransitionState = savedInstanceState?.getInt("fragment_transition_state", R.id.start)
-        if (fragmentTransitionState != null) (view as MultiStreamPlayerLayout).transitionToState(fragmentTransitionState)
+        if (fragmentTransitionState != null) {
+            (view as MultiStreamPlayerLayout).apply {
+                val currentTransition = savedInstanceState.getInt("fragment_current_transition", currentTransition)
+                val isStateUndefined = savedInstanceState.getBoolean("is_state_undefined", isStateUndefined)
+                val lastY = savedInstanceState.getFloat("fragment_transition_lastY",lastY)
+                val scrollDistanceY = savedInstanceState.getFloat("fragment_current_scrollDistanceY", scrollDistanceY)
+                this.lastY = lastY
+                this.scrollDistanceY = scrollDistanceY
+                this.isStateUndefined = isStateUndefined
+                setTransition(currentTransition)
+                transitionToState(fragmentTransitionState)
+            }
 
+        }
         super.onActivityCreated(savedInstanceState)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        outState.putInt("fragment_transition_state", (view as MultiStreamPlayerLayout).currentConstraint)
+        (view as MultiStreamPlayerLayout).apply {
+            outState.putInt("fragment_transition_state",currentConstraint)
+            outState.putInt("fragment_current_transition", currentTransition)
+            outState.putFloat("fragment_transition_lastY",lastY)
+            outState.putFloat("fragment_current_scrollDistanceY", scrollDistanceY)
+            outState.putBoolean("is_state_undefined", isStateUndefined)
+        }
+
         super.onSaveInstanceState(outState)
     }
 
@@ -124,6 +142,13 @@ abstract class PlayerFragment<T : PlayerFragmentViewModel<*>>(viewModelClass: Cl
             this.minimizeButton.scaleX = 1 - (0.3f * progress)
             this.followButton.alpha = alpha
             this.minimizeButton.rotation = 180 * progress
+            if (getPlayerType() == MultiStreamPlayer.VIDEO) {
+                this.seekBar?.alpha = alpha
+                this.pauseButton?.alpha = alpha
+                this.startButton?.alpha = alpha
+                this.rewindButton?.alpha = alpha
+                this.forwardButton?.alpha = alpha
+            }
         }
     }
 
@@ -183,4 +208,5 @@ abstract class PlayerFragment<T : PlayerFragmentViewModel<*>>(viewModelClass: Cl
     abstract fun getPlayerLayout(): Int
     abstract fun getPlayerLayoutLand(): Int
     abstract fun initPlayer()
+    abstract fun observeUserData() : Boolean
 }

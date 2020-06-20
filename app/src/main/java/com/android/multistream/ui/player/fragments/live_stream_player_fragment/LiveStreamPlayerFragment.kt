@@ -78,4 +78,8 @@ class LiveStreamPlayerFragment : PlayerFragment<LiveStreamPlayerViewModel>(LiveS
     override fun getPlayerLayoutLand(): Int {
        return R.layout.player_layout_land
     }
+
+    override fun observeUserData(): Boolean {
+        return true
+    }
 }

@@ -199,6 +199,7 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
         channelCategory: String?,
         channelDisplayName: String?,
         channelId: String,
+        viewerCount: Int?,
         vodId: String
     ) {
         val bundle = addCommonPlayerFragmentArgs(
@@ -208,7 +209,8 @@ class MainActivity : DaggerAppCompatActivity(), View.OnTouchListener,
             channelCategory,
             channelDisplayName,
             channelId
-        ).also { it.putString("vodId", vodId) }
+        ).also { it.putString("vodId", vodId)
+        it.putInt("view_count", viewerCount ?: 0)}
         createFragmentAndStartPlayer(bundle, VodPlayerFragment::class.java)
     }
 

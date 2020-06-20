@@ -9,7 +9,11 @@ import com.android.multistream.ui.main_activity.fragments.profile_fragment.Recor
 import com.android.multistream.utils.NumbersConverter
 import com.android.multistream.utils.data_binding.ImageLoader
 import com.example.pagination.PageLoader
+import kotlinx.android.synthetic.main.channels_list.*
+import kotlinx.android.synthetic.main.channels_list.streamThumbNail
+import kotlinx.android.synthetic.main.channels_list.viewersCount
 import kotlinx.android.synthetic.main.past_videos_pickers_layout.view.*
+import kotlinx.android.synthetic.main.video_item_layout.*
 
 class TwitchPastStreamsFragment :
     RecordingFragment<TwitchPastStreamsViewModel, DataItem>(TwitchPastStreamsViewModel::class.java) {
@@ -47,7 +51,7 @@ class TwitchPastStreamsFragment :
     override fun onClick(position: Int, view: View) {
         val item = videoListAdapter.data?.get(position) ?: return
         if (item.id == null) return
-        (requireActivity() as MainActivity).initVodPlayerFragment(item.title, item.user_name, item.thumbnail_url, item.type, item.user_name, item.user_id ?: "", item.id)
+        (requireActivity() as MainActivity).initVodPlayerFragment(item.title, item.user_name, item.thumbnail_url, item.type, item.user_name, item.user_id ?: "", item.view_count, item.id)
     }
 
     private fun resolvePickedItem(position: Int, view: View?): String? {
