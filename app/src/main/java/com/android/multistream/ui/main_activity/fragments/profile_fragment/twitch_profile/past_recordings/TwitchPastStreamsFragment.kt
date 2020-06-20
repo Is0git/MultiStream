@@ -9,9 +9,6 @@ import com.android.multistream.ui.main_activity.fragments.profile_fragment.Recor
 import com.android.multistream.utils.NumbersConverter
 import com.android.multistream.utils.data_binding.ImageLoader
 import com.example.pagination.PageLoader
-import kotlinx.android.synthetic.main.channels_list.*
-import kotlinx.android.synthetic.main.channels_list.streamThumbNail
-import kotlinx.android.synthetic.main.channels_list.viewersCount
 import kotlinx.android.synthetic.main.past_videos_pickers_layout.view.*
 import kotlinx.android.synthetic.main.video_item_layout.*
 

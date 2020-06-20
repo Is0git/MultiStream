@@ -13,11 +13,6 @@
     </style>
 
 
-    <style name="tabTextAppearance">
-        <item name="android:textSize">0sp</item>
-        <item name="android:visibility">invisible</item>
-    </style>
-
     <style name="tabCustomStyle" parent="Widget.Design.TabLayout">
         <item name="tabGravity">fill</item>
         <item name="tabMaxWidth">0dp</item>
@@ -28,19 +23,6 @@
 
     <style name="defaultMaterialCard" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">25dp</item>
-    </style>
-
-    <style name="SettingsFragmentStyle">
-        <item name="android:textColorPrimary">@color/colorOnSecondaryVariant</item>
-        <item name="android:textColorSecondary">#222</item>
-        <item name="android:textColor">#CCC</item>
-        <item name="android:background">#999</item>
-    </style>
-
-    <style name="preferenceCategoryTitleTextAppearance" parent="PreferenceThemeOverlay.v14.Material">
-        <item name="android:textColor">@color/colorOnSecondaryVariant</item>
-        <item name="android:textColorPrimary">@color/colorOnSecondaryVariant</item>
-        <item name="android:textColorHighlight">@color/colorOnSecondaryVariant</item>
     </style>
 
 </resources>

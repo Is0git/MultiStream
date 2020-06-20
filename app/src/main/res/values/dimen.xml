@@ -3,13 +3,5 @@
     <dimen name="topGamesItemHeaderTextSize">15sp</dimen>
     <dimen name="viewpager_next_item_visible">58dp</dimen>
     <dimen name="viewpager_current_item_horizontal_margin">12dp</dimen>
-    <dimen name="actionBarMargin">70dp</dimen>
-    <dimen name="defaultCardCornerRadius">5dp</dimen>
-    <dimen name="largeStripeTitleSize">20sp</dimen>
-    <dimen name="mediumStripeTitleSize">15sp</dimen>
-    <dimen name="smallStripeTitleSize">13sp</dimen>
-    <dimen name="captionStripeTitleSize">7sp</dimen>
-    <dimen name="stripeLineMargin">32dp</dimen>
-    <dimen name="componentMargin">64dp</dimen>
     <dimen name="itemMargin">4dp</dimen>
 </resources>

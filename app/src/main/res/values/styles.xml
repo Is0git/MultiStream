@@ -18,20 +18,8 @@
         <item name="android:windowBackground">@null</item>
     </style>
 
-    <style name="tabTextAppearance">
-        <item name="android:textSize">0sp</item>
-        <item name="android:visibility">invisible</item>
-    </style>
-
     <style name="defaultMaterialCard" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">25dp</item>
-    </style>
-
-    <style name="halfCurveShape" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopLeft">10dp</item>
-        <item name="cornerSizeTopRight">10dp</item>
-        <item name="cornerSize">@dimen/defaultCardCornerRadius</item>
     </style>
 
     <style name="FollowButtonStyle" parent="Widget.MaterialComponents.Button">

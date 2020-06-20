@@ -3,12 +3,9 @@
     <string name="home">дом</string>
     <string name="browse">просматривать</string>
     <string name="Title">звание</string>
-    <string name="recommended_channels"><b>рекомендуемые</b> каналы</string>
     <string name="top_games"><b>популярные</b> игры</string>
     <string name="top_channels"><b>популярные</b> каналы</string>
-    <string name="live_following_streams"><b>прямые следующие</b> трансляции</string>
-    <string name="following_channels"><b>следующие</b>прямые трансляции</string>
-    <string name="hello"><font color="#5e4eba">Привет</font></string>
+    <string name="hello"></string>
     <string name="twitch">Twitch</string>
     <string name="followed_live_streams"><b>последующие</b> прямые трансляции</string>
     <string name="followed_live_streams_html"><![CDATA[
@@ -50,10 +47,6 @@
     <string name="default_value">дефолт</string>
     <string name="view_all">посмотреть все</string>
     <string name="millions_value">%.2f миллион</string>
-    <string name="live_streams"> <![CDATA[
-    <b>прямые</b> трансляция
-    ]]>
-    </string>
     <string name="followed_channels_html">
         <![CDATA[
     <b>последующие</b> каналы
@@ -83,14 +76,9 @@
         <item>@string/en</item>
         <item>@string/ru</item>
     </string-array>
-    <string name="clear_all">ОЧИСТИТЬ ВСЕ</string>
     <string name="clear_data_confirmation">удалить последние найденные поиски?</string>
-    <string name="search_for_content">поиск контента</string>
-    <string name="choose_platform">choose platform</string>
     <string name="default_filter_name">Выберите категорию</string>
     <string name="search">ПОИСК</string>
-    <string name="category_filter_title">Поиск</string>
-    <string name="default_chip_name">все</string>
     <string name="streams_category">прямые трансляции</string>
     <string name="games_category">игры</string>
     <string name="channels_category">каналы</string>
@@ -105,7 +93,6 @@
     <string name="more_week_ago">более недели назад</string>
     <string name="long_time_ago">давным-давно</string>
     <string name="default_time">пустой</string>
-    <string name="latest_searches">ПОСЛЕДНИЕ ПОИСКИ</string>
     <string name="results">%d результаты</string>
     <string name="asc">по возрастанию</string>
     <string name="desc">по убыванию</string>
