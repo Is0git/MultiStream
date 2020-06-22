@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.android.multistream.ui.auth_activity.fragments.splash_screen.SplashScreenFragment"
+        android:name="com.iso.multistream.ui.auth_activity.fragments.splash_screen.SplashScreenFragment"
         android:label="SplashScreenFragment" >
         <action
             android:id="@+id/action_splashScreenFragment_to_introPageTwo"
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/introPageTwo"
-        android:name="com.android.multistream.ui.auth_activity.fragments.intro.IntroPageFragment"
+        android:name="com.iso.multistream.ui.auth_activity.fragments.intro.IntroPageFragment"
         android:label="IntroPageTwo" >
         <action
             android:id="@+id/action_introPageTwo_to_loginFragment"
@@ -23,6 +23,6 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.android.multistream.ui.auth_activity.fragments.login.LoginFragment"
+        android:name="com.iso.multistream.ui.auth_activity.fragments.login.LoginFragment"
         android:label="LoginFragment" />
 </navigation>

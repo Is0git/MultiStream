@@ -30,7 +30,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.android.multistream.ui.widgets.follow_button.FollowButton
+    <com.iso.multistream.ui.widgets.follow_button.FollowButton
         android:id="@+id/follow_button"
         style="@style/FollowButtonStyle"
         android:layout_width="30dp"

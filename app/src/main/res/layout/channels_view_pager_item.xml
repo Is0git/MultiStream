@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="data"
-            type="com.android.multistream.network.twitch.models.new_twitch_api.channels.DataItem" />
+            type="com.iso.multistream.network.twitch.models.new_twitch_api.channels.DataItem" />
     </data>
 
 

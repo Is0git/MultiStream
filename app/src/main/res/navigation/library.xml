@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/libraryFragment"
-        android:name="com.android.multistream.ui.main_activity.fragments.library_fragment.LibraryFragment"
+        android:name="com.iso.multistream.ui.main_activity.fragments.library_fragment.LibraryFragment"
         android:label="LibraryFragment" />
 </navigation>

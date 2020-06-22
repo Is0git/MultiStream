@@ -1,0 +1,853 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidConfiguredLogFilters">
+    <filters>
+      <filter>
+        <option name="logLevel" value="verbose" />
+        <option name="logMessagePattern" value="" />
+        <option name="logTagPattern" value="LINE" />
+        <option name="name" value="Unnamed-0" />
+        <option name="packageNamePattern" value="" />
+        <option name="pid" value="" />
+      </filter>
+    </filters>
+  </component>
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Unnamed-0" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="81ba24e8-5674-45e1-bee3-35f4b7e31cc3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/auth_activity/AuthFragmentBuilder.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/auth_activity/AuthScope.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/auth_activity/modules/AuthActivityViewModelModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/settings_fragment/SettingsFragmentScope.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/view_all_fragments/mixer_view_all_fragments/channels/MixerTopChannelsViewAllViewModelModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/view_all_fragments/mixer_view_all_fragments/games/MixerTopGamesViewAllViewModelModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/player_fragment/PlayerFragmentScope.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/player_fragment/PlayerFragmentViewModelModule.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/qualifiers/TwitchAuthQualifier.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/auth_activity/fragments/AuthActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/auth_activity/fragments/AuthRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/auth_activity/fragments/AuthViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/mixer_profile/clips/MixerClipsFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/mixer/top_channels_view_all/MixerChannelsAllViewFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/mixer/top_channels_view_all/MixerTopChannelsViewAllRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/mixer/top_channels_view_all/MixerTopChannelsViewAllViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/mixer/top_games_view_all/MixerTopGamesViewAllFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/mixer/top_games_view_all/MixerTopGamesViewAllRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/mixer/top_games_view_all/MixerTopGamesViewAllViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/player/fragments/PlayerFragmentRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/player/fragments/PlayerFragmentViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/settings_fragment/SettingsLoader.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/utils/ConnectivityHelper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/utils/LocaleHelper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/auth_activity.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/settings_layout.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/navigation/auth.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/App.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/App.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/auth/platform_manager/PlatformManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/auth/platform_manager/PlatformManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/auth/platforms/Platform.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/auth/platforms/Platform.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/auth/platforms/TwitchPlatform.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/auth/platforms/TwitchPlatform.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/ActivityBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/ActivityBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/AppComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/AppComponent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/FragmentBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/MainFragmentBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/intro_fragments/modules/IntroFragmentViewModelModule.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/intro_fragments/scopes/IntroFragmentScope.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/browse_fragment/TwitchGamesBrowseViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/browse_fragment/TwitchGamesBrowseViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/browse_fragment/ViewPagerFragmentBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/browse_fragment/ViewPagerFragmentBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/browse_fragment/view_pager_fragments/mixer_fragment/MixerFragmentViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/browse_fragment/view_pager_fragments/mixer_fragment/MixerFragmentViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/browse_fragment/view_pager_fragments/twitch_fragment/TwitchFragmentViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/browse_fragment/view_pager_fragments/twitch_fragment/TwitchFragmentViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/game_category_fragment/mixer_game_category_fragment/MixerGameCategoryViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/game_category_fragment/mixer_game_category_fragment/MixerGameCategoryViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/game_category_fragment/twitch_game_category_fragment/TwitchGameCategoryViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/game_category_fragment/twitch_game_category_fragment/TwitchGameCategoryViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/home_fragment/HomeFragmentViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/home_fragment/HomeFragmentViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/profile_fragments/twitch_profile_fragment/mixer_profile_fragments/modules/MixerFragmentManagerModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/profile_fragments/twitch_profile_fragment/mixer_profile_fragments/modules/MixerFragmentManagerModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/profile_fragments/twitch_profile_fragment/mixer_profile_fragments/modules/MixerProfileViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/profile_fragments/twitch_profile_fragment/mixer_profile_fragments/modules/MixerProfileViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/profile_fragments/twitch_profile_fragment/mixer_profile_fragments/modules/MixerVodstViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/profile_fragments/twitch_profile_fragment/mixer_profile_fragments/modules/MixerVodstViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/profile_fragments/twitch_profile_fragment/modules/TwitchProfileViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/profile_fragments/twitch_profile_fragment/modules/TwitchProfileViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/profile_fragments/twitch_profile_fragment/twitch_profile_fragments/TwitchProfileFragmentViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/profile_fragments/twitch_profile_fragment/twitch_profile_fragments/TwitchProfileFragmentViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/profile_fragments/twitch_profile_fragment/twitch_profile_fragments/modules/TwitchFragmentManagerModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/profile_fragments/twitch_profile_fragment/twitch_profile_fragments/modules/TwitchFragmentManagerModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/search_fragment/SearchFragmentViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/search_fragment/SearchFragmentViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/view_all_fragments/twitch_view_all_fragments/channels/TwitchChannelsViewAllViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/view_all_fragments/twitch_view_all_fragments/channels/TwitchChannelsViewAllViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/view_all_fragments/twitch_view_all_fragments/games/TwitchGamesViewAllViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/view_all_fragments/twitch_view_all_fragments/games/TwitchGamesViewAllViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/view_all_fragments/twitch_view_all_fragments/streams/TwitchStreamsViewAllViewModelModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/main_activity/main_fragments/view_all_fragments/twitch_view_all_fragments/streams/TwitchStreamsViewAllViewModelModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/modules/RetrofitModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/modules/RetrofitModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/modules/SettingsModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/di/modules/SettingsModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/network/twitch/TwitchService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/network/twitch/TwitchService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/network/twitch/constants/Auth.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/network/twitch/constants/Auth.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/network/twitch/models/v5/followed_streams/Preview.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/network/twitch/models/v5/followed_streams/Preview.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/network/twitch/models/v5/followed_streams/StreamsItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/network/twitch/models/v5/followed_streams/StreamsItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/network/twitch/models/v5/search/streams_search/Channel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/network/twitch/models/v5/search/streams_search/Channel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/network/twitch/models/v5/user/User.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/network/twitch/models/v5/user/User.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/auth/fragments/LoginFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/auth_activity/fragments/login/LoginFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/intro/fragments/IntroPage.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/intro/fragments/IntroPageTwo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/auth_activity/fragments/intro/IntroPageFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/intro/fragments/IntroRepository.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/intro/fragments/IntroViewModel.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/BrowseFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/BrowseFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/GamesFragmentsViewPagerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/GamesFragmentsViewPagerAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/ItemHowerViewHolder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/ItemHowerViewHolder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/PageOffSetLoaderRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/PageOffSetLoaderRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/PagedLoaderRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/PagedLoaderRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/view_pager_fragments/GamesBrowseFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/view_pager_fragments/GamesBrowseFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/view_pager_fragments/mixer_fragment/MixerGamesBrowseFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/view_pager_fragments/mixer_fragment/MixerGamesBrowseFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/view_pager_fragments/mixer_fragment/MixerGamesBrowseRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/view_pager_fragments/mixer_fragment/MixerGamesBrowseRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/view_pager_fragments/mixer_fragment/MixerGamesBrowseViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/view_pager_fragments/mixer_fragment/MixerGamesBrowseViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/view_pager_fragments/mixer_fragment/MixerTopGamesListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/view_pager_fragments/mixer_fragment/MixerTopGamesListAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/view_pager_fragments/twitch_fragment/OnGameCategoryListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/view_pager_fragments/twitch_fragment/OnGameCategoryListener.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/view_pager_fragments/twitch_fragment/TwitchGamesBrowseFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/view_pager_fragments/twitch_fragment/TwitchGamesBrowseFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/view_pager_fragments/twitch_fragment/TwitchGamesBrowseRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/view_pager_fragments/twitch_fragment/TwitchGamesBrowseRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/view_pager_fragments/twitch_fragment/TwitchGamesBrowseViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/view_pager_fragments/twitch_fragment/TwitchGamesBrowseViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/browse_fragment/view_pager_fragments/twitch_fragment/TwitchTopGamesAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/browse_fragment/view_pager_fragments/twitch_fragment/TwitchTopGamesAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/downloads_fragment/DownloadFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/downloads_fragment/DownloadFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/game_category_fragment/CategoryAppBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/game_category_fragment/CategoryAppBar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/game_category_fragment/GameCategoryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/game_category_fragment/GameCategoryFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/game_category_fragment/mixer_game_category/MixerGameCategory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/game_category_fragment/mixer_game_category/MixerGameCategory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/game_category_fragment/mixer_game_category/MixerGameCategoryRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/game_category_fragment/mixer_game_category/MixerGameCategoryRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/game_category_fragment/mixer_game_category/MixerGameCategoryViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/game_category_fragment/mixer_game_category/MixerGameCategoryViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/game_category_fragment/twitch_game_category/TwitchGameCategory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/game_category_fragment/twitch_game_category/TwitchGameCategory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/game_category_fragment/twitch_game_category/TwitchGameCategoryRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/game_category_fragment/twitch_game_category/TwitchGameCategoryRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/game_category_fragment/twitch_game_category/TwitchGameCategoryViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/game_category_fragment/twitch_game_category/TwitchGameCategoryViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/home_fragment/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/home_fragment/HomeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/home_fragment/adapters/ChannelsViewPagerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/home_fragment/adapters/ChannelsViewPagerAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/home_fragment/decorations/HorizontalMarginItemDecoration.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/home_fragment/decorations/HorizontalMarginItemDecoration.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/home_fragment/view_model/HomeFragmentRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/home_fragment/view_model/HomeFragmentRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/home_fragment/view_model/HomeFragmentViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/home_fragment/view_model/HomeFragmentViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/ProfileFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/ProfileFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/ProfileMotionLayout.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/ProfileMotionLayout.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/ProfileViewPagerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/ProfileViewPagerAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/RecordingFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/RecordingFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/mixer_profile/MixerProfileFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/mixer_profile/MixerProfileFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/mixer_profile/MixerProfileRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/mixer_profile/MixerProfileRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/mixer_profile/MixerProfileViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/mixer_profile/MixerProfileViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/mixer_profile/clips/MixerClipsFragment.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/mixer_profile/clips/MixerClipsRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/mixer_profile/clips/MixerClipsRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/mixer_profile/vods/MixerVodsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/mixer_profile/vods/MixerVodsFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/mixer_profile/vods/MixerVodsRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/mixer_profile/vods/MixerVodsRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/mixer_profile/vods/MixerVodsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/mixer_profile/vods/MixerVodsViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/twitch_profile/TwitchProfileFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/twitch_profile/TwitchProfileFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/twitch_profile/TwitchProfileRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/twitch_profile/TwitchProfileRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/twitch_profile/TwitchProfileViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/twitch_profile/TwitchProfileViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/twitch_profile/past_recordings/PastStreamAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/twitch_profile/past_recordings/PastStreamAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/twitch_profile/past_recordings/TwitchPastStreamsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/twitch_profile/past_recordings/TwitchPastStreamsFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/twitch_profile/past_recordings/TwitchPastStreamsRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/twitch_profile/past_recordings/TwitchPastStreamsRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/twitch_profile/past_recordings/TwitchPastStreamsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/twitch_profile/past_recordings/TwitchPastStreamsViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/twitch_profile/past_videos/TwitchClipsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/twitch_profile/past_videos/TwitchClipsFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/twitch_profile/past_videos/TwitchPastClipsRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/twitch_profile/past_videos/TwitchPastClipsRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/twitch_profile/past_videos/TwitchPastVideosViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/twitch_profile/past_videos/TwitchPastVideosViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/search_fragment/SearchFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/search_fragment/SearchFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/search_fragment/SearchRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/search_fragment/SearchRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/search_fragment/SearchViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/search_fragment/SearchViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/ViewAllFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/ViewAllFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/ViewAllListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/ViewAllListAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/ViewAllMotionLayout.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/ViewAllMotionLayout.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/twitch/channels_view_all/TwitchChannelsAllViewFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/twitch/channels_view_all/TwitchChannelsAllViewFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/twitch/channels_view_all/TwitchChannelsViewAllRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/twitch/channels_view_all/TwitchChannelsViewAllRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/twitch/channels_view_all/TwitchChannelsViewAllViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/twitch/channels_view_all/TwitchChannelsViewAllViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/twitch/games_view_all/TwichGamesViewAllViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/twitch/games_view_all/TwichGamesViewAllViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/twitch/games_view_all/TwitchGamesViewAllFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/twitch/games_view_all/TwitchGamesViewAllFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/twitch/games_view_all/TwitchGamesViewAllRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/twitch/games_view_all/TwitchGamesViewAllRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/twitch/streams_view_all/TwitchStreamsAllViewFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/twitch/streams_view_all/TwitchStreamsAllViewFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/twitch/streams_view_all/TwitchStreamsAllViewRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/twitch/streams_view_all/TwitchStreamsAllViewRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/twitch/streams_view_all/TwitchStreamsViewAllViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/view_all_fragments/twitch/streams_view_all/TwitchStreamsViewAllViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/MainActivityRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/MainActivityRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/MainActivityViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/MainActivityViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/player/fragments/PlayerFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/player/fragments/PlayerFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/settings_fragment/SettingsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/settings_fragment/SettingsFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/splash_screen/SplashScreenFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/auth_activity/fragments/splash_screen/SplashScreenFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/utils/NavigationExtensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/utils/NavigationExtensions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/utils/PlaceHolderAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/utils/PlaceHolderAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/utils/ResponseHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/utils/ResponseHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/utils/ScreenUnit.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/android/multistream/utils/ScreenUnit.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/splash_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/splash_screen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/top_bar_gradient.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/top_bar_gradient.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/channels_view_pager_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/channels_view_pager_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/game_category_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/game_category_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/game_content.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/game_content.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/home_fragment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/home_fragment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item_four.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_item_four.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item_one.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_item_one.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item_three.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_item_three.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item_two.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_item_two.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item_two_extended.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_item_two_extended.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/past_videos_fragment_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/past_videos_fragment_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/past_videos_pickers_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/past_videos_pickers_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/profile_content.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/profile_content.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/profile_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/profile_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/single_top_games_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/single_top_games_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/twitch_top_games_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/twitch_top_games_list.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/video_item_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/video_item_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/view_all_app_bar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/view_all_app_bar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/view_all_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/view_all_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/view_all_stream_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/view_all_stream_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/browse.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/browse.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-night/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-night/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-night/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-night/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimen.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/prefences_keys.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/prefences_keys.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/main_motion_scene.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/xml/main_motion_scene.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/profile_content_scene.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/xml/profile_content_scene.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/xml/settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/android/multistream/ExampleUnitTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/android/multistream/TimeTest.kt" afterDir="false" />
+    </list>
+    <list id="588d798b-e7e1-4ecd-8fb2-5b75965f02c8" name="bug fixes, more features, added new modules" comment="" />
+    <list id="e0f0a9d0-fcac-443b-83e8-0be655a525dd" name="Revert &quot;bug fixes, more features, added new modules&quot;" comment="Revert &quot;bug fixes, more features, added new modules&quot;&#10;&#10;This reverts commit 6c243189" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="60a7527c" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Kotlin Object" />
+        <option value="valueResourceFile" />
+        <option value="navigationResourceFile" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin File" />
+        <option value="resourceFile" />
+        <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="b40851b71f94ce54a739b9bf08ea5d5e13c10361" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1a7gNDpC1RkYecAbOrbL5FFbYEQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DEBUGGABLE_DEVICE" value="oneplus-gm1913-60a7527c" />
+    <property name="DEBUGGABLE_PROCESS" value="com.android.multistream" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="60a7527c" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-05-29T14:31:25.303Z" />
+    <property name="ResourceManagerPrefKey.ResourceType" value="DRAWABLE" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHOW_ALL_PROCESSES" value="false" />
+    <property name="android-custom-viewC:/Users/angel/AppData/Local/Android/Sdk/sources/android-29/android/view/View.java_SELECTED" value="View" />
+    <property name="android-custom-viewD:/multistreamProject/Multi-Stream-SearchView/multistreamsearchview/src/main/java/com/multistream/multistreamsearchview/search_view/SearchVIew.kt_SELECTED" value="SearchViewLayout" />
+    <property name="android-custom-viewD:/multistreamProject/MultiStreamStripeTabLayout/multistreamstripetablayout/src/main/java/com/example/multi_stream_stripe_tab_layout/StripeTabLayout.kt_SELECTED" value="StripeTabLayout" />
+    <property name="android-custom-viewD:/multistreamProject/MultiStreamStripeTabLayout/multistreamstripetablayout/src/main/java/com/example/multi_stream_stripe_tab_layout/StripeView.kt_SELECTED" value="StripeView" />
+    <property name="android-custom-viewD:/multistreamProject/multistreamAp/app/src/main/java/com/android/multistream/ui/main/fragments/game_category_fragment/CategoryAppBar.kt_SELECTED" value="CategoryAppBar" />
+    <property name="android-custom-viewD:/multistreamProject/multistreamAp/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/ProfileMotionLayout.kt_SELECTED" value="ProfileMotionLayout" />
+    <property name="android-custom-viewD:/multistreamProject/multistreamAp/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/ViewAllMotionLayout.kt_SELECTED" value="ViewAllMotionLayout" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Multi-Stream-Player/multistreamplayer/src/main/res/drawable" />
+    <property name="multi-representation-previewC:/Users/angel/AppData/Local/Android/Sdk/sources/android-29/android/view/View.java_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/multistreamProject/Multi-Stream-SearchView/multistreamsearchview/src/main/java/com/multistream/multistreamsearchview/search_view/SearchVIew.kt_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/multistreamProject/MultiStreamStripeTabLayout/multistreamstripetablayout/src/main/java/com/example/multi_stream_stripe_tab_layout/StripeTabLayout.kt_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/multistreamProject/MultiStreamStripeTabLayout/multistreamstripetablayout/src/main/java/com/example/multi_stream_stripe_tab_layout/StripeView.kt_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/multistreamProject/multistreamAp/app/src/main/java/com/android/multistream/ui/main/fragments/game_category_fragment/CategoryAppBar.kt_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/multistreamProject/multistreamAp/app/src/main/java/com/android/multistream/ui/main/fragments/profile_fragment/ProfileMotionLayout.kt_selected" value="Custom views" />
+    <property name="multi-representation-previewD:/multistreamProject/multistreamAp/app/src/main/java/com/android/multistream/ui/main/fragments/view_all_fragments/ViewAllMotionLayout.kt_selected" value="Custom views" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="MODULE_TAB" value="Properties" />
+    <option name="LAST_EDITED_SIGNING_CONFIG" value="debug" />
+    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\multistreamProject\Multi-Stream-Player\multistreamplayer\src\main\res\drawable" />
+      <recent name="D:\multistreamProject\multistreamAp\app\src\main\java\com\android\multistream\utils" />
+      <recent name="D:\multistreamProject\multistreamAp\app\src\main\res\drawable-v24" />
+      <recent name="D:\multistreamProject\multistreamAp\app\src\main\res\anim" />
+      <recent name="D:\multistreamProject\MultiStreamNavigationDrawer\navigationdrawer\src\main\res\drawable" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.android.multistream.ui.auth_activity.fragments" />
+      <recent name="com.android.multistream.ui.main_activity" />
+      <recent name="com.android.multistream.di.main_activity.main_fragments" />
+    </key>
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.android.multistream.di.main_activity.main_fragments.view_all_fragments.mixer_view_all_fragments.channels" />
+      <recent name="com.android.multistream.ui.main_activity.fragments.view_all_fragments.mixer.top_channels_view_all" />
+      <recent name="com.android.multistream.ui.auth_activity.fragments.intro" />
+      <recent name="com.android.multistream.ui.auth_activity.fragments.login" />
+      <recent name="com.android.multistream.ui.auth_activity.fragments" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.android.chat" />
+      <recent name="com.android.multistream.ui.main.fragments.profile_fragment.twitch_profile" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\multistreamProject\Multi-Stream-Player\multistreamplayer\src\main\res\anim" />
+      <recent name="D:\multistreamProject\Multi-Stream-Player\multistreamplayer\src\main\res\drawable" />
+      <recent name="D:\multistreamProject\multistreamAp\app\src\main\res\drawable-v24" />
+      <recent name="D:\multistreamProject\multistreamAp\app\src\main\res\color" />
+      <recent name="D:\multistreamProject\multistreamAp\app\src\main\res\drawable" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Android App.app">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TimeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.android.multistream.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.android.multistream" />
+      <option name="MAIN_CLASS_NAME" value="com.android.multistream.TimeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TimeTest.addition_isCorrect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.android.multistream.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.android.multistream" />
+      <option name="MAIN_CLASS_NAME" value="com.android.multistream.TimeTest" />
+      <option name="METHOD_NAME" value="addition_isCorrect" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TimeTest.addition_isCorrect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.android.multistream.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.android.multistream" />
+      <option name="MAIN_CLASS_NAME" value="com.android.multistream.TimeTest" />
+      <option name="METHOD_NAME" value="addition_isCorrect" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TimeTest.addition_isCorrect" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="81ba24e8-5674-45e1-bee3-35f4b7e31cc3" name="Default Changelist" comment="" />
+      <changelist id="588d798b-e7e1-4ecd-8fb2-5b75965f02c8" name="bug fixes, more features, added new modules" comment="" />
+      <created>1586092003571</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1586092003571</updated>
+    </task>
+    <task id="LOCAL-00001" summary="bug fixes, more features, added new modules">
+      <created>1587484902930</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1587484902930</updated>
+    </task>
+    <task id="LOCAL-00002" summary="4222020">
+      <created>1587564615707</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1587564615707</updated>
+    </task>
+    <task id="LOCAL-00003" summary="4232020">
+      <created>1587654761729</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1587654761729</updated>
+    </task>
+    <task id="LOCAL-00004" summary="player">
+      <created>1588279688861</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1588279688861</updated>
+    </task>
+    <task id="LOCAL-00005" summary="a lot of stuff">
+      <created>1588356623153</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1588356623153</updated>
+    </task>
+    <task id="LOCAL-00006" summary="very simple to use and adjustable paging module, network reponse handler">
+      <created>1588518940996</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1588518940996</updated>
+    </task>
+    <task id="LOCAL-00007" summary="navigationdrawer">
+      <created>1588613804076</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1588613804076</updated>
+    </task>
+    <task id="LOCAL-00008" summary="552020">
+      <created>1588692320019</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1588692320019</updated>
+    </task>
+    <task id="LOCAL-00009" summary="5520201141">
+      <created>1589407744457</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1589407744457</updated>
+    </task>
+    <task id="LOCAL-00010" summary="5142020">
+      <created>1589489536008</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1589489536008</updated>
+    </task>
+    <task id="LOCAL-00011" summary="some network adapters work">
+      <created>1589495034457</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1589495034457</updated>
+    </task>
+    <task id="LOCAL-00012" summary="5 15 2020">
+      <created>1589585322659</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1589585322659</updated>
+    </task>
+    <task id="LOCAL-00013" summary="5 16 2020">
+      <created>1589658219009</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1589658219009</updated>
+    </task>
+    <task id="LOCAL-00014" summary="5 18 2020">
+      <created>1589757338071</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1589757338071</updated>
+    </task>
+    <task id="LOCAL-00015" summary="modules added, cleanup">
+      <created>1589761557319</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1589761557319</updated>
+    </task>
+    <task id="LOCAL-00016" summary="5 18 2020">
+      <created>1589845196236</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1589845196236</updated>
+    </task>
+    <task id="LOCAL-00017" summary="5 19 2020">
+      <created>1589921924762</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1589921924762</updated>
+    </task>
+    <task id="LOCAL-00018" summary="5 22 2020">
+      <created>1590102868743</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1590102868743</updated>
+    </task>
+    <task id="LOCAL-00019" summary="5 23 2020">
+      <created>1590190140987</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1590190140988</updated>
+    </task>
+    <task id="LOCAL-00020" summary="5 24 2020">
+      <created>1590272956644</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1590272956644</updated>
+    </task>
+    <task id="LOCAL-00021" summary="player">
+      <created>1590505976124</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1590505976124</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="bug fixes, more features, added new modules" />
+    <MESSAGE value="4222020" />
+    <MESSAGE value="4232020" />
+    <MESSAGE value="bg" />
+    <MESSAGE value="a lot of stuff" />
+    <MESSAGE value="very simple to use and adjustable paging module, network reponse handler" />
+    <MESSAGE value="navigationdrawer" />
+    <MESSAGE value="552020" />
+    <MESSAGE value="5520201141" />
+    <MESSAGE value="5142020" />
+    <MESSAGE value="some network adapters work" />
+    <MESSAGE value="5 15 2020" />
+    <MESSAGE value="5 16 2020" />
+    <MESSAGE value="modules added, cleanup" />
+    <MESSAGE value="5 18 2020" />
+    <MESSAGE value="5 19 2020" />
+    <MESSAGE value="5 22 2020" />
+    <MESSAGE value="5 23 2020" />
+    <MESSAGE value="5 24 2020" />
+    <MESSAGE value="player" />
+    <option name="LAST_COMMIT_MESSAGE" value="player" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="751" y="239" key="#com.intellij.ide.util.MemberChooser" timestamp="1590178768936">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="751" y="239" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589999192816" />
+    <state x="751" y="239" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1590178768936" />
+    <state x="370" y="448" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1589991724347">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="370" y="448" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589991724347" />
+    <state x="462" y="175" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1589999862227">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="462" y="175" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589999862227" />
+    <state x="540" y="274" key="AndroidCreateResourceFileDialog" timestamp="1590169339993">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="540" y="274" key="AndroidCreateResourceFileDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589972256368" />
+    <state x="540" y="274" key="AndroidCreateResourceFileDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1590169339993" />
+    <state width="1877" height="283" key="GridCell.Tab.0.bottom" timestamp="1590181249943">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="283" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589997763205" />
+    <state width="1877" height="283" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1590181249943" />
+    <state width="1877" height="283" key="GridCell.Tab.0.center" timestamp="1590181249943">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="283" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589997763205" />
+    <state width="1877" height="283" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1590181249943" />
+    <state width="1877" height="283" key="GridCell.Tab.0.left" timestamp="1590181249943">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="283" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589997763205" />
+    <state width="1877" height="283" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1590181249943" />
+    <state width="1877" height="283" key="GridCell.Tab.0.right" timestamp="1590181249943">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="283" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589997763205" />
+    <state width="1877" height="283" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1590181249943" />
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1590169472755">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589997793280" />
+    <state x="656" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1590169472755" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/MainActivityViewModel.kt</url>
+          <line>39</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/twitch_profile/TwitchProfileFragment.kt</url>
+          <line>49</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/twitch_profile/TwitchProfileFragment.kt</url>
+          <line>61</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/profile_fragment/twitch_profile/TwitchProfileFragment.kt</url>
+          <line>60</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/../Multi-Stream-Player/multistreamplayer/src/main/java/com/android/player/player/controller/MultiStreamController.kt</url>
+          <line>21</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/player/fragments/PlayerFragment.kt</url>
+          <line>33</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/settings_fragment/SettingsFragment.kt</url>
+          <line>82</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/home_fragment/HomeFragment.kt</url>
+          <line>282</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/../Multi-Stream-SearchView/multistreamsearchview/src/main/java/com/multistream/multistreamsearchview/recent_search/HistoryListAdapter.kt</url>
+          <line>79</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/search_fragment/SearchFragment.kt</url>
+          <line>131</line>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/main_activity/fragments/search_fragment/SearchFragment.kt</url>
+          <line>132</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/settings_fragment/SettingsFragment.kt</url>
+          <line>79</line>
+          <option name="timeStamp" value="107" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/auth/platform_manager/PlatformManager.kt</url>
+          <line>44</line>
+          <option name="timeStamp" value="146" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/auth/platform_manager/PlatformManager.kt</url>
+          <line>45</line>
+          <option name="timeStamp" value="147" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/auth/platform_manager/PlatformManager.kt</url>
+          <line>52</line>
+          <option name="timeStamp" value="150" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/auth/platform_manager/PlatformManager.kt</url>
+          <line>51</line>
+          <option name="timeStamp" value="151" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/../Multi-Stream-Chat/multistreamchat/src/main/java/com/android/chat/twitch_chat/output_handler/TwitchOutputHandler.kt</url>
+          <line>30</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="178" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/../Multi-Stream-Chat/multistreamchat/src/main/java/com/android/chat/twitch_chat/output_handler/TwitchOutputHandler.kt</url>
+          <line>31</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="179" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/../Multi-Stream-Player/multistreamplayer/src/main/java/com/android/player/ui/CustomMotion.kt</url>
+          <line>217</line>
+          <option name="timeStamp" value="187" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/../Multi-Stream-Player/multistreamplayer/src/main/java/com/android/player/alarm/StreamAlarm.kt</url>
+          <line>29</line>
+          <option name="timeStamp" value="189" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/../Multi-Stream-Player/multistreamplayer/src/main/java/com/android/player/alarm/StreamAlarm.kt</url>
+          <line>30</line>
+          <option name="timeStamp" value="190" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/../Multi-Stream-Player/multistreamplayer/src/main/java/com/android/player/alarm/StreamAlarm.kt</url>
+          <line>25</line>
+          <option name="timeStamp" value="191" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/player/fragments/PlayerFragment.kt</url>
+          <line>66</line>
+          <option name="timeStamp" value="195" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/player/fragments/PlayerFragment.kt</url>
+          <line>67</line>
+          <option name="timeStamp" value="196" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/player/fragments/PlayerFragment.kt</url>
+          <line>68</line>
+          <option name="timeStamp" value="197" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/player/fragments/PlayerFragment.kt</url>
+          <line>69</line>
+          <option name="timeStamp" value="198" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/android/multistream/ui/player/fragments/PlayerFragmentRepository.kt</url>
+          <line>20</line>
+          <properties>
+            <option name="lambda-ordinal" value="1" />
+          </properties>
+          <option name="timeStamp" value="200" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

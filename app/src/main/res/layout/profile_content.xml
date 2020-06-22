@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.android.multistream.ui.main_activity.fragments.profile_fragment.ProfileMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.iso.multistream.ui.main_activity.fragments.profile_fragment.ProfileMotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/profileAppBar"
     android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         android:src="@drawable/darken_gradient"
         app:altSrc="@drawable/profile_bg" />
 
-    <com.android.multistream.ui.widgets.follow_button.FollowButton
+    <com.iso.multistream.ui.widgets.follow_button.FollowButton
         android:id="@+id/follow_button"
         style="@style/FollowButtonStyle"
         android:layout_width="40dp"
@@ -219,4 +219,4 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="32dp" />
-</com.android.multistream.ui.main_activity.fragments.profile_fragment.ProfileMotionLayout>
+</com.iso.multistream.ui.main_activity.fragments.profile_fragment.ProfileMotionLayout>

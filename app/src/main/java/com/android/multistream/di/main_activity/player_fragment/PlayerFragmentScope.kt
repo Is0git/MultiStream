@@ -1,4 +1,0 @@
-package com.android.multistream.di.main_activity.player_fragment
-
-@PlayerFragmentScope
-annotation class PlayerFragmentScope

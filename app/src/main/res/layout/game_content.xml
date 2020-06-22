@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.android.multistream.ui.main_activity.fragments.game_category_fragment.CategoryAppBar xmlns:android="http://schemas.android.com/apk/res/android"
+<com.iso.multistream.ui.main_activity.fragments.game_category_fragment.CategoryAppBar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -120,5 +120,5 @@
         app:layout_constraintTop_toTopOf="@+id/followersIcon" />
 
 
-</com.android.multistream.ui.main_activity.fragments.game_category_fragment.CategoryAppBar>
+</com.iso.multistream.ui.main_activity.fragments.game_category_fragment.CategoryAppBar>
 
