@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.iso.multistream.R
 import com.iso.multistream.auth.platforms.Platform
 import com.iso.multistream.auth.platforms.TwitchPlatform
 import com.iso.multistream.databinding.LoginLayoutBinding
@@ -33,6 +32,12 @@ class LoginFragment : DialogFragment() {
     lateinit var authViewModel: AuthViewModel
     var authJob: Job? = null
     var position: Int = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(DialogFragment.STYLE_NORMAL, R.style.AuthDialog)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -76,24 +81,25 @@ class LoginFragment : DialogFragment() {
                     return false
                 }
             }
+            CookieManager.getInstance().removeAllCookies(null)
             webView.settings.apply {
                 javaScriptEnabled = true
+                databaseEnabled = false
+                this.setAppCacheEnabled(false)
+                cacheMode = WebSettings.LOAD_NO_CACHE
             }
             webView.loadUrl(url)
         }
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        dialog?.window?.setLayout(MATCH_PARENT, MATCH_PARENT)
-    }
 
     override fun onDismiss(dialog: DialogInterface) {
         if (authJob != null && !authJob?.isActive!!) {
             super.onDismiss(dialog)
         } else {
-            authViewModel.statesLiveData.postValue(Platform.AuthState.Failed(null))
+            authViewModel.statesLiveData.postValue(Platform.AuthState.Canceled)
+            super.onDismiss(dialog)
         }
     }
 

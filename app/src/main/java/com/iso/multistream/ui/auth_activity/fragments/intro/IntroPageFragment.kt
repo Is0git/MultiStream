@@ -55,7 +55,6 @@ class IntroPageFragment : DaggerFragment() {
             .setState(if (isTwitchValidated) PageData.ProgressButtonState.COMPLETED else PageData.ProgressButtonState.IDLE)
             .setOnSyncButtonClickListener {
                 createDialog(TWITCH, 0)
-
             }
             .build()
         val pageTwo = PageData.Builder()
@@ -76,7 +75,8 @@ class IntroPageFragment : DaggerFragment() {
         val pageList = listOf(pageOne, pageTwo)
         (binding.root as SlideLayout).apply {
             viewPagerAdapter.addPages(pageList)
-            onSkipButtonClick { (requireActivity() as AuthActivity).launchMainActivity() }
+            onSkipButtonClick { (requireActivity() as AuthActivity).launchMainActivity()
+            authViewModel.statesLiveData.value = Platform.AuthState.Canceled}
         }
         authViewModel.statesLiveData.observe(viewLifecycleOwner) {
             val platformKeyName = getString(R.string.twitch_sync)
@@ -86,9 +86,11 @@ class IntroPageFragment : DaggerFragment() {
                     binding.slideLayout.setButtonState(0, PageData.ProgressButtonState.COMPLETED)
                 }
                 is Platform.AuthState.Failed -> {
-                    Snackbar.make(requireView(), "FAILED", Snackbar.LENGTH_SHORT).show()
                     settingsPreferencesEditor.putBoolean(platformKeyName, false).apply()
                     binding.slideLayout.setButtonState(0, PageData.ProgressButtonState.FAILED)
+                }
+                is Platform.AuthState.Canceled -> {
+                    binding.slideLayout.setButtonState(0, PageData.ProgressButtonState.RESET)
                 }
             }
         }
@@ -111,7 +113,6 @@ class IntroPageFragment : DaggerFragment() {
                 it.putInt("position", position)
             }
         }
-        newFragment.dialog?.window?.setLayout(MATCH_PARENT, MATCH_PARENT)
         newFragment.showNow(fragmentManager, platform.toString())
     }
 

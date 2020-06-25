@@ -43,7 +43,7 @@ class AuthRepository @Inject constructor(
     }
 
     suspend fun validateAccessTokens() {
-        delay(2500)
+        delay(3000)
         platformManager.platforms.forEach {
             supervisorScope {
                 var isValidated = false

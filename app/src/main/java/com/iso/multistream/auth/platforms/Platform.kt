@@ -29,6 +29,8 @@ abstract class Platform<T : Any, S : Any, U : Any, V>(
     sealed class AuthState {
         object Completed : AuthState()
 
+        object Canceled: AuthState()
+
         data class Failed(val throwable: Throwable?) : AuthState()
     }
     var currentUser: V? = null

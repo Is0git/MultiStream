@@ -22,4 +22,6 @@ include(':stripesliderview')
 project(':stripesliderview').projectDir = new File("D:\\multistreamProject\\Multi-Stream-Step-Slider\\stripesliderview")
 include(':multi-stream-splash-screen')
 project(':multi-stream-splash-screen').projectDir = new File("D:\\multistreamProjectWorking\\MultiStreamSplashScreen\\multi-stream-splash-screen")
+include ':eminogoView'
+project(':eminogoView').projectDir=new File('D:\\multistreamProjectWorking\\Multi-Stream-Eminogo-View\\eminogoview')
 rootProject.name='multistream'

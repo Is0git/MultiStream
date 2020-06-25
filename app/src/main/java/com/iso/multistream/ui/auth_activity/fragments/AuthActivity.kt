@@ -28,7 +28,9 @@ class AuthActivity : DaggerAppCompatActivity() {
                     "isSplashScreenEnabled",
                     true
                 )
-            ) findNavController(R.id.nav_host_container).navigate(R.id.action_splashScreenFragment_to_introPageTwo)
+            ) {
+              if (savedInstanceState == null) findNavController(R.id.nav_host_container).navigate(R.id.action_splashScreenFragment_to_introPageTwo)
+            }
     }
 
     fun launchMainActivity() {

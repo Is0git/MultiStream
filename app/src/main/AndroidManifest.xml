@@ -25,6 +25,8 @@
             tools:replace="android:authorities" />
         <activity android:name=".ui.auth_activity.fragments.AuthActivity"
             android:hardwareAccelerated="true"
+            android:finishOnTaskLaunch="true"
+            android:noHistory="true"
             android:clearTaskOnLaunch="true">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"/>

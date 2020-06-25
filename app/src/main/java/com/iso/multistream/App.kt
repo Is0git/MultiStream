@@ -63,7 +63,7 @@ class App : DaggerApplication() {
         }
     }
 
-    fun addCustomWorkManagerConfiguration() {
+    private fun addCustomWorkManagerConfiguration() {
         WorkManager.initialize(this, Configuration.Builder().setWorkerFactory(workFactory).build())
     }
 }
