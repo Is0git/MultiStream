@@ -1,6 +1,19 @@
 # MultiStreaming
 <h3>PREVIEW</h3>
-<p><a href="http://danielktx.com/images/bitcoin_app/bitcoin_video.mp4" type="video/mp4"><h2>DEMO VIDEO</h2></a></p>
+<p float="left">
+<a href="http://danielktx.com/images/multistream/video/display/row_1_1.mp4" type="video/mp4">DEMO_VIDEO_1   </a>
+<a href="http://danielktx.com/images/multistream/video/display/row_1_24.mp4" type="video/mp4">DEMO_VIDEO_2  </a>
+   <a href="http://danielktx.com/images/multistream/video/display/row_1_24.mp4" type="video/mp4">DEMO_VIDEO_3  </a>
+   <a href="http://danielktx.com/images/multistream/video/display/row_1_7.mp4" type="video/mp4">DEMO_VIDEO_4   </a>
+   <a href="http://danielktx.com/images/multistream/video/display/row_1_9.mp4" type="video/mp4">DEMO_VIDEO_5   </a>
+   <a href="http://danielktx.com/images/multistream/video/display/row_1_10.mp4" type="video/mp4">DEMO_VIDEO_6  </a>
+   <a href="http://danielktx.com/images/multistream/video/display/row_1_16.mp4" type="video/mp4">DEMO_VIDEO_7  </a>
+   <a href="http://danielktx.com/images/multistream/video/display/row_1_18.mp4" type="video/mp4">DEMO_VIDEO_8  </a>
+   <a href="http://danielktx.com/images/multistream/video/display/row_1_20.mp4" type="video/mp4">DEMO_VIDEO_9  </a>
+   <a href="http://danielktx.com/images/multistream/video/display/row_1_5.mp4" type="video/mp4">DEMO_VIDEO_10  </a>
+   <a href="http://danielktx.com/images/multistream/video/display/row_1_25.mp4" type="video/mp4">DEMO_VIDEO_10 </a>
+</p>
+
 <p float="left">
    <img width="400" src="http://danielktx.com/images/multistream/row-1-col-1.jpg" />
   <img width="400" src="http://danielktx.com/images/multistream/row-1-col-2.jpg" />
@@ -28,20 +41,23 @@ Watch, search, and get content from various streaming platforms like twitch, mix
 <h3> Libraries </h3>
 <p>
   <li>Kotlin coroutines</li> 
-  <li>Hilt</li>
+  <li>dagger-android</li>
   <li>Material design</li>
-  <li>Motion-layout, lifecycle</li>
+  <li>Motion-layout</li>
+   <li>lifecycle</li>
   <li>Viewmodel</li>
   <li>Navigation-component</li> 
   <li>Databinding</li> 
   <li>Room</li> 
   <li>Livedata</li> 
-  <li>Services</li> 
+   <li>workmanager</li>
+  <li>Services, alarm manager</li> 
   <li>Retrofit</li>
   <li>Moshi</li>
   <li>OkHttpClient(adapters, moshi-kotlin-codegen)</li> 
   <li>Kotlin extensions</li> 
   <li>Glide</li>
   <li>Activity and fragment extensions</li> 
-  <li>And more...</li>
+   <li>jetpack security-crypto, jetpack preferences</li>
+  <li>Other stuff: coordinator layout, object animators, custom vector animation drawables, sets, custom views, viewgroups, custom svgs, leak canary, systrace/profiler</li>
 </p>
