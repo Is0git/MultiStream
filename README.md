@@ -61,3 +61,20 @@ Watch, search, and get content from various streaming platforms like twitch, mix
    <li>jetpack security-crypto, jetpack preferences</li>
   <li>Other stuff: coordinator layout, object animators, custom vector animation drawables, sets, custom views, viewgroups, custom svgs, leak canary, systrace/profiler</li>
 </p>
+
+<h3>Custom modules</h3>
+<li><a href="https://github.com/Is0git/Multi-Stream-Step-Slider" target="_blank">Multi-Stream-Step-Slider</a></li>
+                                            <li><a href="https://github.com/Is0git/Multi-Stream-Eminogo-View" target="_blank">Multi-Stream-Eminogo-View</a></li>
+                                            <li><a href="https://github.com/Is0git/Multi-Stream-Player" target="_blank">Multi-Stream-Player</a></li>
+                                            <li><a href="https://github.com/Is0git/Multi-Stream-Chat" target="_blank">Multi-Stream-Chat</a></li>
+                                            <li><a href="https://github.com/Is0git/Multi-Stream-Emoticon-Picker" target="_blank">Multi-Stream-Emoticon-Picker</a></li>
+                                            <li><a href="https://github.com/Is0git/MultiStream-Splash-Screen" target="_blank">MultiStream-Splash-Screen</a></li>
+                                            <li><a href="https://github.com/Is0git/Multi-Stream-Navigation-Drawer" target="_blank">Multi-Stream-Navigation-Drawer</a></li>
+                                            <li><a href="https://github.com/Is0git/AndroidDaggerViewModel" target="_blank">AndroidDaggerViewModel</a></li>
+                                            <li><a href="https://github.com/Is0git/Multi-stream-Api" target="_blank">Multi-stream-Api</a></li>
+                                            <li><a href="https://github.com/Is0git/Multi-Stream-SearchView" target="_blank">Multi-Stream-SearchView</a></li>
+                                            <li><a href="https://github.com/Is0git/Pagination" target="_blank">Pagination</a></li>
+                                            <li><a href="https://github.com/Is0git/Multi-Stream-Hide-Scroll-View" target="_blank">Multi-Stream-Hide-Scroll-View</a></li>
+                                            <li><a href="https://github.com/Is0git/Multi-Stream-Material-PlaceHolder-View" target="_blank">Multi-Stream-Material-PlaceHolder-View</a></li>
+                                            <li><a href="https://github.com/Is0git/Multi-Stream-Stripe-Tab-Layout" target="_blank">Multi-Stream-Stripe-Tab-Layout</a></li>
+                                            <li><a href="https://github.com/Is0git/OverScrollBehavior" target="_blank">OverScrollBehavior</a></li>
