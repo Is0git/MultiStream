@@ -25,7 +25,7 @@
 
 <h3>Description</h3>
 <p>MultiStream is made for accessing multiple streaming platforms at the same place
-Watch, search, and get content from various streaming platforms like twitch, mixer. Application uses MVVM architecture. It has over 10 custom modules including many custom views and viewgroups, livestream/video player with chat, pagination, search, emoticons, navigation drawer, auth modules. One of the goals was to write reusable code because application combines multiple api and platforms which essentially have similar purposes. It has a lot of unique elements in UI/UX such as beautiful views, powerful animations, gestures. Application performs intensive work so there I've used a lot of functional programming, coroutines channels and flows for handling over 100k users in chat. </p>
+Watch, search, and get content from various streaming platforms like twitch, mixer. Application uses MVVM architecture. It has over 10 custom modules including many custom views and viewgroups, livestream/video player with chat, pagination, search, emoticons, navigation drawer, auth modules. One of the goals was to write reusable code because application combines multiple apis and platforms which essentially have similar purposes. Also it has a lot of unique UI/UX elements such as beautiful custom views, powerful animations, gestures. Application performs intensive work so there I'd had to use a lot of functional programming, coroutines channels and flows for handling over 100k users in chat. </p>
 
 <li>minimizable player-portrait, landscape support</li>
 <li>easy to find your favorite streamers across all platforms</li>
